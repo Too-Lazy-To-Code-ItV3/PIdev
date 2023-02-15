@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class MyConnection {
     //DB PARAM
-    static final String URL ="jdbc:mysql://localhost:3306/ArTounsi";
-    static final String USER ="root";
-    static final String PASSWORD ="";
+    static final String URL = "jdbc:mysql://localhost:3306/ArTounsi";
+    static final String USER = "root";
+    static final String PASSWORD = "";
 
     //var
     private Connection cnx;
@@ -17,7 +17,7 @@ public class MyConnection {
 
     //const
     //2
-    private MyConnection(){
+    private MyConnection() {
         try {
             cnx = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException ex) {
@@ -32,7 +32,7 @@ public class MyConnection {
 
     //3
     public static MyConnection getInstance() {
-        if(instance == null)
+        if (instance == null)
             instance = new MyConnection();
 
         return instance;

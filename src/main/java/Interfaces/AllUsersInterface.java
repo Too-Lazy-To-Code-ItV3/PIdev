@@ -19,6 +19,7 @@ public interface AllUsersInterface {
 
     public List<AllUsers> fetchAUbyID(int ID) throws SQLException;
 
+    public void sendVerificationCode(String recipientEmail, String verificationCode);
 
 
 }

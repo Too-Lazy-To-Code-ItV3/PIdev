@@ -5,6 +5,7 @@ import Models.AllUsers;
 import Util.MyConnection;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.security.MessageDigest;
@@ -15,6 +16,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+
 
 public class AllUsersService implements AllUsersInterface {
     Connection cnx = MyConnection.getInstance().getCnx();
@@ -52,6 +57,8 @@ public class AllUsersService implements AllUsersInterface {
             ps.setString(3, u.getEmail());
             ps.setDate(4, u.getBirthday() != null ? Date.valueOf(u.getBirthday()) : null);
             ps.setString(5, hashedPassword);
+            System.out.println(hashedPassword);
+            System.out.println(u.getPassword());
             ps.setString(6, u.getNationality());
             ps.setString(7, u.getType());
             ps.setString(8, u.getNickname());
@@ -116,12 +123,12 @@ public class AllUsersService implements AllUsersInterface {
                 u.setID_User(rs.getInt(1));
                 u.setName(rs.getString(2));
                 u.setLast_Name(rs.getString(3));
-                u.setNickname(rs.getString(4));
-                u.setEmail(rs.getString(5));
-                u.setBirthday(rs.getDate(6).toLocalDate());
-                u.setPassword(rs.getString(7));
-                u.setNationality(rs.getString(8));
-                u.setType(rs.getString(9));
+                u.setEmail(rs.getString(4));
+                u.setBirthday(rs.getDate(5).toLocalDate());
+                u.setPassword(rs.getString(6));
+                u.setNationality(rs.getString(7));
+                u.setType(rs.getString(8));
+                u.setNickname(rs.getString(9));
 
 
                 Allusers.add(u);
@@ -163,5 +170,35 @@ public class AllUsersService implements AllUsersInterface {
         }
 
         return Allusers;
+    }
+    public void sendVerificationCode(String recipientEmail, String verificationCode) {
+        String senderEmail = "adam.rafraf@esprit.tn"; // Change this to your own email address
+        String senderPassword = "Yesanewpasswordbrohh0909"; // Change this to your own email password
+        String subject = "Verification Code";
+        String message = "Your verification code is " + verificationCode;
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com"); // Change this to your own SMTP server host if not using Gmail
+        props.put("mail.smtp.port", "587"); // Change this to your own SMTP server port if not using Gmail
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            Message email = new MimeMessage(session);
+            email.setFrom(new InternetAddress(senderEmail));
+            email.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            email.setSubject(subject);
+            email.setText(message);
+            Transport.send(email);
+            System.out.println("Verification code sent to " + recipientEmail);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
