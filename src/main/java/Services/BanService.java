@@ -1,7 +1,6 @@
 package Services;
 
 import Interfaces.BanInterface;
-import Models.AllUsers;
 import Models.Ban;
 import Util.MyConnection;
 
@@ -13,13 +12,22 @@ public class BanService implements BanInterface {
     Connection cnx = MyConnection.getInstance().getCnx();
 
     @Override
-    public void AddBan(Ban B, AllUsers U) throws SQLException {
+    public void AddBan(Ban B) throws SQLException {
+        String nickname = "";
         try {
-            String req = "INSERT INTO Ban(`ID_User`, `Reason`, `DateB`) VALUES (?,?,?,?)";
+            String req = "SELECT COUNT(*) FROM allusers WHERE ID_User =" + B.getID_User();
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            if (!rs.next()) {
+                System.out.println("Error: user does not exist.");
+                return;
+            }
+            req = "INSERT INTO Ban(`ID_User`, `Reason`, `DateB`) VALUES (?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, U.getID_User());
+            ps.setInt(1, B.getID_User());
             ps.setString(2, B.getReason());
-            ps.setString(3, B.getDate());
+            Timestamp expirationDate = new Timestamp(System.currentTimeMillis());
+            ps.setTimestamp(3, expirationDate);
             ps.executeUpdate();
             System.out.println("Ban Added Successfully!");
 
@@ -95,7 +103,6 @@ public class BanService implements BanInterface {
                 B.setNickname(rs.getString(4));
 
 
-
                 Ban.add(B);
             }
 
@@ -108,31 +115,32 @@ public class BanService implements BanInterface {
     }
 
     @Override
-    public List<Ban> fetchBanbyID(int ID) throws SQLException {
-        List<Ban> Ban = new ArrayList<>();
+    public Ban fetchBanbyID(int ID) throws SQLException {
+        return null;
+
+    }
+
+    @Override
+    public Ban fetchBanbyIDUser(int ID) throws SQLException {
+        Ban B = new Ban();
         try {
 
-            String req = "SELECT * FROM Ban WHERE `ID_User`=" + ID;
+            String req = "SELECT b.*, u.nickname " + "FROM ban b " + "JOIN allusers u ON b.id_user = u.id_user " + "WHERE b.id_user =" + ID;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Ban u = new Ban();
-                u.setID_User(rs.getInt(1));
+                B.setID_Ban(rs.getInt(1));
+                B.setID_User(rs.getInt(2));
+                B.setReason(rs.getString(3));
+                B.setDate(rs.getString(4));
+                B.setNickname(rs.getString("nickname"));
 
-
-
-                Ban.add(u);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return Ban;
-    }
-
-    @Override
-    public List<Ban> fetchBanbyIDUser(int ID) throws SQLException {
-        return null;
+        return B;
     }
 }

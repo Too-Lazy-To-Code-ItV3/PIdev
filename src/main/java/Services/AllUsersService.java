@@ -4,21 +4,16 @@ import Interfaces.AllUsersInterface;
 import Models.AllUsers;
 import Util.MyConnection;
 
-import java.sql.*;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Base64;
+import java.sql.Date;
+import java.sql.*;
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
 
 
 public class AllUsersService implements AllUsersInterface {
@@ -72,6 +67,59 @@ public class AllUsersService implements AllUsersInterface {
     }
 
     @Override
+    public void CreateAU(AllUsers u) {
+        String salt = generateSalt();
+        String hashedPassword = hashPassword(u.getPassword(), salt);
+        try {
+            String req = "SELECT * FROM allusers WHERE nickname =? OR email =?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, u.getNickname());
+            ps.setString(2, u.getEmail());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+                System.out.println("Error: email or nickname already in use.");
+
+            String verificationCode = generateVerificationCode();
+            sendVerificationCode(u.getEmail(), verificationCode);
+            System.out.println("A verification email has been sent to your email address. Please check your email and follow the instructions to verify your account.");
+            while (true) {
+                System.out.println("Please enter the verification code you received by email:");
+                Scanner scanner = new Scanner(System.in);
+                String code = scanner.nextLine();
+
+                // Check if verification code matches the one stored in the database
+
+                if (verificationCode.equals(code)) {
+                    // Verification successful, create user
+
+                    req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`, `Nationality`, `type`,`Nickname`) VALUES (?,?,?,?,?,?,?,?)";
+                    ps = cnx.prepareStatement(req);
+                    ps.setString(1, u.getName());
+                    ps.setString(2, u.getLast_Name());
+                    ps.setString(3, u.getEmail());
+                    ps.setDate(4, u.getBirthday() != null ? Date.valueOf(u.getBirthday()) : null);
+                    ps.setString(5, hashedPassword);
+                    System.out.println(hashedPassword);
+                    System.out.println(u.getPassword());
+                    ps.setString(6, u.getNationality());
+                    ps.setString(7, u.getType());
+                    ps.setString(8, u.getNickname());
+                    ps.executeUpdate();
+                    System.out.println("Account created successfully.");
+
+
+                } else {
+                    System.out.println("Verification code is invalid. Please try again.");
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+
+    }
+
+    @Override
     public void DeleteAu(int ID) throws SQLException {
         try {
             String req = "DELETE FROM allusers WHERE ID_User=" + ID;
@@ -97,7 +145,7 @@ public class AllUsersService implements AllUsersInterface {
             ps.setString(2, u.getLast_Name());
             ps.setString(3, u.getEmail());
             ps.setDate(4, Date.valueOf(u.getBirthday()));
-            ps.setString(5,hashedPassword );
+            ps.setString(5, hashedPassword);
             ps.setString(6, u.getNationality());
             ps.setString(7, u.getType());
             ps.setString(8, u.getNickname());
@@ -142,38 +190,89 @@ public class AllUsersService implements AllUsersInterface {
     }
 
     @Override
-    public List<AllUsers> fetchAUbyID(int ID) throws SQLException {
-        List<AllUsers> Allusers = new ArrayList<>();
+    public AllUsers fetchAUbyID(int ID) throws SQLException {
+        AllUsers u = new AllUsers();
         try {
 
             String req = "SELECT * FROM allusers WHERE `ID_User`=" + ID;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                AllUsers u = new AllUsers();
                 u.setID_User(rs.getInt(1));
                 u.setName(rs.getString(2));
                 u.setLast_Name(rs.getString(3));
-                u.setNickname(rs.getString(4));
-                u.setEmail(rs.getString(5));
-                u.setBirthday(rs.getDate(6).toLocalDate());
-                u.setPassword(rs.getString(7));
-                u.setNationality(rs.getString(8));
-                u.setType(rs.getString(9));
+                u.setEmail(rs.getString(4));
+                u.setBirthday(rs.getDate(5).toLocalDate());
+                u.setPassword(rs.getString(6));
+                u.setNationality(rs.getString(7));
+                u.setType(rs.getString(8));
+                u.setNickname(rs.getString(9));
 
-
-                Allusers.add(u);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return Allusers;
+        return u;
     }
+
+    @Override
+    public AllUsers fetchAUbyEmail(String Email) throws SQLException {
+        AllUsers u = new AllUsers();
+        try {
+
+            String req = "SELECT * From allusers WHERE Email='" + Email + "'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                u.setID_User(rs.getInt("ID_User"));
+                u.setName(rs.getString("Name"));
+                u.setLast_Name(rs.getString("Last_Name"));
+                u.setEmail(rs.getString("Email"));
+                u.setBirthday(rs.getDate("Birthday").toLocalDate());
+                u.setPassword(rs.getString("Password"));
+                u.setNationality(rs.getString("Nationality"));
+                u.setType(rs.getString("Type"));
+                u.setNickname(rs.getString("Nickname"));
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return u;
+    }
+
+    @Override
+    public AllUsers fetchAUbyNickname(String Nickname) throws SQLException {
+        AllUsers u = new AllUsers();
+        try {
+
+            String req = "SELECT * FROM allusers WHERE Nickname='" + Nickname + "'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                u.setID_User(rs.getInt(1));
+                u.setName(rs.getString(2));
+                u.setLast_Name(rs.getString(3));
+                u.setEmail(rs.getString(4));
+                u.setBirthday(rs.getDate(5).toLocalDate());
+                u.setPassword(rs.getString(6));
+                u.setNationality(rs.getString(7));
+                u.setType(rs.getString(8));
+                u.setNickname(rs.getString(9));
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return u;
+    }
+
     public void sendVerificationCode(String recipientEmail, String verificationCode) {
         String senderEmail = "adam.rafraf@esprit.tn"; // Change this to your own email address
-        String senderPassword = "Yesanewpasswordbrohh0909"; // Change this to your own email password
+        String senderPassword = "hijeoauapslyyqeh"; // Change this to your own email password
         String subject = "Verification Code";
         String message = "Your verification code is " + verificationCode;
 
@@ -200,5 +299,17 @@ public class AllUsersService implements AllUsersInterface {
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String generateVerificationCode() {
+        int length = 6;
+        String charset = "0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(charset.length());
+            sb.append(charset.charAt(randomIndex));
+        }
+        return sb.toString();
     }
 }

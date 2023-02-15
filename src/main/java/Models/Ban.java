@@ -21,6 +21,11 @@ public class Ban {
         Nickname = nickname;
     }
 
+    public Ban(int ID_User, String reason) {
+        this.ID_User = ID_User;
+        Reason = reason;
+    }
+
     public Ban() {
 
     }
