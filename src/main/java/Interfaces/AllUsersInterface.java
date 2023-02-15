@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface AllUsersInterface {
 
+    public String generateSalt();
+    public String hashPassword(String password, String salt);
     public void AddAu(AllUsers u) throws SQLException;
 
     public void DeleteAu(int ID) throws SQLException;

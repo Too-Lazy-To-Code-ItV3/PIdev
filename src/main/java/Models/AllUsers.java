@@ -1,6 +1,6 @@
 package Models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AllUsers {
     private int ID_User;
@@ -9,7 +9,7 @@ public class AllUsers {
 
     private String Nickname;
     private String Email;
-    private Date Birthday;
+    private LocalDate Birthday;
     private String Password;
     private String Nationality;
     private String type;
@@ -17,7 +17,7 @@ public class AllUsers {
     public AllUsers() {
     }
 
-    public AllUsers(int ID_User, String name, String last_Name, String nickname, String email, Date birthday, String password, String nationality, String type) {
+    public AllUsers(int ID_User, String name, String last_Name, String nickname, String email, LocalDate birthday, String password, String nationality, String type) {
         this.ID_User = ID_User;
         Name = name;
         Last_Name = last_Name;
@@ -29,7 +29,7 @@ public class AllUsers {
         this.type = type;
     }
 
-    public AllUsers(String name, String last_Name, String nickname, String email, Date birthday, String password, String nationality, String type) {
+    public AllUsers(String name, String last_Name, String nickname, String email, LocalDate birthday, String password, String nationality, String type) {
         Name = name;
         Last_Name = last_Name;
         Nickname = nickname;
@@ -80,11 +80,11 @@ public class AllUsers {
         Email = email;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return Birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         Birthday = birthday;
     }
 
@@ -126,5 +126,6 @@ public class AllUsers {
                 ", type='" + type + '\'' +
                 '}';
     }
+
 }
 

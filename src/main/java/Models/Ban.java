@@ -1,0 +1,78 @@
+package Models;
+
+public class Ban {
+    private int ID_Ban,ID_User;
+    private String Date;
+    private String Reason;
+    private String Nickname;
+
+    public Ban(int ID_Ban, int ID_User, String date, String reason, String nickname) {
+        this.ID_Ban = ID_Ban;
+        this.ID_User = ID_User;
+        Date = date;
+        Reason = reason;
+        Nickname = nickname;
+    }
+
+    public Ban(int ID_User, String date, String reason, String nickname) {
+        this.ID_User = ID_User;
+        Date = date;
+        Reason = reason;
+        Nickname = nickname;
+    }
+
+    public Ban() {
+
+    }
+
+    public int getID_Ban() {
+        return ID_Ban;
+    }
+
+    public void setID_Ban(int ID_Ban) {
+        this.ID_Ban = ID_Ban;
+    }
+
+    public int getID_User() {
+        return ID_User;
+    }
+
+    public void setID_User(int ID_User) {
+        this.ID_User = ID_User;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public String getReason() {
+        return Reason;
+    }
+
+    public void setReason(String reason) {
+        Reason = reason;
+    }
+
+    public String getNickname() {
+        return Nickname;
+    }
+
+    public void setNickname(String nickname) {
+        Nickname = nickname;
+    }
+
+    @Override
+    public String toString() {
+        return "Ban{" +
+                "ID_Ban=" + ID_Ban +
+                ", ID_User=" + ID_User +
+                ", Date='" + Date + '\'' +
+                ", Reason='" + Reason + '\'' +
+                ", Nickname='" + Nickname + '\'' +
+                '}';
+    }
+}
