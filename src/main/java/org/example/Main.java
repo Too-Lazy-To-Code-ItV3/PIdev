@@ -13,12 +13,12 @@ public class Main {
 
         //player init
         AllUsers u;
-        u = new AllUsers("NAMEMMM3", "LAST NAMEMMMM3 ", "EMAILMM2MMMMM@gmail.com", new Date(2008, 1, 20), "PASSWDMMMMM3", "MMNATIONALITYMMM3", "MMMTYPEMMM3");
+        u = new AllUsers("NAMEMMM3", "LAST NAMEMMMM3 ","XXxNicknamexXX", "EMAILMM2MMMMM@gmail.com", new Date(2008, 1, 20), "PASSWDMMMMM3", "MMNATIONALITYMMM3", "MMMTYPEMMM3");
         //add action
-        // au.AddAu(u);
+        au.AddAu(u);
 
         //select
-        au.ModifyAu(u, 3);
+       // au.ModifyAu(u, 3);
         au.DeleteAu(1);
         System.out.println(au.fetchAU());
         System.out.println(au.fetchAUbyID(4));

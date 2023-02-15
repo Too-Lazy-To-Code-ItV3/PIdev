@@ -6,6 +6,8 @@ public class AllUsers {
     private int ID_User;
     private String Name;
     private String Last_Name;
+
+    private String Nickname;
     private String Email;
     private Date Birthday;
     private String Password;
@@ -15,9 +17,11 @@ public class AllUsers {
     public AllUsers() {
     }
 
-    public AllUsers(String name, String last_Name, String email, Date birthday, String password, String nationality, String type) {
+    public AllUsers(int ID_User, String name, String last_Name, String nickname, String email, Date birthday, String password, String nationality, String type) {
+        this.ID_User = ID_User;
         Name = name;
         Last_Name = last_Name;
+        Nickname = nickname;
         Email = email;
         Birthday = birthday;
         Password = password;
@@ -25,10 +29,10 @@ public class AllUsers {
         this.type = type;
     }
 
-    public AllUsers(int ID_User, String name, String last_Name, String email, Date birthday, String password, String nationality, String type) {
-        this.ID_User = ID_User;
+    public AllUsers(String name, String last_Name, String nickname, String email, Date birthday, String password, String nationality, String type) {
         Name = name;
         Last_Name = last_Name;
+        Nickname = nickname;
         Email = email;
         Birthday = birthday;
         Password = password;
@@ -58,6 +62,14 @@ public class AllUsers {
 
     public void setLast_Name(String last_Name) {
         Last_Name = last_Name;
+    }
+
+    public String getNickname() {
+        return Nickname;
+    }
+
+    public void setNickname(String nickname) {
+        Nickname = nickname;
     }
 
     public String getEmail() {
@@ -103,9 +115,10 @@ public class AllUsers {
     @Override
     public String toString() {
         return "AllUsers{" +
-                "ID_User='" + ID_User + '\'' +
+                "ID_User=" + ID_User +
                 ", Name='" + Name + '\'' +
                 ", Last_Name='" + Last_Name + '\'' +
+                ", Nickname='" + Nickname + '\'' +
                 ", Email='" + Email + '\'' +
                 ", Birthday=" + Birthday +
                 ", Password='" + Password + '\'' +
