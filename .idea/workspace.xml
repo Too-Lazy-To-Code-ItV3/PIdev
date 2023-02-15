@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4acd614-4384-4a0a-b292-071eae7803ee" name="Changes" comment="CRUD WORKING CRAZY !!!!!">
-      <change afterPath="$PROJECT_DIR$/lib/activation-1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.mail-1.6.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.mail-api-1.6.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interfaces/AllUsersInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interfaces/AllUsersInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/AllUsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/AllUsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Util/MyConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Util/MyConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="d4acd614-4384-4a0a-b292-071eae7803ee" name="Changes" comment="CRUD WORKING CRAZY !!!!!" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +76,7 @@
       <workItem from="1676378387831" duration="5802000" />
       <workItem from="1676465784018" duration="5456000" />
       <workItem from="1676475180782" duration="1801000" />
-      <workItem from="1676482188624" duration="4990000" />
+      <workItem from="1676482188624" duration="5128000" />
     </task>
     <task id="LOCAL-00001" summary="CRUD WORKING CRAZY !!!!!">
       <created>1676384466533</created>
