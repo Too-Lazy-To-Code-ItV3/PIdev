@@ -32,24 +32,45 @@ public class Main {
         BanInterface Ba = new BanService();
 
         //INTI CLASSES
-        AllUsers u;
-        Ban B;
-       // B=new Ban(4,"yhib real");
-        //Ba.AddBan(B);
-        System.out.println(Ba.fetchBanbyIDUser(4));
-        //u = new AllUsers("Adam", "Rafraf ","anothernickname", "2lazy2nameit@gmail.com", LocalDate.of(2000,9,9), "PASSWORDENCRYPTED", "Tunisian", "Artiste");
+        AllUsers u0,u,u1;
+        Ban B,B1;
+        u0 = new AllUsers("lefoulen", "foulen ","anothernickname123", "mecoba2403@laserlip.com", LocalDate.of(2000,9,9), "PASSWORDENCRYPTED", "Tunisian", "Artiste");
         //add action
-        //au.CreateAU(u);
-     //au.sendVerificationCode("2lazy2nameit@gmail.com","200");
+        au.CreateAU(u0);
+        u = new AllUsers("USERNAME", "USERLASTNAME ","anothernickname1234567", "hekenoh478@laserlip.com", LocalDate.of(2000,9,9), "PASSWORDENCRYPTED", "Tunisian", "Artiste");
+        //add action
+        au.CreateAU(u);
+        //READ
+        System.out.println("SOUT AFTER CREATING USER");
+        System.out.println(au.fetchAU());
+        //Edit
+        u1=new AllUsers("lefoulen", "foulen ","anothernickname23", "balig15132@jobsfeel.com", LocalDate.of(2000,9,9), "PASSWORDENCRYPTED", "Tunisian", "Artiste");
+       au.ModifyAu(u1,4);
+        System.out.println("SOUT AFTER MODIFYING USER");
+        System.out.println(au.fetchAUbyID(4));
+
+        //DELETE
+        au.DeleteAu(4);
+        System.out.println("SOUT AFTER DELETING USER");
+        System.out.println(au.fetchAU());
+        //ADD BAN
+        B=new Ban(9,"RUDE to users");
+        Ba.AddBan(B);
+        System.out.println("SOUT AFTER CREATING BAN");
+        System.out.println(Ba.fetchBan());
+        //EDIT
+        B1=new Ban(9,"REASON3");
+        Ba.ModifyBan(B1,9);
+        System.out.println("SOUT AFTER ModifyING BAN");
+        Ba.fetchBanbyIDUser(9);
+        //DELETE BAN
+        Ba.DeleteBan(2);
+        System.out.println("SOUT AFTER DELETING BAN");
+        System.out.println(Ba.fetchBanbyIDUser(9));
 
 
-        //select
-       // au.ModifyAu(u, 3);
-        //au.DeleteAu(1);
-        //System.out.println(au.fetchAUbyID(4));
-        //System.out.println(au.fetchAUbyNickname("AdamRafraf"));
-        //System.out.println(au.fetchAUbyEmail("Adam@gmail.com"));
-        //System.out.println(au.fetchAUbyID(1));
+
+
 
 
     }

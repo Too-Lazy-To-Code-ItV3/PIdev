@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d4acd614-4384-4a0a-b292-071eae7803ee" name="Changes" comment="CRUD WORKING CRAZY !!!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interfaces/AllUsersInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interfaces/AllUsersInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Interfaces/BanInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Interfaces/BanInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Models/Ban.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Ban.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/AllUsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/AllUsersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/BanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/BanService.java" afterDir="false" />
@@ -67,7 +65,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -84,7 +82,9 @@
       <workItem from="1676378387831" duration="5802000" />
       <workItem from="1676465784018" duration="5456000" />
       <workItem from="1676475180782" duration="1801000" />
-      <workItem from="1676482188624" duration="16322000" />
+      <workItem from="1676482188624" duration="16520000" />
+      <workItem from="1676535943474" duration="849000" />
+      <workItem from="1676541321693" duration="2087000" />
     </task>
     <task id="LOCAL-00001" summary="CRUD WORKING CRAZY !!!!!">
       <created>1676384466533</created>
@@ -103,5 +103,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="CRUD WORKING CRAZY !!!!!" />
     <option name="LAST_COMMIT_MESSAGE" value="CRUD WORKING CRAZY !!!!!" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,12 +1,14 @@
 package Models;
 
+import java.time.LocalDate;
+
 public class Ban {
     private int ID_Ban,ID_User;
-    private String Date;
+    private LocalDate Date;
     private String Reason;
     private String Nickname;
 
-    public Ban(int ID_Ban, int ID_User, String date, String reason, String nickname) {
+    public Ban(int ID_Ban, int ID_User, LocalDate date, String reason, String nickname) {
         this.ID_Ban = ID_Ban;
         this.ID_User = ID_User;
         Date = date;
@@ -14,7 +16,7 @@ public class Ban {
         Nickname = nickname;
     }
 
-    public Ban(int ID_User, String date, String reason, String nickname) {
+    public Ban(int ID_User, LocalDate date, String reason, String nickname) {
         this.ID_User = ID_User;
         Date = date;
         Reason = reason;
@@ -46,11 +48,11 @@ public class Ban {
         this.ID_User = ID_User;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return Date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         Date = date;
     }
 

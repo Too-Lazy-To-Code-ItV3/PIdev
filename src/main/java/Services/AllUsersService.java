@@ -106,6 +106,7 @@ public class AllUsersService implements AllUsersInterface {
                     ps.setString(8, u.getNickname());
                     ps.executeUpdate();
                     System.out.println("Account created successfully.");
+                    return;
 
 
                 } else {

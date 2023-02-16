@@ -59,7 +59,7 @@ public class BanService implements BanInterface {
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(2, B.getReason());
-            ps.setString(3, B.getDate());
+            ps.setDate(3, Date.valueOf(B.getDate()));
             ps.executeUpdate();
             System.out.println("User Modified Successfully!");
 
@@ -76,7 +76,7 @@ public class BanService implements BanInterface {
             PreparedStatement ps = cnx.prepareStatement(req);
 
             ps.setString(2, B.getReason());
-            ps.setString(3, B.getDate());
+            ps.setDate(3, Date.valueOf(B.getDate()));
             ps.executeUpdate();
             System.out.println("User Modified Successfully!");
 
@@ -100,7 +100,8 @@ public class BanService implements BanInterface {
                 B.setID_Ban(rs.getInt(1));
                 B.setID_User(rs.getInt(2));
                 B.setReason(rs.getString(3));
-                B.setNickname(rs.getString(4));
+                B.setDate(rs.getDate(4).toLocalDate());
+
 
 
                 Ban.add(B);
@@ -132,7 +133,7 @@ public class BanService implements BanInterface {
                 B.setID_Ban(rs.getInt(1));
                 B.setID_User(rs.getInt(2));
                 B.setReason(rs.getString(3));
-                B.setDate(rs.getString(4));
+                B.setDate(rs.getDate(4).toLocalDate());
                 B.setNickname(rs.getString("nickname"));
 
             }
