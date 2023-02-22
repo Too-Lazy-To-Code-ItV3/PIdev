@@ -1,0 +1,36 @@
+
+
+.dark-background{
+    -fx-background-color:#000033;
+
+}
+.border-bottom{
+    -fx-border-width: 0 0 2 0 ;
+    -fx-border-color:#cccccc ;
+}
+.bottom{
+    -fx-background-color:#1C90E4;
+    -fx-background-radiusL :50 ;
+}
+.gradient{
+    -fx-background-color:black ;
+}
+.shadow{
+    -fx-effect:dropshadow(three-pass-box,rgba(0,0,0,0.2,0),10,0,0,10);
+}
+/*.list-view {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10;
+}
+
+.list-cell {
+    -fx-text-fill: #333333;
+    -fx-font-size: 16px;
+     -fx-padding: 10px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #d0d0d0;
+}
+*/
+

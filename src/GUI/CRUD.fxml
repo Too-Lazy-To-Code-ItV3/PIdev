@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="CRUD" prefHeight="400.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CRUDController">
+   <children>
+      <HBox layoutX="-3.0" prefHeight="401.0" prefWidth="1500.0" styleClass="bottom" stylesheets="@../css/menustyle.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="afficheroffre" prefHeight="400.0" prefWidth="800.0" />
+            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="mesoffres" mnemonicParsing="false" onAction="#afficherMesOffres" text="mes offres">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Button>
+                  <Button fx:id="ajouter" mnemonicParsing="false" onAction="#ajout" onMouseDragEntered="#ajout" text="ajouter" />
+               </children>
+               <HBox.margin>
+                  <Insets left="300.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="239.0" prefWidth="1300.0" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Afficheroffres2Controller">
+   <children>
+      <HBox alignment="BOTTOM_LEFT" layoutY="-1.0" prefHeight="187.0" prefWidth="609.0" styleClass="gradient" stylesheets="@../css/menustyle.css">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="279.0">
+               <children>
+                  <Label fx:id="titreOffre" alignment="CENTER_RIGHT" contentDisplay="TOP" text="titre offre" textAlignment="CENTER" textFill="#fcfcfc">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" right="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nomStudio" text="nom studio " textFill="#fcfcfc">
+                     <VBox.margin>
+                        <Insets left="30.0" top="-20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="typeOffre" text="type offre" textFill="#9861c7">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="categorie" text="categorie" textFill="#881f94">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="description" text="description" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="locOffre" text="localiqation" textFill="#fcfcfc">
+                     <VBox.margin>
+                        <Insets top="60.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+            <Pane prefHeight="250.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="dateAjout" alignment="TOP_LEFT" prefHeight="17.0" prefWidth="85.0" text="date ajout" textAlignment="CENTER" textFill="#fcfcfc">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</Pane>
