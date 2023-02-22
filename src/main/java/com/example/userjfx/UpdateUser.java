@@ -1,12 +1,16 @@
 package com.example.userjfx;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import Models.AllUsers;
+import Services.AllUsersService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class UpdateUser {
 
@@ -42,24 +46,47 @@ public class UpdateUser {
 
     @FXML
     private TextField TypeTF;
+    private int userId;
+
+    public void setUserId(int userId) throws SQLException {
+
+        this.userId = userId;
+        AllUsers user = as.fetchAUbyID(userId);
+        System.out.println("init ID USER = " + userId);
+        NameTF.setText(user.getName());
+        LastNameTF.setText(user.getLast_Name());
+        EmailTF.setText(user.getEmail());
+        NicknameTF.setText(user.getNickname());
+        NationalityTF.setText(user.getNationality());
+        PasswordTF.setText(user.getPassword());
+        CPasswordTF.setText(user.getPassword());
+        BirthdayTF.setValue(user.getBirthday());
+        TypeTF.setText(user.getType());
+    }
+
+    AllUsersService as = new AllUsersService();
 
     @FXML
-    void Register(ActionEvent event) {
+    void initialize()  {
 
     }
 
     @FXML
-    void initialize() {
-        assert BirthdayTF != null : "fx:id=\"BirthdayTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert CPasswordTF != null : "fx:id=\"CPasswordTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert EmailTF != null : "fx:id=\"EmailTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert LastNameTF != null : "fx:id=\"LastNameTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert NameTF != null : "fx:id=\"NameTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert NationalityTF != null : "fx:id=\"NationalityTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert NicknameTF != null : "fx:id=\"NicknameTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert PasswordTF != null : "fx:id=\"PasswordTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
-        assert TypeTF != null : "fx:id=\"TypeTF\" was not injected: check your FXML file 'UpdateUser.fxml'.";
+    void Update(ActionEvent event) throws SQLException {
+        AllUsers u = new AllUsers();
+        u.setName(NameTF.getText());
+        u.setLast_Name(LastNameTF.getText());
+        u.setEmail(EmailTF.getText());
+        u.setBirthday(BirthdayTF.getValue());
+        u.setPassword(PasswordTF.getText());
+        u.setNationality(NationalityTF.getText());
+        u.setType(TypeTF.getText());
+        u.setNickname(NicknameTF.getText());
+        System.out.println("in the update scene" + u.getID_User());
+        as.ModifyAu(u,userId);
+
 
     }
+
 
 }

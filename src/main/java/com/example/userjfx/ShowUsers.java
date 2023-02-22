@@ -6,9 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -45,7 +51,23 @@ public class ShowUsers {
 
     }
     @FXML
-    void UpdateUser(ActionEvent event) {
+    void UpdateUser(ActionEvent event) throws IOException, SQLException {
+        AllUsers selectedUser = UsersLV.getSelectionModel().getSelectedItem();
+        System.out.println("THIS ID OF SELECTED USER "+selectedUser.getID_User());
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateUser.fxml"));
+        Parent uuView = loader.load();
+        Scene scene = new Scene(uuView);
+
+
+        UpdateUser updateUser = loader.getController();
+        updateUser.setUserId(selectedUser.getID_User());
+        System.out.println("SAME ID AGAIN"+selectedUser.getID_User());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
 
     }
     @FXML
