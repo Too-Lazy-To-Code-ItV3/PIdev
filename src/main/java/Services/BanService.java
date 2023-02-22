@@ -58,10 +58,11 @@ public class BanService implements BanInterface {
             String req = "UPDATE `Ban` SET `Reason`=?,`DateB`=? WHERE ID_Ban=" + ID;
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setString(2, B.getReason());
-            ps.setDate(3, Date.valueOf(B.getDate()));
+            ps.setString(1, B.getReason());
+            Timestamp expirationDate = new Timestamp(System.currentTimeMillis());
+            ps.setTimestamp(2, expirationDate);
             ps.executeUpdate();
-            System.out.println("User Modified Successfully!");
+            System.out.println("Ban Modified Successfully!");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -75,10 +76,10 @@ public class BanService implements BanInterface {
             String req = "UPDATE `Ban` SET `Reason`=?,`DateB`=? WHERE ID_User=" + ID;
             PreparedStatement ps = cnx.prepareStatement(req);
 
-            ps.setString(2, B.getReason());
-            ps.setDate(3, Date.valueOf(B.getDate()));
+            ps.setString(1, B.getReason());
+            ps.setDate(2, Date.valueOf(B.getDate()));
             ps.executeUpdate();
-            System.out.println("User Modified Successfully!");
+            System.out.println("Ban Modified Successfully!");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -88,11 +89,11 @@ public class BanService implements BanInterface {
 
 
     @Override
-    public List<Ban> fetchBan() throws SQLException {
+    public List<Ban> fetchBan() {
         List<Ban> Ban = new ArrayList<>();
         try {
 
-            String req = "SELECT * FROM Ban";
+            String req = "SELECT * FROM ban";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
@@ -101,7 +102,6 @@ public class BanService implements BanInterface {
                 B.setID_User(rs.getInt(2));
                 B.setReason(rs.getString(3));
                 B.setDate(rs.getDate(4).toLocalDate());
-
 
 
                 Ban.add(B);
@@ -117,7 +117,27 @@ public class BanService implements BanInterface {
 
     @Override
     public Ban fetchBanbyID(int ID) throws SQLException {
-        return null;
+        Ban B = new Ban();
+        try {
+
+            String req = "SELECT * FROM ban where ID_BAN=" + ID;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+
+                B.setID_Ban(rs.getInt(1));
+                B.setID_User(rs.getInt(2));
+                B.setReason(rs.getString(3));
+                B.setDate(rs.getDate(4).toLocalDate());
+
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return B;
 
     }
 

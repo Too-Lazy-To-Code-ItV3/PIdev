@@ -4,11 +4,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="890.0" prefWidth="1302.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.ShowUsers">
+<AnchorPane prefHeight="890.0" prefWidth="1302.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.ShowBans">
    <children>
-      <ListView fx:id="UsersLV" layoutX="17.0" layoutY="14.0" prefHeight="780.0" prefWidth="1269.0" />
-      <Button layoutX="246.0" layoutY="813.0" mnemonicParsing="false" onAction="#ShowUsers" prefHeight="49.0" prefWidth="136.0" text="Show" />
-      <Button layoutX="515.0" layoutY="813.0" mnemonicParsing="false" onAction="#UpdateUser" prefHeight="49.0" prefWidth="136.0" text="Update" />
-      <Button layoutX="749.0" layoutY="813.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="49.0" prefWidth="136.0" text="Delete" />
+      <ListView fx:id="BansLV" layoutX="17.0" layoutY="14.0" prefHeight="780.0" prefWidth="1269.0" />
+      <Button layoutX="246.0" layoutY="813.0" mnemonicParsing="false" onAction="#ShowBans" prefHeight="49.0" prefWidth="136.0" text="Show" />
+      <Button layoutX="515.0" layoutY="813.0" mnemonicParsing="false" onAction="#UpdateBan" prefHeight="49.0" prefWidth="136.0" text="Update" />
+      <Button layoutX="749.0" layoutY="813.0" mnemonicParsing="false" onAction="#DeleteBan" prefHeight="49.0" prefWidth="136.0" text="Delete" />
    </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ public class ShowBansApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("ShowBans.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ShowBansApplication.class.getResource("ShowBans.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Register Form WORKING !");
         primaryStage.setScene(scene);

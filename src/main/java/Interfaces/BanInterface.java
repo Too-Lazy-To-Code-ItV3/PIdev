@@ -1,6 +1,5 @@
 package Interfaces;
 
-import Models.AllUsers;
 import Models.Ban;
 
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ public interface BanInterface {
 
     public void ModifyBanByUser(Ban B, int ID) throws SQLException;
 
-    public List<Ban> fetchBan() throws SQLException;
+    public List<Ban> fetchBan();
 
     public Ban fetchBanbyID(int ID) throws SQLException;
     public Ban fetchBanbyIDUser(int ID) throws SQLException;
