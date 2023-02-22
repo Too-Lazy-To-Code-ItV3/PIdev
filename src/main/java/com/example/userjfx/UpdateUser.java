@@ -52,7 +52,6 @@ public class UpdateUser {
 
         this.userId = userId;
         AllUsers user = as.fetchAUbyID(userId);
-        System.out.println("init ID USER = " + userId);
         NameTF.setText(user.getName());
         LastNameTF.setText(user.getLast_Name());
         EmailTF.setText(user.getEmail());
@@ -82,7 +81,6 @@ public class UpdateUser {
         u.setNationality(NationalityTF.getText());
         u.setType(TypeTF.getText());
         u.setNickname(NicknameTF.getText());
-        System.out.println("in the update scene" + u.getID_User());
         as.ModifyAu(u,userId);
 
 

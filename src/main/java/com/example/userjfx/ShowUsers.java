@@ -26,17 +26,18 @@ public class ShowUsers {
 
     @FXML
     private URL location;
-    AllUsersService as=new AllUsersService();
+    AllUsersService as = new AllUsersService();
     @FXML
     private ListView<AllUsers> UsersLV;
-    ObservableList<AllUsers>aul= FXCollections.observableArrayList(as.fetchAU());
+    ObservableList<AllUsers> aul = FXCollections.observableArrayList(as.fetchAU());
 
     @FXML
     void ShowUsers(ActionEvent event) {
-        aul=FXCollections.observableArrayList(as.fetchAU());
+        aul = FXCollections.observableArrayList(as.fetchAU());
         UsersLV.setItems(aul);
 
     }
+
     @FXML
     void DeleteUser(ActionEvent event) throws SQLException {
         int selectedIndex = UsersLV.getSelectionModel().getSelectedIndex();
@@ -50,12 +51,10 @@ public class ShowUsers {
         }
 
     }
+
     @FXML
     void UpdateUser(ActionEvent event) throws IOException, SQLException {
         AllUsers selectedUser = UsersLV.getSelectionModel().getSelectedItem();
-        System.out.println("THIS ID OF SELECTED USER "+selectedUser.getID_User());
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateUser.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView);
@@ -63,7 +62,6 @@ public class ShowUsers {
 
         UpdateUser updateUser = loader.getController();
         updateUser.setUserId(selectedUser.getID_User());
-        System.out.println("SAME ID AGAIN"+selectedUser.getID_User());
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -71,11 +69,29 @@ public class ShowUsers {
 
     }
     @FXML
+    void BanUser(ActionEvent event) throws IOException, SQLException {
+        AllUsers selectedUser = UsersLV.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddBan.fxml"));
+        Parent uuView = loader.load();
+        Scene scene = new Scene(uuView);
+
+
+        AddBan AddBan = loader.getController();
+        AddBan.setUserId(selectedUser.getID_User());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
     void initialize() {
-        aul=FXCollections.observableArrayList(as.fetchAU());
+        aul = FXCollections.observableArrayList(as.fetchAU());
         UsersLV.setItems(aul);
 
     }
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
