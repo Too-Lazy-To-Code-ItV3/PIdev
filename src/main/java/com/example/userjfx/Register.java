@@ -104,7 +104,7 @@ public class Register {
 
         // Check and set password
         String password = PasswordTF.getText();
-        String Cpassword=CPasswordTF.getText();
+        String Cpassword = CPasswordTF.getText();
         if (password.isEmpty() || password.length() < 6 || !password.matches("^[a-zA-Z0-9]+$")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Password");
@@ -113,8 +113,7 @@ public class Register {
             alert.showAndWait();
             return;
         }
-        if(!Cpassword.equals(password))
-        {
+        if (!Cpassword.equals(password)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Password Must Matches the confirm Password");
             alert.setHeaderText(null);

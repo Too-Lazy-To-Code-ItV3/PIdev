@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="363.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.AddBan">
+<AnchorPane prefHeight="363.0" prefWidth="1250.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.AddBan">
    <children>
       <Label layoutX="42.0" layoutY="97.0" text="ID_User">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="IDUSERTF" layoutX="289.0" layoutY="98.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="IDUSERTF" layoutX="289.0" layoutY="98.0" prefHeight="25.0" prefWidth="279.0">
          <font>
             <Font size="20.0" />
          </font>

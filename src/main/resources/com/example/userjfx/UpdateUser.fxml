@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1284.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.UpdateUser">
+<AnchorPane prefHeight="923.0" prefWidth="1284.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.UpdateUser">
    <children>
       <Label layoutX="42.0" layoutY="97.0" text="First Name">
          <font>
@@ -96,7 +96,7 @@
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <DatePicker fx:id="BirthdayTF" layoutX="288.0" layoutY="319.0" prefHeight="44.0" prefWidth="629.0" />
+      <DatePicker fx:id="BirthdayTF" layoutX="288.0" layoutY="319.0" prefHeight="44.0" prefWidth="210.0" />
       <Button layoutX="291.0" layoutY="827.0" mnemonicParsing="false" onAction="#Update" text="Update">
          <font>
             <Font size="20.0" />
