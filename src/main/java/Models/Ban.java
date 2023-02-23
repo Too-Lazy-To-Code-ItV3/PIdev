@@ -75,11 +75,11 @@ public class Ban {
     @Override
     public String toString() {
         return "Ban{" +
-                "ID_Ban=" + ID_Ban +
-                ", ID_User=" + ID_User +
-                ", Date='" + Date + '\'' +
-                ", Reason='" + Reason + '\'' +
-                ", Nickname='" + Nickname + '\'' +
+                "ID_Ban=" + ID_Ban + System.lineSeparator()+
+                ", ID_User=" + ID_User + System.lineSeparator()+
+                ", Date='" + Date + '\'' + System.lineSeparator()+
+                ", Reason='" + Reason + '\'' + System.lineSeparator()+
+                ", Nickname='" + Nickname + '\'' + System.lineSeparator()+
                 '}';
     }
 }

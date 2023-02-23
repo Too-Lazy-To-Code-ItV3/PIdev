@@ -34,6 +34,15 @@ public class ShowUsers {
     ObservableList<AllUsers> aul = FXCollections.observableArrayList(as.fetchAU());
 
 
+
+    @FXML
+    void initialize() {
+        aul = FXCollections.observableArrayList(as.fetchAU());
+        UsersLV.setItems(aul);
+
+    }
+
+
     @FXML
     void ShowUsers(ActionEvent event) {
         List<AllUsers> users = as.fetchAU();
@@ -113,12 +122,7 @@ public class ShowUsers {
     }
 
 
-    @FXML
-    void initialize() {
-        aul = FXCollections.observableArrayList(as.fetchAU());
-        UsersLV.setItems(aul);
 
-    }
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
