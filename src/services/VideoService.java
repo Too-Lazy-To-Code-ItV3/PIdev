@@ -32,16 +32,15 @@ public class VideoService implements VideoInterface {
     @Override
     public void addVideo(Video v) {
         try {
-            String req = "INSERT INTO `video`(`Title`,`Description`,`Date_p`,`pathVideo`,`pathImage`,`ID_Tutoriel`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO `video`(`Title`,`Description`,`pathVideo`,`pathImage`,`ID_Tutoriel`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             // Set the values for the statement
             ps.setString(1, v.getTitle());
             ps.setString(2, v.getDescrption());
-            ps.setString(3, v.getDate_p());
-            ps.setString(4, v.getPathVideo());
-            ps.setString(5, v.getPathImage());
-            ps.setInt(6, v.getTutoriel().getID_Tutoriel());
+            ps.setString(3, v.getPathVideo());
+            ps.setString(4, v.getPathImage());
+            ps.setInt(5, v.getTutoriel().getID_Tutoriel());
             
             ps.executeUpdate();
             System.out.println("Video Added Successfully!");
@@ -138,7 +137,7 @@ public class VideoService implements VideoInterface {
                 v.setTitle(rs.getString("Title"));
                 v.setDate_p(rs.getString("Date_p"));
                 v.setDescrption(rs.getString("Description"));
-                v.setPathImage(rs.getString("pathVideo"));
+                v.setPathVideo(rs.getString("pathVideo"));
                 v.setPathImage(rs.getString("pathImage"));
                 
                 t.setID_Tutoriel(rs.getInt("ID_Tutoriel"));

@@ -11,7 +11,7 @@ package Models;
  */
 public class Utilisateur {
     private int ID_user;
-    private String Nom,Prenom,Date_Naissance,Email,Location,type,pathImage;
+    private String Nom,Prenom,Date_Naissance,Email,Location,pathImage;
 
     public Utilisateur() {
     }
@@ -23,7 +23,6 @@ public class Utilisateur {
         this.Date_Naissance = Date_Naissance;
         this.Email = Email;
         this.Location = Location;
-        this.type = type;
         this.pathImage = pathImage;
     }
 
@@ -75,14 +74,6 @@ public class Utilisateur {
         this.Location = Location;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getPathImage() {
         return pathImage;
     }
@@ -93,7 +84,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "ID_user=" + ID_user + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Date_Naissance=" + Date_Naissance + ", Email=" + Email + ", Location=" + Location + ", type=" + type + ", pathImage=" + pathImage + '}';
+        return "Utilisateur{" + "ID_user=" + ID_user + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Date_Naissance=" + Date_Naissance + ", Email=" + Email + ", Location=" + Location + ", pathImage=" + pathImage + '}';
     }
 
 }

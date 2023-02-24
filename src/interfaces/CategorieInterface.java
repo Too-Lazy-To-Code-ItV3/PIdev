@@ -31,6 +31,6 @@ public interface CategorieInterface {
     //public void affecterJoueur(Player p, Team t);
         
     public List<Categorie> fetchCategorieById(int id);
-    public List<Categorie> fetchCategorieByName(String name);
+    public Categorie fetchCategorieByName(String name);
 
 }

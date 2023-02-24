@@ -20,14 +20,16 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getRessource("./gui/FXML_Document.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../gui/FXML_Fetch_Tutoriel.fxml"));
+            //root = FXMLLoader.load(getClass().getResource("../gui/FetchChallenges.fxml"));
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Workshop FX");
+            primaryStage.setTitle("workshopJavaFx");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
+       
     }
      
     public static void main(String[] args) {

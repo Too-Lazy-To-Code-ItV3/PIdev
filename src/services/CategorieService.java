@@ -122,28 +122,24 @@ List<Categorie> Categories = new ArrayList<>();
     }    
 
     @Override
-    public List<Categorie> fetchCategorieByName(String name) {
-        List<Categorie> Categories = new ArrayList<>();
+    public Categorie fetchCategorieByName(String name) {
+        Categorie categorie = new Categorie();
         try {
             
             String req = "SELECT * FROM Categorie WHERE NameCategorie = '"+name+"'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                Categorie l = new Categorie();
-                l.setID_Categorie(rs.getInt(1));
-                l.setNameCategorie(rs.getString(2));
-                l.setDescription(rs.getString(3));
-          
-                
-               Categories.add(l);
+                categorie.setID_Categorie(rs.getInt(1));
+                categorie.setNameCategorie(rs.getString(2));
+                categorie.setDescription(rs.getString(3));
             }
             
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         
-        return Categories;
+        return categorie;
     }
     
 }

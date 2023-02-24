@@ -209,24 +209,22 @@ public class TutorielService implements TutorielInterface {
     }
     
         @Override
-    public List<Tutoriel> fetchTutorielsByID(int ID_Tutoriel) {
-        List<Tutoriel> tutoriels = new ArrayList<>();
+    public Tutoriel fetchTutorielByID(int ID_Tutoriel) {
+        Tutoriel t = new Tutoriel();
         try {
             
             String req = "SELECT * FROM tutoriel as t,categorie as c,utilisateur as u where t.ID_Categorie=c.ID_Categorie and t.ID_Artist=u.ID_user and t.ID_Tutoriel = "+ID_Tutoriel;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                Tutoriel t = new Tutoriel();
                 Categorie c = new Categorie();
                 Utilisateur u = new Utilisateur();
-
-                t.setID_Tutoriel(rs.getInt(1));
 
                 t.setID_Tutoriel(rs.getInt("ID_Tutoriel"));
                 t.setTitle(rs.getString("Title"));
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
+                t.setPathImg(rs.getString("PathImg"));
                 
                 c.setID_Categorie(rs.getInt("ID_Categorie"));
                 c.setNameCategorie(rs.getString("NameCategorie"));
@@ -238,16 +236,17 @@ public class TutorielService implements TutorielInterface {
                 u.setLocation(rs.getString("Location"));
                 u.setDate_Naissance(rs.getString("Date_Naissance"));
                 u.setEmail(rs.getString("Email"));
+                u.setPathImage(rs.getString("pathImage"));
                 
                 t.setCreator(u);
                 t.setCategorie(c);
-                tutoriels.add(t);
+                
             }   
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         
-        return tutoriels;
+        return t;
     }
 
     @Override

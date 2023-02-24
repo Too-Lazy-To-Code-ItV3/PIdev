@@ -33,9 +33,12 @@ public class JavaApplication1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ChallengeInterface ci = new ChallengeService() {};
+        /*ChallengeInterface ci = new ChallengeService() {};
+        Categorie c = new Categorie();
         ParticipationInterface pi = new ParticipationService() {};
         Challenge c1 = new Challenge();
+        CategorieInterface cai = new CategorieService();
+        cai.fetchCategorieByName("2D");
         c1.setTitle("3D");
         c1.setPathIMG("");
         c1.setDescription("here we go");
@@ -46,10 +49,14 @@ public class JavaApplication1 {
         c2.setID_Challenge(1);
         c2.setTitle("2D");
         c2.setPathIMG("");
-        c2.setDescription("lets go");
+        c2.setDescription("letss go");
         c2.setNiveau(2);
         c2.setDate_C("2023/02/20");
-        //ci.modifyChallenge(c2);
+        c.setID_Categorie(19);
+        c2.setCategorie(c);
+        
+        ci.modifyChallenge(c2);
+        //ci.deleteChallenge(1);
         //System.out.println(ci.fetchChallenges());
         Participation p = new Participation();
         Utilisateur u = new Utilisateur();
@@ -71,7 +78,9 @@ public class JavaApplication1 {
         //System.out.println(ci.fetchChallengesSortedByDate());
         //System.out.println(pi.fetchParticipations());
         
-        //pi.deleteParticipation(3, 3);
+        //pi.deleteParticipation(3, 3);*/
+        TutorielInterface ti = new TutorielService();
+        System.err.println(ti.fetchTutorielsByCategorie(1));
         
         
         

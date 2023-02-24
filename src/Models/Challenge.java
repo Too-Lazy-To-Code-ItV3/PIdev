@@ -15,11 +15,13 @@ public class Challenge {
     private int ID_Challenge,niveau;
     private String Title ,Description, Date_C, PathIMG;
     private List<Utilisateur> Participants;
+    private Categorie categorie;
+    private Utilisateur Creator;
 
     public Challenge() {
     }
 
-    public Challenge(int ID_Challenge, int niveau, String Title, String Description, String Date_C, String PathIMG, List<Utilisateur> Participants) {
+    public Challenge(int ID_Challenge, int niveau, String Title, String Description, String Date_C, String PathIMG, List<Utilisateur> Participants, Categorie catgorie, Utilisateur Creator) {
         this.ID_Challenge = ID_Challenge;
         this.niveau = niveau;
         this.Title = Title;
@@ -27,6 +29,8 @@ public class Challenge {
         this.Date_C = Date_C;
         this.PathIMG = PathIMG;
         this.Participants = Participants;
+        this.categorie = catgorie;
+        this.Creator = Creator;
     }
 
     public int getID_Challenge() {
@@ -85,10 +89,30 @@ public class Challenge {
         this.Participants = Participants;
     }
 
-    @Override
-    public String toString() {
-        return "Challenge{" + "ID_Challenge=" + ID_Challenge + ", niveau=" + niveau + ", Title=" + Title + ", Description=" + Description + ", Date_C=" + Date_C + ", PathIMG=" + PathIMG + ", Participants=" + Participants + '}';
+    public Categorie getCategorie() {
+        return categorie;
     }
 
-    
+    public void setCategorie(Categorie catgorie) {
+        this.categorie = catgorie;
+    }
+
+    public Utilisateur getCreator() {
+        return Creator;
+    }
+
+    public void setCreator(Utilisateur Creator) {
+        this.Creator = Creator;
+    }
+
+    @Override
+    public String toString() {
+        return "Challenge{" + "ID_Challenge=" + ID_Challenge + ", niveau=" + niveau + ", Title=" + Title + ", Description=" + Description + ", Date_C=" + Date_C + ", PathIMG=" + PathIMG + ", Participants=" + Participants + ", catgorie=" + categorie + ", Creator=" + Creator + '}';
+    }
+
+    public int setCategorie() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }

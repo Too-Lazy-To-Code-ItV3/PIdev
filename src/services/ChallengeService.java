@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Models.Categorie;
 import Models.Challenge;
+import Models.Utilisateur;
 import interfaces.ChallengeInterface;
 import interfaces.ParticipationInterface;
 import util.MaConnexion;
@@ -32,14 +33,16 @@ public class ChallengeService implements ChallengeInterface {
     public void addChallenge(Challenge c) {
          try {
             
-            String req = "INSERT INTO Challenge( `Title`, `Description`, `Date_C`, `PathIMG`, `Niveau`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO Challenge( `Title`, `Description`, `Date_C`, `PathIMG`, `Niveau`, `ID_Categorie`, `ID_Artist`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, c.getTitle());
             ps.setString(2, c.getDescription());
             ps.setString(3, c.getDate_C());
             ps.setString(4, c.getPathIMG());
             ps.setInt(5, c.getNiveau());
-
+            ps.setInt(6, c.getCategorie().getID_Categorie());
+            ps.setInt(7, 1);
+            
             ps.executeUpdate();
             System.out.println("Challenge Added Successfully!");
             
@@ -50,7 +53,7 @@ public class ChallengeService implements ChallengeInterface {
     @Override
     public void modifyChallenge(Challenge c) {
         try {    
-            String req = "update Challenge set `Title`=?, `description`=?, `date_C`=?, `PathIMG`=?, `Niveau`=? WHERE `ID_Challenge`=?";
+            String req = "update Challenge set `Title`=?, `description`=?, `date_C`=?, `PathIMG`=?, `Niveau`=?, `ID_Categorie`=? WHERE `ID_Challenge`=?";
             PreparedStatement ps = cnx.prepareStatement(req);
            
             
@@ -59,8 +62,8 @@ public class ChallengeService implements ChallengeInterface {
             ps.setString(3, c.getDate_C());
             ps.setString(4, c.getPathIMG());
             ps.setInt(5, c.getNiveau());
-            ps.setInt(6, c.getID_Challenge());
-         
+            ps.setInt(6, c.getCategorie().getID_Categorie());
+            ps.setInt(7, c.getID_Challenge());
             
             ps.executeUpdate();
             System.out.println("Challenge Modified Successfully!");
@@ -88,19 +91,37 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge";
+            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                Challenge c = new Challenge();
-                c.setID_Challenge(rs.getInt(1));
-                c.setTitle(rs.getString(2));
-                c.setDescription(rs.getString(3));
-                c.setDate_C(rs.getString(4));
-                c.setPathIMG(rs.getString(5));
-                c.setNiveau(rs.getInt(6));
-                c.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
-                Challenges.add(c);
+                Challenge ch = new Challenge();
+                ch.setID_Challenge(rs.getInt(1));
+                ch.setTitle(rs.getString(2));
+                ch.setDescription(rs.getString(3));
+                ch.setDate_C(rs.getString(4));
+                ch.setPathIMG(rs.getString(5));
+                ch.setNiveau(rs.getInt(6));
+                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
+                
+                Categorie c = new Categorie();
+                c.setID_Categorie(rs.getInt("ID_Categorie"));
+                c.setNameCategorie(rs.getString("NameCategorie"));
+                c.setDescription(rs.getString("Description"));
+                ch.setCategorie(c);
+                
+                Utilisateur u = new Utilisateur();
+                u.setID_user(rs.getInt("ID_user"));
+                u.setNom(rs.getString("Nom"));
+                u.setPrenom(rs.getString("Prenom"));
+                u.setEmail(rs.getString("Email"));
+                u.setPathImage(rs.getString("pathImage"));
+                u.setDate_Naissance(rs.getString("Date_Naissance"));
+                u.setLocation(rs.getString("Location"));
+                
+                ch.setCategorie(c);
+                ch.setCreator(u);
+                Challenges.add(ch);
             }
             
         } catch (SQLException ex) {
@@ -119,15 +140,33 @@ public class ChallengeService implements ChallengeInterface {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                Challenge c = new Challenge();
-                c.setID_Challenge(rs.getInt(1));
-                c.setTitle(rs.getString(2));
-                c.setDescription(rs.getString(3));
-                c.setDate_C(rs.getString(4));
-                c.setPathIMG(rs.getString(5));
-                c.setNiveau(rs.getInt(6));
-                c.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
-                Challenges.add(c);
+                                Challenge ch = new Challenge();
+                ch.setID_Challenge(rs.getInt(1));
+                ch.setTitle(rs.getString(2));
+                ch.setDescription(rs.getString(3));
+                ch.setDate_C(rs.getString(4));
+                ch.setPathIMG(rs.getString(5));
+                ch.setNiveau(rs.getInt(6));
+                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
+                
+                Categorie c = new Categorie();
+                c.setID_Categorie(rs.getInt("ID_Categorie"));
+                c.setNameCategorie(rs.getString("NameCategorie"));
+                c.setDescription(rs.getString("Description"));
+                ch.setCategorie(c);
+                
+                Utilisateur u = new Utilisateur();
+                u.setID_user(rs.getInt("ID_user"));
+                u.setNom(rs.getString("Nom"));
+                u.setPrenom(rs.getString("Prenom"));
+                u.setEmail(rs.getString("Email"));
+                u.setPathImage(rs.getString("pathImage"));
+                u.setDate_Naissance(rs.getString("Date_Naissance"));
+                u.setLocation(rs.getString("Location"));
+                
+                ch.setCategorie(c);
+                ch.setCreator(u);
+                Challenges.add(ch);
             }
             
         } catch (SQLException ex) {
@@ -142,19 +181,37 @@ public class ChallengeService implements ChallengeInterface {
                 List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge where ID_Challenge = "+id;
+            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ID_Challenge = "+id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                Challenge c = new Challenge();
-                c.setID_Challenge(rs.getInt(1));
-                c.setTitle(rs.getString(2));
-                c.setDescription(rs.getString(3));
-                c.setDate_C(rs.getString(4));
-                c.setPathIMG(rs.getString(5));
-                c.setNiveau(rs.getInt(6));
-                c.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
-                Challenges.add(c);
+                Challenge ch = new Challenge();
+                ch.setID_Challenge(rs.getInt(1));
+                ch.setTitle(rs.getString(2));
+                ch.setDescription(rs.getString(3));
+                ch.setDate_C(rs.getString(4));
+                ch.setPathIMG(rs.getString(5));
+                ch.setNiveau(rs.getInt(6));
+                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
+                
+                Categorie c = new Categorie();
+                c.setID_Categorie(rs.getInt("ID_Categorie"));
+                c.setNameCategorie(rs.getString("NameCategorie"));
+                c.setDescription(rs.getString("Description"));
+                ch.setCategorie(c);
+                
+                Utilisateur u = new Utilisateur();
+                u.setID_user(rs.getInt("ID_user"));
+                u.setNom(rs.getString("Nom"));
+                u.setPrenom(rs.getString("Prenom"));
+                u.setEmail(rs.getString("Email"));
+                u.setPathImage(rs.getString("pathImage"));
+                u.setDate_Naissance(rs.getString("Date_Naissance"));
+                u.setLocation(rs.getString("Location"));
+                
+                ch.setCategorie(c);
+                ch.setCreator(u);
+                Challenges.add(ch);
             }
             
         } catch (SQLException ex) {
@@ -169,19 +226,38 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge where Title like '%"+name+"%'";
+            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ch.Title like '%"+name+"%'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                Challenge c = new Challenge();
-                c.setID_Challenge(rs.getInt(1));
-                c.setTitle(rs.getString(2));
-                c.setDescription(rs.getString(3));
-                c.setDate_C(rs.getString(4));
-                c.setPathIMG(rs.getString(5));
-                c.setNiveau(rs.getInt(6));
-                c.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
-                Challenges.add(c);
+                
+                Challenge ch = new Challenge();
+                ch.setID_Challenge(rs.getInt(1));
+                ch.setTitle(rs.getString(2));
+                ch.setDescription(rs.getString(3));
+                ch.setDate_C(rs.getString(4));
+                ch.setPathIMG(rs.getString(5));
+                ch.setNiveau(rs.getInt(6));
+                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
+                
+                Categorie c = new Categorie();
+                c.setID_Categorie(rs.getInt("ID_Categorie"));
+                c.setNameCategorie(rs.getString("NameCategorie"));
+                c.setDescription(rs.getString("Description"));
+                ch.setCategorie(c);
+                
+                Utilisateur u = new Utilisateur();
+                u.setID_user(rs.getInt("ID_user"));
+                u.setNom(rs.getString("Nom"));
+                u.setPrenom(rs.getString("Prenom"));
+                u.setEmail(rs.getString("Email"));
+                u.setPathImage(rs.getString("pathImage"));
+                u.setDate_Naissance(rs.getString("Date_Naissance"));
+                u.setLocation(rs.getString("Location"));
+                
+                ch.setCategorie(c);
+                ch.setCreator(u);
+                Challenges.add(ch);
             }
             
         } catch (SQLException ex) {

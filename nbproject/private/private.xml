@@ -3,19 +3,49 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/util/MaConnexion.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/VideoInterface.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Show_Participants.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/NewFXMain.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/VideoItem.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Fetch_Tutoriel.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_VideoController.java</file>
             <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Challenge.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Video.java</file>
             <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Categorie.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/CategorieService.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/TutorielService.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_TutorielController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_Video.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/TutorielItem.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Fetch_Tutoriels.fxml</file>
             <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Utilisateur.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/VideoService.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/TutorielInterface.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/ChallengeInterface.java</file>
             <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/CategorieInterface.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/TutorielInterface.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_Video.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_ChallengeController.java</file>
             <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Tutoriel.java</file>
             <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/JavaApplication1.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/util/MaConnexion.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FetchChallengesController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/VideoInterface.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Participation.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/ParticipationInterface.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_ChallengeController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Video.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_VideoController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/VideoViewController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/CategorieService.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/ItemController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Fetch_TutorielController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/TutorielService.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Fetch_TutorielsController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/VideoView.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/VideoItemController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_Challenge.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/VideoService.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/ChallengeService.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/TutorielItemController.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_Tutoriel.fxml</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/ParticipationService.java</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/css/style.css</file>
+            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_Challenge.fxml</file>
         </group>
     </open-files>
 </project-private>

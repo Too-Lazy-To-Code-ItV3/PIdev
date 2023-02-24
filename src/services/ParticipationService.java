@@ -112,6 +112,7 @@ public class ParticipationService implements ParticipationInterface {
                 u.setEmail(rs.getString("Email"));
                 u.setLocation(rs.getString("Location"));
                 u.setPathImage(rs.getString("pathImage"));
+                u.setDate_Naissance(rs.getString("Date_Naissance"));
                 Utilisateurs.add(u);
             }
             

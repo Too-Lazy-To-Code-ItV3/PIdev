@@ -27,7 +27,7 @@ public interface TutorielInterface {
     //list : select
     public List<Tutoriel> fetchTutoriels();
     
-    public List<Tutoriel> fetchTutorielsByID(int ID_Tutoriel);
+    public Tutoriel fetchTutorielByID(int ID_Tutoriel);
     
     public List<Tutoriel> fetchTutorielsByCategorie(int ID_Categorie);
     
