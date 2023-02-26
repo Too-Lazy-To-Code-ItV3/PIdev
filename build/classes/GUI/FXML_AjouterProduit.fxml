@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@Swag.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_AjouterProduitController">
+   <children>
+      <TextField fx:id="nom" layoutX="185.0" layoutY="54.0" />
+      <TextField fx:id="descp" layoutX="185.0" layoutY="102.0" />
+      <TextField fx:id="image" layoutX="185.0" layoutY="200.0" />
+      <TextField fx:id="qtdispo" layoutX="185.0" layoutY="244.0" />
+      <TextField fx:id="prix" layoutX="185.0" layoutY="296.0" />
+      <ChoiceBox fx:id="listeCateg" layoutX="185.0" layoutY="150.0" prefWidth="150.0" />
+      <Label layoutX="32.0" layoutY="42.0" prefHeight="49.0" prefWidth="118.0" text="Nom:" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="90.0" prefHeight="49.0" prefWidth="118.0" text="Description" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="188.0" prefHeight="49.0" prefWidth="118.0" text="image" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="232.0" prefHeight="49.0" prefWidth="149.0" text="Quantité dispo:" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="284.0" prefHeight="49.0" prefWidth="118.0" text="Prix" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="138.0" prefHeight="49.0" prefWidth="118.0" text="Catégorie" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="ajouter" layoutX="225.0" layoutY="346.0" mnemonicParsing="false" onAction="#ajouterProduit" prefHeight="49.0" prefWidth="149.0" text="Ajouter" />
+      <Button fx:id="retour" layoutX="457.0" layoutY="22.0" mnemonicParsing="false" onAction="#GotoAccueil" prefHeight="30.0" prefWidth="91.0" text="Retour" />
+   </children>
+</AnchorPane>
