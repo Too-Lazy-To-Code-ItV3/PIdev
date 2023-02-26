@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="540.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Afficheroffres2Controller">
+   <children>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="227.0" prefWidth="540.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" styleClass="colorsearch" stylesheets="@../css/menustyle.css">
+         <children>
+            <VBox prefHeight="227.0" prefWidth="218.0" style="-fx-background-color: #071330;" styleClass="colorsearch" stylesheets="@../css/menustyle.css">
+               <children>
+                  <Circle fx:id="photo1" fill="#1f93ff00" radius="47.0" stroke="BLACK" strokeType="INSIDE">
+                     <VBox.margin>
+                        <Insets left="70.0" top="5.0" />
+                     </VBox.margin>
+                  </Circle>
+                  <Label fx:id="nomStudio" text="nom studio " textFill="#fcfcfc">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="60.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="33.0" prefWidth="209.0">
+                     <children>
+                        <Label fx:id="typeOffre" text="type offre" textFill="#9861c7">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="categorie" text="categorie" textFill="#881f94">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="locOffre" text="localiqation" textFill="#fcfcfc">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="279.0">
+               <children>
+                  <Label fx:id="titreOffre" alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="41.0" prefWidth="137.0" text="titre offre" textAlignment="CENTER" textFill="#fcfcfc">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="description" text="description" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="dateAjout" alignment="TOP_LEFT" prefHeight="17.0" prefWidth="85.0" text="date ajout" textAlignment="CENTER" textFill="#fcfcfc">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="180.0" top="70.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Pane>
