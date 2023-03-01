@@ -7,6 +7,12 @@ package javafx;
  */
 
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -33,6 +39,7 @@ public class NewFXMain extends Application {
 
         Parent root;
         try {
+              
             root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
 
             Scene scene = new Scene(root,1380,700);
@@ -49,11 +56,21 @@ public class NewFXMain extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
-    }
+    
+    
 
-}
+   
+    public static void main(String[] args) {
+         launch(args); 
+      
+
+            
+        
+    
+      
+    }}
+
+
 
 
     
