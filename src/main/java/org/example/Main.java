@@ -4,9 +4,12 @@ import Interfaces.AllUsersInterface;
 import Interfaces.BanInterface;
 import Models.AllUsers;
 import Models.Ban;
+import Models.Logged;
 import Services.AllUsersService;
 import Services.BanService;
-
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -29,7 +32,7 @@ import javax.mail.internet.*;
 public class Main {
     public static void main(String[] args) throws SQLException {
         AllUsersInterface au = new AllUsersService();
-        BanInterface Ba = new BanService();
+       /* BanInterface Ba = new BanService();
 
         //INTI CLASSES
         AllUsers u0,u,u1;
@@ -66,9 +69,26 @@ public class Main {
         //DELETE BAN
         Ba.DeleteBan(2);
         System.out.println("SOUT AFTER DELETING BAN");
-        System.out.println(Ba.fetchBanbyIDUser(9));
+        System.out.println(Ba.fetchBanbyIDUser(9));*/
+       /* final String ACCOUNT_SID = "AC4730297eb72be182dde74c2a2143deb8";
+        final String AUTH_TOKEN = "fba49a82e157a83953c49896694c44ec";
 
 
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                            new com.twilio.type.PhoneNumber("+21624800307"),
+                            new com.twilio.type.PhoneNumber("+12764448061"),
+                            "How yikhdem impossible !!!!")
+                    .create();
+
+            System.out.println(message.getSid());*/
+
+      //AllUsers u1;
+       // u1=new AllUsers("foulen","benfoulen","CRAZY1","foulen@gmail.com",LocalDate.of(2000,9,9),"123456789","Tunisian","Artiste");
+        //au.AddAu(u1);
+      System.out.println(au.login("CRAZY","AZERTY123456"));
+        //System.out.println(au.login("CRAZY1","123456789"));
+        System.out.println(Logged.get_instance().getUser().getEmail());
 
 
 

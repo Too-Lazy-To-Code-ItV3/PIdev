@@ -24,6 +24,7 @@ public interface AllUsersInterface {
     public AllUsers fetchAUbyNickname(String Nickname) throws SQLException;
     public String generateVerificationCode();
     public void sendVerificationCode(String recipientEmail, String verificationCode);
+    public boolean login(String emailOrNickname, String password) throws SQLException;
 
 
 }

@@ -14,6 +14,8 @@ public class AllUsers {
     private String Nationality;
     private String type;
 
+    private String Salt;
+
     public AllUsers() {
     }
 
@@ -112,6 +114,14 @@ public class AllUsers {
         this.type = type;
     }
 
+    public String getSalt() {
+        return Salt;
+    }
+
+    public void setSalt(String salt) {
+        Salt = salt;
+    }
+
     @Override
     public String toString() {
         return "AllUsers{" +
@@ -126,6 +136,7 @@ public class AllUsers {
                 ", type='" + type + '\'' +
                 '}';
     }
+
 
 }
 
