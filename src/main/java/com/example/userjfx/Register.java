@@ -148,7 +148,7 @@ public class Register {
         }
         u.setType(type);
         u.setNickname(NicknameTF.getText());
-        as.AddAu(u);
+        as.CreateAU(u);
     }
 
 

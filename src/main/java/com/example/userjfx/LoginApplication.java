@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RegisterApplication extends Application {
+public class LoginApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -15,7 +15,7 @@ public class RegisterApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("Register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1380,700);
         primaryStage.setTitle("Register Form WORKING !");
         primaryStage.setScene(scene);

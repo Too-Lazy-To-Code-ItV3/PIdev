@@ -16,7 +16,7 @@ public class ShowUsersApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("ShowUsers.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(),1380,700);
         primaryStage.setTitle("Register Form WORKING !");
         primaryStage.setScene(scene);
         primaryStage.show();

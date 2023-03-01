@@ -2,6 +2,7 @@ package Services;
 
 import Interfaces.AllUsersInterface;
 import Models.AllUsers;
+import Models.Logged;
 import Util.MyConnection;
 
 import javax.mail.*;
@@ -45,18 +46,19 @@ public class AllUsersService implements AllUsersInterface {
         String salt = generateSalt();
         String hashedPassword = hashPassword(u.getPassword(), salt);
         try {
-            String req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`, `Nationality`, `type`,`Nickname`) VALUES (?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`,`Salt`, `Nationality`, `type`,`Nickname`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, u.getName());
             ps.setString(2, u.getLast_Name());
             ps.setString(3, u.getEmail());
             ps.setDate(4, u.getBirthday() != null ? Date.valueOf(u.getBirthday()) : null);
             ps.setString(5, hashedPassword);
+            ps.setString(6, salt);
             System.out.println(hashedPassword);
             System.out.println(u.getPassword());
-            ps.setString(6, u.getNationality());
-            ps.setString(7, u.getType());
-            ps.setString(8, u.getNickname());
+            ps.setString(7, u.getNationality());
+            ps.setString(8, u.getType());
+            ps.setString(9, u.getNickname());
             ps.executeUpdate();
             System.out.println("User Added Successfully!");
 
@@ -232,6 +234,7 @@ public class AllUsersService implements AllUsersInterface {
                 u.setEmail(rs.getString("Email"));
                 u.setBirthday(rs.getDate("Birthday").toLocalDate());
                 u.setPassword(rs.getString("Password"));
+                u.setSalt(rs.getString("Salt"));
                 u.setNationality(rs.getString("Nationality"));
                 u.setType(rs.getString("Type"));
                 u.setNickname(rs.getString("Nickname"));
@@ -259,9 +262,10 @@ public class AllUsersService implements AllUsersInterface {
                 u.setEmail(rs.getString(4));
                 u.setBirthday(rs.getDate(5).toLocalDate());
                 u.setPassword(rs.getString(6));
-                u.setNationality(rs.getString(7));
-                u.setType(rs.getString(8));
-                u.setNickname(rs.getString(9));
+                u.setSalt(rs.getString(7));
+                u.setNationality(rs.getString(8));
+                u.setType(rs.getString(9));
+                u.setNickname(rs.getString(10));
 
             }
 
@@ -283,7 +287,7 @@ public class AllUsersService implements AllUsersInterface {
         props.put("mail.smtp.host", "smtp.gmail.com"); // Change this to your own SMTP server host if not using Gmail
         props.put("mail.smtp.port", "587"); // Change this to your own SMTP server port if not using Gmail
 
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+        Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(senderEmail, senderPassword);
             }
@@ -313,4 +317,41 @@ public class AllUsersService implements AllUsersInterface {
         }
         return sb.toString();
     }
+
+    public boolean login(String emailOrNickname, String password) throws SQLException {
+
+        // First, check if the user is already logged in
+        if (Logged.get_instance().getUser() != null) {
+            System.out.println("Error: Another user is already logged in.");
+            return false;
+        }
+
+        // Next, look up the user by email or nickname
+        AllUsers user = null;
+        if (emailOrNickname.contains("@")) {
+            user = fetchAUbyEmail(emailOrNickname);
+        } else {
+            user = fetchAUbyNickname(emailOrNickname);
+        }
+
+        // If the user was not found, return false
+        if (user == null) {
+            System.out.println("Error: User not found verify your information .");
+            return false;
+        }
+
+        String hashedPassword = hashPassword(password, user.getSalt());
+        // Check the password
+        if (!user.getPassword().equals(hashedPassword)) {
+            System.out.println("Error: Incorrect password.");
+            return false;
+        }
+
+        // If we made it this far, the login was successful
+        Logged.get_instance().setUser(user);
+        System.out.println("Login successful. Welcome, " + user.getLast_Name() + "!");
+        return true;
+    }
+
+
 }

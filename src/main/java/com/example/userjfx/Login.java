@@ -1,0 +1,60 @@
+package com.example.userjfx;
+
+import Services.AllUsersService;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+    public class Login {
+
+        @FXML
+        private ResourceBundle resources;
+
+        @FXML
+        private URL location;
+
+        @FXML
+        private TextField EmailOrUsername;
+
+        @FXML
+        private PasswordField PASSWORD;
+
+        AllUsersService as = new AllUsersService();
+
+        @FXML
+        void LogIn(ActionEvent event) throws SQLException, IOException {
+            as.login(EmailOrUsername.getText(),PASSWORD.getText());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowUsers.fxml"));
+            Parent uuView = loader.load();
+            Scene scene = new Scene(uuView,1380,700);
+
+            ShowUsers users = loader.getController();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        }
+
+        @FXML
+        void initialize() {
+            assert EmailOrUsername != null : "fx:id=\"EmailOrUsername\" was not injected: check your FXML file 'Login.fxml'.";
+            assert PASSWORD != null : "fx:id=\"PASSWORD\" was not injected: check your FXML file 'Login.fxml'.";
+
+        }
+
+    }
+
+

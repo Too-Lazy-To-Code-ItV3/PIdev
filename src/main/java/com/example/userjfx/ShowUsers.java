@@ -84,7 +84,7 @@ public class ShowUsers {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateUser.fxml"));
         Parent uuView = loader.load();
-        Scene scene = new Scene(uuView);
+        Scene scene = new Scene(uuView,900,900);
 
         UpdateUser updateUser = loader.getController();
         updateUser.setUserId(selectedUser.getID_User());
@@ -111,7 +111,7 @@ public class ShowUsers {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddBan.fxml"));
         Parent uuView = loader.load();
-        Scene scene = new Scene(uuView);
+        Scene scene = new Scene(uuView,1380,700);
 
         AddBan AddBan = loader.getController();
         AddBan.setUserId(selectedUser.getID_User());

@@ -10,9 +10,8 @@
 <AnchorPane prefHeight="890.0" prefWidth="1302.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.ShowBans">
    <children>
       <ListView fx:id="BansLV" layoutX="468.0" layoutY="65.0" prefHeight="823.0" prefWidth="832.0" />
-      <Button layoutX="665.0" layoutY="14.0" mnemonicParsing="false" onAction="#ShowBans" prefHeight="49.0" prefWidth="136.0" text="Show" />
-      <Button layoutX="934.0" layoutY="14.0" mnemonicParsing="false" onAction="#UpdateBan" prefHeight="49.0" prefWidth="136.0" text="Update" />
-      <Button layoutX="1168.0" layoutY="14.0" mnemonicParsing="false" onAction="#DeleteBan" prefHeight="49.0" prefWidth="136.0" text="Delete" />
+      <Button layoutX="666.0" layoutY="14.0" mnemonicParsing="false" onAction="#UpdateBan" prefHeight="49.0" prefWidth="136.0" text="Update" />
+      <Button layoutX="991.0" layoutY="14.0" mnemonicParsing="false" onAction="#DeleteBan" prefHeight="49.0" prefWidth="136.0" text="Delete" />
       <Pane prefHeight="890.0" prefWidth="470.0" style="-fx-background-color: #2196f3;">
          <children>
             <ImageView fitHeight="305.0" fitWidth="511.0" layoutX="-20.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">

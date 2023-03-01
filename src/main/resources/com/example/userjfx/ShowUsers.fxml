@@ -10,10 +10,9 @@
 <AnchorPane prefHeight="890.0" prefWidth="1302.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.ShowUsers">
    <children>
       <ListView fx:id="UsersLV" layoutX="427.0" layoutY="78.0" prefHeight="812.0" prefWidth="875.0" />
-      <Button layoutX="499.0" layoutY="20.0" mnemonicParsing="false" onAction="#ShowUsers" prefHeight="49.0" prefWidth="136.0" text="Show" />
-      <Button layoutX="707.0" layoutY="20.0" mnemonicParsing="false" onAction="#UpdateUser" prefHeight="49.0" prefWidth="136.0" text="Update" />
-      <Button layoutX="941.0" layoutY="20.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="49.0" prefWidth="136.0" text="Delete" />
-      <Button layoutX="1154.0" layoutY="20.0" mnemonicParsing="false" onAction="#BanUser" prefHeight="49.0" prefWidth="126.0" text="Ban" />
+      <Button layoutX="555.0" layoutY="20.0" mnemonicParsing="false" onAction="#UpdateUser" prefHeight="49.0" prefWidth="136.0" text="Update" />
+      <Button layoutX="788.0" layoutY="20.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="49.0" prefWidth="136.0" text="Delete" />
+      <Button layoutX="1023.0" layoutY="20.0" mnemonicParsing="false" onAction="#BanUser" prefHeight="49.0" prefWidth="126.0" text="Ban" />
       <Pane prefHeight="890.0" prefWidth="428.0" style="-fx-background-color: #2196f3;">
          <children>
             <ImageView fitHeight="288.0" fitWidth="456.0" layoutX="3.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">

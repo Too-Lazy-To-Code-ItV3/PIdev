@@ -14,6 +14,8 @@ public class AllUsers {
     private String Nationality;
     private String type;
 
+    private String Salt;
+
     public AllUsers() {
     }
 
@@ -112,20 +114,29 @@ public class AllUsers {
         this.type = type;
     }
 
+    public String getSalt() {
+        return Salt;
+    }
+
+    public void setSalt(String salt) {
+        Salt = salt;
+    }
+
     @Override
     public String toString() {
         return "AllUsers{" +
-                "ID_User=" + ID_User + System.lineSeparator()+
-                ", Name='" + Name + '\'' +System.lineSeparator()+
-                ", Last_Name='" + Last_Name + '\'' +System.lineSeparator()+
-                ", Nickname='" + Nickname + '\'' +System.lineSeparator()+
-                ", Email='" + Email + '\'' +System.lineSeparator()+
-                ", Birthday=" + Birthday +System.lineSeparator()+
-                ", Password='" + Password + '\'' +System.lineSeparator()+
-                ", Nationality='" + Nationality + '\'' +System.lineSeparator()+
-                ", type='" + type + '\'' +System.lineSeparator()+
+                "ID_User=" + ID_User +
+                ", Name='" + Name + '\'' +
+                ", Last_Name='" + Last_Name + '\'' +
+                ", Nickname='" + Nickname + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Birthday=" + Birthday +
+                ", Password='" + Password + '\'' +
+                ", Nationality='" + Nationality + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
+
 
 }
 
