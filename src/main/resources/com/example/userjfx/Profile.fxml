@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1380.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.Profile">
+<AnchorPane prefHeight="700.0" prefWidth="1380.0" style="-fx-background-color: #171717;" stylesheets="@../../../Style/Swag1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.Profile">
    <children>
-      <ImageView fx:id="Background" fitHeight="320.0" fitWidth="1386.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="Background" fitHeight="338.0" fitWidth="1386.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutY="293.0" prefHeight="45.0" prefWidth="1386.0" style="-fx-background-color: #222222;" />
-      <ImageView fx:id="Avatar" fitHeight="100" fitWidth="100" layoutX="643.0" layoutY="155.0" preserveRatio="true">
-         <clip>
-            <Circle centerX="50" centerY="50" radius="50" />
-         </clip>
-      </ImageView>
+      <VBox layoutX="652.0" layoutY="44.0" prefHeight="251.0" prefWidth="267.0">
+         <children>
+            <ImageView fx:id="Avatar" fitHeight="100" fitWidth="100" preserveRatio="true">
+               <clip>
+                  <Circle centerX="50" centerY="50" radius="50" />
+               </clip>
+            </ImageView>
+            <Label fx:id="Nickname" text="Nickname" />
+            <Label fx:id="Bio" text="Bio" />
+            <Label fx:id="Location" text="Location" />
+         </children>
+      </VBox>
+      <Label fx:id="Description" layoutX="629.0" layoutY="420.0" text="DESCRIPTION" />
    </children>
 </AnchorPane>

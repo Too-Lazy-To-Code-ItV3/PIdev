@@ -366,5 +366,24 @@ public class AllUsersService implements AllUsersInterface {
         return true;
     }
 
+    @Override
+    public void changePassword(String password,String Email) {
+        String salt = generateSalt();
+        String hashedPassword = hashPassword(password, salt);
+        try {
+            String req = "UPDATE allusers SET Password=?, Salt=? WHERE email=?";;
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1,hashedPassword);
+            ps.setString(2,salt);
+            ps.setString(3,Email);
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
 }

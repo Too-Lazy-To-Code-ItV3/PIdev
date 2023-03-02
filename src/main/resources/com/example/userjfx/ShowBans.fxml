@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="890.0" prefWidth="1302.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.ShowBans">
+<AnchorPane prefHeight="700.0" prefWidth="1380.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.ShowBans">
    <children>
-      <ListView fx:id="BansLV" layoutX="468.0" layoutY="65.0" prefHeight="823.0" prefWidth="832.0" />
+      <ListView fx:id="BansLV" layoutX="468.0" layoutY="65.0" prefHeight="823.0" prefWidth="910.0" />
       <Button layoutX="666.0" layoutY="14.0" mnemonicParsing="false" onAction="#UpdateBan" prefHeight="49.0" prefWidth="136.0" text="Update" />
       <Button layoutX="991.0" layoutY="14.0" mnemonicParsing="false" onAction="#DeleteBan" prefHeight="49.0" prefWidth="136.0" text="Delete" />
       <Pane prefHeight="890.0" prefWidth="470.0" style="-fx-background-color: #2196f3;">

@@ -7,15 +7,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginApplication extends Application {
+public class FPWEmailApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("Login.fxml"));
+    public void start(Stage primaryStage)throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("FPWEmail.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Register Form WORKING !");
         primaryStage.setScene(scene);

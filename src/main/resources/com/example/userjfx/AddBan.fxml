@@ -10,36 +10,36 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="320.0" prefWidth="1018.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.AddBan">
+<AnchorPane prefHeight="700.0" prefWidth="1380.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.AddBan">
    <children>
-      <Label layoutX="625.0" layoutY="98.0" text="ID_User">
+      <Label layoutX="867.0" layoutY="254.0" text="ID_User">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="IDUSERTF" layoutX="773.0" layoutY="93.0" prefHeight="25.0" prefWidth="279.0">
+      <TextField fx:id="IDUSERTF" layoutX="1015.0" layoutY="249.0" prefHeight="25.0" prefWidth="279.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="626.0" layoutY="173.0" text="Reason">
+      <Label layoutX="868.0" layoutY="329.0" text="Reason">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="ReasonTF" layoutX="773.0" layoutY="168.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="ReasonTF" layoutX="1015.0" layoutY="324.0" prefHeight="25.0" prefWidth="623.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="803.0" layoutY="255.0" mnemonicParsing="false" onAction="#addBan" text="Register">
+      <Button layoutX="1045.0" layoutY="411.0" mnemonicParsing="false" onAction="#addBan" text="Register">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Pane layoutX="-1.0" prefHeight="322.0" prefWidth="430.0" style="-fx-background-color: #2196f3;">
+      <Pane layoutX="-1.0" prefHeight="700.0" prefWidth="790.0" style="-fx-background-color: #2196f3;">
          <children>
-            <ImageView fitHeight="235.0" fitWidth="368.0" layoutX="24.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="352.0" fitWidth="486.0" layoutX="137.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Images/ARTounsi.png" />
                </image>

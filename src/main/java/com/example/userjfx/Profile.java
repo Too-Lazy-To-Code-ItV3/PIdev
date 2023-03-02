@@ -3,6 +3,7 @@ package com.example.userjfx;
 import Models.AllUsers;
 import Models.Logged;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -27,13 +28,35 @@ public class Profile {
     private ImageView Background;
 
 
+    @FXML
+    private Label Bio;
+
+    @FXML
+    private Label Description;
+
+    @FXML
+    private Label Nickname;
+
+    @FXML
+    private Label Location;
+
+
+
 
     @FXML
     void initialize() {
         assert Avatar != null : "fx:id=\"Avatar\" was not injected: check your FXML file 'Profile.fxml'.";
         assert Background != null : "fx:id=\"Background\" was not injected: check your FXML file 'Profile.fxml'.";
-
+        assert Bio != null : "fx:id=\"Bio\" was not injected: check your FXML file 'Profile.fxml'.";
+        assert Description != null : "fx:id=\"Description\" was not injected: check your FXML file 'Profile.fxml'.";
+        assert Nickname != null : "fx:id=\"Nickname\" was not injected: check your FXML file 'Profile.fxml'.";
+        assert Location != null : "fx:id=\"Location\" was not injected: check your FXML file 'Profile.fxml'.";
         AllUsers user = Logged.get_instance().getUser();
+
+        Nickname.setText(user.getNickname());
+        Description.setText(user.getDescription());
+        Bio.setText(user.getBio());
+        Location.setText(user.getNationality());
         if (user != null) {
             System.out.println(user.getNickname());
             System.out.println(user);
@@ -58,7 +81,7 @@ public class Profile {
                 Background.setImage(backgroundImage);
                 Background.setPreserveRatio(false);
                 Background.setFitWidth(1386.0);
-                Background.setFitHeight(320.0);
+                Background.setFitHeight(338.0);
 
             } catch (IOException e) {
                 System.err.println("Error loading background image: " + e.getMessage());

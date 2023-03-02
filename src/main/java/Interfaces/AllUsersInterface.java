@@ -25,6 +25,7 @@ import java.util.List;
         public String generateVerificationCode();
         public void sendVerificationCode(String recipientEmail, String verificationCode);
         public boolean login(String emailOrNickname, String password) throws SQLException;
+        public void changePassword(String password,String Email);
 
 
     }

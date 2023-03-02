@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import java.util.ResourceBundle;
         @FXML
         private PasswordField PASSWORD;
 
+
         AllUsersService as = new AllUsersService();
 
         @FXML
@@ -42,6 +44,27 @@ import java.util.ResourceBundle;
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+
+        }
+        @FXML
+        void SignUp(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+            Parent uuView = loader.load();
+            Scene scene = new Scene(uuView,1380,700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        }
+        @FXML
+        void ForgetPw(MouseEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FPWEmail.fxml"));
+            Parent uuView = loader.load();
+            Scene scene = new Scene(uuView,1380,700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
 
         }
 

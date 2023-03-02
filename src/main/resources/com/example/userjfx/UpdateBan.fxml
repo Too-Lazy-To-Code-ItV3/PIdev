@@ -10,36 +10,36 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="363.0" prefWidth="948.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.UpdateBan">
+<AnchorPane prefHeight="700.0" prefWidth="1380.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.UpdateBan">
    <children>
-      <Label layoutX="544.0" layoutY="116.0" text="ID_User">
+      <Label layoutX="832.0" layoutY="295.0" text="ID_User">
          <font>
-            <Font name="Georgia" size="27.0" />
+            <Font name="Georgia" size="48.0" />
          </font>
       </Label>
-      <TextField fx:id="IDUSERTF" layoutX="714.0" layoutY="116.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="IDUSERTF" layoutX="1002.0" layoutY="295.0" prefHeight="25.0" prefWidth="623.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="547.0" layoutY="191.0" text="Reason">
+      <Label layoutX="835.0" layoutY="370.0" text="Reason">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="ReasonTF" layoutX="714.0" layoutY="191.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="ReasonTF" layoutX="1002.0" layoutY="370.0" prefHeight="25.0" prefWidth="623.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="754.0" layoutY="283.0" mnemonicParsing="false" onAction="#UpdateBan" text="Update">
+      <Button layoutX="1042.0" layoutY="462.0" mnemonicParsing="false" onAction="#UpdateBan" text="Update">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Pane layoutY="-1.0" prefHeight="370.0" prefWidth="427.0" style="-fx-background-color: #2196f3;">
+      <Pane layoutY="-1.0" prefHeight="700.0" prefWidth="719.0" style="-fx-background-color: #2196f3;">
          <children>
-            <ImageView fitHeight="287.0" fitWidth="354.0" layoutX="37.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="286.0" fitWidth="408.0" layoutX="127.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Images/ARTounsi.png" />
                </image>
