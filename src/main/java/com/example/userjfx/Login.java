@@ -50,7 +50,7 @@ import java.util.ResourceBundle;
         void SignUp(ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
             Parent uuView = loader.load();
-            Scene scene = new Scene(uuView,1380,700);
+            Scene scene = new Scene(uuView);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();

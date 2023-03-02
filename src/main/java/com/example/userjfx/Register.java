@@ -4,11 +4,13 @@ import Models.AllUsers;
 import Services.AllUsersService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +57,12 @@ public class Register {
     @FXML
     private TextField TypeTF;
 
+    @FXML
+    private TextField BioTF;
+
+    @FXML
+    private TextArea DescriptionTF;
+
     private String uploadedFileName;
 
     static FileChooser fileChooser = new FileChooser();
@@ -98,13 +106,13 @@ public class Register {
         fileChooser1.getExtensionFilters()
                 .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
         //Show open file dialog
-         file1 = fileChooser1.showOpenDialog(null);
+        file1 = fileChooser1.showOpenDialog(null);
 
     }
 
 
     @FXML
-    void Register(ActionEvent event) {
+    void Register(ActionEvent event) throws IOException {
         AllUsers u = new AllUsers();
 
         // Check and set name
@@ -215,8 +223,7 @@ public class Register {
             }
 
 
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("background JAWOU MOCH BEHY");
             alert.setHeaderText(null);
@@ -242,10 +249,18 @@ public class Register {
             alert.setContentText("AVATAR PROBLEMO");
             alert.showAndWait();
         }
-        u.setBio("random shit");
-        u.setDescription("RANDOM SHIT");
-        as.AddAu(u);
-        //as.CreateAU(u);
+        u.setBio(BioTF.getText());
+        u.setDescription(DescriptionTF.getText());
+        as.CreateAU(u);
+        //as.AddAu(u);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent uuView = loader.load();
+        Scene scene1 = new Scene(uuView, 1380, 700);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene1);
+        stage.show();
+
     }
 
     /*@FXML

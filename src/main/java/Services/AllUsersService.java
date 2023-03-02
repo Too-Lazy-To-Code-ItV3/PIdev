@@ -4,6 +4,13 @@ import Interfaces.AllUsersInterface;
 import Models.AllUsers;
 import Models.Logged;
 import Util.MyConnection;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -88,15 +95,42 @@ public class AllUsersService implements AllUsersInterface {
             System.out.println("A verification email has been sent to your email address. Please check your email and follow the instructions to verify your account.");
             while (true) {
                 System.out.println("Please enter the verification code you received by email:");
-                Scanner scanner = new Scanner(System.in);
-                String code = scanner.nextLine();
+                Stage popupWindow = new Stage();
+
+// Create a new Textfield object for the user to input the verification code
+                TextField verificationCodeField = new TextField();
+
+// Create a new Button object to submit the verification code
+                Button submitButton = new Button("Submit");
+
+// Add an action event handler to the submit button to retrieve the verification code from the Textfield
+                submitButton.setOnAction(e -> {
+                    String verificationCodE = verificationCodeField.getText();
+                    // Do something with the verification code, such as validate it against the sent password
+                    popupWindow.close(); // Close the pop-up window
+                });
+
+// Create a new VBox object to hold the Textfield and submit button
+                VBox vbox = new VBox(10, verificationCodeField, submitButton);
+                vbox.setAlignment(Pos.CENTER);
+
+// Create a new Scene object with the VBox as its root node
+                Scene scene = new Scene(vbox, 300, 200);
+
+// Set the title and modality of the pop-up window
+                popupWindow.setTitle("Verification Code");
+                popupWindow.initModality(Modality.APPLICATION_MODAL);
+
+// Set the scene of the pop-up window and show it
+                popupWindow.setScene(scene);
+                popupWindow.showAndWait();
 
                 // Check if verification code matches the one stored in the database
 
-                if (verificationCode.equals(code)) {
+                if (verificationCode.equals(verificationCodeField.getText())) {
                     // Verification successful, create user
 
-                    req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`,`Salt`, `Nationality`, `type`,`Avatar`,`Background`,`Description`,`Bio`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`,`Salt`, `Nationality`,`type`,`Nickname`,`Avatar`,`Background`,`Description`,`Bio`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     ps = cnx.prepareStatement(req);
                     ps.setString(1, u.getName());
                     ps.setString(2, u.getLast_Name());
@@ -107,13 +141,13 @@ public class AllUsersService implements AllUsersInterface {
                     ps.setString(7, u.getNationality());
                     ps.setString(8, u.getType());
                     ps.setString(9, u.getNickname());
-                    ps.setString(10, u.getNickname());
-                    ps.setString(11, u.getNickname());
-                    ps.setString(12, u.getNickname());
-                    ps.setString(13, u.getNickname());
+                    ps.setString(10, u.getAvatar());
+                    ps.setString(11, u.getBackground());
+                    ps.setString(12, u.getDescription());
+                    ps.setString(13, u.getBio());
                     ps.executeUpdate();
                     System.out.println("Account created successfully.");
-                    return;
+                    break;
 
 
                 } else {

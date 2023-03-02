@@ -180,9 +180,12 @@ public class AllUsers {
                 ", Password='" + Password + '\'' +
                 ", Nationality='" + Nationality + '\'' +
                 ", type='" + type + '\'' +
+                ", Salt='" + Salt + '\'' +
+                ", Avatar='" + Avatar + '\'' +
+                ", Background='" + Background + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Bio='" + Bio + '\'' +
                 '}';
     }
-
-
 }
 
