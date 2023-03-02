@@ -16,7 +16,7 @@ public class RegisterApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("Register.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(),1380,700);
+        Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Register Form WORKING !");
         primaryStage.setScene(scene);
         primaryStage.show();

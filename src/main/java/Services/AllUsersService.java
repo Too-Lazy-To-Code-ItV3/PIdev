@@ -46,7 +46,7 @@ public class AllUsersService implements AllUsersInterface {
         String salt = generateSalt();
         String hashedPassword = hashPassword(u.getPassword(), salt);
         try {
-            String req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`,`Salt`, `Nationality`, `type`,`Nickname`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`,`Salt`, `Nationality` ,`type`,`Nickname`,`Avatar`,`Background`,`Description`,`Bio`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, u.getName());
             ps.setString(2, u.getLast_Name());
@@ -54,11 +54,13 @@ public class AllUsersService implements AllUsersInterface {
             ps.setDate(4, u.getBirthday() != null ? Date.valueOf(u.getBirthday()) : null);
             ps.setString(5, hashedPassword);
             ps.setString(6, salt);
-            System.out.println(hashedPassword);
-            System.out.println(u.getPassword());
             ps.setString(7, u.getNationality());
             ps.setString(8, u.getType());
             ps.setString(9, u.getNickname());
+            ps.setString(10, u.getAvatar());
+            ps.setString(11, u.getBackground());
+            ps.setString(12, u.getDescription());
+            ps.setString(13, u.getBio());
             ps.executeUpdate();
             System.out.println("User Added Successfully!");
 
@@ -94,18 +96,21 @@ public class AllUsersService implements AllUsersInterface {
                 if (verificationCode.equals(code)) {
                     // Verification successful, create user
 
-                    req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`, `Nationality`, `type`,`Nickname`) VALUES (?,?,?,?,?,?,?,?)";
+                    req = "INSERT INTO allusers(`Name`, `Last_Name`, `Email`, `Birthday`, `Password`,`Salt`, `Nationality`, `type`,`Avatar`,`Background`,`Description`,`Bio`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     ps = cnx.prepareStatement(req);
                     ps.setString(1, u.getName());
                     ps.setString(2, u.getLast_Name());
                     ps.setString(3, u.getEmail());
                     ps.setDate(4, u.getBirthday() != null ? Date.valueOf(u.getBirthday()) : null);
                     ps.setString(5, hashedPassword);
-                    System.out.println(hashedPassword);
-                    System.out.println(u.getPassword());
-                    ps.setString(6, u.getNationality());
-                    ps.setString(7, u.getType());
-                    ps.setString(8, u.getNickname());
+                    ps.setString(6, salt);
+                    ps.setString(7, u.getNationality());
+                    ps.setString(8, u.getType());
+                    ps.setString(9, u.getNickname());
+                    ps.setString(10, u.getNickname());
+                    ps.setString(11, u.getNickname());
+                    ps.setString(12, u.getNickname());
+                    ps.setString(13, u.getNickname());
                     ps.executeUpdate();
                     System.out.println("Account created successfully.");
                     return;
@@ -238,6 +243,10 @@ public class AllUsersService implements AllUsersInterface {
                 u.setNationality(rs.getString("Nationality"));
                 u.setType(rs.getString("Type"));
                 u.setNickname(rs.getString("Nickname"));
+                u.setNickname(rs.getString("Avatar"));
+                u.setNickname(rs.getString("Background"));
+                u.setNickname(rs.getString("Description"));
+                u.setNickname(rs.getString("Bio"));
 
             }
 
@@ -266,6 +275,10 @@ public class AllUsersService implements AllUsersInterface {
                 u.setNationality(rs.getString(8));
                 u.setType(rs.getString(9));
                 u.setNickname(rs.getString(10));
+                u.setAvatar(rs.getString(11));
+                u.setBackground(rs.getString(12));
+                u.setDescription(rs.getString(13));
+                u.setBio(rs.getString(14));
 
             }
 

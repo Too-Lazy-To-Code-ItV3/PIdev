@@ -8,8 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -48,7 +55,53 @@ public class Register {
     @FXML
     private TextField TypeTF;
 
+    private String uploadedFileName;
+
+    static FileChooser fileChooser = new FileChooser();
+    static FileChooser fileChooser1 = new FileChooser();
+
+    static File file;
+    static File file1;
+
+
     AllUsersService as = new AllUsersService();
+
+    @FXML
+    void Uploadbg(ActionEvent event) throws IOException {
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg
+                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG
+                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng
+                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+        //Show open file dialog
+        file = fileChooser.showOpenDialog(null);
+
+
+    }
+
+    @FXML
+    void UploadAv(ActionEvent event) {
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg
+                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG
+                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng
+                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser1.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+        //Show open file dialog
+         file1 = fileChooser1.showOpenDialog(null);
+
+    }
+
 
     @FXML
     void Register(ActionEvent event) {
@@ -148,12 +201,52 @@ public class Register {
         }
         u.setType(type);
         u.setNickname(NicknameTF.getText());
-        as.CreateAU(u);
+        if (file != null) {
+            String fileName = file.getName();
+            try {
+                // Copy the file to the XAMPP htdocs directory
+                Path sourcePath = file.toPath();
+                Path targetPath = Paths.get("C:/xampp/htdocs/uploads/" + fileName);
+                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                u.setBackground(fileName);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("background JAWOU MOCH BEHY");
+            alert.setHeaderText(null);
+            alert.setContentText("background PROBLEMO");
+            alert.showAndWait();
+        }
+        if (file1 != null) {
+            String fileName1 = file1.getName();
+            try {
+                // Copy the file to the XAMPP htdocs directory
+                Path sourcePath = file1.toPath();
+                Path targetPath = Paths.get("C:/xampp/htdocs/uploads/" + fileName1);
+                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            u.setAvatar(fileName1);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("AVATR JAWOU MOCH BEHY");
+            alert.setHeaderText(null);
+            alert.setContentText("AVATAR PROBLEMO");
+            alert.showAndWait();
+        }
+        u.setBio("random shit");
+        u.setDescription("RANDOM SHIT");
+        as.AddAu(u);
+        //as.CreateAU(u);
     }
-
-
-
-
 
     /*@FXML
     void Register(ActionEvent event) {
@@ -184,5 +277,6 @@ public class Register {
         assert TypeTF != null : "fx:id=\"TypeTF\" was not injected: check your FXML file 'Register.fxml'.";
 
     }
-
 }
+
+

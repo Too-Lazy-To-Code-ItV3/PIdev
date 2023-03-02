@@ -3,7 +3,10 @@ module com.example.userjfx {
     requires javafx.fxml;
     requires java.sql;
     requires javax.mail.api;
-    //requires java.mail;
+    requires java.desktop;
+    requires javafx.swing;
+    // requires mail;
+   // requires java.mail;
 
 
     opens com.example.userjfx to javafx.fxml;

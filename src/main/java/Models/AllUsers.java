@@ -13,13 +13,17 @@ public class AllUsers {
     private String Password;
     private String Nationality;
     private String type;
-
     private String Salt;
+
+    private String Avatar;
+    private String Background;
+    private String Description;
+    private String Bio;
 
     public AllUsers() {
     }
 
-    public AllUsers(int ID_User, String name, String last_Name, String nickname, String email, LocalDate birthday, String password, String nationality, String type) {
+    public AllUsers(int ID_User, String name, String last_Name, String nickname, String email, LocalDate birthday, String password, String nationality, String type, String salt, String avatar, String background, String description, String bio) {
         this.ID_User = ID_User;
         Name = name;
         Last_Name = last_Name;
@@ -29,9 +33,14 @@ public class AllUsers {
         Password = password;
         Nationality = nationality;
         this.type = type;
+        Salt = salt;
+        Avatar = avatar;
+        Background = background;
+        Description = description;
+        Bio = bio;
     }
 
-    public AllUsers(String name, String last_Name, String nickname, String email, LocalDate birthday, String password, String nationality, String type) {
+    public AllUsers(String name, String last_Name, String nickname, String email, LocalDate birthday, String password, String nationality, String type, String salt, String avatar, String background, String description, String bio) {
         Name = name;
         Last_Name = last_Name;
         Nickname = nickname;
@@ -40,6 +49,11 @@ public class AllUsers {
         Password = password;
         Nationality = nationality;
         this.type = type;
+        Salt = salt;
+        Avatar = avatar;
+        Background = background;
+        Description = description;
+        Bio = bio;
     }
 
     public int getID_User() {
@@ -120,6 +134,38 @@ public class AllUsers {
 
     public void setSalt(String salt) {
         Salt = salt;
+    }
+
+    public String getAvatar() {
+        return Avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        Avatar = avatar;
+    }
+
+    public String getBackground() {
+        return Background;
+    }
+
+    public void setBackground(String background) {
+        Background = background;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getBio() {
+        return Bio;
+    }
+
+    public void setBio(String bio) {
+        Bio = bio;
     }
 
     @Override

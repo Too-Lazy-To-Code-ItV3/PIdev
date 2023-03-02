@@ -36,12 +36,9 @@ import java.util.ResourceBundle;
         void LogIn(ActionEvent event) throws SQLException, IOException {
             as.login(EmailOrUsername.getText(),PASSWORD.getText());
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShowUsers.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
             Parent uuView = loader.load();
             Scene scene = new Scene(uuView,1380,700);
-
-            ShowUsers users = loader.getController();
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
