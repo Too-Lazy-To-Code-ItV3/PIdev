@@ -5,6 +5,7 @@
  */
 package service;
 
+import models.AllUsers;
 import interfaces.offreTravailArchiveInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import models.Categorie;
-import models.allusers;
+
 import models.offreTravailarchive;
 import util.MaConnexion;
 
@@ -30,7 +31,7 @@ import util.MaConnexion;
 public class offreTravailArchiveService implements offreTravailArchiveInterface {
 
     Connection cnx = MaConnexion.getInstance().getCnx();
-    allusers studio = new allusers();
+   AllUsers studio = new  AllUsers();
 //*******************recuperer l'offre archiver*****************************
 
     @Override

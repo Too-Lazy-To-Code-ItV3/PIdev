@@ -29,14 +29,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import models.Categorie;
-import models.allusers;
+import models. AllUsers;
 import models.demandeTravail;
 import util.MaConnexion;
 
 public class demandeTravailService implements demandeTravailInterface {
        //var
     Connection cnx = MaConnexion.getInstance().getCnx();
-    allusers studio = new allusers();
+     AllUsers studio = new  AllUsers();
 
     //********************verifier les informations ajoutés d'offre de travail*****************************
     
@@ -79,10 +79,10 @@ alert.showAndWait();
 //*******************l'ajout de demannde******************************
 @Override
    public void addDemande(demandeTravail d) {
-      allusers artiste = new allusers();
+       AllUsers artiste = new  AllUsers();
         //ajouter l'utilisateur connecter pour recuperer ces informations qui doit etre ajouter par la suite dans la table offretravail
         try {
- String req2 = "SELECT * FROM `allusers2` WHERE ID_User= \'" + d.getIdArtiste() + "\' and Type= 'artiste'";
+ String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + d.getIdArtiste() + "\' and Type= 'artiste'";
             Statement st1 = cnx.createStatement();
             ResultSet rs1 = st1.executeQuery(req2);
             while (rs1.next()) {
@@ -90,8 +90,8 @@ alert.showAndWait();
                 artiste.setID_User(rs1.getInt(1));
                 artiste.setName(rs1.getString(2));
                 artiste.setEmail(rs1.getString(4));
-                artiste.setDescription(rs1.getString(10));
-                 artiste.setNickname(rs1.getString(9));
+                artiste.setDescription(rs1.getString(13));
+                 artiste.setNickname(rs1.getString(10));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -327,6 +327,7 @@ alert.showAndWait();
                     dm.setNomArtiste(rs.getString(2));
                         Categorie c = new Categorie();
                       c.setIdCategorie(rs.getInt("idCategorie"));
+                      c.setNomCategorie("categorieDemande");
                     dm.setCategorieDemande(c);
                     if (!containsId( demandesTravailtrouver, dm.getIdDemande())) {
                          demandesTravailtrouver.add(dm);
@@ -344,7 +345,7 @@ alert.showAndWait();
          String mailreceiver="";
         try {
             System.out.println("preparing");
-            allusers studio = new allusers();
+            AllUsers studio = new  AllUsers();
             //recuperer le nom dartiste proprietaire de demande***************************
             String req1= "SELECT Nickname  FROM `demandeTravail2` WHERE idDemande= \'" + d.getIdDemande()+ "\' ";
             Statement st5 = cnx.createStatement();
@@ -353,7 +354,7 @@ alert.showAndWait();
                 d.setNomArtiste(rs5.getString(1));
             }
           //recuperer le mail du studio proprietaire de nickname*****************************
-            String req6="SELECT Email FROM `allusers2` WHERE Nickname= \'" + d.getNomArtiste()+ "\' ";
+            String req6="SELECT Email FROM `allusers` WHERE Nickname= \'" + d.getNomArtiste()+ "\' ";
              Statement st6 = cnx.createStatement();
             ResultSet rs6 = st6.executeQuery(req6);
             while (rs6.next()) {
@@ -361,7 +362,7 @@ alert.showAndWait();
             }
             //ajouter l'utilisateur connecter li howa studio li bch ycontactih*******************************
             try {
-                String req2 = "SELECT * FROM `allusers2` WHERE ID_User= \'" + idStudio + "\' and Type= 'studio'";
+                String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + idStudio + "\' and Type= 'studio'";
                 Statement st1 = cnx.createStatement();
                 ResultSet rs1 = st1.executeQuery(req2);
                 while (rs1.next()) {

@@ -1,7 +1,8 @@
 package service;
 
+import models.AllUsers;
 import models.Categorie;
-import models.allusers;
+
 import java.util.Properties;
 import interfaces.offreTravailInterface;
 import java.sql.Connection;
@@ -35,7 +36,7 @@ import java.io.FileInputStream;
 public class offreTravailService implements offreTravailInterface {
     //var
     Connection cnx = MaConnexion.getInstance().getCnx();
-    allusers studio = new allusers();
+    AllUsers studio = new  AllUsers();
     //***********************verifier si  les informations ajoutés d'offre de travail contient des gros mots*****************
     
     public Boolean grosMots(String words) {
@@ -79,19 +80,25 @@ public class offreTravailService implements offreTravailInterface {
     //********************ajouter d'un offre de travail**************************
     
     public void addOffre(offreTravail o) {
-        allusers studio = new allusers();
+        AllUsers studio = new AllUsers();
         
         //ajouter l'utilisateur connecter pour recuperer ces informations qui doit etre ajouter par la suite dans la table offretravail
         try {
-            String req2 = "SELECT * FROM `allusers2` WHERE ID_User= \'" + o.getIdStudio() + "\' and Type= 'studio'";
+            String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + o.getIdStudio() + "\' and Type= 'studio'";
             Statement st1 = cnx.createStatement();
             ResultSet rs1 = st1.executeQuery(req2);
             while (rs1.next()) {
-                studio.setID_User(rs1.getInt(1));
+               
+ studio.setID_User(rs1.getInt(1));
                 studio.setName(rs1.getString(2));
+                studio.setLast_Name(rs1.getString(3));
                 studio.setEmail(rs1.getString(4));
-                studio.setDescription(rs1.getString(10));
-                studio.setNickname(rs1.getString(9));
+                studio.setBirthday(rs1.getDate(5).toLocalDate());
+                studio.setPassword(rs1.getString(6));
+                studio.setNationality(rs1.getString(8));
+                studio.setType(rs1.getString(9));
+                studio.setNickname(rs1.getString(10));
+studio.setDescription(rs1.getString(13));
 
             }
         } catch (SQLException ex) {
@@ -378,7 +385,9 @@ public static boolean verif=false;
     //verifier si loffre existe deja dans la liste de resultat de recherche ou non pour eviter la redondance
     public boolean containsId(List<offreTravail> list, int id) {
 
-        return list.stream().filter(o -> o.getIdOffre() == (id)).findFirst().isPresent();
+    
+                return list.stream().filter(o -> o.getIdOffre() == (id)).findFirst().isPresent();
+
 
     }
 
@@ -400,6 +409,17 @@ public static boolean verif=false;
                     of.setTitreOffre(rs.getString(2));
                     of.setDescriptionOffre(rs.getString(3));
                     of.setNomStudio(rs.getString(4));
+                    
+                    Categorie c = new Categorie();
+                     c.setIdCategorie(rs.getInt("idCategorie"));
+                c.setNomCategorie(rs.getString("categorieOffre"));
+                   of.setCategorieOffre(c);
+                    of.setLocalisationOffre(rs.getString("localisationOffre"));
+                    of.setTypeOffre(rs.getString("typeOffre"));
+                    of.setDateAjoutOffre(rs.getTimestamp("dateAjoutOffre"));
+             
+                of.setNomStudio(rs.getString(5));
+               
                     if (!containsId(offresTravailtrouver, of.getIdOffre())) {
                         offresTravailtrouver.add(of);
                     }
@@ -420,7 +440,7 @@ public static boolean verif=false;
 
             artistepostuler artpostuler = new artistepostuler();
             System.out.println("preparing");
-            allusers artiste = new allusers();
+             AllUsers artiste = new  AllUsers();
             //recuperer le nom du studio proprietaire de loffre********************************
             String req1 = "SELECT Nickname  FROM `offreTravail2` WHERE idOffre= \'" + of.getIdOffre() + "\' ";
             Statement st5 = cnx.createStatement();
@@ -431,7 +451,7 @@ public static boolean verif=false;
 
             }
         //recuperer le mail du studio proprietaire de nickname*******************************************************************
-            String req6 = "SELECT Email FROM `allusers2` WHERE Nickname= \'" + of.getNomStudio() + "\' ";
+            String req6 = "SELECT Email FROM `allusers` WHERE Nickname= \'" + of.getNomStudio() + "\' ";
             Statement st6 = cnx.createStatement();
             ResultSet rs6 = st6.executeQuery(req6);
 
@@ -442,15 +462,21 @@ public static boolean verif=false;
             //ajouter l'utilisateur connecter li howa lartiste li bch ypostuli***************************************************
             try {
 
-                String req2 = "SELECT * FROM `allusers2` WHERE ID_User= \'" + idArtiste + "\' and Type= 'artiste'";
+                String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + idArtiste + "\' and Type= 'artiste'";
                 Statement st1 = cnx.createStatement();
                 ResultSet rs1 = st1.executeQuery(req2);
                 while (rs1.next()) {
-                    artiste.setID_User(rs1.getInt(1));
-                    artiste.setName(rs1.getString(2));
-                    artiste.setEmail(rs1.getString(4));
-                    artiste.setDescription(rs1.getString(10));
-                    artiste.setNickname(rs1.getString(9));
+                     artiste.setID_User(rs1.getInt(1));
+                  artiste.setName(rs1.getString(2));
+                 artiste.setLast_Name(rs1.getString(3));
+                 artiste.setEmail(rs1.getString(4));
+                 artiste.setBirthday(rs1.getDate(5).toLocalDate());
+                 artiste.setPassword(rs1.getString(6));
+                  artiste.setNationality(rs1.getString(8));
+                 artiste.setType(rs1.getString(9));
+                  artiste.setNickname(rs1.getString(10));
+artiste.setDescription(rs1.getString(13));
+                   
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -490,7 +516,7 @@ alert.show();
                     Transport.send(message);
                     //ajouter a la table artistepostuler*******************************************
                     //user************************************************************
-                    allusers u = new allusers();
+                    AllUsers u = new  AllUsers();
                     u.setID_User(idArtiste);
                     u.setNickname(artiste.getNickname());
                     artpostuler.setIdArtiste(u);
@@ -636,8 +662,7 @@ alert.show();
                     + "    </table>\n"
                     + "</body>";
             message.setContent(htmlCode, "text/html");
-            MimeMultipart  multipart = new  MimeMultipart();
-           // multipart.addBodyPart(attachment);
+           
             return message;
         } catch (MessagingException ex) {
             Logger.getLogger(offreTravailService.class.getName()).log(Level.SEVERE, null, ex);
