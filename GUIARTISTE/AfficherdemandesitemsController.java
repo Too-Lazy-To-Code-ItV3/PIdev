@@ -5,8 +5,11 @@
  */
 package GUIARTISTE;
 
-import GUI.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
 
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,9 +19,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import models.AllUsers;
 import models.demandeTravail;
 
 import models.offreTravail;
+import service.AllUsersService;
 
 
 /**
@@ -32,8 +37,7 @@ public class AfficherdemandesitemsController implements Initializable {
     private Label titreOffre;
     @FXML
     private Label nomStudio;
-    private Label typeOffre;
-    private Label locOffre;
+   
     @FXML
     private Label dateAjout;
     @FXML
@@ -50,15 +54,25 @@ public class AfficherdemandesitemsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    public void loaddata(demandeTravail f){
+    public void loaddata(demandeTravail f) throws SQLException{
        titreOffre.setText(f.getTitreDemande());
        nomStudio.setText(f.getNomArtiste());
        
        dateAjout.setText(f.getDateAjoutDemande().toString());
        description.setText(f.getDescriptionDemande());
           categorie.setText(f.getCategorieDemande().getNomCategorie());
-            Image img = new Image("/img/capture2.PNG") ;
-      photo1.setFill(new ImagePattern(img));
+             
+          AllUsersService u = new  AllUsersService();
+           AllUsers user = u.fetchAUbyNickname(f.getNomArtiste());
+            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+            try (InputStream avatarStream = new FileInputStream(imagePath)) {
+                Image avatarImage = new Image(avatarStream);
+                photo1.setFill(new ImagePattern(avatarImage));
+               
+
+            } catch (IOException e) {
+                System.err.println("Error loading avatar image: " + e.getMessage());
+            }
    }
 
    

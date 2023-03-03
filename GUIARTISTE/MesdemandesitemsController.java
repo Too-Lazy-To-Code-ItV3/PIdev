@@ -5,8 +5,9 @@
  */
 package GUIARTISTE;
 
-import GUI.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,8 +25,13 @@ import models.offreTravail;
 import service.offreTravailService;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import models.AllUsers;
+import models.Logged;
 import models.demandeTravail;
 import service.demandeTravailService;
 /**
@@ -54,6 +60,8 @@ public class MesdemandesitemsController implements Initializable {
     private Label decription;
     @FXML
     private Label categorie;
+    @FXML
+    private Circle photo;
 
     /**
      * Initializes the controller class.
@@ -71,7 +79,18 @@ public class MesdemandesitemsController implements Initializable {
        decription.setText(f.getDescriptionDemande());
        categorie.setText(f.getCategorieDemande().getNomCategorie());
        supprimerOffre.setId(Integer.toString(f.getIdDemande()));   
- editoffre.setId(Integer.toString(f.getIdDemande()));   }
+ editoffre.setId(Integer.toString(f.getIdDemande()));  
+   AllUsers user = Logged.get_instance().getUser();
+            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+           try (InputStream avatarStream = new FileInputStream(imagePath)) {
+                Image avatarImage = new Image(avatarStream);
+                photo.setFill(new ImagePattern(avatarImage));
+               
+
+            } catch (IOException e) {
+                System.err.println("Error loading avatar image: " + e.getMessage());
+            }
+ }
  
  
  
@@ -84,6 +103,16 @@ public class MesdemandesitemsController implements Initializable {
        String desc = decription.getText();
       
      String categ = categorie.getText();
+      AllUsers user = Logged.get_instance().getUser();
+            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+           try (InputStream avatarStream = new FileInputStream(imagePath)) {
+                Image avatarImage = new Image(avatarStream);
+                photo.setFill(new ImagePattern(avatarImage));
+               
+
+            } catch (IOException e) {
+                System.err.println("Error loading avatar image: " + e.getMessage());
+            }
     try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/modifierdemande.fxml"));
         Parent root = loader.load();

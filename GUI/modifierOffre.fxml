@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchormodifier" prefHeight="700.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierOffreController">
+<AnchorPane id="AnchorPane" fx:id="anchormodifier" prefHeight="700.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierOffreController">
    <children>
       <SplitPane dividerPositions="0.5366795366795367" layoutX="195.0" layoutY="82.0" prefHeight="516.0" prefWidth="1038.0">
         <items>

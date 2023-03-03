@@ -5,7 +5,7 @@
  */
 package GUIARTISTE;
 
-import GUI.*;
+import controller.ModifierOffreController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

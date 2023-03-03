@@ -5,7 +5,6 @@
  */
 package GUIARTISTE;
 
-import GUI.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIARTISTE.AfficherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1357.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIARTISTE.AfficherController">
    <top>
-      <ScrollPane prefHeight="628.0" prefWidth="900.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="520.0" prefWidth="685.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" BorderPane.alignment="CENTER">
          <content>
-            <GridPane fx:id="citiesGril" prefHeight="50.0" prefWidth="882.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
+            <GridPane fx:id="citiesGril" prefHeight="50.0" prefWidth="1358.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>

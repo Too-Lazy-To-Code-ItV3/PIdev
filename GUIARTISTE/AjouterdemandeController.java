@@ -5,7 +5,6 @@
  */
 package GUIARTISTE;
 
-import GUI.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +19,8 @@ import service.offreTravailService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import models.Logged;
 import models.demandeTravail;
 import service.demandeTravailService;
 
@@ -39,7 +40,7 @@ CategoryService c = new CategoryService();
     @FXML
     private TextField titreOffre;
     @FXML
-    private TextField descriptionOffre;
+    private TextArea descriptionOffre;
 
     
     /**
@@ -72,9 +73,18 @@ else {
         of.setDescriptionDemande(descriptionOffre.getText());
         of.setCategorieDemande(listeCategorie.getValue());
        
-       /*getfrom token */ of.setIdArtiste(3);
+       /*getfrom token */ of.setIdArtiste(Logged.get_instance().getUser().getID_User());
       
            offs.addDemande(of);
+            
+   
+    
+String myVariable = "";
+descriptionOffre.setText(myVariable);
+	//titreOffre.setText(myVariable);
+   listeCategorie.setValue(null);
+  
+           
     }
     }
 }

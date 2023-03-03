@@ -10,62 +10,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="1000.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIARTISTE.ChercheroffreController">
    <children>
       <ImageView fitHeight="328.0" fitWidth="1510.0" layoutY="-23.0" opacity="0.92" pickOnBounds="true">
          <image>
-            <Image url="@../img/capture2.PNG" />
+            <Image url="@../img/pic2.jpg" />
          </image>
          <viewport>
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <ScrollPane fx:id="scrollpane" layoutX="882.0" layoutY="300.0" prefHeight="349.0" prefWidth="506.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
+      <ScrollPane layoutX="366.0" layoutY="302.0" prefHeight="340.0" prefWidth="996.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
          <content>
-            <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="543.0" prefWidth="490.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
-               <children>
-                  <Label prefHeight="50.0" prefWidth="166.0" text="filtrer:" textFill="#fffafa">
-                     <font>
-                        <Font name="System Bold" size="34.0" />
-                     </font>
-                  </Label>
-                  <VBox fx:id="vbox" layoutX="12.0" layoutY="50.0" prefHeight="286.0" prefWidth="225.0">
-                     <children>
-                        <Label text="categorie:" textFill="#fffafa">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vboxtype" layoutX="245.0" layoutY="50.0" prefHeight="125.0" prefWidth="200.0">
-                     <children>
-                        <Label text="types:" textFill="#fffafa">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vboxxville" layoutX="245.0" layoutY="193.0" prefHeight="202.0" prefWidth="220.0">
-                     <children>
-                        <Label text="ville:" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <ScrollPane layoutX="80.0" layoutY="302.0" prefHeight="340.0" prefWidth="798.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
-         <content>
-            <GridPane fx:id="gridchercher" prefHeight="51.0" prefWidth="915.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
+            <GridPane fx:id="gridchercher" prefHeight="51.0" prefWidth="1133.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -96,5 +55,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="offressimilaires" layoutX="664.0" layoutY="227.0" mnemonicParsing="false" onAction="#offressimilaires" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="offres similaires" textFill="#fff7f7" />
    </children>
 </AnchorPane>

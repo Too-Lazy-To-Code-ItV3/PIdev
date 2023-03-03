@@ -1,7 +1,6 @@
 
 package GUIARTISTE;
 
-import GUI.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
 import service.demandeTravailService;
@@ -34,7 +34,8 @@ public class MesdemandesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //id connecter
-        mesoffres=new ArrayList<>(of.fetchDemandesPerIdDate(3));
+        mesoffres=new ArrayList<>(of.fetchDemandesPerIdDate(Logged.get_instance().getUser().getID_User()
+));
        int column=0;
        int row = 1 ;
        for(demandeTravail f : mesoffres)

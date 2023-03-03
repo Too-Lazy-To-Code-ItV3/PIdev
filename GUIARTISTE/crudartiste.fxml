@@ -6,33 +6,43 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="CRUD" prefHeight="1000.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIARTISTE.crudartistecontroller">
    <children>
-      <ImageView fitHeight="1011.0" fitWidth="1517.0" layoutX="17.0" layoutY="-24.0" pickOnBounds="true">
-         <image>
-            <Image url="@../img/black.png" />
-         </image>
-      </ImageView>
-      <HBox layoutX="-3.0" prefHeight="401.0" prefWidth="1500.0" styleClass="bottom" stylesheets="@../css/menustyle.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane id="AnchorPane" fx:id="CRUD1" layoutX="10.0" layoutY="10.0" prefHeight="1000.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
          <children>
-            <AnchorPane fx:id="afficheroffre" prefHeight="400.0" prefWidth="800.0" />
-            <VBox alignment="TOP_RIGHT" prefHeight="696.0" prefWidth="175.0">
+            <ImageView fitHeight="1000.0" fitWidth="1517.0" layoutX="5.0" layoutY="-29.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/black.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="10.0" layoutY="110.0" prefHeight="596.0" prefWidth="1507.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
                <children>
-                  <Button fx:id="mesoffres" mnemonicParsing="false" onAction="#afficherMesOffres" prefHeight="143.0" prefWidth="181.0" stylesheets="@../css/menustyle.css" text="mes offres">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="ajouter" mnemonicParsing="false" onAction="#ajout" prefHeight="144.0" prefWidth="231.0" text="ajout" />
+                  <AnchorPane fx:id="afficheroffre" prefHeight="596.0" prefWidth="1481.0" />
                </children>
-               <HBox.margin>
-                  <Insets left="40.0" />
-               </HBox.margin>
-            </VBox>
-            <AnchorPane prefHeight="696.0" prefWidth="238.0" />
+            </HBox>
+            <HBox layoutX="174.0" layoutY="21.0" prefHeight="100.0" prefWidth="866.0" stylesheets="@../css/PostControlPanel.css">
+               <children>
+                  <Button fx:id="mesoffres1" mnemonicParsing="false" onAction="#afficherMesOffres" prefHeight="100.0" prefWidth="319.0" style="-fx-background-radius: 10;" stylesheets="@../css/menustyle.css" text="mes demandes">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ajouter1" mnemonicParsing="false" onAction="#ajout" prefHeight="100.0" prefWidth="431.0" style="-fx-background-radius: 10;" text="ajouter une demande">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -5,9 +5,10 @@
  */
 package GUIARTISTE;
 
-import GUI.*;
+import controller.Menu1Controller;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -51,12 +52,14 @@ public class AfficherController implements Initializable {
                Pane pane = fxmlLoader.load();
                AfficherdemandesitemsController ac = fxmlLoader.getController();
                ac.loaddata(f);
-               if(column==1){column=0; ++row ;}
+               if(column==2){column=0; ++row ;}
                citiesGril.add(pane,column++,row);
                GridPane.setMargin(pane, new Insets(20));
            } catch (IOException ex) {
                Logger.getLogger(Menu1Controller.class.getName()).log(Level.SEVERE, null, ex);
-           }
+           } catch (SQLException ex) {
+                 Logger.getLogger(AfficherController.class.getName()).log(Level.SEVERE, null, ex);
+             }
 
        }
     }    

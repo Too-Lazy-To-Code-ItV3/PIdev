@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="offresancho" prefHeight="791.0" prefWidth="1357.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MesOffresController">
+<AnchorPane fx:id="offresancho" prefHeight="791.0" prefWidth="1357.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MesOffresController">
    <children>
-      <ImageView fitHeight="662.0" fitWidth="1385.0" layoutX="10.0" layoutY="-29.0" pickOnBounds="true">
+      <ImageView fitHeight="662.0" fitWidth="1417.0" layoutX="-22.0" layoutY="-29.0" pickOnBounds="true">
          <image>
             <Image url="@../img/black.png" />
          </image>
       </ImageView>
-      <ScrollPane prefHeight="631.0" prefWidth="1357.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
+      <ScrollPane layoutX="308.0" prefHeight="631.0" prefWidth="1055.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
          <content>
             <GridPane fx:id="citiesGril" styleClass="backcolor" stylesheets="@../css/menustyle.css">
                <rowConstraints>
