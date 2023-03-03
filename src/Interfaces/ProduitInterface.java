@@ -22,7 +22,7 @@ public interface ProduitInterface {
 // //supprimer
 //    public void  spprimerProduit(String nom); 
 //    public void spprimerProduit(Produits p);
-    public void spprimerProduit(String nom);
+  public void spprimerProduit(int idProduit);
 //    //modifier
 
   public void modifierProduit(Produits p);

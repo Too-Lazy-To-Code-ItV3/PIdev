@@ -17,20 +17,21 @@ public class LignePanier {
     private int IdLignePanier;
     private Panier panier;
     private Produits produit;
-    private int quantite;
+    private String nomProd;
     private double prix_unitaire;
     private Date dateAjout;
-    private double sous_montant;
+
     
 
-    public LignePanier(int IdLignePanier,Panier panier, Produits produit, double prix_unitaire , int quantite, Date dateAjout, double sous_montant) {
+    public LignePanier(int IdLignePanier,Panier panier, Produits produit,String nomProd, double prix_unitaire ,  Date dateAjout) {
         this.IdLignePanier = IdLignePanier;
         this.panier = panier;
-        this.produit = produit;
-         this.prix_unitaire = prix_unitaire;
-        this.quantite = quantite;
+        this.produit = produit; 
+        this.nomProd = nomProd;
+        this.prix_unitaire = prix_unitaire;
+   
         this.dateAjout = dateAjout;
-        this.sous_montant = sous_montant;
+   
     }
 
     public LignePanier() {
@@ -50,6 +51,11 @@ public class LignePanier {
     public Panier getPanier() {
         return panier;
     }
+
+    public String getNomProd() {
+        return nomProd;
+    }
+    
     public double getPrix_unitaire() {
         return prix_unitaire;
     }
@@ -57,18 +63,12 @@ public class LignePanier {
         return produit;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
 
   
     public Date getDateAjout() {
         return dateAjout;
     }
-     
-    public double getSous_montant() {
-        return sous_montant;
-    }
+  
 
  //setters 
 
@@ -83,31 +83,32 @@ public class LignePanier {
     public void setProduit(Produits produit) {
         this.produit = produit;
     }
+
+    public void setNomProd(String nomProd) {
+        this.nomProd = nomProd;
+    }
     
    public void setPrix_unitaire(double prix_unitaire) {
         this.prix_unitaire = prix_unitaire;
     }
 
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
+   
 
  
     public void setDateAjout(Date dateAjout) {
         this.dateAjout = dateAjout;
     }
     
-    
-    public void setSous_montant(double sous_montant) {
-        this.sous_montant = sous_montant;
-    }
+ 
 
 
     //toString
 
+  
+
     @Override
     public String toString() {
-        return "LignePanier{" + "IdLignePanier=" + IdLignePanier + ", panier=" + panier + ", produit=" + produit + ", quantite=" + quantite + ", prix_unitaire=" + prix_unitaire + ", dateAjout=" + dateAjout + ", sous_montant=" + sous_montant + '}';
+        return "LignePanier{" + "IdLignePanier=" + IdLignePanier + ", panier=" + panier + ", produit=" + produit + ", nomProd=" + nomProd + ", prix_unitaire=" + prix_unitaire + ", dateAjout=" + dateAjout + '}';
     }
 
     public void add(LignePanier lp) {

@@ -89,11 +89,11 @@ public  class ProduitService implements ProduitInterface{
     //supprimer un produit 
 
     @Override
-    public void spprimerProduit(String nom){
+    public void spprimerProduit(int idProduit){
       try {
-            String req = "DELETE FROM produits WHERE nom= ?";
+            String req = "DELETE FROM produits WHERE idProduit= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, nom);
+            ps.setInt(1, idProduit);
             ps.executeUpdate();
             System.out.println("Produit supprimé !");
             } catch (SQLException e) {
@@ -234,11 +234,6 @@ public Produits readById(int id) {
     }
 
    
-    
-    
-    
-    
-    
     
      }
     

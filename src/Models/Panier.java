@@ -18,6 +18,7 @@ public class Panier {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      private int idPanier ;
+     private int ID_User ;
      private int nbr_produits;
      private double montant_total;
      
@@ -26,8 +27,9 @@ public class Panier {
      
     //constructeur 
 
-    public Panier(int idPanier,int nbr_produits, double montant_total) {
+    public Panier(int idPanier,int ID_User,int nbr_produits, double montant_total) {
         this.idPanier = idPanier;
+        this.ID_User=ID_User;
         this.nbr_produits = nbr_produits;
         this.montant_total = montant_total;
      
@@ -43,6 +45,10 @@ public class Panier {
 
     public int getIdPanier() {
         return idPanier;
+    }
+
+    public int getID_User() {
+        return ID_User;
     }
 
    
@@ -65,6 +71,10 @@ public class Panier {
         this.idPanier = idPanier;
     }
 
+    public void setID_User(int ID_User) {
+        this.ID_User = ID_User;
+    }
+
 
     public void setNbr_produits(int nbr_produits) {
         this.nbr_produits = nbr_produits;
@@ -79,10 +89,10 @@ public class Panier {
 
     @Override
     public String toString() {
-        return "Panier{" + "idPanier=" + idPanier + ", nbr_produits=" + nbr_produits + ", montant_total=" + montant_total + '}';
+        return "Panier{" + "idPanier=" + idPanier + ", ID_User=" + ID_User + ", nbr_produits=" + nbr_produits + ", montant_total=" + montant_total + '}';
     }
 
-   
+  
 
     public void ajouterLignePanier(LignePanier lignePanier) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

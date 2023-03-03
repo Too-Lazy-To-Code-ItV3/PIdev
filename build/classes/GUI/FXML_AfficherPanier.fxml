@@ -7,30 +7,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="dateajout" prefHeight="613.0" prefWidth="752.0" stylesheets="@Swag.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_AfficherPanierController">
+<AnchorPane id="AnchorPane" fx:id="dateajout" prefHeight="613.0" prefWidth="752.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_AfficherPanierController">
    <children>
-      <TableView fx:id="tablePanier" layoutX="46.0" layoutY="53.0" prefHeight="397.0" prefWidth="661.0">
+      <TableView fx:id="tablePanier" layoutX="58.0" layoutY="53.0" prefHeight="397.0" prefWidth="468.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css">
         <columns>
-          <TableColumn fx:id="prod" prefWidth="211.0" text="Produit" />
-            <TableColumn fx:id="quantite" prefWidth="102.0" text="Quantite" />
+          <TableColumn fx:id="nom" prefWidth="173.0" text="NomProd" />
+            <TableColumn fx:id="date" prefWidth="140.0" text="Date d' Ajout" />
             <TableColumn fx:id="prixUn" prefWidth="153.0" text="Prix_unitaire" />
-            <TableColumn fx:id="SousPrix" prefWidth="194.0" text="Sous_Montant" />
         </columns>
       </TableView>
-      <Button fx:id="vider" layoutX="56.0" layoutY="465.0" mnemonicParsing="false" onAction="#vider" text="Vider le panier" />
-      <Label layoutX="429.0" layoutY="478.0" prefHeight="25.0" prefWidth="122.0" text="Montant Total" textFill="#9e489c">
+      <Button fx:id="vider" layoutX="66.0" layoutY="466.0" mnemonicParsing="false" onAction="#vider" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Vider le panier" textFill="WHITE" />
+      <Label layoutX="390.0" layoutY="466.0" prefHeight="25.0" prefWidth="122.0" stylesheets="@../Css/style2.css" text="Montant Total" textFill="#9e489c">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="modifier" layoutX="184.0" layoutY="465.0" mnemonicParsing="false" onAction="#GotoModifier" text="Modifier" />
-      <Label layoutX="429.0" layoutY="536.0" prefHeight="25.0" prefWidth="166.0" text="Nombre de produits" textFill="#9e489c">
+      <Label layoutX="390.0" layoutY="534.0" prefHeight="25.0" prefWidth="166.0" text="Nombre de produits" textFill="#9e489c">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="montant_total" layoutX="429.0" layoutY="504.0" prefHeight="25.0" prefWidth="111.0" text="montant_total" />
-      <Label fx:id="nbr_prod" layoutX="429.0" layoutY="570.0" prefHeight="17.0" prefWidth="93.0" text="nbr_prod" />
-      <Button fx:id="retour" layoutX="618.0" layoutY="6.0" mnemonicParsing="false" onAction="#GotoAccueil" text="Retour" />
+      <Label fx:id="montant_total" layoutX="390.0" layoutY="500.0" prefHeight="25.0" prefWidth="111.0" text="montant_total" />
+      <Label fx:id="nbr_prod" layoutX="390.0" layoutY="570.0" prefHeight="17.0" prefWidth="93.0" text="nbr_prod" />
+      <Button fx:id="retour" layoutX="618.0" layoutY="6.0" mnemonicParsing="false" onAction="#GotoAccueil" prefHeight="25.0" prefWidth="103.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Retour" textFill="WHITE" />
+      <Button fx:id="imprimer" layoutX="66.0" layoutY="508.0" mnemonicParsing="false" onAction="#imprimer" prefHeight="17.0" prefWidth="93.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text=" Imprimer " textFill="WHITE" />
    </children>
 </AnchorPane>

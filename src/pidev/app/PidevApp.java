@@ -214,7 +214,7 @@ public class PidevApp {
    lp.setPanier(pan);
    lp.setProduit(p8);
    lp.setPrix_unitaire(p8.getPrix());
-   lp.setQuantite(4);
+
 
    Panier pan2= new Panier();
            pan2.setIdPanier(9);
@@ -225,9 +225,33 @@ public class PidevApp {
    lp2.setPanier(pan2);
    lp2.setProduit(p2);
    lp2.setPrix_unitaire(p2.getPrix());
-   lp2.setQuantite(3);
-//   lp2.setSous_montant(9000);
- 
+   
+Produits pp=new Produits();
+
+pp.setIdProduit(15);
+      pp.setNom(" your angel ");
+      pp.setDescription("your angel");
+      pp.setCategorieProduit(cat4);
+      pp.setImage("your angel");
+      pp.setQuantiteDispo(6);
+      pp.setPrix(500); 
+      
+      
+ Produits ppp=new Produits();     
+ppp.setIdProduit(23);
+      ppp.setNom("joker2");
+      ppp.setDescription("joker2");
+      ppp.setCategorieProduit(cat1);
+      ppp.setImage("joker2");
+      ppp.setQuantiteDispo(7);
+      ppp.setPrix(3000); 
+      
+ LignePanier lp3 = new  LignePanier(); 
+   lp3.setIdLignePanier(20);
+   lp3.setPanier(pan);
+   lp3.setProduit(ppp);
+   lp3.setPrix_unitaire(ppp.getPrix());
+ lignepanierserv.modifierlLignePanier(lp3,20);
 // LignePanier lp7 = new  LignePanier(); 
 //   lp7.setProduit(p7);
 //   lp7.setPrix_unitaire(p7.getPrix());
@@ -238,8 +262,7 @@ public class PidevApp {
  
        //modifier
 //             lignepanierserv.modifierlLignePanier(lp8,7);
-//             lignepanierserv.modifierQuantite(5,4,13 );
-//  lignepanierserv.modifierQuantite(3,8,20);
+
  
       //supprimer
  
@@ -250,13 +273,6 @@ public class PidevApp {
      //afficher
          
 //   System.out.println(lignepanierserv.afficherTous());
-//calcul sous montant 
-//    
-//   double nvmontant = lignepanierserv.calculerSousMontant(lp,19);
-//////   System.out.print(nvmontant);
-//
-////////////mis à jour  sous montant
-//   lignepanierserv.MisàjourSousMontant(lp,19,nvmontant);
 
 //afficher par id 
 //     panierserv.afficherPanierParId(5);
@@ -284,7 +300,10 @@ public class PidevApp {
 //        panierserv.MisàjourMontantTotal(pan,8,montant_tot );
 //        //Calcul nombre de produits 
 //        panierserv.calculerNombreProduits(8);
-//    
+//   
+
+
+
 //*************************************************** SELECT ******************************************************************//
         //select pour produits
 //      System.out.println(panierserv.fetchPanier());
@@ -294,7 +313,8 @@ public class PidevApp {
 //        System.out.println(prodserv.fetchProduits());
 //System.out.println(prodserv.readById(19));
 //System.out.println(prodserv.chercherProduitParNom("cube2"));
-
+//System.out.println(prodserv.readById(7));
+//prodserv.spprimerProduit(20);
 //        //select pour categories  
 //     System.out.println(categserv.fetchCategories());
      

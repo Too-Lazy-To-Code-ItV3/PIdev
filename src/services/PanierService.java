@@ -6,7 +6,7 @@
 package services;
 
 import Interfaces.PanierInterface;
-import Models.LignePanier;
+
 
 import Models.Panier;
 import java.sql.Connection;
@@ -15,11 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import util.MyConnection;
 
 /**
@@ -40,10 +38,11 @@ public class PanierService implements PanierInterface{
     public void ajouterPanier(Panier pan) {
        
         try {
-            String req ="INSERT INTO `panier`(`nbr_produits`,`montant_total`) VALUES (?,?)";
+            String req ="INSERT INTO `panier`(`ID_User`,`nbr_produits`,`montant_total`) VALUES (?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, pan.getNbr_produits());
-            ps.setDouble(2, pan.getMontant_total());  
+            ps.setInt(1, pan.getID_User());
+            ps.setInt(2, pan.getNbr_produits());
+            ps.setDouble(3, pan.getMontant_total());  
             ps.executeUpdate();
             System.out.println("Panier ajouté avec succés!");
             
@@ -59,11 +58,12 @@ public class PanierService implements PanierInterface{
       
         try {
           
-            String req ="UPDATE `panier` SET   `nbr_produits`= ? ,`montant_total`= ?   WHERE idPanier = ?";
+            String req ="UPDATE `panier` SET  `ID_User`=? , `nbr_produits`= ? ,`montant_total`= ?   WHERE idPanier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, pan.getNbr_produits());
-            ps.setDouble(2, pan.getMontant_total());
-            ps.setInt(3, pan.getIdPanier());
+            ps.setInt(1, pan.getID_User());
+            ps.setInt(2, pan.getNbr_produits());
+            ps.setDouble(3, pan.getMontant_total());
+            ps.setInt(4 , pan.getIdPanier());
             ps.executeUpdate();
             System.out.println("Panier modifié  avec succés");
         } catch (SQLException ex) {
@@ -112,10 +112,10 @@ public class PanierService implements PanierInterface{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-            
-                pnr.setIdPanier(rs.getInt(1));
-                pnr.setNbr_produits(rs.getInt(1));
-                pnr.setMontant_total(rs.getDouble(2));
+                pnr.setID_User(rs.getInt(1));
+                pnr.setIdPanier(rs.getInt(2));
+                pnr.setNbr_produits(rs.getInt(3));
+                pnr.setMontant_total(rs.getDouble(4));
             pan.add(pnr);
             }
             
@@ -130,7 +130,7 @@ public class PanierService implements PanierInterface{
     public double calculerMontantTotal(int idPanier) {
     double montantTotal = 0;
     try {
-        String req = "SELECT SUM(sous_montant) FROM lignepanier WHERE idPanier = ?";
+        String req = "SELECT SUM(prix_unitaire) FROM lignepanier WHERE idPanier = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1, idPanier);
         ResultSet rs = ps.executeQuery();
@@ -196,9 +196,10 @@ public class PanierService implements PanierInterface{
             ResultSet rs = st.executeQuery(req);
             rs.beforeFirst();
             rs.next();
-                p.setIdPanier(rs.getInt(1));
-                p.setNbr_produits(rs.getInt(2));
-                p.setMontant_total(rs.getDouble(3));   
+                p.setID_User(rs.getInt(1));
+                p.setIdPanier(rs.getInt(2));
+                p.setNbr_produits(rs.getInt(3));
+                p.setMontant_total(rs.getDouble(4));   
             } catch (SQLException ex) {
            ex.printStackTrace();
         } return p;

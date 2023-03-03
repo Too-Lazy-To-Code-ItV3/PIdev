@@ -17,7 +17,7 @@ public interface LignePanierInterface {
     public void ajouterLignePanier(LignePanier lp);
     
      public void modifierlLignePanier(LignePanier lp, int IdLignePanier) ;
-    public void modifierQuantite(int quantite,int IdPanier,  int idLignePanier);
+
      public void supprimerLignePanier(int idLignePanier);
      
      
@@ -25,6 +25,5 @@ public interface LignePanierInterface {
    public ArrayList<LignePanier> afficherTous();
     public List<LignePanier> getLignePanierparIdPanier(int idPanier);
     
-    public double calculerSousMontant(LignePanier lp , int idLignePanier);
-   public void MisàjourSousMontant(LignePanier lp,int idLignePanier,double sous_montant );
+
 }

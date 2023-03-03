@@ -47,12 +47,12 @@ public class FXML_SupprimerProduitController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void supprimer(ActionEvent event) {
-      String nomProduit =nomText.getText();
-      System.out.println(nomProduit);
-      ps.spprimerProduit(nomProduit);
-}
+//    @FXML
+//    private void supprimer(ActionEvent event) {
+//      String nomProduit =nomText.getText();
+//      System.out.println(nomProduit);
+//      ps.spprimerProduit(nomProduit);
+//}
 
     @FXML
     private void GotoAccueil(ActionEvent event) throws IOException {

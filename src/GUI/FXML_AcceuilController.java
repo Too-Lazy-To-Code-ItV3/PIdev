@@ -36,7 +36,7 @@ public class FXML_AcceuilController implements Initializable {
     }    
 
     @FXML
-    private void GotoProduits(ActionEvent event) throws IOException {
+    private void GotoProduits(ActionEvent event) throws IOException  {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AfficherProduit.fxml"));
         Parent root = loader.load();
         produits.getScene().setRoot(root);

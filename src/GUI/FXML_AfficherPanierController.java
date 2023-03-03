@@ -28,6 +28,17 @@ import javafx.scene.layout.AnchorPane;
 import services.LignePanierService;
 import services.PanierService;
 
+
+import javafx.scene.input.MouseEvent;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.PdfTable;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 /**
  * FXML Controller class
  *
@@ -40,21 +51,17 @@ public class FXML_AfficherPanierController implements Initializable {
     
      private FXML_AfficherPanierController afficherPanierController;
     private int idPanier;
-    @FXML
-    private TableColumn<?, ?> prod;
-    @FXML
-    private TableColumn<?, ?> quantite;
+   
+
     @FXML
     private TableColumn<?, ?> prixUn;
-    @FXML
-    private TableColumn<?, ?> SousPrix;
+
     @FXML
     private TableView<LignePanier> tablePanier;
     @FXML
     private Button vider;
     @FXML
     private Label montant_total;
-    @FXML
     private Button modifier;
     @FXML
     private AnchorPane dateajout;
@@ -62,6 +69,12 @@ public class FXML_AfficherPanierController implements Initializable {
     private Label nbr_prod;
     @FXML
     private Button retour;
+    @FXML
+    private Button imprimer;
+    @FXML
+    private TableColumn<?, ?> date;
+    @FXML
+    private TableColumn<?, ?> nom;
    
 
  
@@ -84,10 +97,14 @@ public class FXML_AfficherPanierController implements Initializable {
     public void showLignePanier() {
         List<LignePanier> lignePanierList = lp.getLignePanierparIdPanier(idPanier);
         ObservableList<LignePanier> observableList = FXCollections.observableArrayList(lignePanierList);
-        prod.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+        if (lignePanierList.isEmpty()) {
+        System.out.println("La liste des lignes de panier est vide.");
+        return;
+}
+        nom.setCellValueFactory(new PropertyValueFactory<>("NomProd"));
+        date.setCellValueFactory(new PropertyValueFactory<>("dateAjout"));
         prixUn.setCellValueFactory(new PropertyValueFactory<>("prix_unitaire"));
-        SousPrix.setCellValueFactory(new PropertyValueFactory<>("sous_montant"));
+   
 
         
         tablePanier.setItems(observableList);
@@ -111,20 +128,47 @@ public class FXML_AfficherPanierController implements Initializable {
         ps.viderPanier();
     }
 
-    @FXML
-    private void GotoModifier(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_ModifierPanier.fxml"));
-        Parent root = loader.load();
-        modifier.getScene().setRoot(root);
-    }
+  
 
     @FXML
     private void GotoAccueil(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_Acceuil.fxml"));
         Parent root = loader.load();
-        modifier.getScene().setRoot(root);
+        retour.getScene().setRoot(root);
+    }
+
+    @FXML
+private void imprimer(ActionEvent event) throws FileNotFoundException, DocumentException {
+    String file_fact = ("C:\\Users\\aouad\\Desktop\\Pidev\\FacturePaiement.pdf");
+    Document doc = new Document();
+    PdfWriter.getInstance(doc, new FileOutputStream(file_fact));
+    doc.open();
+    PdfPTable table = new PdfPTable(3);
+    PdfPCell cell;
+    cell = new PdfPCell(new Paragraph("NomProd"));
+    table.addCell(cell);
+    cell = new PdfPCell(new Paragraph("Date d' Ajout"));
+    table.addCell(cell);
+    cell = new PdfPCell(new Paragraph("Prix_unitaire"));
+    table.addCell(cell);
+    List<LignePanier> lignePanierList = lp.getLignePanierparIdPanier(idPanier);
+    for (LignePanier lignePanier : lignePanierList) {
+        cell = new PdfPCell(new Paragraph(lignePanier.getNomProd()));
+        table.addCell(cell);
+        cell = new PdfPCell(new Paragraph(String.valueOf(lignePanier.getDateAjout())));
+        table.addCell(cell);
+        cell = new PdfPCell(new Paragraph(String.valueOf(lignePanier.getPrix_unitaire())));
+        table.addCell(cell);
+    }
+    doc.add(table);
+    doc.add(new Paragraph("Le nombre des produits commandés : " + ps.calculerNombreProduits(idPanier)));
+    doc.add(new Paragraph("Montant total à payer en DT : " + ps.calculerMontantTotal(idPanier)));
+    doc.close();
+}
+    
+   
     }
     
       
     
-}
+
