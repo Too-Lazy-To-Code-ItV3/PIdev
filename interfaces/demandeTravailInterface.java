@@ -28,4 +28,5 @@ public void SupprimerDemande(demandeTravail d);
 public List<demandeTravail> chercherDemande(String mots);
 public void contacterViaMail(int idStudio,demandeTravail d);
  public  demandeTravail fetchdemandeParId(int id);
+  public List<demandeTravail> offresimilairaunedemande(int id) ;
 }

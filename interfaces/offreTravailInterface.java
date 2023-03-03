@@ -29,5 +29,4 @@ public void postuleViaMail(int idArtiste,offreTravail of);
   public List<offreTravail> fetchOffresPerType( List<offreTravail> f ,String type);
      public List<offreTravail> fetchOffresPerLocalisation( List<offreTravail> f ,String loc);
      public List<String> affichernotifications(int idStudio);
-
-}
+public List<offreTravail> offresimilairaunedemande(int id);}

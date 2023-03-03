@@ -5,7 +5,6 @@
  */
 package GUImenuprincipale;
 
-import GUI.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
 import service.demandeTravailService;
@@ -93,6 +93,8 @@ public class menuprincipale implements Initializable {
     @FXML
     private void forstudio(ActionEvent event) {
         try {
+                 
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menu1.fxml"));
             Parent root = loader.load();
             

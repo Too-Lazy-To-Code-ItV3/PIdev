@@ -40,7 +40,7 @@ public class NewFXMain extends Application {
         Parent root;
         try {
               
-            root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
             Scene scene = new Scene(root,1380,700);
             primaryStage.setTitle("ArTounsi");
