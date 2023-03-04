@@ -72,20 +72,6 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/deleteicon.png" />
-                     </image>
-                  </ImageView>
-                  <Button mnemonicParsing="false" onAction="#viewDeletePostPage" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: C10C99;" text="Delete Post" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="300.0" spacing="10.0">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../Image/Protfolioicon.png" />
                      </image>
                   </ImageView>

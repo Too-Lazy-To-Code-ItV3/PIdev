@@ -98,50 +98,6 @@ public void addComment(Comment co) {
         }
     }
 
-//    @Override
-//    public Comment fetchCommentByPostId(int id_post) {
-//        //public List<String> fetchCommentByPostId()
-//        Comment comment = null;
-//            try {
-//                String req = "SELECT * FROM comment WHERE Id_post=?";
-//                PreparedStatement ps = cnx.prepareStatement(req);
-//                ps.setInt(1, id_post);
-//                ResultSet rs = ps.executeQuery();
-//                if (rs.next()) {
-//                    comment = new Comment();
-//                    comment.setId_comment(rs.getInt(1));
-//                    comment.setId_post(rs.getInt(2));
-//                    comment.setId_user(rs.getInt(3));
-//                    comment.setDatec(rs.getDate(4));
-//                    comment.setComment(rs.getString(5));
-//                }
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-//            return comment;
-//    }
-//       @Override
-//        public List<Comment> fetchCommentsByPostId(int id_post) {
-//            List<Comment> comments = new ArrayList<>();
-//            try {
-//                String req = "SELECT * FROM comment WHERE Id_post=?";
-//                PreparedStatement ps = cnx.prepareStatement(req);
-//                ps.setInt(1, id_post);
-//                ResultSet rs = ps.executeQuery();
-//                while (rs.next()) {
-//                    Comment comment = new Comment();
-//                    comment.setId_comment(rs.getInt("Id_comment"));
-//                    comment.setId_post(rs.getInt("Id_post"));
-//                    comment.setId_user(rs.getInt("id"));
-//                    comment.setDatec(rs.getDate("Date_Comment"));
-//                    comment.setComment(rs.getString("Comment"));
-//                    comments.add(comment);
-//                }
-//            } catch (SQLException ex) {
-//                ex.printStackTrace();
-//            }
-//            return comments;
-//        }
     @Override
        public List<Post> fetchPosts() {
             List<Post> posts = new ArrayList<>();

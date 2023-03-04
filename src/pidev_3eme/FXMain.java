@@ -40,7 +40,7 @@ public class FXMain extends Application {
           //root = FXMLLoader.load(getClass().getResource("/Gui/ShowPost.fxml"));
           root = FXMLLoader.load(getClass().getResource("/Gui/CategoryControlPanel.fxml"));
           root = FXMLLoader.load(getClass().getResource("/Gui/PostControlPanel.fxml"));
-          //root = FXMLLoader.load(getClass().getResource("/Gui/LikeChart.fxml"));
+
             Scene scene = new Scene(root);
             primaryStage.setTitle("ArTounsi");
             primaryStage.setScene(scene);

@@ -124,42 +124,53 @@ public class PostController implements Initializable {
              p.setCategory_p(cat.fetchCategories((String) categorie.getValue()));
         }
     
-//        @FXML
-//        private void handleUploadPhoto(ActionEvent event) {
-//            FileChooser fc = new FileChooser();
-//               fc.getExtensionFilters().addAll(
-//                new ExtensionFilter("Image Files","*.png"));
-//               File selectedFile = fc.showOpenDialog(null);
-//               if(selectedFile != null) {
-//                   media.setText(selectedFile.getAbsolutePath());
-//               } else {
-//                   System.err.println("file is not valid");
-//               }
-//    }
          
-            @FXML
-   private void handleUploadPhoto(ActionEvent event) throws FileNotFoundException, IOException {
-       FileChooser fc = new FileChooser();
-       fc.getExtensionFilters().addAll(
-           new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-       File selectedFile = fc.showOpenDialog(null);
-       if (selectedFile != null) {
-           String DBPath = "C:\\\\xampp\\\\htdocs\\\\img\\\\" + selectedFile.getName();
-           BufferedImage bufferedImage = ImageIO.read(selectedFile);
-           WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
-           ImageIO.write(bufferedImage, "jpg", new File(DBPath));
-           media.setText(selectedFile.getAbsolutePath());
-           FileInputStream fin = new FileInputStream(selectedFile);
-           ByteArrayOutputStream bos = new ByteArrayOutputStream();
-           byte[] buf = new byte[1024];
-           for (int readNum; (readNum = fin.read(buf)) != -1;) {
-               bos.write(buf, 0, readNum);
-           }
-           byte[] post_image = bos.toByteArray();
-       } else {
-           System.err.println("file is not valid");
-       }
-   }
+//            @FXML
+//   private void handleUploadPhoto(ActionEvent event) throws FileNotFoundException, IOException {
+//       FileChooser fc = new FileChooser();
+//       fc.getExtensionFilters().addAll(
+//           new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+//       File selectedFile = fc.showOpenDialog(null);
+//       if (selectedFile != null) {
+//           String DBPath = "C:\\\\xampp\\\\htdocs\\\\img\\\\" + selectedFile.getName();
+//           BufferedImage bufferedImage = ImageIO.read(selectedFile);
+//           WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+//           ImageIO.write(bufferedImage, "jpg", new File(DBPath));
+//           media.setText(selectedFile.getAbsolutePath());
+//           FileInputStream fin = new FileInputStream(selectedFile);
+//           ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//           byte[] buf = new byte[1024];
+//           for (int readNum; (readNum = fin.read(buf)) != -1;) {
+//               bos.write(buf, 0, readNum);
+//           }
+//           byte[] post_image = bos.toByteArray();
+//       } else {
+//           System.err.println("file is not valid");
+//       }
+//   }
+         @FXML
+private void handleUploadPhoto(ActionEvent event) throws FileNotFoundException, IOException {
+    FileChooser fc = new FileChooser();
+    fc.getExtensionFilters().addAll(
+            new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+    File selectedFile = fc.showOpenDialog(null);
+    if (selectedFile != null) {
+        String DBPath = "C:\\\\xampp\\\\htdocs\\\\img\\\\" + selectedFile.getName();
+        BufferedImage bufferedImage = ImageIO.read(selectedFile);
+        WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+        ImageIO.write(bufferedImage, "jpg", new File(DBPath));
+        media.setText(DBPath);
+        FileInputStream fin = new FileInputStream(selectedFile);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        for (int readNum; (readNum = fin.read(buf)) != -1;) {
+            bos.write(buf, 0, readNum);
+        }
+        byte[] post_image = bos.toByteArray();
+    } else {
+        System.err.println("file is not valid");
+    }
+}
    
     @FXML
      public void handleReturn(ActionEvent event) throws IOException {

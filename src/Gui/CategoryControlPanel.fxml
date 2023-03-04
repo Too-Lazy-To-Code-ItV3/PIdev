@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.CategoryControlPanelController">
+<AnchorPane id="AnchorPane"  stylesheets="@../Css/PostControlPanel.css" prefHeight="700.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.CategoryControlPanelController">
    <children>
       
       <ImageView fitHeight="723.0" fitWidth="1005.0" layoutX="387.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">

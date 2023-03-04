@@ -24,7 +24,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class ViewBlogController implements Initializable {
 
@@ -32,6 +36,8 @@ public class ViewBlogController implements Initializable {
     private VBox tfpostlist;
     private PostService postService;
     private Label lab;
+    
+    
 
     public ViewBlogController() {
         postService = new PostService();
@@ -61,7 +67,7 @@ public class ViewBlogController implements Initializable {
                 }
             }
 
-            HBox titleBox = new HBox();
+            HBox titleBox = new HBox    ();
             titleBox.getChildren().addAll(titleLabel);
             postBox.getChildren().add(titleBox);
 
@@ -76,6 +82,15 @@ public class ViewBlogController implements Initializable {
             postBox.getChildren().add(likesLabel);
 
             Button addCommentButton = new Button("Add Comment");
+            
+            addCommentButton.setLayoutX(1039.0);
+            addCommentButton.setLayoutY(612.0);
+            addCommentButton.setPrefHeight(46.0);
+            addCommentButton.setPrefWidth(202.0);
+            addCommentButton.setStyle("-fx-background-color: C10C99;");
+            addCommentButton.setTextFill(Color.WHITE);
+            
+            
             addCommentButton.setOnAction(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/AddAComment.fxml"));
@@ -92,8 +107,18 @@ public class ViewBlogController implements Initializable {
                 }
             });
             postBox.getChildren().add(addCommentButton);
+            
+            
 
             Button button1 = new Button("View Comments");
+            
+            button1.setLayoutX(1039.0);
+            button1.setLayoutY(612.0);
+            button1.setPrefHeight(46.0);
+            button1.setPrefWidth(202.0);
+            button1.setStyle("-fx-background-color: C10C99;");
+            button1.setTextFill(Color.WHITE);
+            
         button1.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/VueCommentPost.fxml"));
@@ -116,6 +141,14 @@ public class ViewBlogController implements Initializable {
 
 
             Button button2 = new Button("like");
+            
+            button2.setLayoutX(1039.0);
+            button2.setLayoutY(612.0);
+            button2.setPrefHeight(46.0);
+            button2.setPrefWidth(202.0);
+            button2.setStyle("-fx-background-color: C10C99;");
+            button2.setTextFill(Color.WHITE);
+            
             button2.setOnAction((ActionEvent e) -> {
                 Post p = new Post();
                 p.setId_post(post.getId_post());
@@ -124,21 +157,83 @@ public class ViewBlogController implements Initializable {
                 // update the label displaying the number of likes
                 //List<PostLike> likes = postService.Number_Of_Likes_For_A_Post_Post(post.getId_post());
                // int numberOfLikes = likes.size();
-                likesLabel.setText("Likes: " + numberOfLikes);
+               updateLikesLabel(likesLabel, post.getId_post()); // update the label displaying the number of likes
             });
             Button button3 = new Button("Unlike");
+            
+            button3.setLayoutX(1039.0);
+            button3.setLayoutY(612.0);
+            button3.setPrefHeight(46.0);
+            button3.setPrefWidth(202.0);
+            button3.setStyle("-fx-background-color: C10C99;");
+            button3.setTextFill(Color.WHITE);
+            
             button3.setOnAction((ActionEvent e) -> {
                 Post p = new Post();
                 p.setId_post(post.getId_post());
-                p.setId_user(1); // set the user ID of the user who unliked the post
+                p.setId_user(3); // set the user ID of the user who unliked the post
                 postService.deleteLike(p.getId_post(), p.getId_user()); // call the deleteLike method to remove the like
                 // update the label displaying the number of likes
                 //List<PostLike> likes = postService.Number_Of_Likes_For_A_Post_Post(post.getId_post());
                 //int numberOfLikes = likes.size();
-                likesLabel.setText("Likes: " + numberOfLikes);
+                //likesLabel.setText("Likes: " + numberOfLikes);
+                updateLikesLabel(likesLabel, post.getId_post());
             });
+            
+             Button deletePostButton = new Button("Delete Post");
+             
+             deletePostButton.setLayoutX(1039.0);
+            deletePostButton.setLayoutY(612.0);
+            deletePostButton.setPrefHeight(46.0);
+            deletePostButton.setPrefWidth(202.0);
+            deletePostButton.setStyle("-fx-background-color: C10C99;");
+            deletePostButton.setTextFill(Color.WHITE);
+             
+                deletePostButton.setOnAction(event -> {
+                    postService.deletePost(post.getId_post()); // call the deletePost method to delete the post
+                    tfpostlist.getChildren().remove(postBox); // remove the VBox representing the deleted post from the main VBox
+                });
+                postBox.getChildren().add(deletePostButton);
+            
+                
+                 Button ModifyPostButton = new Button("Modify Post");
+            ModifyPostButton.setLayoutX(1039.0);
+            ModifyPostButton.setLayoutY(612.0);
+            ModifyPostButton.setPrefHeight(46.0);
+            ModifyPostButton.setPrefWidth(202.0);
+            ModifyPostButton.setStyle("-fx-background-color: C10C99;");
+            ModifyPostButton.setTextFill(Color.WHITE);
+            
+//
+//            ModifyPostButton.setOnAction(event -> {
+//                try {
+//                    Parent modifyPostView = FXMLLoader.load(getClass().getResource("/Gui/ModifyPost.fxml"));
+//                    Scene scene = new Scene(modifyPostView);
+//                    Stage stage = new Stage();
+//                    stage.setScene(scene);
+//                    stage.show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            });
+//            postBox.getChildren().add(ModifyPostButton);
+//            
+            ModifyPostButton.setOnAction(event -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ModifyPost.fxml"));
+                    Parent modifyPostView = loader.load();
+                    Scene scene = new Scene(modifyPostView);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    ModifyPostController modifyPostController = loader.getController();
+                   // modifyPostController.initData(post);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+                
             HBox buttonBox = new HBox();
-            buttonBox.getChildren().addAll(addCommentButton, button1, button2, button3);
+            buttonBox.getChildren().addAll(addCommentButton, button1, button2, button3 , deletePostButton, ModifyPostButton);
 
             buttonBox.setSpacing(10); // Set the spacing between the buttons
             
@@ -210,4 +305,15 @@ public void viewAddPostPage(ActionEvent event) throws IOException {
         stage.setScene(scene);
         stage.show();
     }
+        
+    // Helper method to update the label displaying the number of likes
+    private void updateLikesLabel(Label likesLabel, int postId) {
+        List<PostLike> likes = postService.Number_Of_Likes_For_A_Post_Post(postId);
+        int numberOfLikes = likes.size();
+        likesLabel.setText("Likes: " + numberOfLikes);
+    }
+    
+    
+    
+    
 }

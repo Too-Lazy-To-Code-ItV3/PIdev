@@ -254,7 +254,7 @@ public class Main {
           
           /*********start delete Like**************/
           
-//                st.deleteLike(2, 3);
+               // st.deleteLike(20, 3);
             
           /*********end delete Like**************/
           

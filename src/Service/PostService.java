@@ -133,21 +133,6 @@ public class PostService implements PostInterface{
                 
 }
           
-
-//    @Override
-//    public void addLike(Post p) {
-//         try {            
-//            String req = "INSERT INTO `post_like`(`id_post`, `id`) VALUES (?,?)";
-//            PreparedStatement st = cnx.prepareStatement(req);
-//            st.setInt(1, p.getId_post());
-//            st.setInt(2, p.getId_user());
-//            st.executeUpdate();
-//            System.out.println("Like Added Successfully!");
-//            
-//        } catch (SQLException ex) {
-//           ex.printStackTrace();
-//        }
-//    }
             
             @Override
         public void addLike(Post p) {
@@ -276,30 +261,7 @@ public class PostService implements PostInterface{
         }
         return postLikes;
     }
-    
-    
 
-
-    
-    
-  // NEw try 
-//    @Override
-//public PostLike getPostWithHighestLikes() {
-//    String req = "SELECT Id_post, COUNT(*) as num_likes FROM post_like GROUP BY Id_post ORDER BY num_likes DESC LIMIT 1";
-//    try (Statement st = cnx.createStatement();
-//         ResultSet resultSet = st.executeQuery(req)) {
-//        if (resultSet.next()) {
-//            int post_id = resultSet.getInt("Id_post");
-//            int num_likes = resultSet.getInt("num_likes");
-//            System.out.println("Post with the highest number of likes is post " + post_id + " with " + num_likes + " likes.");
-//            return new PostLike(post_id, num_likes);
-//        }
-//    } catch (SQLException ex) {
-//        System.out.println(ex.getMessage());
-//    }
-//    return null;
-//    
-//}
     @Override
 public PostLike getPostWithHighestLikes() {
     String req = "SELECT Id_post, COUNT(*) as num_likes FROM post_like GROUP BY id_post ORDER BY num_likes DESC LIMIT 1";
