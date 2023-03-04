@@ -28,7 +28,7 @@ public interface ChallengeInterface {
 
     //affectation
     //public void affecterJoueur(Player p, Team t)  
-    public List<Challenge> fetchChallengeById(int id);
+    public Challenge fetchChallengeById(int id);
     public List<Challenge> fetchChallengeByName(String name);
-
+    public List<Challenge> fetchChallengeByCategorie(String name);
 }

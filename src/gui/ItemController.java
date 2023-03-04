@@ -10,6 +10,7 @@ import Models.Participation;
 import Models.Utilisateur;
 import interfaces.ChallengeInterface;
 import interfaces.ParticipationInterface;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,9 +61,9 @@ public class ItemController implements Initializable {
     Participation p = new Participation();
 
     public void setData(Challenge challenge){
-        Image imageg = new Image(getClass().getResourceAsStream(challenge.getPathIMG()));
-        
-        image.setImage(imageg);
+        File file = new File("C:\\xampp\\htdocs\\img\\"+challenge.getPathIMG());
+        Image img = new Image(file.toURI().toString());
+        image.setImage(img);
         title.setText(challenge.getTitle());
         description.setText(challenge.getDescription());
         level.setText(String.valueOf(challenge.getNiveau()));
@@ -113,19 +114,15 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    private void participate(ActionEvent event) {
-        Utilisateur u = new Utilisateur();
-        u.setID_user(3);
-        u.setNom("balbouli");
-        u.setPrenom("aymen");
-        u.setDate_Naissance("1989/07/19");
-        u.setEmail("aymen.balblouli@gmail.com");
-        u.setLocation("Monastir");
-        u.setPathImage("");
-        p.setParticipant(u);
-        p.setChallenge(challenge);
-        pi.addParticipation(p);
-        
+    private void participate(ActionEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_FetchParticipations.fxml"));
+        Parent view_2=loader.load();
+        FXML_FetchParticipationsController fetchParticipationsController=loader.getController();
+        fetchParticipationsController.getChallenge(challenge);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

@@ -11,20 +11,19 @@ package Models;
 public class Tutoriel {
 
     private int ID_Tutoriel, Niveau;
-    private String Title, Description, PathImg, PathVid;
+    private String Title, Description, PathImg;
     private Categorie categorie;
     private Utilisateur Creator;
 
     public Tutoriel() {
     }
 
-    public Tutoriel(int ID_Tutoriel, int Niveau, String Title, String Description, String PathImg, String PathVid, Categorie categorie, Utilisateur Creator) {
+    public Tutoriel(int ID_Tutoriel, int Niveau, String Title, String Description, String PathImg, Categorie categorie, Utilisateur Creator) {
         this.ID_Tutoriel = ID_Tutoriel;
         this.Niveau = Niveau;
         this.Title = Title;
         this.Description = Description;
         this.PathImg = PathImg;
-        this.PathVid = PathVid;
         this.categorie = categorie;
         this.Creator = Creator;
     }
@@ -69,14 +68,6 @@ public class Tutoriel {
         this.PathImg = PathImg;
     }
 
-    public String getPathVid() {
-        return PathVid;
-    }
-
-    public void setPathVid(String PathVid) {
-        this.PathVid = PathVid;
-    }
-
     public Categorie getCategorie() {
         return categorie;
     }
@@ -95,7 +86,7 @@ public class Tutoriel {
 
     @Override
     public String toString() {
-        return "Tutoriel{" + "ID_Tutoriel=" + ID_Tutoriel + ", Niveau=" + Niveau + ", Title=" + Title + ", Description=" + Description + ", PathImg=" + PathImg + ", PathVid=" + PathVid + ", categorie=" + categorie + ", Creator=" + Creator + '}';
+        return "Tutoriel{" + "ID_Tutoriel=" + ID_Tutoriel + ", Niveau=" + Niveau + ", Title=" + Title + ", Description=" + Description + ", PathImg=" + PathImg + ", categorie=" + categorie + ", Creator=" + Creator + '}';
     }
 
 

@@ -144,6 +144,8 @@ public class VideoService implements VideoInterface {
                 t.setTitle(rs.getString("Title"));
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
+                t.setPathImg(rs.getString("PathImg"));
+                
                 
                 v.setTutoriel(t);
                 videos.add(v);

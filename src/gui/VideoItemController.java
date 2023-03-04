@@ -53,6 +53,7 @@ public class VideoItemController implements Initializable {
     }    
 
     void setData(Video video) {
+        System.out.println(video);
         Image imageg = new Image(getClass().getResourceAsStream(video.getPathImage()));
         
         video_image.setImage(imageg);
@@ -108,4 +109,4 @@ public class VideoItemController implements Initializable {
         stage.show();
     }
     
-}
+} 

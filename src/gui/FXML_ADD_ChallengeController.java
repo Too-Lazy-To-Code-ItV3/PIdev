@@ -55,6 +55,9 @@ public class FXML_ADD_ChallengeController implements Initializable {
     CategorieInterface ci = new CategorieService();
     ChallengeInterface chi= new ChallengeService();
     Challenge challenge = new Challenge();
+    String src;
+    String dest;
+    
     
     @FXML
     private TextField titre;
@@ -69,6 +72,8 @@ public class FXML_ADD_ChallengeController implements Initializable {
     ObservableList list = FXCollections.observableArrayList();
     @FXML
     private TextField niveau;
+    
+    private int num;
     /**
      * Initializes the controller class.
      */
@@ -90,20 +95,18 @@ public class FXML_ADD_ChallengeController implements Initializable {
            File selectedFile = fc.showOpenDialog(null);
            
            if(selectedFile != null) {
-               String src = selectedFile.getPath();
-               String dest = "C:\\Users\\achref\\Documents\\NetBeansProjects\\JavaApplication1\\src\\img\\"+selectedFile.getName();
-               Path tmp = Files.move(Paths.get(src), Paths.get(dest)); 
+               src = selectedFile.getPath();
+               dest = "C:\\xampp\\htdocs\\img\\"+selectedFile.getName();
+               
                image_name.setText(selectedFile.getName());
-               challenge.setPathIMG("/img/"+selectedFile.getName());
+               challenge.setPathIMG(selectedFile.getName());
            } else {
                System.err.println("file is not valid");
            }
     }
 
-
     @FXML
     private void addChallenge(ActionEvent event) throws IOException {
-        System.out.println(date_challenge.getValue());
         if(titre.getText().length()==0||descrption.getText().length()==0||date_challenge.getValue()==null||niveau.getText().length()==0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -129,12 +132,17 @@ public class FXML_ADD_ChallengeController implements Initializable {
             challenge.setCreator(new Utilisateur());
             challenge.setNiveau(Integer.parseInt(niveau.getText()));
             chi.addChallenge(challenge);
+            Path tmp = Files.move(Paths.get(src), Paths.get(dest)); 
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./FetchChallenges.fxml"));
             Parent view_2=loader.load();
             Scene scene = new Scene(view_2);
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();}
+    }
+
+    void setNum(int size) {
+        this.num=size;
     }
     
 

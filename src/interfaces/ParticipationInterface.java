@@ -24,7 +24,9 @@ public interface ParticipationInterface {
     //list : select
     public List<Participation> fetchParticipations();
     
+    public List<Participation> fetchParticipantionsByChallenge(int ID_Challenge);
     public List<Utilisateur> fetchParticipantsByChallenge(int ID_Challenge);
+    
     public List<Challenge> fetchChallengesByParticipant(int ID_Participant);
     public Boolean Participated(int ID_Challenge, int ID_Participant);
     

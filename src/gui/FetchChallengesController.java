@@ -5,8 +5,8 @@
  */
 package gui;
 
-
 import Models.Challenge;
+import interfaces.CategorieInterface;
 import interfaces.ChallengeInterface;
 import java.io.IOException;
 import java.net.URL;
@@ -35,6 +35,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.CheckComboBox;
+import services.CategorieService;
 import services.ChallengeService;
 
 /**
@@ -46,10 +48,10 @@ public class FetchChallengesController implements Initializable {
 
     //ChallengeInterface ci = new ChallengeService();
     //List<Challenge> Challenges = ci.fetchChallenges();
-    ChallengeInterface chi= new ChallengeService();
-    
+    ChallengeInterface chi = new ChallengeService();
+
     ObservableList list = FXCollections.observableArrayList();
-    
+
     private ListView<Challenge> listView;
     @FXML
     private ScrollPane challengesPane;
@@ -59,86 +61,81 @@ public class FetchChallengesController implements Initializable {
     @FXML
     private HBox addButton;
     @FXML
-    private HBox addButton1;
-    @FXML
     private TextField search;
+
+    CategorieInterface ci = new CategorieService();
+    @FXML
+    private CheckComboBox<String> cat;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(search.getText()=="")
-            afficher_Challenge();
-        else
-            search();
+
+        afficher_Challenge();
+        list.removeAll(list);
+        ci.fetchCategorie().stream().forEach(e -> list.add(e.getNameCategorie()));
+        cat.getItems().addAll(list);
+
     }
-    
-    private void afficher_Challenge() {
-        challengeGrid.getChildren().clear();
-        challenges = chi.fetchChallenges();
-        int columns=0;
-        int rows=0;
-        try {
-        for(int i=0;i<challenges.size();i++){
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("item.fxml"));
-            
-            AnchorPane item = fxmlLoader.load();
-           
-            
-            ItemController itemController = fxmlLoader.getController();
-            itemController.setData(challenges.get(i));
-            
-            if(columns == 1){
-                columns = 0 ;
-                ++rows;
-            }
-            
-            challengeGrid.add(item, columns++, rows);
-        }}
-              catch (IOException ex) {
-                Logger.getLogger(FetchChallengesController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-    
+
     @FXML
-    private void search() {
+    private void afficher_Challenge() {
+
+        String checkedCategories = cat.getCheckModel().getCheckedItems().stream().reduce("(", (a, b) -> a + "'" + b + "',");
+        checkedCategories = checkedCategories.substring(0, checkedCategories.length() - 1) + ")";
+        System.out.println(checkedCategories);
         challengeGrid.getChildren().clear();
-        challenges = chi.fetchChallengeByName(search.getText());
-        System.out.println(challenges);
-        int columns=0;
-        int rows=0;
+        if (search.getText() == "" && checkedCategories.equals(")")) {
+            challenges = chi.fetchChallenges();
+        } else if (!checkedCategories.equals(")")) {
+            challenges = chi.fetchChallengeByCategorie(checkedCategories);
+        } else {
+            challenges = chi.fetchChallengeByName(search.getText());
+        }
+        int columns = 0;
+        int rows = 0;
         try {
-        for(int i=0;i<challenges.size();i++){
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("item.fxml"));
-            
-            AnchorPane item = fxmlLoader.load();
-           
-            
-            ItemController itemController = fxmlLoader.getController();
-            itemController.setData(challenges.get(i));
-            
-            if(columns == 1){
-                columns = 0 ;
-                ++rows;
+            for (int i = 0; i < challenges.size(); i++) {
+                AnchorPane item;
+                if (challenges.get(i).getCreator().getID_user() == 1) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("item.fxml"));
+
+                    item = fxmlLoader.load();
+
+                    ItemController itemController = fxmlLoader.getController();
+                    itemController.setData(challenges.get(i));
+                } else {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("item2.fxml"));
+
+                    item = fxmlLoader.load();
+
+                    Item2Controller itemController = fxmlLoader.getController();
+                    itemController.setData(challenges.get(i));
+                }
+
+                if (columns == 1) {
+                    columns = 0;
+                    ++rows;
+                }
+
+                challengeGrid.add(item, columns++, rows);
             }
-            
-            challengeGrid.add(item, columns++, rows);
-        }}
-              catch (IOException ex) {
-                Logger.getLogger(FetchChallengesController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (IOException ex) {
+            Logger.getLogger(FetchChallengesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
     @FXML
     private void addChallenge(MouseEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_ADD_Challenge.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./FXML_ADD_Challenge.fxml"));
         Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
+        FXML_ADD_ChallengeController c=loader.getController();
+        c.setNum(challenges.size());
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
         stage.setScene(scene);
         stage.show();
     }
-        
 
 }
-

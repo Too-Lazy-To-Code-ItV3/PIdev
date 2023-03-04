@@ -10,6 +10,9 @@ import interfaces.VideoInterface;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,14 +73,20 @@ public class FXML_Modify_VideoController implements Initializable {
     }
 
     @FXML
-    private void importVideo(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
-        File selectedFile = fc.showOpenDialog(null);
-        if (selectedFile != null) {
-            video_name.setText(selectedFile.getName());
-            video.setPathVideo(selectedFile.getAbsolutePath());
+    private void importVideo(ActionEvent event) throws IOException {
+                 FileChooser fc = new FileChooser();
+           FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG Files","*.png");
+           FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG Files","*.jpg");
+
+           fc.getExtensionFilters().addAll(extFilterPNG,extFilterJPG);
+           
+           File selectedFile = fc.showOpenDialog(null);
+           if(selectedFile != null) {
+               String src = selectedFile.getPath();
+               String dest = "C:\\Users\\achref\\Documents\\NetBeansProjects\\JavaApplication1\\src\\img\\"+selectedFile.getName();
+               Path tmp = Files.move(Paths.get(src), Paths.get(dest)); 
+               image_name.setText(selectedFile.getName());
+               video.setPathImage("/img/"+selectedFile.getName());
         } else {
             System.err.println("file is not valid");
         }
@@ -85,10 +94,10 @@ public class FXML_Modify_VideoController implements Initializable {
 
     @FXML
     private void returne(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
-        Parent view_2 = loader.load();
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
+        Parent view_2=loader.load();
         Scene scene = new Scene(view_2);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
@@ -116,12 +125,13 @@ public class FXML_Modify_VideoController implements Initializable {
         video.setTitle(titre.getText());
         video.setDescrption(descrption.getText());
         vi.modifyVideo(video);
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
         Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
         stage.setScene(scene);
-        stage.show();}
+        stage.show();
+        
     }
 
-}
+}}

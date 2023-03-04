@@ -7,14 +7,20 @@ package gui;
 
 import Models.Tutoriel;
 import Models.Video;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -27,10 +33,10 @@ public class TutorielItemController implements Initializable {
     private ImageView tutorial_image;
     @FXML
     private Label tutorial_title;
-    @FXML
-    private Label tutorial_description;
     
     Tutoriel tutoriel = new Tutoriel();
+    @FXML
+    private Label tutorial_creator;
 
     /**
      * Initializes the controller class.
@@ -41,8 +47,16 @@ public class TutorielItemController implements Initializable {
     }    
 
     @FXML
-    private void showTutorial(MouseEvent event) {
-        
+    private void showTutorial(MouseEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
+        Parent view_2=loader.load();
+        FXML_Fetch_TutorielController Fetch_TutorielController=loader.getController();
+
+        Fetch_TutorielController.setTutorial(tutoriel);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
     }
     
     void setData(Tutoriel tutoriel) {
@@ -50,7 +64,7 @@ public class TutorielItemController implements Initializable {
         
         tutorial_image.setImage(imageg);
         tutorial_title.setText(tutoriel.getTitle());
-        tutorial_description.setText(tutoriel.getDescription());
+        tutorial_creator.setText(tutoriel.getCreator().getNom()+" "+tutoriel.getCreator().getPrenom());
         
         this.tutoriel = tutoriel;
     }

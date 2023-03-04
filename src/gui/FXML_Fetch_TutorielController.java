@@ -63,30 +63,20 @@ public class FXML_Fetch_TutorielController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        t = ti.fetchTutorielByID(30);
-        tutorial_categorie.setText(t.getCategorie().getNameCategorie());
-        tutoriel_title.setText(t.getTitle());
-        tutoriel_description.setText(t.getDescription());
-        tutoriel_level.setText(String.valueOf(t.getNiveau()));
-        Image imageg = new Image(getClass().getResourceAsStream(t.getPathImg()));
-        tutoriel_img.setImage(imageg);
-        
-        afficher_Tutoriel();
     }
     
         private void afficher_Tutoriel() {
-        List<Video> videos = vi.fetchVideosByTutoriel(30);
-            System.out.println(videos);
+        List<Video> videos = vi.fetchVideosByTutoriel(t.getID_Tutoriel());
+        System.out.println("v : "+videos);
         int columns=0;
         int rows=0;
         try {
         for(int i=0;i<videos.size();i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("VideoItem.fxml"));
-            
             AnchorPane item = fxmlLoader.load();
            
-            
+            System.out.println(videos.get(i));
             VideoItemController videoItemController = fxmlLoader.getController();
             videoItemController.setData(videos.get(i));
             
@@ -107,7 +97,7 @@ public class FXML_Fetch_TutorielController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_ADD_Video.fxml"));
         Parent view_2=loader.load();
         FXML_ADD_VideoController add_videoController=loader.getController();
-        add_videoController.getTutoriel(t);
+        add_videoController.setTutoriel(t);
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(view_2);
         stage.setScene(scene);
@@ -127,8 +117,26 @@ public class FXML_Fetch_TutorielController implements Initializable {
     }
 
     @FXML
-    private void removeTutoriel(ActionEvent event) {
-        ti.deleteTutoriel(30);
+    private void removeTutoriel(ActionEvent event) throws IOException {
+        ti.deleteTutoriel(t.getID_Tutoriel());
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
+        Parent view_2=loader.load();
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+
+    void setTutorial(Tutoriel tutoriel) {
+        tutorial_categorie.setText(tutoriel.getCategorie().getNameCategorie());
+        tutoriel_title.setText(tutoriel.getTitle());
+        tutoriel_description.setText(tutoriel.getDescription());
+        tutoriel_level.setText(String.valueOf(tutoriel.getNiveau()));
+        Image imageg = new Image(getClass().getResourceAsStream(tutoriel.getPathImg()));
+        tutoriel_img.setImage(imageg);
+        this.t = tutoriel;
+        afficher_Tutoriel();
     }
     
 }

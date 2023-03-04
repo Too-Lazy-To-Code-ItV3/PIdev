@@ -20,8 +20,8 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("../gui/FXML_Fetch_Tutoriel.fxml"));
-            //root = FXMLLoader.load(getClass().getResource("../gui/FetchChallenges.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../gui/FetchChallenges.fxml"));
+            //root = FXMLLoader.load(getClass().getResource("../gui/FXML_Fetch_Tutoriels.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("workshopJavaFx");
             primaryStage.setScene(scene);

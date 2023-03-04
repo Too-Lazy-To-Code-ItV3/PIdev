@@ -106,6 +106,7 @@ public class FXML_Modify_TutorielController implements Initializable {
     }
 
     void getTutoriel(Tutoriel t) {
+        System.out.println(t);
         tutoriel_title.setText(t.getTitle());
         tutoriel_level.setText(String.valueOf(t.getNiveau()));
         tutoriel_description.setText(t.getDescription());
@@ -118,7 +119,6 @@ public class FXML_Modify_TutorielController implements Initializable {
         tutoriel.setID_Tutoriel(t.getID_Tutoriel());
         tutoriel.setPathImg(t.getPathImg());
         tutoriel.setCreator(t.getCreator());
-        tutoriel.setPathVid(t.getPathVid());
         tutoriel.setCategorie(t.getCategorie());
         afficher_Tutoriel();
     }
@@ -176,12 +176,15 @@ public class FXML_Modify_TutorielController implements Initializable {
         tutoriel.setNiveau(Integer.parseInt(tutoriel_level.getText()));
         ti.ModifyTutoriel(tutoriel);
         
+        
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
         Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
+        FXML_Fetch_TutorielController Fetch_TutorielController=loader.getController();
+        Fetch_TutorielController.setTutorial(tutoriel);
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
         stage.setScene(scene);
-        stage.show();}
+        stage.show();
     }
     
     
@@ -191,4 +194,5 @@ public class FXML_Modify_TutorielController implements Initializable {
         
     
     
-}
+}}
+

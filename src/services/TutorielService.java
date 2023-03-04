@@ -101,6 +101,7 @@ public class TutorielService implements TutorielInterface {
                 t.setTitle(rs.getString("Title"));
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
+                t.setPathImg(rs.getString("PathImg"));
                 
                 c.setID_Categorie(rs.getInt("ID_Categorie"));
                 c.setNameCategorie(rs.getString("NameCategorie"));
@@ -143,6 +144,7 @@ public class TutorielService implements TutorielInterface {
                 t.setTitle(rs.getString("Title"));
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
+                t.setPathImg(rs.getString("PathImg"));
                 
                 c.setID_Categorie(rs.getInt("ID_Categorie"));
                 c.setNameCategorie(rs.getString("NameCategorie"));
@@ -185,6 +187,7 @@ public class TutorielService implements TutorielInterface {
                 t.setTitle(rs.getString("Title"));
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
+                t.setPathImg(rs.getString("PathImg"));
                 
                 c.setID_Categorie(rs.getInt("ID_Categorie"));
                 c.setNameCategorie(rs.getString("NameCategorie"));
@@ -204,7 +207,7 @@ public class TutorielService implements TutorielInterface {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+        System.out.println(tutoriels);
         return tutoriels;
     }
     

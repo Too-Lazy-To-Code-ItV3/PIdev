@@ -31,10 +31,12 @@ public class ParticipationService implements ParticipationInterface {
     public void addParticipation(Participation p) {
          try {
             
-            String req = "INSERT INTO Participation( `ID_Challenge`, `ID_User`) VALUES (?,?)";
+            String req = "INSERT INTO Participation( `ID_Challenge`, `ID_User`, `IMG_Participation`, `Description`) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, p.getChallenge().getID_Challenge());
             ps.setInt(2, p.getParticipant().getID_user());
+            ps.setString(3, p.getIMG_Participation());
+            ps.setString(4, p.getDescription());
 
             ps.executeUpdate();
             System.out.println("Participation Added Successfully!");
@@ -68,6 +70,9 @@ public class ParticipationService implements ParticipationInterface {
             while (rs.next()) { 
                 Participation p = new Participation();
                 
+                p.setIMG_Participation(rs.getString("IMG_Participation"));
+                p.setDescription(rs.getString("Description"));
+                
                 Utilisateur u = new Utilisateur();
                 u.setID_user(rs.getInt("ID_user"));
                 u.setNom(rs.getString("Nom"));
@@ -95,7 +100,43 @@ public class ParticipationService implements ParticipationInterface {
         
         return Participations;    
     }
-
+    
+        @Override
+    public List<Participation> fetchParticipantionsByChallenge(int ID_Challenge) {
+        System.out.println("pp: "+ID_Challenge);
+        List<Participation> Participations = new ArrayList<>();
+        try {
+            
+            String req = "SELECT * FROM participation where ID_Challenge = "+ID_Challenge;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {                
+                Participation p = new Participation();
+                
+                p.setIMG_Participation(rs.getString("IMG_Participation"));
+                p.setDescription(rs.getString("Description"));
+                
+                Utilisateur u = new Utilisateur();
+                u.setID_user(rs.getInt("ID_user"));
+                
+                Challenge c = new Challenge();
+                c.setID_Challenge(rs.getInt("ID_Challenge"));
+                
+                p.setParticipant(u);
+                p.setChallenge(c);
+                
+                Participations.add(p);
+                System.out.println("pp: "+p);
+                
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return Participations;    
+    }
+    
     @Override
     public List<Utilisateur> fetchParticipantsByChallenge(int ID_Challenge) {
                 List<Utilisateur> Utilisateurs = new ArrayList<>();

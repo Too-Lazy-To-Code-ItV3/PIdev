@@ -77,7 +77,7 @@ public class VideoViewController implements Initializable {
 
     @FXML
     private void returne(MouseEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
         Parent view_2=loader.load();
         Scene scene = new Scene(view_2);
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

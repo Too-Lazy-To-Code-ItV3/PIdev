@@ -7,10 +7,14 @@ package gui;
 
 import Models.Tutoriel;
 import Models.Video;
+import interfaces.TutorielInterface;
 import interfaces.VideoInterface;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -29,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import services.TutorielService;
 import services.VideoService;
 
 /**
@@ -39,6 +44,7 @@ import services.VideoService;
 public class FXML_ADD_VideoController implements Initializable {
 
     VideoInterface vi = new VideoService();
+    TutorielInterface ti = new TutorielService();
     
     @FXML
     private TextField titre;
@@ -60,14 +66,20 @@ public class FXML_ADD_VideoController implements Initializable {
     }    
 
     @FXML
-    private void importImage(ActionEvent event) {
+    private void importImage(ActionEvent event) throws IOException {
            FileChooser fc = new FileChooser();
-           fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files","*.png"));
+           FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG Files","*.png");
+           FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG Files","*.jpg");
+
+           fc.getExtensionFilters().addAll(extFilterPNG,extFilterJPG);
+           
            File selectedFile = fc.showOpenDialog(null);
            if(selectedFile != null) {
-            image_name.setText(selectedFile.getName());
-            video.setPathImage(selectedFile.getAbsolutePath());
+               String src = selectedFile.getPath();
+               String dest = "C:\\Users\\achref\\Documents\\NetBeansProjects\\JavaApplication1\\src\\img\\"+selectedFile.getName();
+               Path tmp = Files.move(Paths.get(src), Paths.get(dest)); 
+               image_name.setText(selectedFile.getName());
+               video.setPathImage("/img/"+selectedFile.getName());
            } else {
                System.err.println("file is not valid");
            }
@@ -102,6 +114,8 @@ public class FXML_ADD_VideoController implements Initializable {
         video.setDescrption(descrption.getText());
         vi.addVideo(video);
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
+        FXML_Fetch_TutorielController itemController = loader.getController();
+        itemController.setTutorial(ti.fetchTutorielByID(video.getTutoriel().getID_Tutoriel()));
         Parent view_2=loader.load();
         Scene scene = new Scene(view_2);
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -110,13 +124,16 @@ public class FXML_ADD_VideoController implements Initializable {
             }
     }
 
-    void getTutoriel(Tutoriel t) {
+    void setTutoriel(Tutoriel t) {
         video.setTutoriel(t);
         }
 
     @FXML
     private void returne(MouseEvent event) throws IOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
+        FXML_Fetch_TutorielController itemController = loader.getController();
+        System.out.println(ti.fetchTutorielByID(video.getTutoriel().getID_Tutoriel()));
+        
         Parent view_2=loader.load();
         Scene scene = new Scene(view_2);
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
