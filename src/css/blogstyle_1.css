@@ -1,0 +1,27 @@
+.white_background{
+	-fx-background-color: #fff;
+}
+
+.primary-color{
+	-fx-background-color: #F4F5F9;
+} 
+
+.shadow{
+	-fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0,1) ,10,0,0,10);
+}
+
+.react-round{
+	-fx-background-radius: 10;
+}
+
+.trasparent {
+	-fx-background-color: rgba(0,0,0,0);
+}
+
+.selected {
+	-fx-background-color: #F4F5F9; 
+}
+
+.mouse-moved:hover{
+	-fx-background-color: #EFEFEF;
+}

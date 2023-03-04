@@ -1,0 +1,20 @@
+/* Style for the ListView */
+#Categorieslabel {
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}
+
+/* Style for the selected item in the ListView */
+.list-cell:filled:selected {
+    -fx-background-color: #30384D;
+    -fx-text-fill: white;
+}
+
+/* Style for the hover effect on the items in the ListView */
+.list-cell:hover {
+    -fx-background-color: #1C233D;
+    -fx-text-fill: white;
+}

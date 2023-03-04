@@ -1,0 +1,43 @@
+#categorie .arrow-button {
+    -fx-background-color: #F1C40F;
+    -fx-shape: "M0 0 L7 7 L14 0";
+    -fx-scale-shape: false;
+}
+
+#categorie .arrow {
+    -fx-background-color: #F1C40F;
+}
+
+#categorie .list-cell {
+    -fx-background-color: #34495E;
+    -fx-text-fill: white;
+}
+
+#categorie .list-cell:hover {
+    -fx-background-color: #2C3E50;
+}
+
+#categorie .list-view {
+    -fx-background-color: #34495E;
+    -fx-font-size: 16px;
+}
+
+#categorie .list-view .scroll-bar {
+    -fx-background-color: #F1C40F;
+}
+
+#categorie .list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #F1C40F;
+}
+
+#categorie .list-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #F1C40F;
+}
+
+#categorie .list-view .scroll-bar .increment-button,
+#categorie .list-view .scroll-bar .decrement-button {
+    -fx-background-color: #F1C40F;
+    -fx-padding: 0px;
+    -fx-shape: "M0 0 L7 7 L14 0";
+    -fx-scale-shape: false;
+}
