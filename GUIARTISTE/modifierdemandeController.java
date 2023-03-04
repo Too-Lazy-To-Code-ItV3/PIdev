@@ -5,9 +5,15 @@
  */
 package GUIARTISTE;
 
+import static GUIARTISTE.AjouterdemandeController.file;
 import controller.ModifierOffreController;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +28,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Categorie;
 import models.demandeTravail;
@@ -42,15 +50,21 @@ public class modifierdemandeController implements Initializable {
     @FXML
     private TextField titreOffre;
     @FXML
-    private TextField descriptionOffre;
+    private TextArea descriptionOffre;
     @FXML
     private ChoiceBox<Categorie> listeCategorie;
    
     @FXML
     private Button modifier;
+    static FileChooser fileChooser = new FileChooser();
+  
+
+    static File file;
    CategoryService c = new CategoryService();
    demandeTravailService offs= new   demandeTravailService();
    demandeTravail of = new demandeTravail();
+    @FXML
+    private Button pdfs;
    
 
     /**
@@ -68,11 +82,11 @@ public void getdata()
       
    
 }
-public void getid(int i,String titre,String desc,String categ){
+public void getid(int i,String titre,String desc,String categ,String pdf){
              modifier.setId(Integer.toString(i));
 titreOffre.setText(titre);
 descriptionOffre.setText(desc);
-
+pdfs.setId(pdf);
 listeCategorie.setValue(c.fetchCategoryByNom(categ));
 }
   
@@ -81,7 +95,23 @@ listeCategorie.setValue(c.fetchCategoryByNom(categ));
     private void modifierOffre(ActionEvent event) {
           int id= Integer.parseInt(modifier.getId());
            Categorie c = new Categorie(); 
-          if(titreOffre.getText().matches("\\d+")) {
+          
+            
+            if ( file!=null)
+              {String fileName1 = file.getName();
+                
+                    try {
+                          // Copy the file to the XAMPP htdocs directory
+                          Path sourcePath = file.toPath();
+                          Path targetPath = Paths.get("C:/xampp2/htdocs/uploads/" + fileName1);
+                          Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                          
+                          of.setPdf(fileName1);
+                    } catch (IOException ex) {
+                        Logger.getLogger(modifierdemandeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+}else  {of.setPdf(pdfs.getId());}
+if(titreOffre.getText().matches("\\d+")) {
     Alert alert = new Alert(Alert.AlertType.ERROR, "veuiller entre un titre valide");
         alert.showAndWait();}
         else if (descriptionOffre.getText().matches("\\d+"))
@@ -89,8 +119,10 @@ listeCategorie.setValue(c.fetchCategoryByNom(categ));
         alert.showAndWait();}
 else {
               try {
+           
                   FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/menuartiste.fxml"));
                   Parent root = loader.load();
+                  
            of.setIdDemande(id);
         of.setTitreDemande(titreOffre.getText());
       
@@ -112,4 +144,16 @@ else {
     
 
 }
-    }}
+    }
+
+    @FXML
+    private void modifiercv(ActionEvent event) {
+           //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("pdf files (*.pdf)", "*.pdf");
+       
+        //Show open file dialog
+        file = fileChooser.showOpenDialog(null);
+
+    }
+}

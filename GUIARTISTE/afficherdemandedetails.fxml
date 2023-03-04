@@ -59,7 +59,7 @@
                         <Font name="System Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Label fx:id="description" prefHeight="103.0" prefWidth="321.0" text="description" textFill="WHITE">
+                  <Label fx:id="description" prefHeight="120.0" prefWidth="316.0" text="description" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -67,7 +67,16 @@
                         <Insets left="40.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefHeight="29.0" prefWidth="244.0">
+                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#getpdf" style="-fx-border-color: #881f94;" stylesheets="@../css/menustyle.css" text="mon cv">
+                     <styleClass>
+                        <String fx:value="transparent" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Button>
+                  <HBox prefHeight="11.0" prefWidth="306.0">
                      <children>
                         <ImageView fitHeight="18.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -57,6 +57,10 @@ public class menuprincipale implements Initializable {
     private Button forstudio;
     @FXML
     private Button forartiste;
+    @FXML
+    private Button challengebtn;
+    @FXML
+    private Button tutobtn;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       try {//get the css for popup 
@@ -118,6 +122,25 @@ public class menuprincipale implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(menuprincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void grosmot(ActionEvent event) {
+         try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUIgrotmot/crudmot.fxml"));
+            CRUD.getChildren().add(pane);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void challengeaction(ActionEvent event) {
+    }
+
+    @FXML
+    private void tutorielaction(ActionEvent event) {
     }
 
 

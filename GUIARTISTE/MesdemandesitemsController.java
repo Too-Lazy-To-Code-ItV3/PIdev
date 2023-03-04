@@ -5,6 +5,8 @@
  */
 package GUIARTISTE;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,6 +64,8 @@ public class MesdemandesitemsController implements Initializable {
     private Label categorie;
     @FXML
     private Circle photo;
+    @FXML
+    private Button pdf;
 
     /**
      * Initializes the controller class.
@@ -70,14 +74,14 @@ public class MesdemandesitemsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+     String mypdf="";
  public void loaddata(demandeTravail f){
        titreOffre.setText(f.getTitreDemande());
        nomStudio.setText(f.getNomArtiste());
-       
+       pdf.setId(f.getPdf());
        dateAjout.setText(f.getDateAjoutDemande().toString());
        decription.setText(f.getDescriptionDemande());
-       categorie.setText(f.getCategorieDemande().getNomCategorie());
+       categorie.setText(f.getCategorieDemande().getNomCategorie()); mypdf=f.getPdf();
        supprimerOffre.setId(Integer.toString(f.getIdDemande()));   
  editoffre.setId(Integer.toString(f.getIdDemande()));  
    AllUsers user = Logged.get_instance().getUser();
@@ -101,7 +105,7 @@ public class MesdemandesitemsController implements Initializable {
          int id= Integer.parseInt(editoffre.getId());
          String  titre=titreOffre.getText();
        String desc = decription.getText();
-      
+      String pdf= mypdf;
      String categ = categorie.getText();
       AllUsers user = Logged.get_instance().getUser();
             String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
@@ -120,7 +124,7 @@ public class MesdemandesitemsController implements Initializable {
                   //get modifier controller to set data a mmodifier
             modifierdemandeController  modifier = loader.getController();
             //envoyer donner
-      modifier.getid(id,titre,desc,categ);
+      modifier.getid(id,titre,desc,categ,pdf);
       
       
         Scene scene = new Scene(root);
@@ -150,5 +154,25 @@ alert.setContentText("cette offre est supprimer, veuiller refresh your page");
 alert.show();
    
     }
+
+   
+    @FXML
+    private void getpdf(ActionEvent event) {
+       String pdfPath = "C:/xampp2/htdocs/uploads/"+mypdf;
+         System.out.print(mypdf+"nour");
+             File file = new File(pdfPath);
+
+               if ( file .exists()) {
+        // do something with the file
+        if(Desktop.isDesktopSupported()){try {
+            Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                Logger.getLogger(AfficherdemandesitemsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
+    } else {
+        System.err.println("File not found: " + pdfPath);
+    }
     
+}
 }

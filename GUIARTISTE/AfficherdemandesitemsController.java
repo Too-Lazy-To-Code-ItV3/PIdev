@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package GUIARTISTE;
+import java.awt.Desktop;
+import java.io.File;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import java.net.URL;
 import java.sql.SQLException;
 
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,6 +58,7 @@ public class AfficherdemandesitemsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    String mypdf="";
     public void loaddata(demandeTravail f) throws SQLException{
        titreOffre.setText(f.getTitreDemande());
        nomStudio.setText(f.getNomArtiste());
@@ -61,7 +66,9 @@ public class AfficherdemandesitemsController implements Initializable {
        dateAjout.setText(f.getDateAjoutDemande().toString());
        description.setText(f.getDescriptionDemande());
           categorie.setText(f.getCategorieDemande().getNomCategorie());
-             
+             mypdf=f.getPdf();
+                     
+
           AllUsersService u = new  AllUsersService();
            AllUsers user = u.fetchAUbyNickname(f.getNomArtiste());
             String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
@@ -74,6 +81,29 @@ public class AfficherdemandesitemsController implements Initializable {
                 System.err.println("Error loading avatar image: " + e.getMessage());
             }
    }
+
+
+    @FXML
+    private void getpdf(ActionEvent event) {
+       String pdfPath = "C:/xampp2/htdocs/uploads/"+mypdf;
+         System.out.print(mypdf+"nour");
+             File file = new File(pdfPath);
+
+               if ( file .exists()) {
+        // do something with the file
+        if(Desktop.isDesktopSupported()){try {
+            Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                Logger.getLogger(AfficherdemandesitemsController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+}
+    } else {
+        System.err.println("File not found: " + pdfPath);
+    }
+               
+
+           
+    }
 
    
 }

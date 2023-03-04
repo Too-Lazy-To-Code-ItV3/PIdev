@@ -45,6 +45,7 @@
                         <Font size="15.0" />
                      </font></Button>
                   <TextArea fx:id="descriptionOffre" layoutX="212.0" layoutY="159.0" prefHeight="116.0" prefWidth="242.0" />
+                  <Button fx:id="cv" layoutX="80.0" layoutY="245.0" mnemonicParsing="false" onAction="#ajoutcv" text="ajouter votre cv" />
                </children>
                <stylesheets>
                   <URL value="@../css/menustyle.css" />

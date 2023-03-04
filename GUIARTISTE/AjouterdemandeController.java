@@ -5,7 +5,13 @@
  */
 package GUIARTISTE;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +26,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.FileChooser;
 import models.Logged;
 import models.demandeTravail;
 import service.demandeTravailService;
@@ -41,6 +48,12 @@ CategoryService c = new CategoryService();
     private TextField titreOffre;
     @FXML
     private TextArea descriptionOffre;
+ static FileChooser fileChooser = new FileChooser();
+  
+
+    static File file;
+    @FXML
+    private Button cv;
 
     
     /**
@@ -65,9 +78,23 @@ if (titreOffre.getText().matches("\\d+")) {
         else if (descriptionOffre.getText().matches("\\d+"))
                 { Alert alert = new Alert(Alert.AlertType.ERROR, "veuiller entrer une dscription valide");
         alert.showAndWait();}
-else {
+else  if (file == null) {
+           
+            Alert alert = new Alert(Alert.AlertType.ERROR, "veuiller choisir un pdf");
+        alert.showAndWait();
+        }else{
     // Le contenu du TextField n'est pas un entier
+String fileName1 = file.getName();
+            try {
+                // Copy the file to the XAMPP htdocs directory
+                Path sourcePath = file.toPath();
+                Path targetPath = Paths.get("C:/xampp2/htdocs/uploads/" + fileName1);
+                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            of.setPdf(fileName1);
         of.setTitreDemande(titreOffre.getText());
        
         of.setDescriptionDemande(descriptionOffre.getText());
@@ -81,10 +108,24 @@ else {
     
 String myVariable = "";
 descriptionOffre.setText(myVariable);
-	//titreOffre.setText(myVariable);
+	titreOffre.setText(myVariable);
    listeCategorie.setValue(null);
   
            
     }
+    }
+
+    @FXML
+    private void ajoutcv(ActionEvent event) {
+       
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("pdf files (*.pdf)", "*.pdf");
+       
+        //Show open file dialog
+        file = fileChooser.showOpenDialog(null);
+
+
+    
     }
 }
