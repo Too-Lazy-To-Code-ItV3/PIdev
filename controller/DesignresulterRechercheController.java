@@ -5,12 +5,16 @@
  */
 package controller;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,7 +50,9 @@ public class DesignresulterRechercheController implements Initializable {
     private Label description;
     @FXML
     private Button contacter;
-
+    @FXML
+    private Button affichercv;
+ String mypdf="";
     /**
      * Initializes the controller class.
      */
@@ -59,7 +65,7 @@ public class DesignresulterRechercheController implements Initializable {
       description.setText(d.getDescriptionDemande());
        nomartiste.setText(d.getNomArtiste());
       categorie.setText(d.getCategorieDemande().getNomCategorie());
-      
+        mypdf=d.getPdf();
       contacter.setId(Integer.toString(d.getIdDemande()));   
       int id = d.getIdArtiste();
           AllUsersService u = new  AllUsersService();
@@ -87,6 +93,25 @@ alert.setHeaderText(null);
 alert.setContentText("Votre mail est envoyer avec succes ");
 
 alert.show();
+    }
+
+    @FXML
+    private void affichercv(ActionEvent event) {
+         String pdfPath = "C:/xampp2/htdocs/uploads/"+mypdf;
+         System.out.print(mypdf+"nour");
+             File file = new File(pdfPath);
+
+               if ( file .exists()) {
+        // do something with the file
+        if(Desktop.isDesktopSupported()){try {
+            Desktop.getDesktop().open(file);
+            } catch (IOException ex) {
+                 System.err.println("Error loading avatar pdf ");
+            }
+}
+    } else {
+        System.err.println("File not found: " + pdfPath);
+    }
     }
     
 }
