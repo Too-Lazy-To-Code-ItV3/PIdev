@@ -1,5 +1,6 @@
 package com.example.userjfx;
 
+import Models.Logged;
 import Services.AllUsersService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,64 +18,74 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-    public class Login {
+public class Login {
 
-        @FXML
-        private ResourceBundle resources;
+    @FXML
+    private ResourceBundle resources;
 
-        @FXML
-        private URL location;
+    @FXML
+    private URL location;
 
-        @FXML
-        private TextField EmailOrUsername;
+    @FXML
+    private TextField EmailOrUsername;
 
-        @FXML
-        private PasswordField PASSWORD;
+    @FXML
+    private PasswordField PASSWORD;
 
 
-        AllUsersService as = new AllUsersService();
+    AllUsersService as = new AllUsersService();
 
-        @FXML
-        void LogIn(ActionEvent event) throws SQLException, IOException {
-            as.login(EmailOrUsername.getText(),PASSWORD.getText());
-
+    @FXML
+    void LogIn(ActionEvent event) throws SQLException, IOException {
+        as.login(EmailOrUsername.getText(), PASSWORD.getText());
+        if (Logged.get_instance().getUser().getType().equals("Admin")) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+            Parent uuView = loader.load();
+            Scene scene = new Scene(uuView, 1380, 700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
             Parent uuView = loader.load();
-            Scene scene = new Scene(uuView,1380,700);
+            Scene scene = new Scene(uuView, 1380, 700);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-
-        }
-        @FXML
-        void SignUp(ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
-            Parent uuView = loader.load();
-            Scene scene = new Scene(uuView);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-
-        }
-        @FXML
-        void ForgetPw(MouseEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FPWEmail.fxml"));
-            Parent uuView = loader.load();
-            Scene scene = new Scene(uuView,1380,700);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-
-
-        }
-
-        @FXML
-        void initialize() {
-            assert EmailOrUsername != null : "fx:id=\"EmailOrUsername\" was not injected: check your FXML file 'Login.fxml'.";
-            assert PASSWORD != null : "fx:id=\"PASSWORD\" was not injected: check your FXML file 'Login.fxml'.";
-
         }
 
     }
+
+    @FXML
+    void SignUp(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+        Parent uuView = loader.load();
+        Scene scene = new Scene(uuView);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    void ForgetPw(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FPWEmail.fxml"));
+        Parent uuView = loader.load();
+        Scene scene = new Scene(uuView, 1380, 700);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
+    @FXML
+    void initialize() {
+        assert EmailOrUsername != null : "fx:id=\"EmailOrUsername\" was not injected: check your FXML file 'Login.fxml'.";
+        assert PASSWORD != null : "fx:id=\"PASSWORD\" was not injected: check your FXML file 'Login.fxml'.";
+
+    }
+
+}
 
 
