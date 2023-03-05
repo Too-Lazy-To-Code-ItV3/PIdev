@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 /**
  *
  * @author amine
@@ -22,32 +24,58 @@ import java.util.List;
 public class CategoryService implements CategoryInterface{
         //var
     Connection cnx = MyConnection.getInstance().getCnx();
-    @Override
-    public void addCategory(Category c) {
-         try {
-            String req = "INSERT INTO `category`(`name_category`) VALUES ('"+c.getName_category()+")";
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Category Added successfully!");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 
+
+//    @Override
+//    public void addCategory2(Category c) {
+//        try {
+//            
+//            String req = "INSERT INTO `category`(`name_category`) VALUES (?)";
+//            PreparedStatement cat = cnx.prepareStatement(req);
+//            cat.setString(1, c.getName_category());
+//            cat.executeUpdate();
+//            System.out.println("cat Added Successfully!");
+//            
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
     @Override
-    public void addCategory2(Category c) {
-        try {
-            
-            String req = "INSERT INTO `category`(`name_category`) VALUES (?)";
-            PreparedStatement cat = cnx.prepareStatement(req);
-            cat.setString(1, c.getName_category());
-            cat.executeUpdate();
-            System.out.println("cat Added Successfully!");
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+public void addCategory2(Category c) {
+    try {
+        // check if a category with the same name already exists
+        String checkReq = "SELECT COUNT(*) FROM `category` WHERE `name_category`=?";
+        PreparedStatement checkStmt = cnx.prepareStatement(checkReq);
+        checkStmt.setString(1, c.getName_category());
+        ResultSet rs = checkStmt.executeQuery();
+        rs.next();
+        int count = rs.getInt(1);
+        if (count > 0) {
+            // a category with the same name already exists, display an error message
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("A category with the same name already exists!");
+            alert.showAndWait();
+            return;
         }
+
+        // insert the new category
+        String addReq = "INSERT INTO `category`(`name_category`) VALUES (?)";
+        PreparedStatement addStmt = cnx.prepareStatement(addReq);
+        addStmt.setString(1, c.getName_category());
+        addStmt.executeUpdate();
+        System.out.println("Category added successfully!");
+        // display a success message
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Category added successfully!");
+        alert.showAndWait();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+}
     
     @Override
     public void modifyCategory(Category c,String newName) {
@@ -63,6 +91,26 @@ public class CategoryService implements CategoryInterface{
          }
     }
     
+    
+    @Override
+public void deleteCategoryById(int id) {
+    try {
+        String req = "DELETE FROM category WHERE Id_Category = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+        System.out.println("Category deleted successfully!");
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+    
+    
+    
+    
+    
+    
+    
        @Override
     public void deleteCategory(String name) {
         try {
@@ -77,7 +125,6 @@ public class CategoryService implements CategoryInterface{
     }
     
     
-
     @Override
     public List<Category> fetchCategories() {
          List<Category> categories = new ArrayList<>();
@@ -138,9 +185,4 @@ public class CategoryService implements CategoryInterface{
         }
         return categorie;
     }
-    
-    
-
-    
-    
 }

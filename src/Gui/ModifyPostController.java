@@ -23,6 +23,7 @@ import javafx.stage.Stage;
  * @author amine
  */
 public class ModifyPostController implements Initializable {
+    
 
     //var 
     PostInterface st = new PostService();
@@ -33,6 +34,14 @@ public class ModifyPostController implements Initializable {
     private TextField NewPostTitle;
     @FXML
     private TextField NewDescription;
+    private Post post;
+ 
+    
+    public void initData(Post post) {
+    this.post = post;
+    PostTitle.setText(post.getTitle());
+    //NewDescription.setText(post.getDescription_p());
+}
 
     /**
      * Initializes the controller class.
@@ -68,4 +77,5 @@ public class ModifyPostController implements Initializable {
      stage.setScene(scene);
      stage.show();
  }
+     
 }

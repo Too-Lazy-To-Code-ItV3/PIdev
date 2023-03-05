@@ -122,6 +122,7 @@ public class PostController implements Initializable {
         @FXML
          void setCat(ActionEvent event) {
              p.setCategory_p(cat.fetchCategories((String) categorie.getValue()));
+             
         }
     
          

@@ -10,11 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane prefHeight="807.0" prefWidth="1368.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.UpdateCategoryController">
-    <ImageView>
-        <image>
-            <Image url="@/Image/background3.jpg" />
-        </image>
-    </ImageView>
+  
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1380.0" style="-fx-background-color: #000842;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        

@@ -20,23 +20,34 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class ViewBlogController implements Initializable {
-
     @FXML
     private VBox tfpostlist;
     private PostService postService;
     private Label lab;
+    private Label titleTextLabel; // new instance variable for the title text label
     
+        @FXML
+    private TextField PostTitle;
+    
+    private Post post;
+
+    public void initData(Post post) {
+        this.post = post;
+        PostTitle.setText(post.getTitle());
+        
+        
+    }
     
 
     public ViewBlogController() {
@@ -51,7 +62,6 @@ public class ViewBlogController implements Initializable {
             postBox.setStyle("-fx-border-color: black; -fx-padding: 5px;");
             Label titleLabel = new Label("Title: " + post.getTitle());
             Label descriptionLabel = new Label("Description: " + post.getDescription_p());
-
             // Load the image from the file system based on the file path stored in the database
             String mediaPath = post.getMedia();
             if (mediaPath != null && !mediaPath.isEmpty()) {
@@ -66,15 +76,12 @@ public class ViewBlogController implements Initializable {
                     postBox.getChildren().add(mediaLabel);
                 }
             }
-
-            HBox titleBox = new HBox    ();
+            HBox titleBox = new HBox();
             titleBox.getChildren().addAll(titleLabel);
             postBox.getChildren().add(titleBox);
-
             HBox descriptionBox = new HBox();
             descriptionBox.getChildren().addAll(descriptionLabel);
             postBox.getChildren().add(descriptionBox);
-
             // Get the number of likes for this post
             List<PostLike> likes = postService.Number_Of_Likes_For_A_Post_Post(post.getId_post());
             int numberOfLikes = likes.size();
@@ -135,11 +142,6 @@ public class ViewBlogController implements Initializable {
             }
         });
 
-
-
-
-
-
             Button button2 = new Button("like");
             
             button2.setLayoutX(1039.0);
@@ -196,28 +198,15 @@ public class ViewBlogController implements Initializable {
                 postBox.getChildren().add(deletePostButton);
             
                 
-                 Button ModifyPostButton = new Button("Modify Post");
+                
+            Button ModifyPostButton = new Button("Modify Post");
             ModifyPostButton.setLayoutX(1039.0);
             ModifyPostButton.setLayoutY(612.0);
             ModifyPostButton.setPrefHeight(46.0);
             ModifyPostButton.setPrefWidth(202.0);
             ModifyPostButton.setStyle("-fx-background-color: C10C99;");
             ModifyPostButton.setTextFill(Color.WHITE);
-            
-//
-//            ModifyPostButton.setOnAction(event -> {
-//                try {
-//                    Parent modifyPostView = FXMLLoader.load(getClass().getResource("/Gui/ModifyPost.fxml"));
-//                    Scene scene = new Scene(modifyPostView);
-//                    Stage stage = new Stage();
-//                    stage.setScene(scene);
-//                    stage.show();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-//            postBox.getChildren().add(ModifyPostButton);
-//            
+                        
             ModifyPostButton.setOnAction(event -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ModifyPost.fxml"));
@@ -226,7 +215,10 @@ public class ViewBlogController implements Initializable {
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
                     ModifyPostController modifyPostController = loader.getController();
-                   // modifyPostController.initData(post);
+
+                    // Pass the selected post object to the ModifyPostController
+                    modifyPostController.initData(post);
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

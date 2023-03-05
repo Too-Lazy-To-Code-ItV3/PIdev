@@ -21,11 +21,6 @@
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#viewModifyPostPage" prefHeight="40.0" prefWidth="190.0" text="Modify Post">
-                <font>
-                    <Font name="System Bold" size="18.0" />
-                </font>
-            </Button>
             <Button mnemonicParsing="false" onAction="#viewBlogPostPage" prefHeight="40.0" prefWidth="190.0" text="View Blog">
                 <font>
                     <Font name="System Bold" size="18.0" />

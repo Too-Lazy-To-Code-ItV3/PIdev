@@ -39,8 +39,10 @@ public class FXMain extends Application {
             //root = FXMLLoader.load(getClass().getResource("/Gui/CommentsControlPanel.fxml"));
           //root = FXMLLoader.load(getClass().getResource("/Gui/ShowPost.fxml"));
           root = FXMLLoader.load(getClass().getResource("/Gui/CategoryControlPanel.fxml"));
-          root = FXMLLoader.load(getClass().getResource("/Gui/PostControlPanel.fxml"));
 
+         root = FXMLLoader.load(getClass().getResource("/Gui/affichercategory.fxml"));
+        //root = FXMLLoader.load(getClass().getResource("/Gui/AddCategory.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/Gui/PostControlPanel.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("ArTounsi");
             primaryStage.setScene(scene);

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface CategoryInterface {
     //add
-        public void addCategory(Category c);
+        //public void addCategory(Category c);
         public void addCategory2(Category c);
         public void modifyCategory(Category c,String newName);
         public void deleteCategory(String name);
@@ -28,4 +28,6 @@ public interface CategoryInterface {
 
     public Category fetchCategories(String name);
        
+    
+    public void deleteCategoryById(int id);
 }
