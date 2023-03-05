@@ -53,6 +53,22 @@
             <artifactId>javafx-swing</artifactId>
             <version>16</version>
         </dependency>
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.algolia</groupId>
+            <artifactId>algoliasearch-core</artifactId>
+            <version>3.16.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.algolia</groupId>
+            <artifactId>algoliasearch-apache</artifactId>
+            <version>3.16.5</version>
+        </dependency>
+
 
 
     </dependencies>

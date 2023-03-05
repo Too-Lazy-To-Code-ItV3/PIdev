@@ -5,6 +5,7 @@ module com.example.userjfx {
     requires javax.mail.api;
     requires java.desktop;
     requires javafx.swing;
+    requires com.jfoenix;
     // requires mail;
    // requires java.mail;
 

@@ -277,10 +277,10 @@ public class AllUsersService implements AllUsersInterface {
                 u.setNationality(rs.getString("Nationality"));
                 u.setType(rs.getString("Type"));
                 u.setNickname(rs.getString("Nickname"));
-                u.setNickname(rs.getString("Avatar"));
-                u.setNickname(rs.getString("Background"));
-                u.setNickname(rs.getString("Description"));
-                u.setNickname(rs.getString("Bio"));
+                u.setAvatar(rs.getString("Avatar"));
+                u.setBackground(rs.getString("Background"));
+                u.setDescription(rs.getString("Description"));
+                u.setBio(rs.getString("Bio"));
 
             }
 

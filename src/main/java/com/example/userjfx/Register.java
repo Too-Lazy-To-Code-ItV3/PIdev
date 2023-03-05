@@ -2,6 +2,9 @@ package com.example.userjfx;
 
 import Models.AllUsers;
 import Services.AllUsersService;
+import com.jfoenix.controls.JFXComboBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +23,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class Register {
 
@@ -46,7 +53,7 @@ public class Register {
     private TextField NameTF;
 
     @FXML
-    private TextField NationalityTF;
+    private  JFXComboBox<String> NationalityTF;
 
     @FXML
     private TextField NicknameTF;
@@ -55,7 +62,7 @@ public class Register {
     private PasswordField PasswordTF;
 
     @FXML
-    private TextField TypeTF;
+    private JFXComboBox<?> TypeTF;
 
     @FXML
     private TextField BioTF;
@@ -186,7 +193,7 @@ public class Register {
 
 
         // Check and set nationality
-        String nationality = NationalityTF.getText().trim();
+        String nationality = NationalityTF.getValue().trim();
         if (nationality.isEmpty() || !nationality.matches("^[a-zA-Z ]+$")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Nationality");
@@ -198,7 +205,7 @@ public class Register {
         u.setNationality(nationality);
 
         // Check and set user type
-        String type = TypeTF.getText().trim();
+        String type = TypeTF.getValue().toString().trim();
         if (type.isEmpty() || !type.matches("^[a-zA-Z ]+$")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid User Type");
@@ -290,6 +297,19 @@ public class Register {
         assert NicknameTF != null : "fx:id=\"NicknameTF\" was not injected: check your FXML file 'Register.fxml'.";
         assert PasswordTF != null : "fx:id=\"PasswordTF\" was not injected: check your FXML file 'Register.fxml'.";
         assert TypeTF != null : "fx:id=\"TypeTF\" was not injected: check your FXML file 'Register.fxml'.";
+        String[] isoCountryCodes = Locale.getISOCountries();
+
+        // Convert the list of country codes to a list of country names using Java Streams and Lambdas
+        ObservableList<String> countries = Arrays.stream(isoCountryCodes)
+                .map(code -> new Locale("", code))
+                .map(locale -> locale.getDisplayCountry())
+                .filter(name -> !name.isEmpty())
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        // Set the items of the combo box to the observable list
+        NationalityTF.setItems(countries);
+
 
     }
 }
