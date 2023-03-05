@@ -37,12 +37,7 @@ public class grosMotsService implements  grosMotsInterface {
             String req = "DELETE FROM `grosmots2` WHERE idMot= " + o.getIdmot() + "";
             st.executeUpdate(req);
             System.out.println("gros mot supprimer avec succès");
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("gros mot supprimer avec succès");
-
-            alert.showAndWait();
+            
                    } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }}

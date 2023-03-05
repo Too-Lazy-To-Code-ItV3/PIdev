@@ -82,7 +82,7 @@ public class ShowUsers {
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/UpdateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateUser.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView,900,900);
 
@@ -109,7 +109,7 @@ public class ShowUsers {
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/AddBan.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddBan.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView,1380,700);
 
@@ -139,38 +139,28 @@ public class ShowUsers {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddBan.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView);
-
-
         AddBan AddBan = loader.getController();
         AddBan.setUserId(selectedUser.getID_User());
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-
     }*/
     /*  @FXML
     void UpdateUser(ActionEvent event) throws IOException, SQLException {
         AllUsers selectedUser = UsersLV.getSelectionModel().getSelectedItem();
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateUser.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView);
-
-
         UpdateUser updateUser = loader.getController();
         updateUser.setUserId(selectedUser.getID_User());
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-
     }*/
     /*@FXML
     void ShowUsers(ActionEvent event) {
         aul = FXCollections.observableArrayList(as.fetchAU());
         UsersLV.setItems(aul);
-
     }*/
 
 }

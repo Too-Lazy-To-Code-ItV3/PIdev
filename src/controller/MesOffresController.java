@@ -42,7 +42,7 @@ public class MesOffresController implements Initializable {
    offreTravailService of = new offreTravailService ();
     private List<offreTravail> mesoffres;
     @FXML
-    private GridPane citiesGril;
+  private GridPane citiesGril;
     @FXML
     public static AnchorPane offresancho;
     @FXML

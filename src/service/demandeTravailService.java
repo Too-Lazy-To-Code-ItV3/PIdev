@@ -296,14 +296,9 @@ alert.showAndWait();
             Statement st = cnx.createStatement();
             String req = "DELETE FROM `demandetravail2` WHERE idDemande= " + d.getIdDemande() + "";
             st.executeUpdate(req);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Offre de travail modifié  avec succès");
-
-                    alert.showAndWait();
-            System.out.println("ODemande de travail supprimer avec succès");
-            System.out.println("Demande de travail supprimer avec succès");
+           
+          
+           
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

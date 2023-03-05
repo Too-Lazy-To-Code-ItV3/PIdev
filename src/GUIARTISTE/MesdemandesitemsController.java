@@ -142,16 +142,27 @@ demandeTravailService off=new demandeTravailService ();
     
     
     private void supprimer(ActionEvent event) {
-       int id= Integer.parseInt(supprimerOffre.getId());
-        demandeTravail of = new demandeTravail();
-      of=off.fetchdemandeParId(id);
-        off.SupprimerDemande(of);
-       Alert alert = new Alert(Alert.AlertType.INFORMATION);
-alert.setTitle("Alert");
-alert.setHeaderText(null);
-alert.setContentText("cette offre est supprimer, veuiller refresh your page");
-
-alert.show();
+        try {
+            int id= Integer.parseInt(supprimerOffre.getId());
+            demandeTravail of = new demandeTravail();
+            of=off.fetchdemandeParId(id);
+            off.SupprimerDemande(of);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("cette offre est supprimer, veuiller refresh your page");
+            
+            alert.show();
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIartiste/menuartiste.fxml"));
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root,1380,700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(MesdemandesitemsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
    
     }
 

@@ -7,6 +7,7 @@ package GUImenuprincipale;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,6 +38,7 @@ import javafx.stage.Stage;
 import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
+import service.AllUsersService;
 import service.demandeTravailService;
 import service.offreTravailService;
 
@@ -93,18 +95,26 @@ public class menuprincipale implements Initializable {
     }
 
   
-
+   AllUsersService as = new AllUsersService();
     @FXML
     private void forstudio(ActionEvent event) {
         try {
                  
+
+    
+        if (Logged.get_instance().getUser().getType().equals("studio")) {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menu1.fxml"));
             Parent root = loader.load();
             
             Scene scene = new Scene(root,1380,700);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
+            stage.setScene(scene);}else{FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/menuartiste.fxml"));
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root,1380,700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);}
         } catch (IOException ex) {
             Logger.getLogger(menuprincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,7 +122,7 @@ public class menuprincipale implements Initializable {
 
     @FXML
     private void forartiste(ActionEvent event) {
-           try {
+           /*try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/menuartiste.fxml"));
             Parent root = loader.load();
             
@@ -121,7 +131,7 @@ public class menuprincipale implements Initializable {
             stage.setScene(scene);
         } catch (IOException ex) {
             Logger.getLogger(menuprincipale.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
 
     @FXML
@@ -161,6 +171,16 @@ public class menuprincipale implements Initializable {
 
     @FXML
     private void challenge(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/menuartiste.fxml"));
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root,1380,700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(menuprincipale.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

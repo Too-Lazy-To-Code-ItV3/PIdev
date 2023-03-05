@@ -89,7 +89,7 @@ if(titreOffre.getText().matches("\\d+")) {
 else {
               try {
            
-                  FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+                  FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Dashboard.fxml"));
                   Parent root = loader.load();
                   m.setIdmot(id);
           m.setMot(titreOffre.getText());

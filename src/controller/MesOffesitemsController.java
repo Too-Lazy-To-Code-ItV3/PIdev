@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -26,6 +29,8 @@ import service.offreTravailService;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -128,20 +133,33 @@ public class MesOffesitemsController implements Initializable {
      /*****************************************************************************/
 
 offreTravailService off=new offreTravailService ();
+ offreTravailService of = new offreTravailService ();
+    private List<offreTravail> mesoffres;
     @FXML
     
     
     private void supprimer(ActionEvent event) {
-        int id= Integer.parseInt(supprimerOffre.getId());
-        offreTravail of = new offreTravail();
-      of=off.fetchOffresParId(id);
-        off.Supprimeretajouterarchive(of);
-       /*  Alert alert = new Alert(Alert.AlertType.INFORMATION);
-alert.setTitle("Alert");
-alert.setHeaderText(null);
-alert.setContentText("cette offre est supprimer, veuiller refresh your page");
+      
+        try {
+            int id= Integer.parseInt(supprimerOffre.getId());
+            offreTravail of = new offreTravail();
+            of=off.fetchOffresParId(id);
+            off.Supprimeretajouterarchive(of);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menu1.fxml"));
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root,1380,700);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException ex) {
+            Logger.getLogger(MesOffesitemsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
 
-alert.show();*/
+      
+       
    
     }
     

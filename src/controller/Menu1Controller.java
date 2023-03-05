@@ -50,7 +50,7 @@ public class Menu1Controller implements Initializable {
  offreTravailService of = new offreTravailService ();
  private List<offreTravail> listeOffres; 
     @FXML
-    private Pane CRUD;
+public Pane CRUD;
     @FXML
     private Button showall;
     @FXML
@@ -64,7 +64,7 @@ public class Menu1Controller implements Initializable {
           Popup popups = new Popup();
              Label plabel = new Label();
           
-             popups.setX(170);
+             popups.setX(150);
              popups.setY(90);
             
              //insert elements in popup 

@@ -28,6 +28,7 @@ public class AllUsersService implements AllUsersInterface {
     Connection cnx = MaConnexion.getInstance().getCnx();
 
 
+
     @Override
     public String generateSalt() {
         SecureRandom random = new SecureRandom();
@@ -47,6 +48,7 @@ public class AllUsersService implements AllUsersInterface {
             throw new RuntimeException("Error hashing password: " + e.getMessage());
         }
     }
+
     @Override
     public void AddAu(AllUsers u) {
         String salt = generateSalt();
@@ -248,8 +250,7 @@ public class AllUsersService implements AllUsersInterface {
                 u.setNationality(rs.getString(7));
                 u.setType(rs.getString(8));
                 u.setNickname(rs.getString(9));
-                u.setAvatar(rs.getString(11));
- 
+
             }
 
         } catch (SQLException ex) {
