@@ -38,10 +38,19 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import services.ProduitService;
 import MainTest.NewFXMain;
+import java.io.File;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import services.CategoriesService;
 import services.LignePanierService;
 /**
  * FXML Controller class
@@ -49,109 +58,86 @@ import services.LignePanierService;
  * @author aouad
  */
 public class FXML_AfficherProduitController implements Initializable , MyListener{
-      ProduitInterface ps= new ProduitService();
-      
+      ProduitService ps= new ProduitService();
+       CategoriesService cs= new CategoriesService() {};
      private ListView<List<Produits>> myListView;
      ObservableList<Produits> list = FXCollections.observableArrayList();
     
-    @FXML
-    private ListView<Produits> list2;
   
     @FXML
     private Button ajouter;
-    @FXML
     private Button Retour;
     @FXML
     private TextField textchercher;
-    @FXML
-    private Button recherche;
 
    
-    @FXML
-    private VBox chosenCard;
-    @FXML
     private Label imgPrix;
-    @FXML
     private ImageView imgView;
     @FXML
-    private ScrollPane scroll;
-    @FXML
     private GridPane grid;
-    @FXML
     private Label imgNom;
    private MyListener myListener;
-    @FXML
     private Button modif;
-    @FXML
-    private ImageView updateIcon1;
-    @FXML
-    private Button supp;
-    private Button modifBtn;
+   
     Produits p;
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private ComboBox<?> categBox;
+      ObservableList listCat = FXCollections.observableArrayList();
+    @FXML
+    private ImageView zoomImage;
+    @FXML
+    private VBox VboxImg;
+ 
 
-       private void setChosenCard(Produits p) {
-   
-     imgNom.setText(p.getNom());
-     imgPrix.setText(MainTest.NewFXMain.CURRENCY + p.getPrix());
-     if (p.getImage() != null) {
-        InputStream stream = getClass().getResourceAsStream(p.getImage());
-        if (stream != null) {
-            Image image = new Image(stream);
-            imgView.setImage(image);
-        }
-     
-    }
-   
-}
     
+
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
+          VboxImg.setPrefHeight(390); // Remplacez la valeur par celle que vous souhaitez
+          VboxImg.setMaxHeight(390);
+        
+          List<Categories> categories = cs .fetchCategories();
+        
+        if (categories != null) {
+
+            
+         cs.fetchCategories().stream().forEach(e->listCat.add(e.getNomCategorie()));
+         
+         
+        categBox.getItems().addAll(listCat);
+       
+        
 //     ListView <Produits> myListVie=(ListView <Produits>) ps.fetchProduits();
 
-        ps.fetchProduits().stream().forEach(a->list.add(a));
-        list2.setItems(list);
-        
+//        ps.fetchProduits().stream().forEach(a->list.add(a));
+//        list2.setItems(list);
+        list.addAll(ps.fetchProduits());
         Produits prod = new Produits();
-//        if (list.size() > 0) {
-//            setChosenCard(list.get(0));
-//            MyListener myListener = new MyListener() {
-//                public void onClickListener(Produits prod) {
-//                    setChosenCard(prod);
-//                    p=prod;
-//                }
-//          Image image = null;
-//          if(prod.getImage() != null){
-//          image = new Image(getClass().getResourceAsStream(prod.getImage()));
-//         }
-//
-//                
-//            }
-            if (list.size() > 0) {
-            setChosenCard(list.get(0));
-             myListener = new MyListener() {
-               @Override
-                public void onClickListener(Produits prod) {
-                    setChosenCard(prod);
-                   
-                }
-            };
-            }
+        
         int column = 0;
         int row = 1;
           try {
             for (int i = 0; i < list.size(); i++) {
+//                 FXMLLoader fxmlLoader = new FXMLLoader();
+//               fxmlLoader.setLocation(getClass().getResource("/GUI/mesOffesitems.fxml"));
+//               Pane pane = fxmlLoader.load();
+//               MesOffesitemsController ac = fxmlLoader.getController();
+//               ac.loaddata(f);
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("FXML_Prod.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("FXML_Prod2.fxml"));
                 anchorPane = fxmlLoader.load();
 
-                FXML_ProdController ProdController = fxmlLoader.getController();
-                Produits prod2 = list.get(i);
-                ProdController.setData(prod2,myListener);
+                FXML_Prod2Controller ProdController = fxmlLoader.getController();
+                Produits prod3 = list.get(i);
+                ProdController.setData(prod3);
+                ProdController.setZoomImage(zoomImage);
           if (column == 3) {
                     column = 0;
                     row++;
@@ -174,12 +160,7 @@ public class FXML_AfficherProduitController implements Initializable , MyListene
                 Logger.getLogger(FXML_AfficherProduitController.class.getName()).log(Level.SEVERE, null, ex);
             }}
 
-
- 
-   
-
-
-
+    }
     @FXML
     private void GotoAjouter(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_AjouterProduit.fxml"));
@@ -187,42 +168,52 @@ public class FXML_AfficherProduitController implements Initializable , MyListene
         ajouter.getScene().setRoot(root);
     }
 
-    @FXML
     private void GotoAccueil(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_Acceuil.fxml"));
         Parent root = loader.load();
         Retour.getScene().setRoot(root);
     }
+//    @FXML
+//private void chercher() {
+//    String nomProduit = textchercher.getText();
+//    ObservableList<Produits> resultatRecherche = FXCollections.observableArrayList();
+//    if (nomProduit.length() > 0) {
+//        ps.chercherProduitParNom(nomProduit).forEach(p -> resultatRecherche.add(p));
+//    } else {
+//        resultatRecherche.setAll(list);
+//    }
+//    list.setAll(resultatRecherche);
+//}
+
       @FXML
     private void chercher() {
-      String nomProduit = textchercher.getText();
-      ObservableList<Produits> resultatRecherche = FXCollections.observableArrayList();
-      if (nomProduit.length() > 0) {
-          ps.chercherProduitParNom(nomProduit).forEach(p -> resultatRecherche.add(p));
-      } else {
-        resultatRecherche.addAll(list);
-      }
-      list2.setItems(resultatRecherche);
-}
-
+        grid.getChildren().clear();
+        String nomProduit = textchercher.getText();
+  
+        list = ps.chercherProduitParNom(nomProduit);
+        int column=0;
+       int row = 1 ;
+       for (int i = 0; i < list.size(); i++)
+       {
+           try {
+               FXMLLoader fxmlLoader = new FXMLLoader();
+               fxmlLoader.setLocation(getClass().getResource("FXML_Prod2.fxml"));
+               anchorPane = fxmlLoader.load();
+               FXML_Prod2Controller ProdController = fxmlLoader.getController();
+                Produits prod3 = list.get(i);
+                ProdController.setData(prod3);
+             if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row);
+     
+           } catch (IOException ex) {
+               Logger.getLogger( FXML_AfficherProduitController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+ 
     
-
-   
-
-    @FXML
-    private void supprimer(ActionEvent event) {
-        int id= Integer.parseInt(supp.getId());
-         p=ps.readById(id);
-        ps.spprimerProduit(id);
-    }
-
-    
-
-    @FXML
-    private void modifier(ActionEvent event) throws IOException {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_ModifierProduit.fxml"));
-        Parent root = loader.load();
-        modifBtn.getScene().setRoot(root);
     }
 
     @Override
@@ -230,10 +221,41 @@ public class FXML_AfficherProduitController implements Initializable , MyListene
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    @Override
+    public Produits getProduit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @FXML
+    private void filtrer(ActionEvent event) {
+         grid.getChildren().clear(); 
+         String nomCategorie = (String) categBox.getValue(); // récupérer la catégorie sélectionnée
+    
+    list = ps.chercherProduitParCateg(nomCategorie); // filtrer les produits
+    int column=0;
+    int row = 1;
+    for (int i = 0; i < list.size(); i++) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("FXML_Prod2.fxml"));
+            anchorPane = fxmlLoader.load();
+            FXML_Prod2Controller ProdController = fxmlLoader.getController();
+            Produits prod3 = list.get(i);
+            ProdController.setData(prod3);
+            if (column == 3) {
+                column = 0;
+                row++;
+            }
+            grid.add(anchorPane, column++, row);
+        } catch (IOException ex) {
+            Logger.getLogger( FXML_AfficherProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+    }
+
+
+
+    }
 
   
- 
-   
-}

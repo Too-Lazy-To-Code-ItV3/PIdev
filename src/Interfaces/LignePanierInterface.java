@@ -20,7 +20,7 @@ public interface LignePanierInterface {
 
      public void supprimerLignePanier(int idLignePanier);
      
-     
+     public List<LignePanier> afficheligne(int idPanier);
      //list : select
    public ArrayList<LignePanier> afficherTous();
     public List<LignePanier> getLignePanierparIdPanier(int idPanier);

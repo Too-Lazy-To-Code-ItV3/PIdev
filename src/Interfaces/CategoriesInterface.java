@@ -20,7 +20,7 @@ public interface CategoriesInterface {
        
        
        public Categories readById(int id) ;
-
+       public List<String> getCategoriesNames();
       
       //list : select 
       

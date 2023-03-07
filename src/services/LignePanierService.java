@@ -37,13 +37,14 @@ public class LignePanierService implements LignePanierInterface{
             Date date = new Date();
             java.sql.Timestamp  sqldate  = new java.sql.Timestamp(date.getTime());
             
-            String req ="INSERT INTO `lignepanier`(`idPanier`,`idProduit`, `NomProd`,`prix_unitaire`,`dateAjout`) VALUES (?,?,?,?,?)";
+            String req ="INSERT INTO `lignepanier`(`idPanier`,`idProduit`, `NomProd`,`imageProd`,`prix_unitaire`,`dateAjout`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, lp.getPanier().getIdPanier());
             ps.setInt(2, lp.getProduit().getIdProduit());
             ps.setString(3, lp.getProduit().getNom());
-            ps.setDouble(4, lp.getProduit().getPrix());
-            ps.setTimestamp(5,sqldate);
+            ps.setString(4, lp.getProduit().getImage());
+            ps.setDouble(5, lp.getProduit().getPrix());
+            ps.setTimestamp(6,sqldate);
             ps.executeUpdate();
             System.out.println("LignePanier ajoutée avec succés!");
             
@@ -51,6 +52,45 @@ public class LignePanierService implements LignePanierInterface{
             ex.printStackTrace();}
     
     }
+    
+//    @Override
+//public void ajouterLignePanier(LignePanier lp) {
+//   
+//    try {
+//        Date date = new Date();
+//        java.sql.Timestamp  sqldate  = new java.sql.Timestamp(date.getTime());
+//        
+//        // Vérifier si l'article existe déjà dans le panier
+//        List<LignePanier> lignesPanier = this.getLignePanierparIdPanier(lp.getPanier().getIdPanier());
+//        for (LignePanier lignePanier : lignesPanier) {
+//            if (lignePanier.getProduit().getIdProduit() == lp.getProduit().getIdProduit()) {
+//                System.out.println("Cet article est déjà dans le panier !");
+//                return;
+//            }
+//        }
+//        
+//        // Ajouter la nouvelle ligne de panier à la base de données
+//        String req ="INSERT INTO `lignepanier`(`idPanier`,`idProduit`, `NomProd`,`prix_unitaire`,`dateAjout`) VALUES (?,?,?,?,?)";
+//        PreparedStatement ps = cnx.prepareStatement(req);
+//        ps.setInt(1, lp.getPanier().getIdPanier());
+//        ps.setInt(2, lp.getProduit().getIdProduit());
+//        ps.setString(3, lp.getProduit().getNom());
+//        ps.setDouble(4, lp.getProduit().getPrix());
+//        ps.setTimestamp(5,sqldate);
+//        ps.executeUpdate();
+//        System.out.println("LignePanier ajoutée avec succés!");
+//        
+//    } catch (SQLException ex) {
+//        ex.printStackTrace();
+//    }
+//}
+
+    
+    
+    
+    
+    
+    
   //******************************* modifier une ligne Panier  ***********************************************//      
        
     //update
@@ -59,13 +99,14 @@ public class LignePanierService implements LignePanierInterface{
       
         try {
           
-            String req ="UPDATE `lignepanier` SET  `idPanier`=? , `idProduit`= ? ,`NomProd`= ? ,`prix_unitaire`= ?  WHERE idLignePanier = ?";
+            String req ="UPDATE `lignepanier` SET  `idPanier`=? , `idProduit`= ? ,`NomProd`= ? ,`imageProd`= ?,`prix_unitaire`= ?  WHERE idLignePanier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, lp.getPanier().getIdPanier());
             ps.setInt(2, lp.getProduit().getIdProduit());
             ps.setString(3, lp.getProduit().getNom());
-            ps.setDouble(4, lp.getProduit().getPrix());
-            ps.setInt(5, lp.getIdLignePanier());
+            ps.setString(4, lp.getProduit().getImage());
+            ps.setDouble(5, lp.getProduit().getPrix());
+            ps.setInt(6, lp.getIdLignePanier());
             ps.executeUpdate();
             System.out.println("Ligne panier modifiée  avec succés");
         } catch (SQLException ex) {
@@ -118,7 +159,33 @@ public ArrayList<LignePanier> afficherTous() {
     return lignepanier;
 }
 
-
+//******************************* Afficher  ligne***********************************************//  
+    @Override
+    public List<LignePanier> afficheligne(int idPanier) {
+            ArrayList<LignePanier> lignepanier;
+            lignepanier = new ArrayList<>();
+        
+    try {   
+          
+           String req = "SELECT  NomProd ,imageProd, prix_unitaire , dateAjout FROM lignepanier WHERE idPanier = ?";
+           PreparedStatement ps = cnx.prepareStatement(req);
+           ps.setInt(1, idPanier);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {{
+                    LignePanier lignep = new LignePanier();
+                        lignep.setNomProd(rs.getString("NomProd"));
+                        lignep.setImageProd(rs.getString("imageProd"));
+                        lignep.setPrix_unitaire(rs.getDouble("prix_unitaire"));
+                        lignep.setDateAjout(rs.getTimestamp("dateAjout"));
+   
+                lignepanier.add(lignep);
+                    }   }
+    } catch (SQLException ex) {
+        System.out.println("Erreur lors de la récupération des lignes de panier: " + ex.getMessage());
+    }
+    return lignepanier;
+}
+     
      
 //******************************* Afficher  lignePanier  par id ***********************************************//  
     @Override
@@ -138,6 +205,7 @@ public ArrayList<LignePanier> afficherTous() {
 //                        lignep.setIdLignePanier(rs.getInt(1));
 //                        lignep.setPanier(panserv.afficherPanierParId(rs.getInt(2)));
                         lignep.setNomProd(rs.getString("NomProd"));
+                        lignep.setNomProd(rs.getString("imageProd"));        
                         lignep.setPrix_unitaire(rs.getDouble("prix_unitaire"));
                         lignep.setDateAjout(rs.getTimestamp("dateAjout"));
                         

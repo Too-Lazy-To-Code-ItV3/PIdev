@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.MyConnection;
 
 /**
@@ -104,6 +106,25 @@ public abstract class CategoriesService implements CategoriesInterface{
         
         return categorieNom;
     }
+    
+    
+    @Override
+  public ObservableList<String> getCategoriesNames() {
+    ObservableList<String> categoriesNames = FXCollections.observableArrayList();
+    try {
+        String req = "SELECT nomCategorie FROM categories";
+        Statement s = cnx.createStatement();
+        ResultSet rs = s.executeQuery(req);
+        while (rs.next()) {
+            categoriesNames.add(rs.getString("nomCategorie"));
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return categoriesNames;
+}
+
+   
    //******************************* List catégorie ***********************************************//     
     
     

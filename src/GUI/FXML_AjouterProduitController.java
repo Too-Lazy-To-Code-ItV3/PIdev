@@ -9,9 +9,15 @@ package GUI;
 import Interfaces.ProduitInterface;
 import Models.Categories;
 import Models.Produits;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import services.CategoriesService;
 import services.ProduitService;
 
@@ -39,19 +46,24 @@ public class FXML_AjouterProduitController implements Initializable {
     private TextField nom;
     @FXML
     private TextField descp;
-    @FXML
     private TextField image;
     @FXML
     private TextField qtdispo;
     @FXML
     private TextField prix;
     @FXML
-    private ChoiceBox<Categories> listeCateg= new ChoiceBox<>();
+    private ChoiceBox<?> listeCateg= new ChoiceBox<>();
+     ObservableList listCat = FXCollections.observableArrayList();
     @FXML
     private Button ajouter;
     @FXML
     private Button retour;
-
+    private String src;
+    private String dest;
+    @FXML
+    private Button imp;
+    
+    private  Boolean  test;
     /**
      * Initializes the controller class.
      */
@@ -61,12 +73,21 @@ public class FXML_AjouterProduitController implements Initializable {
         ImportCateg();
     }    
      public void ImportCateg(){
-       listeCateg.getItems().addAll(cs.fetchCategories()); }
+      List<Categories> categories = cs .fetchCategories();
+        
+        if (categories != null) {
+
+            
+         cs.fetchCategories().stream().forEach(e->listCat.add(e.getNomCategorie()));
+         
+         
+        listeCateg.getItems().addAll(listCat);
+     }}
 
     @FXML
-    private void ajouterProduit(ActionEvent event) {
+    private void ajouterProduit(ActionEvent event) throws IOException {
         
-        if (nom.getText().isEmpty() || descp.getText().isEmpty() || image.getText().isEmpty() || qtdispo.getText().isEmpty() || prix.getText().isEmpty() || listeCateg.getValue() == null) {
+        if (nom.getText().isEmpty() || descp.getText().isEmpty() || qtdispo.getText().isEmpty() || prix.getText().isEmpty() || listeCateg.getValue() == null) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Erreur de saisie !");
@@ -77,13 +98,16 @@ public class FXML_AjouterProduitController implements Initializable {
 
             p.setNom(nom.getText());
             p.setDescription(descp.getText());
-            p.setCategorieProduit(listeCateg.getValue());      
-            p.setImage(image.getText());
+            p.setCategorieProduit((Categories) listeCateg.getValue());      
+          
             p.setQuantiteDispo(Integer.parseInt(qtdispo.getText()));
             p.setPrix(Double.parseDouble(prix.getText()));
             System.out.println(p);
             ps.addProduit(p);
-        
+            Files.copy(Paths.get(src), Paths.get(dest));
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_Acceuil.fxml"));
+             Parent root = loader.load();
+             retour.getScene().setRoot(root);
         
     }
 
@@ -92,6 +116,27 @@ public class FXML_AjouterProduitController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML_Acceuil.fxml"));
         Parent root = loader.load();
         retour.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void importer(ActionEvent event) {
+           FileChooser fc = new FileChooser();
+           FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG Files","*.png");
+           FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG Files","*.jpg");
+
+           fc.getExtensionFilters().addAll(extFilterPNG,extFilterJPG);
+           
+           File selectedFile = fc.showOpenDialog(null);
+           
+           if(selectedFile != null) {
+               src = selectedFile.getPath();
+               dest = "C:\\xampp\\htdocs\\img\\"+selectedFile.getName();
+               imp.setText(selectedFile.getName());
+               p.setImage(selectedFile.getName());
+               test = true;
+           } else {
+               System.err.println("file is not valid");
+           }
     }
     
     

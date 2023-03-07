@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.MyConnection;
 
 /**
@@ -78,6 +80,7 @@ public  class ProduitService implements ProduitInterface{
             ps.setInt(8, p.getIdProduit());
             ps.executeUpdate();
             System.out.println("Produit modifié !");
+            System.out.println("categ"+p.getCategorieProduit());
             } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -107,8 +110,9 @@ public  class ProduitService implements ProduitInterface{
     //chercher un produit par nom
   
     @Override
-  public List<Produits> chercherProduitParNom(String nom) {
-    List<Produits> produitsTrouves = new ArrayList<>();
+ public ObservableList<Produits> chercherProduitParNom(String nom) {
+    ObservableList<Produits> produitsTrouves = FXCollections.observableArrayList();
+     CategoriesService categserv = new CategoriesService() {};
     try {
         String req = "SELECT * FROM produits WHERE `nom` LIKE '%" + nom + "%'";
         Statement s = cnx.createStatement();
@@ -118,6 +122,7 @@ public  class ProduitService implements ProduitInterface{
             produit.setIdProduit(rs.getInt("idProduit"));
             produit.setNom(rs.getString("nom"));
             produit.setDescription(rs.getString("description"));
+            produit.setCategorieProduit(categserv.readById(rs.getInt(2)));
             produit.setImage(rs.getString("image"));
             produit.setQuantiteDispo(rs.getInt("quantiteDispo"));
             produit.setPrix(rs.getInt("prix"));
@@ -147,8 +152,36 @@ public void chercherProduitParCategorie(Categories CategorieProduit) {
         ex.printStackTrace();
     }
 }
+@Override
+public ObservableList<Produits> chercherProduitParCateg(String nomCategorie) {
+    ObservableList<Produits> produitsTrouves = FXCollections.observableArrayList();
+    CategoriesService categserv = new CategoriesService() {};
+    try {
+        String req = "SELECT * FROM produits WHERE `nomCategorie`=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setString(1, nomCategorie);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Produits produit = new Produits();
+            produit.setIdProduit(rs.getInt("idProduit"));
+            produit.setNom(rs.getString("nom"));
+            produit.setDescription(rs.getString("description"));
+            produit.setCategorieProduit(categserv.readById(rs.getInt(2)));
+            produit.setImage(rs.getString("image"));
+            produit.setQuantiteDispo(rs.getInt("quantiteDispo"));
+            produit.setPrix(rs.getInt("prix"));
+            produit.setDateAjout(rs.getDate("dateAjout"));
+            produitsTrouves.add(produit);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return produitsTrouves;
+}
 
- 
+
+
+
 
       //*****************************lire Produit par id *************************************************//     
     

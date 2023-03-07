@@ -130,7 +130,7 @@ public class Produits {
 
     @Override
     public String toString() {
-        return "Produits{" + "idProduit=" + idProduit +  ",\n categorieProduit=" + categorieProduit + ",\n nom=" + nom + ", \n description=" + description + ", \n image=" + image + ",\n quantiteDispo=" + quantiteDispo + ",\n prix=" + prix + ",\n dateAjout=" + dateAjout  + '}';
+        return "Produits{" + "idProduit=" + idProduit + ",\n"+ categorieProduit + ",\n nom=" + nom + ", \n description=" + description + ", \n image=" + image + ",\n quantiteDispo=" + quantiteDispo + ",\n prix=" + prix + ",\n dateAjout=" + dateAjout  + '}';
     }
 
    

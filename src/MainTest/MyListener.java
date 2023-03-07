@@ -14,4 +14,5 @@ import Models.Produits;
  */
 public interface MyListener {
     public void onClickListener(Produits prod);
+    public Produits getProduit();
 }

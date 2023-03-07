@@ -68,3 +68,26 @@
       -fx-background-radius: 20px;
 }
 .boxcolor {-fx-background-color:#1C1919;}
+
+style.("table", "border-collapse", "collapse");
+style.loadTagStyle("td", "border", "1px solid black");
+style.loadTagStyle("td", "padding", "5px");
+style.loadTagStyle("th", "border", "1px solid black");
+style.loadTagStyle("th", "background-color", "gray");
+style.loadTagStyle("th", "color", "white");
+style.loadTagStyle("th", "padding", "5px");
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 5px;
+  border: 1px solid #000;
+}
+
+th {
+  background-color: #ccc;
+  color: #fff;
+}

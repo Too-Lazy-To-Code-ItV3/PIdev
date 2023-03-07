@@ -4,49 +4,60 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@Swag.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_ModifierProduitController">
+<AnchorPane id="AnchorPane" fx:id="anchore" prefHeight="400.0" prefWidth="600.0" styleClass="backcolor" stylesheets="@../Css/style2.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_ModifierProduitController">
    <children>
       <Label layoutX="47.0" layoutY="80.0" prefHeight="17.0" prefWidth="85.0" />
-      <Label layoutX="58.0" layoutY="27.0" prefHeight="49.0" prefWidth="114.0" text="Nom:" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="27.0" prefHeight="49.0" prefWidth="114.0" text="Nom:" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="97.0" prefHeight="49.0" prefWidth="149.0" text="Descrption:" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="78.0" prefHeight="49.0" prefWidth="103.0" text="Descrption:" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="239.0" prefHeight="61.0" prefWidth="254.0" text="Quantité disponible:" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="176.0" prefHeight="49.0" prefWidth="186.0" text="Quantité disponible:" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="59.0" layoutY="294.0" prefHeight="49.0" prefWidth="61.0" text="Prix:" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="225.0" prefHeight="49.0" prefWidth="61.0" text="Prix:" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nom" layoutX="152.0" layoutY="39.0" />
-      <TextField fx:id="description" layoutX="208.0" layoutY="109.0" />
-      <TextField fx:id="qtDispo" layoutX="318.0" layoutY="257.0" />
-      <TextField fx:id="prixText" layoutX="133.0" layoutY="306.0" />
-      <Button fx:id="modifier" layoutX="225.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifier" prefHeight="49.0" prefWidth="114.0" text="Modifier" />
-      <Button fx:id="retour" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourAccueil" prefHeight="25.0" prefWidth="68.0" text="Retour" />
-      <Label layoutX="59.0" layoutY="152.0" prefHeight="49.0" prefWidth="199.0" text="Categorie:" textFill="WHITE">
+      <TextField fx:id="nom" layoutX="323.0" layoutY="39.0" />
+      <TextField fx:id="description" layoutX="323.0" layoutY="90.0" />
+      <TextField fx:id="qtDispo" layoutX="383.0" layoutY="188.0" />
+      <TextField fx:id="prixText" layoutX="204.0" layoutY="237.0" prefHeight="25.0" prefWidth="96.0" />
+      <Button fx:id="modifier" layoutX="47.0" layoutY="348.0" mnemonicParsing="false" onAction="#modifier" prefHeight="33.0" prefWidth="114.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Modifier" textFill="WHITE" />
+      <Button fx:id="retour" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourAccueil" prefHeight="25.0" prefWidth="68.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Retour" textFill="WHITE" />
+      <Label layoutX="26.0" layoutY="127.0" prefHeight="49.0" prefWidth="103.0" text="Categorie:" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="201.0" prefHeight="49.0" prefWidth="85.0" text="Image" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="274.0" prefHeight="49.0" prefWidth="85.0" text="Image:" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="image" layoutX="169.0" layoutY="213.0" prefHeight="25.0" prefWidth="114.0" />
-      <ChoiceBox fx:id="listeCateg" layoutX="194.0" layoutY="164.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="listeCateg" layoutX="323.0" layoutY="139.0" prefHeight="25.0" prefWidth="85.0" />
+      <ImageView fx:id="imgV" fitHeight="92.0" fitWidth="103.0" layoutX="489.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nomimage" layoutX="96.0" layoutY="286.0" prefHeight="25.0" prefWidth="68.0" text="Nomimage" textFill="WHITE" />
+      <Button layoutX="252.0" layoutY="286.0" mnemonicParsing="false" onAction="#ImporterImage" prefHeight="25.0" prefWidth="96.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Importer" textFill="WHITE" />
+      <Button fx:id="Annuler" layoutX="167.0" layoutY="348.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="33.0" prefWidth="114.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Annuler" textFill="WHITE" />
+      <TextField fx:id="RecNom" layoutX="138.0" layoutY="39.0" />
+      <TextField fx:id="RecCat" layoutX="138.0" layoutY="139.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="Recdescription" layoutX="138.0" layoutY="90.0" />
+      <TextField fx:id="RecQt" layoutX="213.0" layoutY="188.0" />
+      <TextField fx:id="RcPrix" layoutX="84.0" layoutY="237.0" prefHeight="25.0" prefWidth="96.0" />
+      <ImageView fx:id="imgVNew" fitHeight="113.0" fitWidth="114.0" layoutX="362.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nomimageNew" layoutX="170.0" layoutY="286.0" prefHeight="25.0" prefWidth="68.0" text="Nomimage" textFill="WHITE" />
    </children>
 </AnchorPane>

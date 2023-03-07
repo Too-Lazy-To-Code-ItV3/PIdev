@@ -5,28 +5,33 @@
         <group>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_AcceuilController.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/services/ProduitService.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/services/LignePanierService.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Interfaces/LignePanierInterface.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_Payement.fxml</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_ModifierProduitController.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Interfaces/ProduitInterface.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Models/Produits.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_CartePanierController.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Css/style2.css</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/MainTest/MyListener.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/services/PanierService.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_AjouterProduitController.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/MainTest/NewFXMain.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_PayementController.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_Prod2Controller.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_CartePanier.fxml</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_AfficherPanierController.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Models/Panier.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Models/Categories.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/services/CategoriesService.java</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/services/LignePanierService.java</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Interfaces/LignePanierInterface.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Models/LignePanier.java</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_ModifierProduitController.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Css/fxml_produits.css</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Interfaces/ProduitInterface.java</file>
+            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_AfficherProduit.fxml</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Css/style.css</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_SupprimerProduitController.java</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Models/Produits.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_AfficherProduitController.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/pidev/app/PidevApp.java</file>
             <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Css/Swag.css</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/Css/style2.css</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/GUI/FXML_ProdController.java</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/MainTest/MyListener.java</file>
-            <file>file:/C:/Users/aouad/Documents/NetBeansProjects/pidev%20app/src/ItemController.java</file>
         </group>
     </open-files>
 </project-private>

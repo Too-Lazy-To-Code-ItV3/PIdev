@@ -13,6 +13,7 @@ import Models.LignePanier;
 
 import Models.Panier;
 import Models.Produits;
+import java.util.List;
 import services.CategoriesService;
 import services.LignePanierService;
 import services.PanierService;
@@ -38,7 +39,7 @@ public class PidevApp {
         PanierInterface panierserv = new PanierService();
         LignePanierService lignepanierserv = new LignePanierService();
      
-        
+      
   //*********************************Ajout des produits****************************//
       Categories cat1=new Categories();
        cat1.setNomCategorie("3D");
@@ -130,14 +131,14 @@ public class PidevApp {
         //produit 7ème init  avec catégorie;
     
      Categories cat4=new Categories();
-      cat4.setNomCategorie("3D");
+      cat4.setNomCategorie("2D");
       cat4.setIdCategorie(1);
      Produits p8 = new Produits();
       p8.setIdProduit(15);
-      p8.setNom(" cube ");
-      p8.setDescription("un cube en 3D avec des couleurs en harmonie , ce travail a été réaliser à l'aide de l'Ai ");
+      p8.setNom(" your Angel ");
+      p8.setDescription("your Angel");
       p8.setCategorieProduit(cat4);
-      p8.setImage(" cube.jpg***");
+      p8.setImage("your angel.jpg");
       p8.setQuantiteDispo(6);
       p8.setPrix(500); 
 //      prodserv.addProduit(p8);
@@ -235,7 +236,7 @@ pp.setIdProduit(15);
       pp.setImage("your angel");
       pp.setQuantiteDispo(6);
       pp.setPrix(500); 
-      
+      lignepanierserv.ajouterLignePanier(lp);
       
  Produits ppp=new Produits();     
 ppp.setIdProduit(23);
@@ -251,7 +252,7 @@ ppp.setIdProduit(23);
    lp3.setPanier(pan);
    lp3.setProduit(ppp);
    lp3.setPrix_unitaire(ppp.getPrix());
- lignepanierserv.modifierlLignePanier(lp3,20);
+// lignepanierserv.modifierlLignePanier(lp3,20);
 // LignePanier lp7 = new  LignePanier(); 
 //   lp7.setProduit(p7);
 //   lp7.setPrix_unitaire(p7.getPrix());
@@ -267,8 +268,8 @@ ppp.setIdProduit(23);
       //supprimer
  
              // lignepanierserv.supprimerLignePanier(0);
-             
-
+            
+// System.out.println(lignepanierserv.afficheligne(8));
 
      //afficher
          
@@ -307,8 +308,9 @@ ppp.setIdProduit(23);
 //*************************************************** SELECT ******************************************************************//
         //select pour produits
 //      System.out.println(panierserv.fetchPanier());
-
-        
+////
+//       System.out.println( prodserv.chercherProduitParNom("joker")) ;
+//     System.out.println(prodserv.chercherProduitParCateg("2D"));
         
 //        System.out.println(prodserv.fetchProduits());
 //System.out.println(prodserv.readById(19));

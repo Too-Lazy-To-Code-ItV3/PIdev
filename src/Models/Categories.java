@@ -43,10 +43,12 @@ public class Categories {
     //toString
 
     @Override
+
     public String toString() {
-        return "Categorie{" + "idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + '}';
+        return nomCategorie ;
     }
 
+  
   
     
     

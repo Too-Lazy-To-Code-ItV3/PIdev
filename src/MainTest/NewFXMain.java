@@ -28,7 +28,7 @@ public class NewFXMain extends Application {
 
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("/GUI/FXML_Acceuil.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/GUI/FXML_AfficherProduit.fxml"));
             Scene scene = new Scene(root,1380,700);
             primaryStage.setTitle("Produits");
             primaryStage.setScene(scene);

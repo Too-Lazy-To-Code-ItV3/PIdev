@@ -18,16 +18,18 @@ public class LignePanier {
     private Panier panier;
     private Produits produit;
     private String nomProd;
+     private String  imageProd;
     private double prix_unitaire;
     private Date dateAjout;
 
     
 
-    public LignePanier(int IdLignePanier,Panier panier, Produits produit,String nomProd, double prix_unitaire ,  Date dateAjout) {
+    public LignePanier(int IdLignePanier,Panier panier, Produits produit,String nomProd,String imageProd ,double prix_unitaire ,  Date dateAjout) {
         this.IdLignePanier = IdLignePanier;
         this.panier = panier;
         this.produit = produit; 
         this.nomProd = nomProd;
+        this.imageProd = imageProd;
         this.prix_unitaire = prix_unitaire;
    
         this.dateAjout = dateAjout;
@@ -54,6 +56,10 @@ public class LignePanier {
 
     public String getNomProd() {
         return nomProd;
+    }
+
+    public String getImageProd() {
+        return imageProd;
     }
     
     public double getPrix_unitaire() {
@@ -87,6 +93,10 @@ public class LignePanier {
     public void setNomProd(String nomProd) {
         this.nomProd = nomProd;
     }
+
+    public void setImageProd(String imageProd) {
+        this.imageProd = imageProd;
+    }
     
    public void setPrix_unitaire(double prix_unitaire) {
         this.prix_unitaire = prix_unitaire;
@@ -106,9 +116,10 @@ public class LignePanier {
 
   
 
+   
     @Override
     public String toString() {
-        return "LignePanier{" + "IdLignePanier=" + IdLignePanier + ", panier=" + panier + ", produit=" + produit + ", nomProd=" + nomProd + ", prix_unitaire=" + prix_unitaire + ", dateAjout=" + dateAjout + '}';
+        return "nomProd=" + nomProd + ", imageProd=" + imageProd + ", prix_unitaire=" + prix_unitaire + ", dateAjout=" + dateAjout + '}';
     }
 
     public void add(LignePanier lp) {

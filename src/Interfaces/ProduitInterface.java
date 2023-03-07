@@ -9,6 +9,7 @@ import Models.Categories;
 import Models.Panier;
 import Models.Produits;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -32,10 +33,10 @@ public interface ProduitInterface {
 //   public void afficherProduit(Produits p, int id);
   
 //chercher par nom
+public ObservableList<Produits> chercherProduitParCateg(String nomCategorie);
 
- public List<Produits> chercherProduitParNom(String nom) ;
 //   public Produits chercherProduitParNom(String nom);
-
+ public ObservableList<Produits> chercherProduitParNom(String nom);
 public void chercherProduitParCategorie(Categories CategorieProduit);
     public Produits readById(int id);
     public Produits readByName(String nom);
