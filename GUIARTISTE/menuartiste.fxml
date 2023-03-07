@@ -17,7 +17,7 @@
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/331111362_619390389575214_3017754911309371225_n.png" />
+                        <Image url="@../img/icons8-menu-rounded-50.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -44,7 +44,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons8-search-client-32.png" />
+                        <Image url="@../img/icons8-jobs-58.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -53,7 +53,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/icons8-search-client-32.png" />
+                        <Image url="@../img/icons8-add-new-24.png" />
                      </image>
                   </ImageView>
                </graphic>
