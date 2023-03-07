@@ -110,7 +110,9 @@ String fileName1 = file.getName();
 String myVariable = "";
 descriptionOffre.setText(myVariable);
 	titreOffre.setText(myVariable);
-   listeCategorie.setValue(null);}
+   listeCategorie.setValue(null);
+   fileName1="";
+    }
   
            
     }
