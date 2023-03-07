@@ -54,8 +54,7 @@ public class MesdemandesitemsController implements Initializable {
     private Button editoffre;
     @FXML
     private Button supprimerOffre;
-    @FXML
-    private Pane showcrud;
+  
     @FXML
     private Pane modifierpage;
     @FXML

@@ -53,6 +53,12 @@ public class menuartisteController implements Initializable {
     private Pane CRUD;
     @FXML
     private Button showall;
+    @FXML
+    private Button artistes;
+    @FXML
+    private Button mesoffres1;
+    @FXML
+    private Button ajouter1;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -111,5 +117,30 @@ public class menuartisteController implements Initializable {
         }
    }
 
+   
+   
+    @FXML
+    private void ajout(ActionEvent event) {
+         try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUIARTISTE/ajouterdemande.fxml"));
+            CRUD.getChildren().clear();
+           CRUD.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+   
+
+    @FXML
+    private void afficherMesOffres(ActionEvent event) {
+         try {
+            Pane pane = FXMLLoader.load(getClass().getResource("/GUIARTISTE/mesdemandes.fxml"));
+            CRUD.getChildren().clear();
+           CRUD.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

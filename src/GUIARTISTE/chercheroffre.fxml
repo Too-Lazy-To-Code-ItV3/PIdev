@@ -50,7 +50,7 @@
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/icons8-rechercher-un-client-50.png" />
+                  <Image url="@../img/gransearch.png" />
                </image>
             </ImageView>
          </graphic>

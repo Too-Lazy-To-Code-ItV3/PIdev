@@ -67,11 +67,7 @@
                         <Insets left="40.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#getpdf" style="-fx-border-color: #881f94;" stylesheets="@../css/menustyle.css" text="mon cv">
-                     <styleClass>
-                        <String fx:value="transparent" />
-                        <String fx:value="shadow" />
-                     </styleClass>
+                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#getpdf" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="mon cv" textFill="#ffe9e9">
                      <VBox.margin>
                         <Insets left="50.0" />
                      </VBox.margin>

@@ -33,9 +33,7 @@ public class crudartistecontroller implements Initializable {
     @FXML
     private AnchorPane afficheroffre;
     @FXML
-    private Button mesoffres;
-    @FXML
-    private Button ajouter;
+    private AnchorPane CRUD1;
 
     /**
      * Initializes the controller class.
@@ -53,7 +51,7 @@ public class crudartistecontroller implements Initializable {
    
 
    
-    @FXML
+  
     private void ajout(ActionEvent event) {
          try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUIARTISTE/ajouterdemande.fxml"));
@@ -66,7 +64,7 @@ public class crudartistecontroller implements Initializable {
 
    
 
-    @FXML
+   
     private void afficherMesOffres(ActionEvent event) {
          try {
             Pane pane = FXMLLoader.load(getClass().getResource("/GUIARTISTE/mesdemandes.fxml"));
@@ -77,7 +75,7 @@ public class crudartistecontroller implements Initializable {
         }
     }
 
-    @FXML
+
     private void ajout(MouseDragEvent event) {
     }
 

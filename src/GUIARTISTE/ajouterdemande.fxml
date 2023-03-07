@@ -14,14 +14,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIARTISTE.AjouterdemandeController">
    <children>
-      <ImageView fitHeight="588.0" fitWidth="1581.0" layoutY="-27.0" pickOnBounds="true">
+      <ImageView fitHeight="588.0" fitWidth="1581.0" layoutX="-8.0" layoutY="-23.0" pickOnBounds="true">
          <image>
             <Image url="@../img/black.png" />
          </image>
       </ImageView>
       <SplitPane dividerPositions="0.4874517374517375" layoutX="157.0" layoutY="63.0" prefHeight="516.0" prefWidth="1038.0" styleClass="bluecolorcadre" stylesheets="@../css/menustyle.css">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" styleClass="bluecolorcadre">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330;">
                <children>
                   <TextField fx:id="titreOffre" layoutX="212.0" layoutY="104.0" prefHeight="26.0" prefWidth="242.0" styleClass="text-field" stylesheets="@../css/textfield.css" />
                   <Label layoutX="47.0" layoutY="104.0" text="Titre demande:" textFill="#eeeeee">
@@ -45,7 +45,7 @@
                         <Font size="15.0" />
                      </font></Button>
                   <TextArea fx:id="descriptionOffre" layoutX="212.0" layoutY="159.0" prefHeight="116.0" prefWidth="242.0" />
-                  <Button fx:id="cv" layoutX="80.0" layoutY="245.0" mnemonicParsing="false" onAction="#ajoutcv" text="ajouter votre cv" />
+                  <Button fx:id="cv" layoutX="80.0" layoutY="245.0" mnemonicParsing="false" onAction="#ajoutcv" styleClass="buttoncolor" text="ajouter votre cv" textFill="WHITE" />
                </children>
                <stylesheets>
                   <URL value="@../css/menustyle.css" />

@@ -30,6 +30,7 @@ import javafx.stage.FileChooser;
 import models.Logged;
 import models.demandeTravail;
 import service.demandeTravailService;
+import static service.demandeTravailService.verifajoutdemande;
 
 
 /**
@@ -105,11 +106,11 @@ String fileName1 = file.getName();
            offs.addDemande(of);
             
    
-    
+    if(   verifajoutdemande==true){
 String myVariable = "";
 descriptionOffre.setText(myVariable);
 	titreOffre.setText(myVariable);
-   listeCategorie.setValue(null);
+   listeCategorie.setValue(null);}
   
            
     }
