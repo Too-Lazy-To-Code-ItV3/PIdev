@@ -5,14 +5,6 @@
  */
 package GUI;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -29,8 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.NewFXMain;
@@ -137,7 +128,7 @@ public class Dashboard {
 
     @FXML
     private void affichergrosmot(ActionEvent event) {
-         try {
+         try {  pnItems.getChildren().clear();
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUIgrotmot/crudmot.fxml"));
             pnItems.getChildren().add(pane);
             

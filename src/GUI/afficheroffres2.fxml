@@ -12,13 +12,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="237.0" prefWidth="623.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficheroffres2Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="622.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Afficheroffres2Controller">
    <children>
       <HBox fx:id="myVBox" alignment="BOTTOM_LEFT" prefHeight="227.0" prefWidth="610.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
          <children>
             <VBox prefHeight="227.0" prefWidth="240.0" style="-fx-background-color: #071330;" styleClass="colorsearch" stylesheets="@../css/menustyle.css">
                <children>
-                  <Circle fx:id="photo1" fill="#1f93ff00" radius="47.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fx:id="photo1" fill="#1f93ff00" radius="47.0" stroke="#fffbfb" strokeType="INSIDE">
                      <VBox.margin>
                         <Insets left="70.0" top="5.0" />
                      </VBox.margin>
@@ -45,9 +45,9 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" style="-fx-border-color: #881f94;" stylesheets="@../css/menustyle.css">
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="101.0" style="-fx-border-color: #881f94;" stylesheets="@../css/menustyle.css">
                            <graphic>
-                              <Label fx:id="categorie" text="categorie" textFill="#881f94">
+                              <Label fx:id="categorie" text="categorie" textFill="#881f94eb">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -88,7 +88,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="227.0" prefWidth="360.0">
+            <VBox prefHeight="212.0" prefWidth="360.0" style="-fx-background-color: #071330;">
                <children>
                   <Label fx:id="titreOffre" alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="35.0" prefWidth="224.0" text="titre offre" textFill="#fcfcfc">
                      <VBox.margin>

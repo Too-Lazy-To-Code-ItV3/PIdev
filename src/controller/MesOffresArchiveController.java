@@ -48,7 +48,7 @@ public class MesOffresArchiveController implements Initializable {
                Pane pane = fxmlLoader.load();
              MesOffresArchiveItemsController ac = fxmlLoader.getController();
                ac.loaddata(f);
-               if(column==1){column=0; ++row ;}
+               if(column==2){column=0; ++row ;}
                citiesGril.add(pane,column++,row);
                GridPane.setMargin(pane, new Insets(20));
            } catch (IOException ex) {

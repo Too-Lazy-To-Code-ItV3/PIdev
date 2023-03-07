@@ -46,12 +46,6 @@ public class CRUDController implements Initializable {
     private Button archive;
     @FXML
     private AnchorPane afficheroffre1;
-    @FXML
-    private Circle circle;
-    @FXML
-    private Circle circle1;
-    @FXML
-    private Circle circle2;
 
     /**
      * Initializes the controller class.

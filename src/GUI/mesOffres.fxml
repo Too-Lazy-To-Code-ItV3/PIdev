@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="offresancho" prefHeight="791.0" prefWidth="1357.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MesOffresController">
    <children>
-      <ImageView fitHeight="662.0" fitWidth="1417.0" layoutX="-22.0" layoutY="-29.0" pickOnBounds="true">
+      <ImageView fitHeight="1032.0" fitWidth="1510.0" layoutX="10.0" layoutY="-24.0" pickOnBounds="true">
          <image>
             <Image url="@../img/black.png" />
          </image>

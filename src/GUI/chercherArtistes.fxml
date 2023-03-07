@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="328.0" fitWidth="1510.0" layoutY="-23.0" opacity="0.92" pickOnBounds="true">
          <image>
-            <Image url="@../img/pic2.jpg" />
+            <Image url="@../img/176937.jpg" />
          </image>
          <viewport>
             <Rectangle2D />
@@ -60,11 +60,11 @@
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/icons8-rechercher-un-client-50.png" />
+                  <Image url="@../img/gransearch.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="689.0" layoutY="215.0" mnemonicParsing="false" onAction="#demandesimilaires" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="demandes similaire" textFill="#f8f8f8" />
+      <Button layoutX="684.0" layoutY="215.0" mnemonicParsing="false" onAction="#demandesimilaires" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="demandes similaire" textFill="#f8f8f8" />
    </children>
 </AnchorPane>

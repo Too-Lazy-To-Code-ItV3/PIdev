@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="modifierpage" prefHeight="275.0" prefWidth="1000.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MesOffesitemsController">
+<Pane fx:id="modifierpage" prefHeight="275.0" prefWidth="1016.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MesOffesitemsController">
    <children>
       <HBox alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="14.0" prefHeight="247.0" prefWidth="667.0" style="-fx-background-color: #071330; -fx-background-radius: 10;" stylesheets="@../css/menustyle.css">
          <children>

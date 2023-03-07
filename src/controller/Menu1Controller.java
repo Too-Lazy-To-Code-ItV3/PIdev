@@ -56,6 +56,14 @@ public Pane CRUD;
     @FXML
     private Button popup;
  offreTravailService off=new offreTravailService();
+    @FXML
+    private Button artistes;
+    @FXML
+    private Button mesoffres;
+    @FXML
+    private Button ajouter;
+    @FXML
+    private Button archive;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       try {//get the css for popup 
@@ -144,6 +152,44 @@ listView.setPrefWidth(400);
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/ChercherArtistes.fxml"));
             CRUD.getChildren().add(pane);
             
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void afficherMesOffres(ActionEvent event) {
+         try {
+          /*  Pane pane = FXMLLoader.load(getClass().getResource("/GUI/mesOffres.fxml"));
+            CRUD.getChildren().clear();
+           CRUD.getChildren().setAll(pane);*/
+      
+          Pane pane = FXMLLoader.load(getClass().getResource("/GUI/mesOffres.fxml"));
+            CRUD.getChildren().clear();
+           CRUD.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void ajout(ActionEvent event) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/ajouterOffre.fxml"));
+            CRUD.getChildren().clear();
+           CRUD.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void archiveaction(ActionEvent event) {
+         try {
+            Pane pane = FXMLLoader.load(getClass().getResource("/GUI/mesOffresArchive.fxml"));
+            CRUD.getChildren().clear();
+           CRUD.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }

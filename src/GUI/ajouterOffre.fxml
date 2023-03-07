@@ -11,13 +11,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="719.0" prefWidth="1581.0" styleClass="bluecolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterOffreController">
+<AnchorPane id="AnchorPane" prefHeight="719.0" prefWidth="1581.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterOffreController">
    <children>
-      <ImageView fitHeight="584.0" fitWidth="1581.0" layoutY="-23.0" pickOnBounds="true">
-         <image>
-            <Image url="@../img/black.png" />
-         </image>
-      </ImageView>
       <SplitPane dividerPositions="0.4874517374517375" layoutX="157.0" layoutY="63.0" prefHeight="516.0" prefWidth="1038.0" style="-fx-background-radius: 40; -fx-background-color: #071330;">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">

@@ -62,11 +62,7 @@
                         <Insets left="5.0" top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="affichercv" mnemonicParsing="false" onAction="#affichercv" style="-fx-border-color: #881f94;" stylesheets="@../css/menustyle.css" text="afficher cv ">
-                     <styleClass>
-                        <String fx:value="transparent" />
-                        <String fx:value="shadow" />
-                     </styleClass></Button>
+                  <Button fx:id="affichercv" mnemonicParsing="false" onAction="#affichercv" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="afficher cv " textFill="WHITE" />
                </children>
             </VBox>
             <VBox prefHeight="216.0" prefWidth="180.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" styleClass="boxcolor" stylesheets="@../css/menustyle.css">
