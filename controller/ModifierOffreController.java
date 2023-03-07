@@ -97,7 +97,10 @@ listeCategorie.setValue(c.fetchCategoryByNom("2d art"));
         else if (descriptionOffre.getText().matches("\\d+"))
                 { Alert alert = new Alert(Alert.AlertType.ERROR, "veuiller entrer une dscription valide");
         alert.showAndWait();}
-else {
+else  if ("".equals(titreOffre.getText())||"".equals(descriptionOffre.getText()) ||descriptionOffre.getText().isEmpty()||titreOffre.getText().isEmpty())
+{ Alert alert = new Alert(Alert.AlertType.ERROR, "Veuiller remplir tous les champs");
+        alert.showAndWait();}
+else{
               try {
                   FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menu1.fxml"));
                   Parent root = loader.load();
