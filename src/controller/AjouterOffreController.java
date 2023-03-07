@@ -19,6 +19,7 @@ import service.offreTravailService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import models.Logged;
+import static service.offreTravailService.verifajout;
 
 /**
  * FXML Controller class
@@ -51,7 +52,7 @@ CategoryService c = new CategoryService();
      public void loaddata(){
        listeCategorie.getItems().addAll(c.fetchCategories());
        String[]type={"freelance","contract","other"};
-String[] ville = { "tunisie","Oman","Koweït","Algérie","États-Unis", "Chine", "Maroc", "Russie", "Japon","Iran","Iraq", "Irlande", "Italie", "Arabie Saoudite","Argentine", "Allemagne","Royaume-Uni", "France", "Canada", "Inde","Brésil"};
+String[] ville = { "tunisie","Oman","Koweït","Algérie","États-Unis", "Chine", "Maroc", "Russie", "Japon","Iran","Iraq", "Irlande", "Italie", "Arabie Saoudite","Argentine", "France", "Canada", "Autres"};
        listetypes.getItems().addAll(type);
       villeliste.getItems().addAll(ville);
        
@@ -80,7 +81,7 @@ else {
 );
       
            offs.addOffre(of);
-          
+          if (verifajout==true){
 String myVariable = "";
 descriptionOffre.setText(myVariable);
 	titreOffre.setText(myVariable);
@@ -88,7 +89,7 @@ descriptionOffre.setText(myVariable);
    listeCategorie.setValue(null);
       listetypes.setValue(null);
     
-     villeliste.setValue(null);
+     villeliste.setValue(null);}
 	
 	
 	

@@ -71,7 +71,7 @@ public void getdata()
        String[]types={"freelance","contract","other"};
      
            
-String[] villes = { "tunisie","Oman","Koweït","Algérie","États-Unis", "Chine", "Maroc", "Russie", "Japon","Iran","Iraq", "Irlande", "Italie", "Arabie Saoudite","Argentine", "Allemagne","Royaume-Uni", "France", "Canada", "Inde","Brésil"};
+String[]villes= { "tunisie","Oman","Koweït","Algérie","États-Unis", "Chine", "Maroc", "Russie", "Japon","Iran","Iraq", "Irlande", "Italie", "Arabie Saoudite","Argentine", "France", "Canada", "Autres"};
 
        listetypes.getItems().addAll(types);
       villeliste.getItems().addAll(villes);
