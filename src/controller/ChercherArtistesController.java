@@ -36,6 +36,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import models.Categorie;
+import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -204,7 +205,7 @@ private AutoCompletionBinding<String> autocomplete;
                Logger.getLogger(ChercherArtistesController.class.getName()).log(Level.SEVERE, null, ex);
            }
        }
-       demandes=dm.offresimilairaunedemande(2);
+       demandes=dm.offresimilairaunedemande(Logged.get_instance().getUser().getID_User());
     }
     
     

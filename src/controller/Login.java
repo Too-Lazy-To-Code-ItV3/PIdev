@@ -59,7 +59,7 @@ public class Login {
 
     @FXML
     void SignUp(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Register.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -70,7 +70,7 @@ public class Login {
 
     @FXML
     void ForgetPw(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FPWEmail.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/FPWEmail.fxml"));
         Parent uuView = loader.load();
         Scene scene = new Scene(uuView, 1380, 700);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
