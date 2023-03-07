@@ -5,23 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class Dashboard {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button btnCustomers;
 
     @FXML
     private Button btnMenus;
@@ -40,6 +30,9 @@ public class Dashboard {
 
     @FXML
     private Button btnSignout;
+
+    @FXML
+    private Button btnUsers;
 
     @FXML
     private VBox pnItems;
@@ -79,7 +72,7 @@ public class Dashboard {
 
     @FXML
     void initialize() {
-        assert btnCustomers != null : "fx:id=\"btnCustomers\" was not injected: check your FXML file 'Dashboard.fxml'.";
+
         assert btnMenus != null : "fx:id=\"btnMenus\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert btnOrders != null : "fx:id=\"btnOrders\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert btnOverview != null : "fx:id=\"btnOverview\" was not injected: check your FXML file 'Dashboard.fxml'.";
@@ -116,4 +109,17 @@ public class Dashboard {
 
     }
 
+    @FXML
+    void AfficherUsers(ActionEvent event) {
+        try {
+            pnItems.getChildren().clear();
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("CRUDuser.fxml"));
+            pnItems.getChildren().add(pane);
+
+        } catch (IOException ex) {
+
+        }
+    }
+
 }
+

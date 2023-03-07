@@ -57,12 +57,6 @@ public class Profile {
         Description.setText(user.getDescription());
         Bio.setText(user.getBio());
         Location.setText(user.getNationality());
-        if (user != null) {
-            System.out.println(user.getNickname());
-            System.out.println(user);
-            System.out.println(user.getAvatar());
-            System.out.println(user.getBackground());
-
             String imagePath = "C:/xampp/htdocs/uploads/"+user.getAvatar();
             try (InputStream avatarStream = new FileInputStream(imagePath)) {
                 Image avatarImage = new Image(avatarStream);
@@ -86,10 +80,9 @@ public class Profile {
             } catch (IOException e) {
                 System.err.println("Error loading background image: " + e.getMessage());
             }
-        } else {
-            System.out.println("No user is currently logged in.");
         }
+
     }
 
-}
+
 

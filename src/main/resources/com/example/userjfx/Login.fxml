@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -16,20 +16,18 @@
       <AnchorPane layoutX="713.0" layoutY="34.0" prefHeight="620.0" prefWidth="637.0" style="-fx-background-color: #13123A;">
          <children>
             <TextField fx:id="EmailOrUsername" layoutX="16.0" layoutY="131.0" prefHeight="42.0" prefWidth="575.0" promptText="EMAIL/USERNAME" />
-            <Label layoutX="286.0" layoutY="34.0" text="Log In" textFill="WHITE">
+            <Label layoutX="286.0" layoutY="34.0" text="Connexion" textFill="WHITE">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
             <PasswordField fx:id="PASSWORD" layoutX="18.0" layoutY="315.0" prefHeight="38.0" prefWidth="575.0" promptText="Password" />
-            <JFXButton layoutX="247.0" layoutY="431.0" onAction="#LogIn" prefHeight="68.0" prefWidth="184.0" text="Log In" />
-            <Label layoutX="147.0" layoutY="560.0" text="New User ?">
+            <Label layoutX="147.0" layoutY="560.0" text="Nouvel Utilisateur ?">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <JFXButton layoutX="262.0" layoutY="549.0" onAction="#SignUp" prefHeight="53.0" prefWidth="154.0" text="Sign Up" />
-            <Label layoutX="416.0" layoutY="388.0" onMouseClicked="#ForgetPw" text="Forget Password ?">
+            <Label layoutX="404.0" layoutY="391.0" onMouseClicked="#ForgetPw" text="Mot de passe oublié ?">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -37,6 +35,8 @@
                   <Glow />
                </effect>
             </Label>
+            <Button layoutX="159.0" layoutY="433.0" mnemonicParsing="false" onAction="#LogIn" text="Connecter" />
+            <Button layoutX="368.0" layoutY="563.0" mnemonicParsing="false" onAction="#SignUp" text="S'inscrire" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="277.0" fitWidth="506.0" layoutX="75.0" layoutY="265.0" opacity="0.54" pickOnBounds="true" preserveRatio="true">
@@ -44,7 +44,7 @@
             <Image url="@../../../Images/ARTounsi.png" />
          </image>
       </ImageView>
-      <Label layoutX="75.0" layoutY="81.0" prefHeight="132.0" prefWidth="510.0" styleClass="welcome-label" text="WELCOME TO " textFill="WHITE">
+      <Label layoutX="75.0" layoutY="81.0" prefHeight="132.0" prefWidth="510.0" styleClass="welcome-label" text="Bienvenue à" textFill="WHITE">
          <font>
             <Font size="75.0" />
          </font>

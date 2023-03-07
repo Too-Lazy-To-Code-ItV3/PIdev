@@ -210,15 +210,20 @@ public class AllUsersService implements AllUsersInterface {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 AllUsers u = new AllUsers();
-                u.setID_User(rs.getInt(1));
-                u.setName(rs.getString(2));
-                u.setLast_Name(rs.getString(3));
-                u.setEmail(rs.getString(4));
-                u.setBirthday(rs.getDate(5).toLocalDate());
-                u.setPassword(rs.getString(6));
-                u.setNationality(rs.getString(7));
-                u.setType(rs.getString(8));
-                u.setNickname(rs.getString(9));
+                u.setID_User(rs.getInt("ID_User"));
+                u.setName(rs.getString("Name"));
+                u.setLast_Name(rs.getString("Last_Name"));
+                u.setEmail(rs.getString("Email"));
+                u.setBirthday(rs.getDate("Birthday").toLocalDate());
+                u.setPassword(rs.getString("Password"));
+                u.setSalt(rs.getString("Salt"));
+                u.setNationality(rs.getString("Nationality"));
+                u.setType(rs.getString("Type"));
+                u.setNickname(rs.getString("Nickname"));
+                u.setAvatar(rs.getString("Avatar"));
+                u.setBackground(rs.getString("Background"));
+                u.setDescription(rs.getString("Description"));
+                u.setBio(rs.getString("Bio"));
 
 
                 Allusers.add(u);
