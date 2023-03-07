@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.AllUsers;
 import util.MaConnexion;
 
 /**
@@ -34,7 +35,7 @@ public class ParticipationService implements ParticipationInterface {
             String req = "INSERT INTO Participation( `ID_Challenge`, `ID_User`, `IMG_Participation`, `Description`) VALUES (?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, p.getChallenge().getID_Challenge());
-            ps.setInt(2, p.getParticipant().getID_user());
+            ps.setInt(2, p.getParticipant().getID_User());
             ps.setString(3, p.getIMG_Participation());
             ps.setString(4, p.getDescription());
 
@@ -73,13 +74,9 @@ public class ParticipationService implements ParticipationInterface {
                 p.setIMG_Participation(rs.getString("IMG_Participation"));
                 p.setDescription(rs.getString("Description"));
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setLocation(rs.getString("Location"));
-                u.setPathImage(rs.getString("pathImage"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
                 
                 Challenge c = new Challenge();
                 c.setID_Challenge(rs.getInt("ID_Challenge"));
@@ -103,7 +100,6 @@ public class ParticipationService implements ParticipationInterface {
     
         @Override
     public List<Participation> fetchParticipantionsByChallenge(int ID_Challenge) {
-        System.out.println("pp: "+ID_Challenge);
         List<Participation> Participations = new ArrayList<>();
         try {
             
@@ -116,8 +112,8 @@ public class ParticipationService implements ParticipationInterface {
                 p.setIMG_Participation(rs.getString("IMG_Participation"));
                 p.setDescription(rs.getString("Description"));
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
+                AllUsers u = new AllUsers();
+                u.setID_User(rs.getInt("ID_user"));
                 
                 Challenge c = new Challenge();
                 c.setID_Challenge(rs.getInt("ID_Challenge"));
@@ -142,7 +138,7 @@ public class ParticipationService implements ParticipationInterface {
                 List<Utilisateur> Utilisateurs = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM participation p, utilisateur u where p.ID_User = u.ID_user AND p.ID_Challenge = "+ID_Challenge;
+            String req = "SELECT * FROM participation p, allusers u where p.ID_User = u.ID_User AND p.ID_Challenge = "+ID_Challenge;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -194,18 +190,16 @@ public class ParticipationService implements ParticipationInterface {
     public Boolean Participated(int ID_Challenge, int ID_Participant) {
         int id = 0;
         try {
-            String req = "SELECT FROM participation where ID_Challenge = "+ID_Challenge+" AND ID_User = "+ID_Participant;
+            String req = "SELECT * FROM participation where ID_Challenge = "+ID_Challenge+" and ID_User = "+ID_Participant;
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(req);
-        rs.next();
-        id = rs.getInt(1);
+        while (rs.next()) {                
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ParticipationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if (id!=0)
-                return true; 
-         else 
             return false;
     }
 }

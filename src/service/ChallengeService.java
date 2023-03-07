@@ -5,7 +5,8 @@
  */
 package service;
 
-import interfaces.CategorieInterface;
+import Entity.User;
+import interfaces.CategoryInterface;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,8 @@ import models.Challenge;
 import models.Utilisateur;
 import interfaces.ChallengeInterface;
 import interfaces.ParticipationInterface;
+import models.AllUsers;
+import models.Logged;
 import util.MaConnexion;
 
 /**
@@ -41,7 +44,7 @@ public class ChallengeService implements ChallengeInterface {
             ps.setString(4, c.getPathIMG());
             ps.setInt(5, c.getNiveau());
             ps.setInt(6, c.getCategorie().getIdCategorie());
-            ps.setInt(7, 1);
+            ps.setInt(7, Logged.get_instance().getUser().getID_User());
             
             ps.executeUpdate();
             System.out.println("Challenge Added Successfully!");
@@ -91,7 +94,7 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user";
+            String req = "SELECT * FROM Challenge ch,categorie2 ca,AllUsers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -102,7 +105,6 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setDate_C(rs.getString(4));
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
-                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
                 
                 Categorie c = new Categorie();
                 c.setIdCategorie(rs.getInt("ID_Categorie"));
@@ -110,14 +112,10 @@ public class ChallengeService implements ChallengeInterface {
                
                 ch.setCategorie(c);
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setPathImage(rs.getString("pathImage"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setLocation(rs.getString("Location"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 ch.setCategorie(c);
                 ch.setCreator(u);
@@ -147,22 +145,17 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setDate_C(rs.getString(4));
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
-                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
                 
                 Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
             
                 ch.setCategorie(c);
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setPathImage(rs.getString("pathImage"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setLocation(rs.getString("Location"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 ch.setCategorie(c);
                 ch.setCreator(u);
@@ -181,7 +174,7 @@ public class ChallengeService implements ChallengeInterface {
                 Challenge challenge = new Challenge();
         try {
             
-            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ID_Challenge = "+id;
+            String req = "SELECT * FROM Challenge ch,Categorie ca,allusers u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ID_Challenge = "+id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -192,22 +185,18 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setDate_C(rs.getString(4));
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
-                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
                 
                 Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
              
                 ch.setCategorie(c);
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setPathImage(rs.getString("pathImage"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setLocation(rs.getString("Location"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
+                
                 
                 ch.setCategorie(c);
                 ch.setCreator(u);
@@ -226,7 +215,7 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ch.Title like '%"+name+"%'";
+            String req = "SELECT * FROM Challenge ch,categorie2 ca,allusers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user and ch.Title like '%"+name+"%'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -238,22 +227,17 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setDate_C(rs.getString(4));
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
-                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
                 
                 Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
                
                 ch.setCategorie(c);
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setPathImage(rs.getString("pathImage"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setLocation(rs.getString("Location"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 ch.setCategorie(c);
                 ch.setCreator(u);
@@ -272,7 +256,7 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge ch,Categorie ca,Utilisateur u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ch.ID_Categorie= ANY(select ID_Categorie from categorie where NameCategorie in "+name+")";
+            String req = "SELECT * FROM Challenge ch,categorie2 ca,allusers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user and ch.ID_Categorie= ANY(select id_category from categorie2 where name_category in "+name+")";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -283,22 +267,17 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setDate_C(rs.getString(4));
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
-                ch.setParticipants(pi.fetchParticipantsByChallenge(rs.getInt(1)));
                 
                 Categorie c = new Categorie();
                 c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                c.setNomCategorie(rs.getString("name_category"));
                
                 ch.setCategorie(c);
                 
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setPathImage(rs.getString("pathImage"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setLocation(rs.getString("Location"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 ch.setCategorie(c);
                 ch.setCreator(u);

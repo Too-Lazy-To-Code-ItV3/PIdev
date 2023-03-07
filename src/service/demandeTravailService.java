@@ -77,12 +77,13 @@ alert.showAndWait();
         return existe;
     }
 //*******************l'ajout de demannde******************************
+     public static boolean verifajoutdemande=false;
 @Override
    public void addDemande(demandeTravail d) {
        AllUsers artiste = new  AllUsers();
         //ajouter l'utilisateur connecter pour recuperer ces informations qui doit etre ajouter par la suite dans la table offretravail
         try {
- String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + d.getIdArtiste() + "\' and Type= 'artiste'";
+ String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + d.getIdArtiste() + "\' and Type= 'Artist'";
             Statement st1 = cnx.createStatement();
             ResultSet rs1 = st1.executeQuery(req2);
             while (rs1.next()) {
@@ -143,7 +144,8 @@ alert.showAndWait();
 
                     alert.showAndWait();
                 System.out.println("demande de travail ajouté");
-                }  }
+                verifajoutdemande=true;
+                } }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -265,7 +267,12 @@ alert.showAndWait();
                     alert.setHeaderText(null);
                     alert.setContentText("veuiller remplir tous les champs");
                     alert.showAndWait();
-                } else
+                } else if (d.getTitreDemande().trim().length() == 0||d.getDescriptionDemande().trim().length() == 0)
+                { Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Attention, il y'a un champs vide");
+                    alert.showAndWait();} else
                 {
                     String req = "update `demandetravail2` set titreDemande=?,descriptionDemande=?,categorieDemande=?,idCategorie=?,pdf=?  where idDemande=?";
                     PreparedStatement pst = cnx.prepareStatement(req);
@@ -362,7 +369,7 @@ alert.showAndWait();
             }
             //ajouter l'utilisateur connecter li howa studio li bch ycontactih*******************************
             try {
-                String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + idStudio + "\' and Type= 'studio'";
+                String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + idStudio + "\' and Type= 'Studio'";
                 Statement st1 = cnx.createStatement();
                 ResultSet rs1 = st1.executeQuery(req2);
                 while (rs1.next()) {
@@ -449,14 +456,14 @@ alert.showAndWait();
                     + "\n"
                     + "                    <h2 style=\"text-align: left;\n"
                     + "							align-items: center; color:white\">\n"
-                    + "                         Le studio " + nomstudio + "  \n descriptionscription bref:" + decriptionstudio + " \n mail " + mail + " \n"
-                    + " `\n est interessé par votre demande: (" + d.getTitreDemande()+ ")"
+                    + "                         Le studio " + nomstudio + "  \n  decriver par  :" + decriptionstudio + " \n  avec le mail " + mail + " \n"
+                    + " `\n  est interessé par votre demande :  (" + d.getTitreDemande()+ ")"
                     + "                    </h2>\n"
                     + "                    <p class=\"data\" style=\"text-align: justify-all;\n"
                     + "							align-items: center;\n"
                     + "							font-size: 15px;\n"
                     + "							padding-bottom: 12px;color:white\">\n"
-                    + "                       Description de de demande: " + d.getDescriptionDemande()+ "\n"
+                    + "                       Description de de demande :  " + d.getDescriptionDemande()+ "\n"
                     + "                    </p>\n"
                     + "\n"
                     + "                </td>\n"

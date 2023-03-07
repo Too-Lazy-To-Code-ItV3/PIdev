@@ -10,7 +10,7 @@ package models;
  * @author achref
  */
 public class Participation {
-    private Utilisateur participant;
+    private AllUsers participant;
     private Challenge challenge;
     private String IMG_Participation;
     private String Description;
@@ -19,7 +19,7 @@ public class Participation {
     public Participation() {
     }
 
-    public Participation(Utilisateur participant, Challenge challenge, String IMG_Participation, String Description, int Id_Participation) {
+    public Participation(AllUsers participant, Challenge challenge, String IMG_Participation, String Description, int Id_Participation) {
         this.participant = participant;
         this.challenge = challenge;
         this.IMG_Participation = IMG_Participation;
@@ -27,11 +27,11 @@ public class Participation {
         this.Id_Participation = Id_Participation;
     }
 
-    public Utilisateur getParticipant() {
+    public AllUsers getParticipant() {
         return participant;
     }
 
-    public void setParticipant(Utilisateur participant) {
+    public void setParticipant(AllUsers participant) {
         this.participant = participant;
     }
 
@@ -71,5 +71,5 @@ public class Participation {
     public String toString() {
         return "Participation{" + "participant=" + participant + ", challenge=" + challenge + ", IMG_Participation=" + IMG_Participation + ", Description=" + Description + ", Id_Participation=" + Id_Participation + '}';
     }
-    	
+
 }

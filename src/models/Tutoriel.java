@@ -13,12 +13,12 @@ public class Tutoriel {
     private int ID_Tutoriel, Niveau;
     private String Title, Description, PathImg;
     private Categorie categorie;
-    private Utilisateur Creator;
+    private AllUsers Creator;
 
     public Tutoriel() {
     }
 
-    public Tutoriel(int ID_Tutoriel, int Niveau, String Title, String Description, String PathImg, Categorie categorie, Utilisateur Creator) {
+    public Tutoriel(int ID_Tutoriel, int Niveau, String Title, String Description, String PathImg, Categorie categorie, AllUsers Creator) {
         this.ID_Tutoriel = ID_Tutoriel;
         this.Niveau = Niveau;
         this.Title = Title;
@@ -76,11 +76,11 @@ public class Tutoriel {
         this.categorie = categorie;
     }
 
-    public Utilisateur getCreator() {
+    public AllUsers getCreator() {
         return Creator;
     }
 
-    public void setCreator(Utilisateur Creator) {
+    public void setCreator(AllUsers Creator) {
         this.Creator = Creator;
     }
 
@@ -88,6 +88,8 @@ public class Tutoriel {
     public String toString() {
         return "Tutoriel{" + "ID_Tutoriel=" + ID_Tutoriel + ", Niveau=" + Niveau + ", Title=" + Title + ", Description=" + Description + ", PathImg=" + PathImg + ", categorie=" + categorie + ", Creator=" + Creator + '}';
     }
+
+    
 
 
 }

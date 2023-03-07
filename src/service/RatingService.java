@@ -36,8 +36,8 @@ public class RatingService implements RatingInterface {
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setDouble(1, rate.getRating());
                 ps.setInt(2, rate.getChallenge().getID_Challenge());
-                ps.setInt(3, rate.getParticipator().getID_user());
-                ps.setInt(4, rate.getRater().getID_user());
+                ps.setInt(3, rate.getParticipator().getID_User());
+                ps.setInt(4, rate.getRater().getID_User());
                 ps.executeUpdate();
                 System.out.println("rate is inserted");
             }
@@ -47,8 +47,8 @@ public class RatingService implements RatingInterface {
                 PreparedStatement ps = cnx.prepareStatement(req);
                 ps.setDouble(1, rate.getRating());
                 ps.setInt(2, rate.getChallenge().getID_Challenge());
-                ps.setInt(3, rate.getParticipator().getID_user());
-                ps.setInt(4, rate.getRater().getID_user());
+                ps.setInt(3, rate.getParticipator().getID_User());
+                ps.setInt(4, rate.getRater().getID_User());
                 ps.executeUpdate();
                 System.out.println("rate is updated");
 
@@ -65,7 +65,7 @@ public class RatingService implements RatingInterface {
         Rate rating = new Rate();
         try {
             
-            String req = "SELECT * FROM rating as rat,challenge as c,utilisateur as p,utilisateur as r where rat.challenge_id="+rate.getChallenge().getID_Challenge()+" and rat.participator_id="+rate.getParticipator().getID_user()+" and rat.rater_id="+rate.getRater().getID_user();
+            String req = "SELECT * FROM rating as rat where rat.challenge_id="+rate.getChallenge().getID_Challenge()+" and rat.participator_id="+rate.getParticipator().getID_User()+" and rat.rater_id="+rate.getRater().getID_User();
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -81,7 +81,7 @@ public class RatingService implements RatingInterface {
     public Double fetchRatingAVG(Rate rate) {
         Rate rating = new Rate();
         try {
-            String req = "SELECT AVG(rating) FROM rating as rat,challenge as c,utilisateur as p where rat.challenge_id="+rate.getChallenge().getID_Challenge()+" and rat.participator_id="+rate.getParticipator().getID_user();
+            String req = "SELECT AVG(rating) FROM rating as rat where rat.challenge_id="+rate.getChallenge().getID_Challenge()+" and rat.participator_id="+rate.getParticipator().getID_User();
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                

@@ -16,11 +16,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
-import models.Categorie;
+
 import models.grosMots;
-import models.offreTravail;
-import static org.bouncycastle.crypto.tls.ContentType.alert;
-import static service.demandeTravailService.verifdemande;
+
 import util.MaConnexion;
 
 /**
@@ -82,7 +80,17 @@ return  grosmots;
     //******************** ajout*********************************************
              public void ajoutGrosMot(grosMots mot) {
         try {
-            
+            if(mot.getMot().trim().length() == 0) { Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Attention, le champs est  vide");}
+            else if(mot.getMot().matches("\\d+")){ 
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                            
+                    alert.setContentText("Attention, entre un mot valide!");}
+            else{
             String req = "INSERT INTO `grosmots2` (`mot`) VALUES (?)";
             PreparedStatement cat = cnx.prepareStatement(req);
             cat.setString(1, mot.getMot());
@@ -93,7 +101,7 @@ return  grosmots;
                     alert.setContentText("gros mot ajouté");
 
                     alert.showAndWait();
-            System.out.println("gros mot ajouté");
+            System.out.println("gros mot ajouté");}
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -106,6 +114,7 @@ return  grosmots;
 
 public void modifierOffre(grosMots mot) {
          try {
+             
              //verifier si l'offre est deja ajouter par le studio conencter ou non en collecton les offre qui l  id studio et titre doffre
              String req3 = "SELECT COUNT(*)FROM `grosmots2` WHERE  mot=\'" + mot.getMot() + "\'";
              Statement st3 = cnx.createStatement();
@@ -120,7 +129,18 @@ public void modifierOffre(grosMots mot) {
                  
                  
                  
-             } else {
+             } else   if(mot.getMot().trim().length() == 0) { Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Attention, le champs est  vide");}
+            else if(mot.getMot().matches("\\d+")){ 
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                            
+                    alert.setContentText("Attention, entre un mot valide!");}
+            else
+             {
                  String req = "update `grosmots2` set mot=? where idMOT=?";
                  PreparedStatement pst = cnx.prepareStatement(req);
                  pst.setString(1, mot.getMot());

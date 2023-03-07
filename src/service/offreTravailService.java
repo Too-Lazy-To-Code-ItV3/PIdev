@@ -75,16 +75,16 @@ public class offreTravailService implements offreTravailInterface {
         }
         return existe;
     }
-
+ public static boolean verifajout=false;
     @Override
     //********************ajouter d'un offre de travail**************************
-    
+   
     public void addOffre(offreTravail o) {
         AllUsers studio = new AllUsers();
         
         //ajouter l'utilisateur connecter pour recuperer ces informations qui doit etre ajouter par la suite dans la table offretravail
         try {
-            String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + o.getIdStudio() + "\' and Type= 'studio'";
+            String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + o.getIdStudio() + "\' and Type= 'Studio'";
             Statement st1 = cnx.createStatement();
             ResultSet rs1 = st1.executeQuery(req2);
             while (rs1.next()) {
@@ -155,6 +155,7 @@ studio.setDescription(rs1.getString(13));
 
                     alert.showAndWait();
                     System.out.println("offre de travail ajouté");
+                    verifajout=true;
                 }
             }
         } catch (SQLException ex) {
@@ -312,7 +313,13 @@ public static boolean verif=false;
                     alert.setHeaderText(null);
                     alert.setContentText("veuiller remplir tous les champs");
                     alert.showAndWait();
-                } else
+                } else if ( o.getTitreOffre().trim().length() == 0|| o.getDescriptionOffre().trim().length() == 0)
+                { Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Attention, il y'a un champs vide");
+                    alert.showAndWait();}
+  else
                 {
             String req = "update `offretravail2` set titreOffre=?,descriptionOffre=?,categorieOffre=?,typeOffre=?,localisationOffre=?,idCategorie=? where idOffre=?";
             PreparedStatement pst = cnx.prepareStatement(req);
@@ -330,8 +337,8 @@ public static boolean verif=false;
             alert.setContentText("Offre de travail modifié  avec succès veuiller refrecher la page");
 
             alert.showAndWait();
-            System.out.println("Offre de travail modifié  avec succès");}
-  verif=true;
+            System.out.println("Offre de travail modifié  avec succès");  verif=true;}
+
             } } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -462,7 +469,7 @@ public static boolean verif=false;
             //ajouter l'utilisateur connecter li howa lartiste li bch ypostuli***************************************************
             try {
 
-                String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + idArtiste + "\' and Type= 'artiste'";
+                String req2 = "SELECT * FROM `allusers` WHERE ID_User= \'" + idArtiste + "\' and Type= 'Artist'";
                 Statement st1 = cnx.createStatement();
                 ResultSet rs1 = st1.executeQuery(req2);
                 while (rs1.next()) {
@@ -607,14 +614,14 @@ alert.show();
                     + "\n"
                     + "                    <h2 style=\"text-align: left;\n"
                     + "							align-items: center; color:white\">\n"
-                    + "                         Le candidature " + nomartiste + "  \n descriptionscription bref:" + decriptionartiste + " \n mail " + mail + " \n"
-                    + " `\n a postuler au poste (" + of.getTitreOffre() + ")"
+                    + "                         Le candidature  "  + nomartiste +  "  \n  decriver par :" + decriptionartiste + " \n   avec le mail: " + mail + " \n"
+                    + " `\n  a postuler au poste  (" + of.getTitreOffre() + ") "
                     + "                    </h2>\n"
                     + "                    <p class=\"data\" style=\"text-align: justify-all;\n"
                     + "							align-items: center;\n"
                     + "							font-size: 15px;\n"
                     + "							padding-bottom: 12px;color:white\">\n"
-                    + "                       Description de l'offre: " + of.getDescriptionOffre() + "\n"
+                    + "                       Description de l'offre:  " + of.getDescriptionOffre() + "\n"
                     + "                    </p>\n"
                     + "\n"
                     + "                </td>\n"

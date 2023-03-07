@@ -10,33 +10,33 @@ package models;
  * @author achref
  */
 public class Rate {
-    private Utilisateur rater,participator;
+    private AllUsers rater,participator;
     private Challenge challenge;
     private Double rating;
 
     public Rate() {
     }
 
-    public Rate(Utilisateur rater, Utilisateur participator, Challenge challenge, Double rating) {
+    public Rate(AllUsers rater, AllUsers participator, Challenge challenge, Double rating) {
         this.rater = rater;
         this.participator = participator;
         this.challenge = challenge;
         this.rating = rating;
     }
 
-    public Utilisateur getRater() {
+    public AllUsers getRater() {
         return rater;
     }
 
-    public void setRater(Utilisateur rater) {
+    public void setRater(AllUsers rater) {
         this.rater = rater;
     }
 
-    public Utilisateur getParticipator() {
+    public AllUsers getParticipator() {
         return participator;
     }
 
-    public void setParticipator(Utilisateur participator) {
+    public void setParticipator(AllUsers participator) {
         this.participator = participator;
     }
 
@@ -58,8 +58,10 @@ public class Rate {
 
     @Override
     public String toString() {
-        return "Rating{" + "rater=" + rater + ", participator=" + participator + ", challenge=" + challenge + ", rating=" + rating + '}';
+        return "Rate{" + "rater=" + rater + ", participator=" + participator + ", challenge=" + challenge + ", rating=" + rating + '}';
     }
+
+
     
 }
 

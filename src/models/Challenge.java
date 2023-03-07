@@ -14,14 +14,14 @@ import java.util.List;
 public class Challenge {
     private int ID_Challenge,niveau;
     private String Title ,Description, Date_C, PathIMG;
-    private List<Utilisateur> Participants;
+    private List<AllUsers> Participants;
     private Categorie categorie;
-    private Utilisateur Creator;
+    private AllUsers Creator;
 
     public Challenge() {
     }
 
-    public Challenge(int ID_Challenge, int niveau, String Title, String Description, String Date_C, String PathIMG, List<Utilisateur> Participants, Categorie catgorie, Utilisateur Creator) {
+    public Challenge(int ID_Challenge, int niveau, String Title, String Description, String Date_C, String PathIMG, List<AllUsers> Participants, Categorie categorie, AllUsers Creator) {
         this.ID_Challenge = ID_Challenge;
         this.niveau = niveau;
         this.Title = Title;
@@ -29,7 +29,7 @@ public class Challenge {
         this.Date_C = Date_C;
         this.PathIMG = PathIMG;
         this.Participants = Participants;
-        this.categorie = catgorie;
+        this.categorie = categorie;
         this.Creator = Creator;
     }
 
@@ -81,11 +81,11 @@ public class Challenge {
         this.PathIMG = PathIMG;
     }
 
-    public List<Utilisateur> getParticipants() {
+    public List<AllUsers> getParticipants() {
         return Participants;
     }
 
-    public void setParticipants(List<Utilisateur> Participants) {
+    public void setParticipants(List<AllUsers> Participants) {
         this.Participants = Participants;
     }
 
@@ -93,26 +93,21 @@ public class Challenge {
         return categorie;
     }
 
-    public void setCategorie(Categorie catgorie) {
-        this.categorie = catgorie;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
-    public Utilisateur getCreator() {
+    public AllUsers getCreator() {
         return Creator;
     }
 
-    public void setCreator(Utilisateur Creator) {
+    public void setCreator(AllUsers Creator) {
         this.Creator = Creator;
     }
 
     @Override
     public String toString() {
-        return "Challenge{" + "ID_Challenge=" + ID_Challenge + ", niveau=" + niveau + ", Title=" + Title + ", Description=" + Description + ", Date_C=" + Date_C + ", PathIMG=" + PathIMG + ", Participants=" + Participants + ", catgorie=" + categorie + ", Creator=" + Creator + '}';
+        return "Challenge{" + "ID_Challenge=" + ID_Challenge + ", niveau=" + niveau + ", Title=" + Title + ", Description=" + Description + ", Date_C=" + Date_C + ", PathIMG=" + PathIMG + ", Participants=" + Participants + ", categorie=" + categorie + ", Creator=" + Creator + '}';
     }
-
-    public int setCategorie() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 
 }

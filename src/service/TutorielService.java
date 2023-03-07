@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.AllUsers;
 import models.Categorie;
 import models.Utilisateur;
 import util.MaConnexion;
@@ -42,7 +43,7 @@ public class TutorielService implements TutorielInterface {
             ps.setString(3, t.getDescription());
             ps.setString(4, t.getPathImg());
             ps.setInt(5, t.getCategorie().getIdCategorie());
-            ps.setInt(6, t.getCreator().getID_user());
+            ps.setInt(6, t.getCreator().getID_User());
             ps.executeUpdate();
             System.out.println("Tutoriel Added Successfully!");
             
@@ -87,13 +88,11 @@ public class TutorielService implements TutorielInterface {
         List<Tutoriel> tutoriels = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM tutoriel as t,categorie as c,utilisateur as u where t.ID_Categorie=c.ID_Categorie and t.ID_Artist=u.ID_user";
+            String req = "SELECT * FROM tutoriel as t,categorie2 as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
                 Tutoriel t = new Tutoriel();
-                Categorie c = new Categorie();
-                Utilisateur u = new Utilisateur();
 
                 t.setID_Tutoriel(rs.getInt(1));
 
@@ -103,15 +102,14 @@ public class TutorielService implements TutorielInterface {
                 t.setDescription(rs.getString("Description"));
                 t.setPathImg(rs.getString("PathImg"));
                 
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                Categorie c = new Categorie();
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
             
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setLocation(rs.getString("Location"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setEmail(rs.getString("Email"));
+                AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 t.setCreator(u);
                 t.setCategorie(c);
@@ -129,13 +127,12 @@ public class TutorielService implements TutorielInterface {
         List<Tutoriel> tutoriels = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM tutoriel as t,categorie as c,utilisateur as u where t.ID_Categorie=c.ID_Categorie and t.ID_Artist=u.ID_user and u.nom = '"+NomArtist+"'";
+            String req = "SELECT * FROM tutoriel as t,categorie2 as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User and u.nom = '"+NomArtist+"'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
                 Tutoriel t = new Tutoriel();
                 Categorie c = new Categorie();
-                Utilisateur u = new Utilisateur();
 
                 t.setID_Tutoriel(rs.getInt(1));
 
@@ -144,16 +141,15 @@ public class TutorielService implements TutorielInterface {
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
                 t.setPathImg(rs.getString("PathImg"));
+
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
                 
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                 AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setLocation(rs.getString("Location"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setEmail(rs.getString("Email"));
                 
                 t.setCreator(u);
                 t.setCategorie(c);
@@ -171,13 +167,12 @@ public class TutorielService implements TutorielInterface {
         List<Tutoriel> tutoriels = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM tutoriel as t,categorie as c,utilisateur as u where t.ID_Categorie=c.ID_Categorie and t.ID_Artist=u.ID_user and t.Title like '%"+title+"%'";
+            String req = "SELECT * FROM tutoriel as t,categorie2 as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User and t.Title like '%"+title+"%'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
                 Tutoriel t = new Tutoriel();
                 Categorie c = new Categorie();
-                Utilisateur u = new Utilisateur();
 
                 t.setID_Tutoriel(rs.getInt(1));
 
@@ -187,16 +182,15 @@ public class TutorielService implements TutorielInterface {
                 t.setDescription(rs.getString("Description"));
                 t.setPathImg(rs.getString("PathImg"));
                 
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
                
                         
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setLocation(rs.getString("Location"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setEmail(rs.getString("Email"));
+                 AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
+                
                 
                 t.setCreator(u);
                 t.setCategorie(c);
@@ -214,12 +208,11 @@ public class TutorielService implements TutorielInterface {
         Tutoriel t = new Tutoriel();
         try {
             
-            String req = "SELECT * FROM tutoriel as t,categorie as c,utilisateur as u where t.ID_Categorie=c.ID_Categorie and t.ID_Artist=u.ID_user and t.ID_Tutoriel = "+ID_Tutoriel;
+            String req = "SELECT * FROM tutoriel as t,categorie2 as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User and t.ID_Tutoriel = "+ID_Tutoriel;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
                 Categorie c = new Categorie();
-                Utilisateur u = new Utilisateur();
 
                 t.setID_Tutoriel(rs.getInt("ID_Tutoriel"));
                 t.setTitle(rs.getString("Title"));
@@ -227,17 +220,14 @@ public class TutorielService implements TutorielInterface {
                 t.setDescription(rs.getString("Description"));
                 t.setPathImg(rs.getString("PathImg"));
                 
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
               
                         
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setLocation(rs.getString("Location"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setEmail(rs.getString("Email"));
-                u.setPathImage(rs.getString("pathImage"));
+                 AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 t.setCreator(u);
                 t.setCategorie(c);
@@ -254,14 +244,13 @@ public class TutorielService implements TutorielInterface {
     public List<Tutoriel> fetchTutorielsByCategorie(int ID_Categorie ){
         List<Tutoriel> tutoriels = new ArrayList<>();
         try {
-            String req = "SELECT * FROM tutoriel as t,categorie as c,utilisateur as u where t.ID_Categorie=c.ID_Categorie and t.ID_Artist=u.ID_user and t.ID_Categorie = "+ID_Categorie;
+            String req = "SELECT * FROM tutoriel as t,categorie2 as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User and t.ID_Categorie = "+ID_Categorie;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
                 Tutoriel t = new Tutoriel();
                 Categorie c = new Categorie();
-                Utilisateur u = new Utilisateur();
-
+                
                 t.setID_Tutoriel(rs.getInt(1));
 
                 t.setID_Tutoriel(rs.getInt("ID_Tutoriel"));
@@ -269,16 +258,13 @@ public class TutorielService implements TutorielInterface {
                 t.setNiveau(rs.getInt("Niveau"));
                 t.setDescription(rs.getString("Description"));
                 
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
-                
-                        
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setLocation(rs.getString("Location"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                u.setEmail(rs.getString("Email"));
+                c.setIdCategorie(rs.getInt("id_category"));
+                c.setNomCategorie(rs.getString("name_category"));
+                                       
+                 AllUsers u = new AllUsers();
+                u.setName(rs.getString("Name"));
+                u.setID_User(rs.getInt("ID_user"));
+                u.setType(rs.getString("Type"));
                 
                 t.setCreator(u);
                 t.setCategorie(c);
