@@ -337,7 +337,8 @@ public static boolean verif=false;
             alert.setContentText("Offre de travail modifié  avec succès veuiller refrecher la page");
 
             alert.showAndWait();
-            System.out.println("Offre de travail modifié  avec succès");  verif=true;}
+             verif=true;
+            System.out.println("Offre de travail modifié  avec succès"); }
 
             } } catch (SQLException ex) {
             System.out.println(ex.getMessage());
