@@ -3,33 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/javaapplication1/NewFXMain.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_VideoController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_TutorielController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/ChallengeInterface.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_TutorielController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/TutorielInterface.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_NavBar.fxml</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_ChallengeController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FetchChallengesController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/RatingInterface.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/Models/Rate.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/interfaces/ParticipationInterface.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ADD_ChallengeController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/RatingService.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Modify_VideoController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/Item2Controller.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/CategorieService.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_FetchParticipationsController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_ParticipationItemController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/ItemController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Fetch_TutorielController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/TutorielService.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/FXML_Fetch_TutorielsController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/VideoItemController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/ChallengeService.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/gui/TutorielItemController.java</file>
-            <file>file:/C:/Users/achref/Documents/NetBeansProjects/JavaApplication1/src/services/ParticipationService.java</file>
+            <file>file:/C:/Users/achref/Desktop/JavaApplication12%20-%20Copie%20(2)/src/GUI/FXML_AfficherPanierController.java</file>
+            <file>file:/C:/Users/achref/Desktop/JavaApplication12%20-%20Copie%20(2)/src/GUI/FXML_ADD_VideoController.java</file>
+            <file>file:/C:/Users/achref/Desktop/JavaApplication12%20-%20Copie%20(2)/src/GUI/FXML_ModifierProduitController.java</file>
+            <file>file:/C:/Users/achref/Desktop/JavaApplication12%20-%20Copie%20(2)/src/GUI/FXML_AjouterProduitController.java</file>
+            <file>file:/C:/Users/achref/Desktop/JavaApplication12%20-%20Copie%20(2)/src/service/ProduitService.java</file>
         </group>
     </open-files>
 </project-private>
