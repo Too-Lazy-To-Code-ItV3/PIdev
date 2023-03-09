@@ -24,7 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import models.Categorie;
+import models.Category;
 import models.offreTravail;
 import service.CategoryService;
 import service.offreTravailService;
@@ -42,7 +42,7 @@ public class ModifierOffreController implements Initializable {
     @FXML
     private TextField descriptionOffre;
     @FXML
-    private ChoiceBox<Categorie> listeCategorie;
+    private ChoiceBox<Category> listeCategorie;
     @FXML
     private ChoiceBox<String> listetypes;
     @FXML
@@ -90,7 +90,7 @@ listeCategorie.setValue(c.fetchCategoryByNom("2d art"));
     @FXML
     private void modifierOffre(ActionEvent event) {
           int id= Integer.parseInt(modifier.getId());
-           Categorie c = new Categorie(); 
+           Category c = new Category(); 
           if(titreOffre.getText().matches("\\d+")) {
     Alert alert = new Alert(Alert.AlertType.ERROR, "veuiller entre un titre valide");
         alert.showAndWait();}
@@ -109,7 +109,7 @@ else{
                   of.setTitreOffre(titreOffre.getText());
                   
                   CategoryService cs = new CategoryService();
-                  c= cs.fetchCategoryByNom(listeCategorie.getValue().getNomCategorie());
+                  c= cs.fetchCategoryByNom(listeCategorie.getValue().getName_category());
                   of.setDescriptionOffre(descriptionOffre.getText());
                   of.setCategorieOffre( c);
                   of.setLocalisationOffre(villeliste.getValue());

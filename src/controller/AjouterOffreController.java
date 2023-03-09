@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import models.Categorie;
+import models.Category;
 import models.offreTravail;
 import service.CategoryService;
 import service.offreTravailService;
@@ -31,7 +31,7 @@ public class AjouterOffreController implements Initializable {
     offreTravail of = new offreTravail();
 CategoryService c = new CategoryService();
     @FXML
-    private ChoiceBox<Categorie> listeCategorie= new ChoiceBox<>();;
+    private ChoiceBox<Category> listeCategorie= new ChoiceBox<>();;
     @FXML
     private ChoiceBox<String> listetypes;
     @FXML

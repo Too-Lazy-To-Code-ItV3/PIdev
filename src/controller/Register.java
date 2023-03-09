@@ -1,8 +1,10 @@
 package controller;
 
-
 import models.AllUsers;
 import service.AllUsersService;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,16 +22,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import service.PanierService;
 
 public class Register {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private DatePicker BirthdayTF;
@@ -47,7 +49,7 @@ public class Register {
     private TextField NameTF;
 
     @FXML
-    private TextField NationalityTF;
+    private ChoiceBox<String> NationalityTF;
 
     @FXML
     private TextField NicknameTF;
@@ -56,7 +58,7 @@ public class Register {
     private PasswordField PasswordTF;
 
     @FXML
-    private TextField TypeTF;
+    private ComboBox<String> TypeTF;
 
     @FXML
     private TextField BioTF;
@@ -71,8 +73,7 @@ public class Register {
 
     static File file;
     static File file1;
-
-
+    PanierService panier = new PanierService();
     AllUsersService as = new AllUsersService();
 
     @FXML
@@ -90,7 +91,6 @@ public class Register {
                 .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
         //Show open file dialog
         file = fileChooser.showOpenDialog(null);
-
 
     }
 
@@ -111,9 +111,8 @@ public class Register {
 
     }
 
-
     @FXML
-    void Register(ActionEvent event) throws IOException {
+    void Register(ActionEvent event) throws IOException, SQLException {
         AllUsers u = new AllUsers();
 
         // Check and set name
@@ -185,9 +184,8 @@ public class Register {
         }
         u.setPassword(password);
 
-
         // Check and set nationality
-        String nationality = NationalityTF.getText().trim();
+        String nationality = NationalityTF.getValue().trim();
         if (nationality.isEmpty() || !nationality.matches("^[a-zA-Z ]+$")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Nationality");
@@ -199,7 +197,7 @@ public class Register {
         u.setNationality(nationality);
 
         // Check and set user type
-        String type = TypeTF.getText().trim();
+        String type = TypeTF.getValue().toString().trim();
         if (type.isEmpty() || !type.matches("^[a-zA-Z ]+$")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid User Type");
@@ -215,14 +213,13 @@ public class Register {
             try {
                 // Copy the file to the XAMPP htdocs directory
                 Path sourcePath = file.toPath();
-                Path targetPath = Paths.get("C:/xampp2/htdocs/uploads/" + fileName);
+                Path targetPath = Paths.get("C:/xampp/htdocs/uploads/" + fileName);
                 Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
                 u.setBackground(fileName);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -236,7 +233,7 @@ public class Register {
             try {
                 // Copy the file to the XAMPP htdocs directory
                 Path sourcePath = file1.toPath();
-                Path targetPath = Paths.get("C:/xampp2/htdocs/uploads/" + fileName1);
+                Path targetPath = Paths.get("C:/xampp/htdocs/uploads/" + fileName1);
                 Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 
             } catch (IOException e) {
@@ -253,8 +250,8 @@ public class Register {
         u.setBio(BioTF.getText());
         u.setDescription(DescriptionTF.getText());
         as.CreateAU(u);
-        //as.AddAu(u);
-
+        System.out.println(as.fetchAUbyEmail(EmailTF.getText()));
+         panier.ajouterPanier(as.fetchAUbyEmail(EmailTF.getText()).getID_User());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Login.fxml"));
         Parent uuView = loader.load();
         Scene scene1 = new Scene(uuView, 1380, 700);
@@ -279,8 +276,6 @@ public class Register {
 
 
     }*/
-
-    @FXML
     void initialize() {
         assert BirthdayTF != null : "fx:id=\"BirthdayTF\" was not injected: check your FXML file 'Register.fxml'.";
         assert CPasswordTF != null : "fx:id=\"CPasswordTF\" was not injected: check your FXML file 'Register.fxml'.";
@@ -292,7 +287,9 @@ public class Register {
         assert PasswordTF != null : "fx:id=\"PasswordTF\" was not injected: check your FXML file 'Register.fxml'.";
         assert TypeTF != null : "fx:id=\"TypeTF\" was not injected: check your FXML file 'Register.fxml'.";
 
+        String[] countries = {"tunisie", "Oman", "Koweït", "Algérie", "États-Unis", "Chine", "Maroc", "Russie", "Japon", "Iran", "Iraq", "Irlande", "Italie", "Arabie Saoudite", "Argentine", "France", "Canada", "Autres"};
+        // Set the items of the combo box to the observable list
+        NationalityTF.getItems().addAll(countries);
+
     }
 }
-
-

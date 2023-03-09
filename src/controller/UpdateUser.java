@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import models.AllUsers;
 import service.AllUsersService;
 import javafx.event.ActionEvent;
@@ -11,14 +12,17 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import models.Logged;
 
-public class UpdateUser {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+public class UpdateUser implements Initializable {
 
     @FXML
     private DatePicker BirthdayTF;
@@ -46,12 +50,17 @@ public class UpdateUser {
 
     @FXML
     private TextField TypeTF;
-    private int userId;
+    
+   AllUsers user= Logged.get_instance().getUser();
 
-    public void setUserId(int userId) throws SQLException {
+   
 
-        this.userId = userId;
-        AllUsers user = as.fetchAUbyID(userId);
+    AllUsersService as = new AllUsersService();
+
+   
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(user);
         NameTF.setText(user.getName());
         LastNameTF.setText(user.getLast_Name());
         EmailTF.setText(user.getEmail());
@@ -61,30 +70,29 @@ public class UpdateUser {
         CPasswordTF.setText(user.getPassword());
         BirthdayTF.setValue(user.getBirthday());
         TypeTF.setText(user.getType());
-    }
-
-    AllUsersService as = new AllUsersService();
-
-    @FXML
-    void initialize()  {
 
     }
 
     @FXML
-    void Update(ActionEvent event) throws SQLException {
-        AllUsers u = new AllUsers();
-        u.setName(NameTF.getText());
-        u.setLast_Name(LastNameTF.getText());
-        u.setEmail(EmailTF.getText());
-        u.setBirthday(BirthdayTF.getValue());
-        u.setPassword(PasswordTF.getText());
-        u.setNationality(NationalityTF.getText());
-        u.setType(TypeTF.getText());
-        u.setNickname(NicknameTF.getText());
-        as.ModifyAu(u,userId);
+    void Update(ActionEvent event) throws SQLException, IOException {
 
+     
+            user.setName(NameTF.getText());
+            user.setLast_Name(LastNameTF.getText());
+            user.setEmail(EmailTF.getText());
+            user.setBirthday(BirthdayTF.getValue());
+            user.setPassword(PasswordTF.getText());
+            user.setNationality(NationalityTF.getText());
+            user.setType(TypeTF.getText());
+            user.setNickname(NicknameTF.getText());
+            as.ModifyAu(user,user.getID_User());
+             Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+     
 
     }
-
 
 }

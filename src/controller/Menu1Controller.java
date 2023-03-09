@@ -34,6 +34,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
 import service.demandeTravailService;
@@ -76,7 +77,7 @@ public Pane CRUD;
              popups.setY(90);
             
              //insert elements in popup 
-              List<String> f = new ArrayList<>(off.affichernotifications(2));
+              List<String> f = new ArrayList<>(off.affichernotifications(Logged.get_instance().getUser().getID_User()));
               //getting listview style
                ListView<String> listView = new ListView<>();
                listView.getStylesheets().add("/css/menustyle.css");

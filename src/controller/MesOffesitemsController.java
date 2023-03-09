@@ -82,7 +82,7 @@ public class MesOffesitemsController implements Initializable {
        locOffre.setText(f.getLocalisationOffre());
        dateAjout.setText(f.getDateAjoutOffre().toString());
        decription.setText(f.getDescriptionOffre());
-       categorie.setText(f.getCategorieOffre().getNomCategorie());
+       categorie.setText(f.getCategorieOffre().getName_category());
        supprimerOffre.setId(Integer.toString(f.getIdOffre()));   
  editoffre.setId(Integer.toString(f.getIdOffre())); 
     AllUsers user = Logged.get_instance().getUser();

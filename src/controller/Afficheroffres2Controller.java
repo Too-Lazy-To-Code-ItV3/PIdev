@@ -64,7 +64,7 @@ public class Afficheroffres2Controller implements Initializable {
        locOffre.setText(f.getLocalisationOffre());
        dateAjout.setText(f.getDateAjoutOffre().toString());
        description.setText(f.getDescriptionOffre());
-          categorie.setText(f.getCategorieOffre().getNomCategorie());
+          categorie.setText(f.getCategorieOffre().getName_category());
           
           AllUsersService u = new  AllUsersService();
            AllUsers user = u.fetchAUbyNickname(f.getNomStudio());

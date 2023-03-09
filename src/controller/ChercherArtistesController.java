@@ -35,7 +35,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import models.Categorie;
+import models.Category;
 import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
@@ -53,7 +53,7 @@ public class ChercherArtistesController implements Initializable {
     demandeTravailService dm = new  demandeTravailService();
     private List<demandeTravail> demandes=new ArrayList<>(dm.fetchDemandesPerDate());
          CategoryService categorie=new  CategoryService();
-      private List<Categorie> categories=new ArrayList<>(categorie.fetchCategories());
+      private List<Category> categories=new ArrayList<>(categorie.fetchCategories());
     @FXML
     private TextField resultatsearch;
     @FXML
@@ -112,11 +112,11 @@ private AutoCompletionBinding<String> autocomplete;
            }
        }
 
-         for(Categorie c: categories)
+         for(Category c: categories)
          {  
              checkboxcateg=new CheckBox();
-             checkboxcateg.setText(c.getNomCategorie());
-             checkboxcateg.setId(Integer.toString(c.getIdCategorie()));
+             checkboxcateg.setText(c.getName_category());
+             checkboxcateg.setId(Integer.toString(c.getId_Category()));
            
         vbox.getChildren().add(checkboxcateg);
             

@@ -18,21 +18,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import models.Logged;
 
-  
 public class Login {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField EmailOrUsername;
 
     @FXML
     private PasswordField PASSWORD;
-
 
     AllUsersService as = new AllUsersService();
 
@@ -77,10 +69,8 @@ public class Login {
         stage.setScene(scene);
         stage.show();
 
-
     }
 
-    @FXML
     void initialize() {
         assert EmailOrUsername != null : "fx:id=\"EmailOrUsername\" was not injected: check your FXML file 'Login.fxml'.";
         assert PASSWORD != null : "fx:id=\"PASSWORD\" was not injected: check your FXML file 'Login.fxml'.";
@@ -88,5 +78,3 @@ public class Login {
     }
 
 }
-
-

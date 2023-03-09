@@ -64,13 +64,13 @@ public class DesignresulterRechercheController implements Initializable {
        titredemande.setText(d.getTitreDemande());
       description.setText(d.getDescriptionDemande());
        nomartiste.setText(d.getNomArtiste());
-      categorie.setText(d.getCategorieDemande().getNomCategorie());
+      categorie.setText(d.getCategorieDemande().getName_category());
         mypdf=d.getPdf();
       contacter.setId(Integer.toString(d.getIdDemande()));   
       int id = d.getIdArtiste();
           AllUsersService u = new  AllUsersService();
        AllUsers user = u.fetchAUbyNickname(d.getNomArtiste());
-            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+            String imagePath = "C:/xampp/htdocs/uploads/"+user.getAvatar();
             try (InputStream avatarStream = new FileInputStream(imagePath)) {
                 Image avatarImage = new Image(avatarStream);
                 photo.setFill(new ImagePattern(avatarImage));
@@ -97,7 +97,7 @@ alert.show();
 
     @FXML
     private void affichercv(ActionEvent event) {
-         String pdfPath = "C:/xampp2/htdocs/uploads/"+mypdf;
+         String pdfPath = "C:/xampp/htdocs/uploads/"+mypdf;
          System.out.print(mypdf+"nour");
              File file = new File(pdfPath);
 
