@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="331.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIgrotmot.AffichermotitemsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="331.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIposts.AffichercategorydetailsController">
    <children>
       <HBox alignment="BOTTOM_LEFT" prefHeight="92.0" prefWidth="299.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
          <children>
-            <VBox prefHeight="92.0" prefWidth="250.0" stylesheets="@../css/menustyle.css">
+            <VBox prefHeight="92.0" prefWidth="250.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="126.0" style="-fx-border-color: #881f94;" styleClass="transparent" stylesheets="@../css/menustyle.css">
                      <graphic>
-                        <Label fx:id="titreOffre" text="mot" textFill="#881f94">
+                        <Label fx:id="titrecategory" text="Category" textFill="#881f94">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -31,11 +31,11 @@
             </VBox>
             <VBox prefHeight="92.0" prefWidth="151.0">
                <children>
-                  <Button fx:id="modifier" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="74.0" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="Modifier" textFill="WHITE">
+                  <Button fx:id="modifier" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="77.0" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="modifier" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" prefHeight="19.0" prefWidth="73.0" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="Supprimer" textFill="WHITE" />
+                  <Button fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" prefHeight="25.0" prefWidth="81.0" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="supprimer" textFill="WHITE" />
                </children>
             </VBox>
          </children>

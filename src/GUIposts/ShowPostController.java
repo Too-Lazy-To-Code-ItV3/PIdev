@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import Entity.Post;
-import Entity.PostLike;
+import models.Post;
+import models.PostLike;
 import Service.PostService;
 import java.io.File;
 import java.io.IOException;

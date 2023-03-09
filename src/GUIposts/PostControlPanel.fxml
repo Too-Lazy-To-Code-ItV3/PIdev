@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="700" prefWidth="1380" stylesheets="@../Css/PostControlPanel.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIposts.PostControlPanelController">
-    <children>
+   <children>
         <VBox alignment="CENTER" layoutX="0.0" prefHeight="700.0" prefWidth="379.0" spacing="20.0" style="-fx-background-color: #1C233D;">
            <Label alignment="CENTER" prefHeight="35.0" prefWidth="720.0" text="Post Control Panel" textFill="WHITE">
                <font>
@@ -17,11 +17,6 @@
                </font>
            </Label>
             <Button mnemonicParsing="false" onAction="#viewAddPostPage" prefHeight="40.0" prefWidth="190.0" text="Add Post">
-                <font>
-                    <Font name="System Bold" size="18.0" />
-                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#viewModifyPostPage" prefHeight="40.0" prefWidth="190.0" text="Modify Post">
                 <font>
                     <Font name="System Bold" size="18.0" />
                 </font>
@@ -36,6 +31,11 @@
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Button>
+         <Button mnemonicParsing="false" onAction="#viewExplorePostPage" prefHeight="40.0" prefWidth="190.0" text="Explore">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Button>
         </VBox>
       <ImageView fitHeight="712.0" fitWidth="1005.0" layoutX="377.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
          <image>

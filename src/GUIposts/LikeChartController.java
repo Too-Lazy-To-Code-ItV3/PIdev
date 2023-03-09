@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import Entity.PostLike;
+import models.PostLike;
 import Service.PostService;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;

@@ -37,25 +37,14 @@ public class CategoryControlPanelController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void viewCategoriesPage(ActionEvent event) throws IOException {
+    public void viewCategory(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("ViewCategories.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("affichercategory.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    public void viewUpdateCategoriesPage(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("UpdateCategory.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void viewDeleteCategoriesPage(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("DeleteCategory.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+    
+    
+
 }

@@ -1,6 +1,6 @@
 package GUIposts;
 
-import Entity.Category;
+import models.Category;
 import interfaces.CategoryInterface;
 import service.CategoryService;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import models.Categorie;
+
 
 public class AddCategoryController implements Initializable {
     //var
@@ -50,7 +50,7 @@ public class AddCategoryController implements Initializable {
     }
         @FXML
      public void handleReturn(ActionEvent event) throws IOException {
-     Parent root = FXMLLoader.load(getClass().getResource("/GUIposts/CategoryControlPanel.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/GUI/Dashboard.fxml"));
      Scene scene = new Scene(root);
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
      stage.setScene(scene);

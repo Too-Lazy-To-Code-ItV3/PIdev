@@ -33,7 +33,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.Categorie;
+import models.Category;
 import models.demandeTravail;
 import models.grosMots;
 import models.offreTravail;

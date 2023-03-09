@@ -49,16 +49,6 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/modifyicon.png" />
-                     </image>
-                  </ImageView>
-                  <Button mnemonicParsing="false" onAction="#viewModifyPostPage" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: C10C99;" text="Modify Post" textFill="WHITE" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="300.0" spacing="10.0">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../Image/deleteicon.png" />
                      </image>
                   </ImageView>
@@ -82,7 +72,7 @@
                         <Image url="@../Image/Exploreicon.jpg" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" style="-fx-background-color: C10C99;" text="Explore" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#viewExplore" prefHeight="26.0" prefWidth="113.0" style="-fx-background-color: C10C99;" text="Explore" textFill="WHITE" />
                </children>
             </HBox>
          </children>

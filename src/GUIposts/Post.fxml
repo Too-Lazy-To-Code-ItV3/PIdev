@@ -30,11 +30,6 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-        <Label layoutX="910.0" layoutY="223.0" prefHeight="35.0" prefWidth="150.0" stylesheets="@../Css/Label_TextField.css" text="User Id:" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-        <TextField fx:id="userIdField" layoutX="1173.0" layoutY="210.0" stylesheets="@../Css/Label_TextField.css" />
         <TextField fx:id="titleField" layoutX="1173.0" layoutY="271.0" stylesheets="@../Css/Label_TextField.css" />
         <TextField fx:id="descriptionField" layoutX="1173.0" layoutY="328.0" stylesheets="@../Css/Label_TextField.css" />
         <TextField fx:id="postTypeField" layoutX="1173.0" layoutY="459.0" promptText="Blog / Portfolio" stylesheets="@../Css/Label_TextField.css" />

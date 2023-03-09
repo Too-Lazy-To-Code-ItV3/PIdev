@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane"  stylesheets="@../Css/PostControlPanel.css" prefHeight="700.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIposts.CategoryControlPanelController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1380.0" stylesheets="@../Css/PostControlPanel.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIposts.CategoryControlPanelController">
    <children>
       
       <ImageView fitHeight="723.0" fitWidth="1005.0" layoutX="387.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
@@ -28,17 +28,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewUpdateCategoriesPage" prefHeight="42.0" prefWidth="190.0" text="Update Category">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewDeleteCategoriesPage" prefHeight="47.0" prefWidth="191.0" text="Delete Category">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCategoriesPage" prefHeight="54.0" prefWidth="190.0" text="View Category">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#viewCategory" prefHeight="54.0" prefWidth="190.0" text="View Category">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import models.Categorie;
+import models.Category;
 import models.offreTravail;
 import service.CategoryService;
 import service.offreTravailService;

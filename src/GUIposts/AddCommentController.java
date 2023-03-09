@@ -1,8 +1,8 @@
 package GUIposts;
 
 
-import Entity.Comment;
-import Entity.Post;
+import models.Comment;
+import models.Post;
 import Interfaces.CommentInterface;
 import Interfaces.PostInterface;
 import Service.CommentService;
@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;/*
 import com.swabunga.spell.engine.SpellDictionaryHashMap;
 import com.swabunga.spell.event.SpellChecker;
 import com.swabunga.spell.event.StringWordTokenizer;*/
+import models.Logged;
 
 public class AddCommentController implements Initializable {
 
@@ -75,7 +76,8 @@ public class AddCommentController implements Initializable {
         // Create a new comment with the data from the form
         comment = new Comment();
         comment.setComment(commentTextField.getText());
-        comment.setId_user(Integer.parseInt(userIdTextField.getText()));
+        //comment.setId_user(Integer.parseInt(userIdTextField.getText()));
+         comment.setId_user(Logged.get_instance().getUser().getID_User());
 
         // Get the selected post from the combo box
         Post selectedPost = postsComboBox.getValue();

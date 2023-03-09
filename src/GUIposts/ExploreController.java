@@ -1,11 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package GUIposts;
 
 import models.Post;
 import models.PostLike;
-import Interfaces.PostInterface;
 import Service.PostService;
-import com.stripe.param.TopupListParams.Amount;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,10 +24,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,40 +33,43 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import models.Logged;
 
-public class ViewBlogController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author amine
+ */
+public class ExploreController implements Initializable {
 @FXML
     private VBox tfpostlist;
     private PostService postService;
     private Label lab;
     private Label titleTextLabel; // new instance variable for the title text label
     
+    private TextField PostTitle;
+    
     private Post post;
 
     public void initData(Post post) {
         this.post = post;
-        //PostTitle.setText(post.getTitle());
+        PostTitle.setText(post.getTitle());
         
         
     }
     
 
-    public ViewBlogController() {
+    public ExploreController() {
         postService = new PostService();
     }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      // int currentUserId = Logged.get_instance().getUser().getID_User();
-    List<Post> posts = postService.fetchPostBlogPostDetails();
+          // int currentUserId = Logged.get_instance().getUser().getID_User();
+    List<Post> posts = postService.fetchPortfolioPostDetails();
     for (Post post : posts) {
         VBox postBox = new VBox();
         postBox.setStyle("-fx-border-color: black; -fx-padding: 5px;");
-        Label titleLabel = new Label("Titre: " + post.getTitle());
+        Label titleLabel = new Label("Title: " + post.getTitle());
         Label descriptionLabel = new Label("Description: " + post.getDescription_p());
         // Load the image from the file system based on the file path stored in the database
         String mediaPath = post.getMedia();
@@ -105,7 +108,7 @@ public class ViewBlogController implements Initializable {
         Label likesLabel = new Label("Likes: " + numberOfLikes); // create a Label object to display the number of likes
         postBox.getChildren().add(likesLabel);
         likesLabel.setStyle("-fx-text-fill: white;");
-            Button addCommentButton = new Button("Ajouter commentaire");
+            Button addCommentButton = new Button("Add Comment");
             
             addCommentButton.setLayoutX(1039.0);
             addCommentButton.setLayoutY(612.0);
@@ -135,7 +138,7 @@ public class ViewBlogController implements Initializable {
             
             
 
-            Button button1 = new Button("Voir les commentaires");
+            Button button1 = new Button("View Comments");
             
             button1.setLayoutX(1039.0);
             button1.setLayoutY(612.0);
@@ -210,14 +213,14 @@ public class ViewBlogController implements Initializable {
                 postService.deleteLike(post.getId_post(), postService.getUserIdsByPostId(extracet).get(0)); // call the deleteLike method to remove the like
                 updateLikesLabel(likesLabel, post.getId_post());
             } else {
-                Alert alert = new Alert(AlertType.WARNING);
+                Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText("Unlike Post");
                 alert.setContentText("You can't Unlike post, If you didn't like it!");
                 alert.showAndWait();
             }
                         });
             
-             Button deletePostButton = new Button("Supprimer le publication");
+             Button deletePostButton = new Button("Delete Post");
              
              deletePostButton.setLayoutX(1039.0);
             deletePostButton.setLayoutY(612.0);
@@ -239,7 +242,7 @@ public class ViewBlogController implements Initializable {
                         postService.deletePost(post.getId_post()); // call the deletePost method to delete the post
                         tfpostlist.getChildren().remove(postBox); // remove the VBox representing the deleted post from the main VBox
                     } else {
-                        Alert alert = new Alert(AlertType.WARNING);
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setHeaderText("Delete Post");
                         alert.setContentText("You can't delete the post, you're not the creator!");
                         alert.showAndWait();
@@ -249,7 +252,7 @@ public class ViewBlogController implements Initializable {
                 postBox.getChildren().add(deletePostButton);
 
 
-            Button ModifyPostButton = new Button("Modifier le publication");
+            Button ModifyPostButton = new Button("Modify Post");
             ModifyPostButton.setLayoutX(1039.0);
             ModifyPostButton.setLayoutY(612.0);
             ModifyPostButton.setPrefHeight(46.0);
@@ -265,7 +268,8 @@ public class ViewBlogController implements Initializable {
               
              //String title = post.getTitle();
                
-                
+                System.out.println("hey" + post.getId_user());
+                System.out.println("id " + postService.getIdUserByTitle(title));
                 int CreaterUserId =postService.getIdUserByTitle(title);
                 if ((CreaterUserId == Logged.get_instance().getUser().getID_User())){
                 try {
@@ -286,7 +290,7 @@ public class ViewBlogController implements Initializable {
                     e.printStackTrace();
                 }
                 }else{
-                    Alert alert = new Alert(AlertType.WARNING);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setHeaderText("Modify Post");
                     alert.setContentText("You can't Modify the post, you're not the creator!");
                     alert.showAndWait();
@@ -353,8 +357,8 @@ public class ViewBlogController implements Initializable {
         e.printStackTrace();
     }
 }
-    @FXML
-    public void viewAddPostPage(ActionEvent event) throws IOException {
+@FXML
+public void viewAddPostPage(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/GUIposts/Post.fxml"));
         Scene scene = new Scene(root);
@@ -404,15 +408,6 @@ public class ViewBlogController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-            public void Home(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-         
         
     // Helper method to update the label displaying the number of likes
     private void updateLikesLabel(Label likesLabel, int postId) {
@@ -420,12 +415,15 @@ public class ViewBlogController implements Initializable {
         int numberOfLikes = likes.size();
         likesLabel.setText("Likes: " + numberOfLikes);
     }
-
-    @FXML
-    private void Home(javafx.scene.input.MouseEvent event) {
+    
+      @FXML
+            public void Home(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    
-    
     
     
 }

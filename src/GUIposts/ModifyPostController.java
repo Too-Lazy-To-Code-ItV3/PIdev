@@ -1,6 +1,6 @@
 package GUIposts;
 
-import Entity.Post;
+import models.Post;
 import Interfaces.PostInterface;
 import Service.PostService;
 import java.io.IOException;
@@ -33,6 +33,14 @@ public class ModifyPostController implements Initializable {
     private TextField NewPostTitle;
     @FXML
     private TextField NewDescription;
+    private Post post;
+ 
+    
+    public void initData(Post post) {
+    this.post = post;
+    PostTitle.setText(post.getTitle());
+    //NewDescription.setText(post.getDescription_p());
+}
 
     /**
      * Initializes the controller class.
@@ -58,14 +66,20 @@ public class ModifyPostController implements Initializable {
             String newDescription = NewDescription.getText();
             // Call the modifyPost method of the PostService
             st.modifyPost(p, newTitle, newDescription);
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Modiferd with success.");
+            alert.showAndWait();
         }
     }
     @FXML
      public void handleReturn(ActionEvent event) throws IOException {
-     Parent root = FXMLLoader.load(getClass().getResource("/Gui/PostControlPanel.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
      Scene scene = new Scene(root);
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
      stage.setScene(scene);
      stage.show();
  }
+     
 }

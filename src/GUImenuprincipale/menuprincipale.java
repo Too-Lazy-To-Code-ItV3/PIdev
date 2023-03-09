@@ -56,129 +56,220 @@ import service.offreTravailService;
 public class menuprincipale implements Initializable {
 
     private GridPane citiesGrid;
- offreTravailService of = new offreTravailService ();
- private List<offreTravail> listeOffres; 
+    offreTravailService of = new offreTravailService();
+    private List<offreTravail> listeOffres;
     @FXML
     private Pane CRUD;
- offreTravailService off=new offreTravailService();
+    offreTravailService off = new offreTravailService();
     @FXML
     private Button forstudio;
-    @FXML
-    private Button tutobtn;
     @FXML
     private Circle profilephoto;
     @FXML
     private Button profile;
+    @FXML
+    private Button deconnexion;
+    @FXML
+    private Button galeriebutton;
+    @FXML
+    private Button challengebutton;
+    @FXML
+    private Button tutobutn;
+    @FXML
+    private Button shopbutton;
+    @FXML
+    private Button panierbutton;
+    @FXML
+    private Button blogbutton;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      try {//get the css for popup 
-           AllUsers user = Logged.get_instance().getUser();
-             String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
-            try (InputStream avatarStream = new FileInputStream(imagePath)) {
-                Image avatarImage = new Image(avatarStream);
-                profilephoto.setFill(new ImagePattern(avatarImage));
- } catch (IOException e) {
-                System.err.println("Error loading avatar image: " + e.getMessage());
-            }
+        if (Logged.get_instance().getUser() == null) {
+            profile.setVisible(false);
+             profilephoto.setVisible(false);
+             deconnexion.setText("Connecter");
+        } else {
+            try {//get the css for popup 
+                   profile.setVisible(true);
+                    profilephoto.setVisible(true);
+                AllUsers user = Logged.get_instance().getUser();
+                String imagePath = "C:/xampp2/htdocs/uploads/" + user.getAvatar();
+                try (InputStream avatarStream = new FileInputStream(imagePath)) {
+                    Image avatarImage = new Image(avatarStream);
+                    profilephoto.setFill(new ImagePattern(avatarImage));
+                } catch (IOException e) {
+                    System.err.println("Error loading avatar image: " + e.getMessage());
+                }
 //design my popup
-       if (Logged.get_instance().getUser().getType().equals("Observer")) { forstudio.setVisible(false);}
-       else{forstudio.setVisible(true);}
-             
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuelements.fxml"));
-            CRUD.getChildren().add(pane);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+                if (Logged.get_instance().getUser().getType().equals("Observer")) {
+                    forstudio.setVisible(false);
+                } else {
+                    forstudio.setVisible(true);
+                }
+
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuelements.fxml"));
+                CRUD.getChildren().add(pane);
+
+            } catch (IOException ex) {
+                Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-     
-    }    
 
-
+    }
 
     @FXML
-    private void gotomenu(ActionEvent event) {
-        
-        
-         try {
+    private void gotomenu(ActionEvent event
+    ) {
+
+        try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuelements.fxml"));
             CRUD.getChildren().add(pane);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-  
-   AllUsersService as = new AllUsersService();
+    AllUsersService as = new AllUsersService();
+
     @FXML
-    private void forstudio(ActionEvent event) {
+    private void forstudio(ActionEvent event
+    ) {
         try {
-                 
 
-    
-        if (Logged.get_instance().getUser().getType().equals("Studio")) {
+            if (Logged.get_instance().getUser().getType().equals("Studio")) {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menu1.fxml"));
-            Parent root = loader.load();
-            
-            Scene scene = new Scene(root,1380,700);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);}else{FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/menuartiste.fxml"));
-            Parent root = loader.load();
-            
-            Scene scene = new Scene(root,1380,700);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);}
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menu1.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root, 1380, 700);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIARTISTE/menuartiste.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root, 1380, 700);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+            }
         } catch (IOException ex) {
             Logger.getLogger(menuprincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-
-  
-  
-
     @FXML
-    private void galerie(ActionEvent event) {
+    private void galerie(ActionEvent event
+    )throws IOException {
 
-    }
-
-    @FXML
-    private void challenge(ActionEvent event) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/FetchChallenges.fxml"));
-            CRUD.getChildren().add(pane);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void tuto(ActionEvent event) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/FXML_Fetch_Tutoriels.fxml"));
-            CRUD.getChildren().add(pane);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void deconnexion(ActionEvent event) {
-        Logged.get_instance().setUser(null);
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUIposts/Explore.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
 
     @FXML
-    private void afficherprofile(ActionEvent event) {
+    private void challenge(ActionEvent event
+    ) {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/profile.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/FetchChallenges.fxml"));
             CRUD.getChildren().add(pane);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void tuto(ActionEvent event
+    ) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/FXML_Fetch_Tutoriels.fxml"));
+            CRUD.getChildren().add(pane);
+
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void deconnexion(ActionEvent event
+    ) {
+        if (Logged.get_instance().getUser() != null) {
+            Logged.get_instance().setUser(null);
+            Parent root;
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Login.fxml"));
+                root = loader.load();
+
+                Scene scene = new Scene(root, 1380, 700);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+            } catch (IOException ex) {
+                Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Parent root;
+            try {
+
+                FXMLLoader loaders = new FXMLLoader(getClass().getResource("/GUI/Login.fxml"));
+                root = loaders.load();
+
+                Scene scene = new Scene(root, 1380, 700);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+
+            } catch (IOException ex) {
+                Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @FXML
+    private void afficherprofile(ActionEvent event
+    ) {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/profile.fxml"));
+            CRUD.getChildren().add(pane);
+
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void blog(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUIposts/ViewBlog.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void shop(ActionEvent event) {
+        
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/FXML_AfficherProduit.fxml"));
+            CRUD.getChildren().add(pane);
+
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void panier(ActionEvent event) {
+         try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUI/FXML_AfficherPanier.fxml"));
+            CRUD.getChildren().add(pane);
+
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

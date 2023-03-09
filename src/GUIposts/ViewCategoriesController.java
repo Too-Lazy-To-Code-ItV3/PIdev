@@ -5,9 +5,8 @@
  */
 package GUIposts;
 
-import Entity.Category;
+import models.Category;
 import interfaces.CategoryInterface;
-import Entity.Category;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import models.Categorie;
+
 import service.CategoryService;
 
 /**
@@ -39,14 +38,15 @@ public class ViewCategoriesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        List<Category> categories = categoryService.fetchCategoriess();
+        List<Category> categories = categoryService.fetchCategories();
+        
         for (Category category : categories) {
             Categorieslabel.getItems().add(category.getName_category());
         }
     }
             @FXML
      public void handleReturn(ActionEvent event) throws IOException {
-     Parent root = FXMLLoader.load(getClass().getResource("/Gui/CategoryControlPanel.fxml"));
+     Parent root = FXMLLoader.load(getClass().getResource("/GUIposts/CategoryControlPanel.fxml"));
      Scene scene = new Scene(root);
      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
      stage.setScene(scene);

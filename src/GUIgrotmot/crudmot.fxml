@@ -22,11 +22,11 @@
                   <AnchorPane fx:id="afficheroffre" prefHeight="596.0" prefWidth="1481.0" />
                </children>
             </HBox>
-            <HBox layoutX="174.0" layoutY="21.0" prefHeight="100.0" prefWidth="866.0" stylesheets="@../css/PostControlPanel.css">
+            <HBox layoutX="174.0" layoutY="21.0" prefHeight="35.0" prefWidth="866.0" stylesheets="@../css/PostControlPanel.css">
                <children>
-                  <Button fx:id="ajouter1" mnemonicParsing="false" onAction="#ajout" prefHeight="100.0" prefWidth="431.0" style="-fx-background-radius: 10;" styleClass="transparent" text="ajouter une mot" textFill="WHITE">
+                  <Button fx:id="ajouter1" mnemonicParsing="false" onAction="#ajout" prefHeight="46.0" prefWidth="238.0" style="-fx-background-radius: 10;" styleClass="transparent" text="Ajouter un mot" textFill="WHITE">
                      <font>
-                        <Font size="25.0" />
+                        <Font size="20.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="20.0" />
