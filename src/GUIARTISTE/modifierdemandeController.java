@@ -32,7 +32,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.Categorie;
+import models.Category;
 import models.demandeTravail;
 import models.offreTravail;
 import service.CategoryService;
@@ -52,7 +52,7 @@ public class modifierdemandeController implements Initializable {
     @FXML
     private TextArea descriptionOffre;
     @FXML
-    private ChoiceBox<Categorie> listeCategorie;
+    private ChoiceBox<Category> listeCategorie;
    
     @FXML
     private Button modifier;
@@ -94,7 +94,7 @@ listeCategorie.setValue(c.fetchCategoryByNom(categ));
     @FXML
     private void modifierOffre(ActionEvent event) {
           int id= Integer.parseInt(modifier.getId());
-           Categorie c = new Categorie(); 
+           Category c = new Category(); 
           
             
             if ( file!=null)
@@ -103,7 +103,7 @@ listeCategorie.setValue(c.fetchCategoryByNom(categ));
                     try {
                           // Copy the file to the XAMPP htdocs directory
                           Path sourcePath = file.toPath();
-                          Path targetPath = Paths.get("C:/xampp2/htdocs/uploads/" + fileName1);
+                          Path targetPath = Paths.get("C:/xampp/htdocs/uploads/" + fileName1);
                           Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
                           
                           of.setPdf(fileName1);
@@ -130,7 +130,7 @@ else{
         of.setTitreDemande(titreOffre.getText());
       
         CategoryService cs = new CategoryService();
-       c= cs.fetchCategoryByNom(listeCategorie.getValue().getNomCategorie());
+       c= cs.fetchCategoryByNom(listeCategorie.getValue().getName_category());
         of.setDescriptionDemande(descriptionOffre.getText());
         of.setCategorieDemande(c);
        

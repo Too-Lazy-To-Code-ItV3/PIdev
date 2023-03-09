@@ -125,12 +125,12 @@ public class FXML_Modify_VideoController implements Initializable {
         video.setDescrption(descrption.getText());
         Path tmp = Files.copy(Paths.get(src), Paths.get(dest)); 
         vi.modifyVideo(video);
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
-        Parent view_2=loader.load();
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+          Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+     
         
     }
 

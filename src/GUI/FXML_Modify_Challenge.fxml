@@ -18,7 +18,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
       <children>
-      <Label layoutX="79.0" layoutY="101.0" text="Title" textFill="#eeeeee">
+      <Label layoutX="79.0" layoutY="101.0" text="Titre" textFill="#eeeeee">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -59,17 +59,18 @@
          </font>
       </Label>
       <ComboBox fx:id="categories" layoutX="268.0" layoutY="374.0" prefHeight="25.0" prefWidth="174.0" promptText="choose categorie" />
-      <Button layoutX="268.0" layoutY="418.0" mnemonicParsing="false" onAction="#modifyChallenge" prefHeight="25.0" prefWidth="174.0" text="Modify Challenge" />
                   <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="36.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/next.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="86.0" layoutY="23.0" text="Modify Callenge" textFill="#c967b3">
+                  <Label layoutX="86.0" layoutY="23.0" text="Modifier Callenge" textFill="#c967b3">
                      <font>
                         <Font name="System Bold" size="37.0" />
                      </font>
                   </Label>
+                  <Button layoutX="268.0" layoutY="461.0" mnemonicParsing="false" onAction="#goMenu" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Retourner" textFill="WHITE" />
+                  <Button layoutX="268.0" layoutY="421.0" mnemonicParsing="false" onAction="#modifyChallenge" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Modifier Challenge" textFill="WHITE" />
    </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="560.0">

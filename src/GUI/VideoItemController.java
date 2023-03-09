@@ -7,6 +7,7 @@ package GUI;
 
 import models.Video;
 import interfaces.VideoInterface;
+import interfaces.ViewInterface;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -21,8 +22,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import models.Logged;
+import models.Tutoriel;
 import service.VideoService;
+import service.ViewService;
 
 /**
  * FXML Controller class
@@ -31,6 +36,7 @@ import service.VideoService;
  */
 public class VideoItemController implements Initializable {
     VideoInterface vi = new VideoService();
+    ViewInterface vvi = new ViewService();
 
     @FXML
     private ImageView video_image;
@@ -44,6 +50,14 @@ public class VideoItemController implements Initializable {
     private Video video;
     @FXML
     private ImageView modifyVideo;
+    @FXML
+    private HBox vbox;
+    @FXML
+    private ImageView deletevideo;
+    @FXML
+    private Label video_date1;
+    @FXML
+    private Label numViews;
 
     /**
      * Initializes the controller class.
@@ -53,7 +67,7 @@ public class VideoItemController implements Initializable {
         // TODO
     }    
 
-    void setData(Video video) {
+    void setData(Video video,Tutoriel tutoriel) {
         System.out.println(video);
         File file = new File("C:\\xampp\\htdocs\\img\\"+video.getPathImage());
         Image img = new Image(file.toURI().toString());
@@ -64,11 +78,17 @@ public class VideoItemController implements Initializable {
         video_date.setText(video.getDate_p()); 
         
         this.video = video;
+        numViews.setText(String.valueOf(vvi.fetchNumViewsByVideo(video)));
+        /*if(!(Logged.get_instance().getUser().getType().equals("Admin") || Logged.get_instance().getUser().getID_User()==video.getTutoriel().getCreator().getID_User())){
+            vbox.getChildren().remove(modifyVideo);
+            vbox.getChildren().remove(deletevideo);
+        }*/
     }
 
     @FXML
     private void showVideo(MouseEvent event) {
         try {
+        vvi.addVue(video);
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./VideoView.fxml"));
         Parent view_2=loader.load();
         VideoViewController video_ViewController=loader.getController();

@@ -7,7 +7,6 @@ package GUI;
 
 import models.Challenge;
 import models.Participation;
-import models.Utilisateur;
 import interfaces.ParticipationInterface;
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.AllUsers;
@@ -77,20 +77,18 @@ public class FXML_FetchParticipations2Controller implements Initializable {
         private void afficher_Participations() {
         Participation_Grid.getChildren().clear();
         participations = pi.fetchParticipantionsByChallenge(c.getID_Challenge());
-            System.out.println("p:"+participations);
-            System.out.println("p:"+c.getID_Challenge());
         
         int columns=0;
         int rows=0;
         try {
         for(int i=0;i<participations.size();i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("FXML_ParticipationItem.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("FXML_Item_p.fxml"));
             
             AnchorPane item = fxmlLoader.load();
            
             
-            FXML_ParticipationItemController participationItemController = fxmlLoader.getController();
+            FXML_Item_pController participationItemController = fxmlLoader.getController();
             participationItemController.setData(participations.get(i));
             
             if(columns == 1){

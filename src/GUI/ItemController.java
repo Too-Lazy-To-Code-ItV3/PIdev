@@ -7,7 +7,6 @@ package GUI;
 
 import models.Challenge;
 import models.Participation;
-import models.Utilisateur;
 import interfaces.ChallengeInterface;
 import interfaces.ParticipationInterface;
 import java.io.File;
@@ -27,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Logged;
@@ -76,7 +76,7 @@ public class ItemController implements Initializable {
         title.setText(challenge.getTitle());
         description.setText(challenge.getDescription());
         level.setText(String.valueOf(challenge.getNiveau()));
-        categorie.setText(challenge.getCategorie().getNomCategorie());
+        categorie.setText(challenge.getCategorie().getName_category());
         date.setText(challenge.getDate_C()); 
         
         this.challenge = challenge;
@@ -112,7 +112,7 @@ public class ItemController implements Initializable {
                try {
         //Article selectedGarage=listaf.getSelectionModel().getSelectedItem();
         
-        
+      
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Modify_Challenge.fxml"));
         Parent view_2=loader.load();
         FXML_Modify_ChallengeController modify_ChallengeController=loader.getController();

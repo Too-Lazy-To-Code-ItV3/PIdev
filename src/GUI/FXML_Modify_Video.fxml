@@ -16,7 +16,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
           <children>
-      <Label layoutX="86.0" layoutY="47.0" text="Title" textFill="#eeeeee">
+      <Label layoutX="86.0" layoutY="47.0" text="Titre" textFill="#eeeeee">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

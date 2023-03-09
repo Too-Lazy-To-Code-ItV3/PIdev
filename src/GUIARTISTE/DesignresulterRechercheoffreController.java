@@ -60,13 +60,13 @@ public class DesignresulterRechercheoffreController implements Initializable {
        titredemande.setText(f.getTitreOffre());
       description.setText(f.getDescriptionOffre());
        nomartiste.setText(f.getNomStudio());
-      categorie.setText(f.getCategorieOffre().getNomCategorie());
+      categorie.setText(f.getCategorieOffre().getName_category());
       
       contacter.setId(Integer.toString(f.getIdOffre()));   
       
           AllUsersService u = new  AllUsersService();
        AllUsers user = u.fetchAUbyNickname(f.getNomStudio());
-            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+            String imagePath = "C:/xampp/htdocs/uploads/"+user.getAvatar();
             try (InputStream avatarStream = new FileInputStream(imagePath)) {
                 Image avatarImage = new Image(avatarStream);
                 photo1.setFill(new ImagePattern(avatarImage));

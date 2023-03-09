@@ -17,7 +17,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
     <children>
-      <Label layoutX="85.0" layoutY="95.0" text="Title" textFill="#eeeeee">
+      <Label layoutX="85.0" layoutY="95.0" text="Titre" textFill="#eeeeee">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -52,17 +52,18 @@
          </font>
       </Label>
       <ComboBox fx:id="categories" layoutX="241.0" layoutY="324.0" prefHeight="25.0" prefWidth="174.0" promptText="choose categorie" />
-      <Button layoutX="241.0" layoutY="368.0" mnemonicParsing="false" onAction="#addChallenge" prefHeight="25.0" prefWidth="174.0" text="Add Challenge" />
                   <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="34.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/next.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="84.0" layoutY="23.0" text="Add Tutoriel" textFill="#c967b3">
+                  <Label layoutX="84.0" layoutY="23.0" text="Ajouter Tutoriel" textFill="#c967b3">
                      <font>
                         <Font name="System Bold" size="37.0" />
                      </font>
                   </Label>
+                  <Button layoutX="241.0" layoutY="410.0" mnemonicParsing="false" onAction="#goMenu" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Retourner" textFill="WHITE" />
+                  <Button layoutX="241.0" layoutY="370.0" mnemonicParsing="false" onAction="#addChallenge" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Ajouter Tutoriel" textFill="WHITE" />
    </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="560.0">

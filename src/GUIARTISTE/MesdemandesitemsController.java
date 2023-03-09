@@ -80,11 +80,11 @@ public class MesdemandesitemsController implements Initializable {
        pdf.setId(f.getPdf());
        dateAjout.setText(f.getDateAjoutDemande().toString());
        decription.setText(f.getDescriptionDemande());
-       categorie.setText(f.getCategorieDemande().getNomCategorie()); mypdf=f.getPdf();
+       categorie.setText(f.getCategorieDemande().getName_category()); mypdf=f.getPdf();
        supprimerOffre.setId(Integer.toString(f.getIdDemande()));   
  editoffre.setId(Integer.toString(f.getIdDemande()));  
    AllUsers user = Logged.get_instance().getUser();
-            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+            String imagePath = "C:/xampp/htdocs/uploads/"+user.getAvatar();
            try (InputStream avatarStream = new FileInputStream(imagePath)) {
                 Image avatarImage = new Image(avatarStream);
                 photo.setFill(new ImagePattern(avatarImage));
@@ -107,7 +107,7 @@ public class MesdemandesitemsController implements Initializable {
       String pdf= mypdf;
      String categ = categorie.getText();
       AllUsers user = Logged.get_instance().getUser();
-            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+            String imagePath = "C:/xampp/htdocs/uploads/"+user.getAvatar();
            try (InputStream avatarStream = new FileInputStream(imagePath)) {
                 Image avatarImage = new Image(avatarStream);
                 photo.setFill(new ImagePattern(avatarImage));
@@ -168,7 +168,7 @@ demandeTravailService off=new demandeTravailService ();
    
     @FXML
     private void getpdf(ActionEvent event) {
-       String pdfPath = "C:/xampp2/htdocs/uploads/"+mypdf;
+       String pdfPath = "C:/xampp/htdocs/uploads/"+mypdf;
          System.out.print(mypdf+"nour");
              File file = new File(pdfPath);
 

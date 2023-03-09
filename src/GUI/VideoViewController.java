@@ -148,7 +148,7 @@ public class VideoViewController implements Initializable {
         ivMute.setFitWidth(iv_SIZE);
         
         playButton.setGraphic(ivPause);
-        volume.setGraphic(ivVolume);
+        volume.setGraphic(ivMute);
         speed.setText("1X");
         full_screen.setGraphic(ivFullScreen);
 
@@ -211,6 +211,7 @@ public class VideoViewController implements Initializable {
                 if(isMuted) {
                     volume.setGraphic(ivVolume);
                     slider_volume.setValue(0.2);
+                    isMuted = false;
                 }
                 
                 else{
@@ -237,6 +238,7 @@ public class VideoViewController implements Initializable {
                     hboxVolume.getChildren().remove(slider_volume);
             }
             
+         
             //vBoxParent.sceneProperty()
         });
     }

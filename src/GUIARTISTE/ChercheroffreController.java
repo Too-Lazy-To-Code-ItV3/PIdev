@@ -34,7 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import models.Categorie;
+import models.Category;
 import models.Logged;
 import models.demandeTravail;
 import models.offreTravail;
@@ -53,7 +53,7 @@ public class ChercheroffreController implements Initializable {
   offreTravailService dm = new  offreTravailService();
     private List<offreTravail> demandes=new ArrayList<>(dm.fetchOffresPerDate());
     CategoryService categorie=new  CategoryService();
-      private List<Categorie> categories=new ArrayList<>(categorie.fetchCategories());
+      private List<Category> categories=new ArrayList<>(categorie.fetchCategories());
     @FXML
     private TextField resultatsearch;
     @FXML

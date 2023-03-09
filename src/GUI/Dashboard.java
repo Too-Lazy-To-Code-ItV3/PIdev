@@ -25,7 +25,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.NewFXMain;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import models.Logged;
 
 public class Dashboard {
 
@@ -35,16 +40,13 @@ public class Dashboard {
 
     private Button btnMenus;
 
-    @FXML
     private Button btnOrders;
 
-    @FXML
     private Button btnOverview;
 
     @FXML
     private Button btnPackages;
 
-    @FXML
     private Button btnSettings;
 
     @FXML
@@ -66,25 +68,18 @@ public class Dashboard {
     private Pane pnlOverview;
     @FXML
     private Button bntgrosmot;
+    @FXML
+    private Label nickname;
 
     @FXML
     void handleClicks(ActionEvent event) {
-       /* if (event.getSource() == btnCustomers) {
-            pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            pnlCustomer.toFront();
+      try {  pnItems.getChildren().clear();
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUIuser/crudmot.fxml"));
+            pnItems.getChildren().add(pane);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (event.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
-        }
-        if (event.getSource() == btnOverview) {
-            pnlOverview.setStyle("-fx-background-color : #02030A");
-            pnlOverview.toFront();
-        }
-        if (event.getSource() == btnOrders) {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
-        }*/
     }
 
 
@@ -101,7 +96,8 @@ public class Dashboard {
         assert pnlMenus != null : "fx:id=\"pnlMenus\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert pnlOrders != null : "fx:id=\"pnlOrders\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert pnlOverview != null : "fx:id=\"pnlOverview\" was not injected: check your FXML file 'Dashboard.fxml'.";
-
+String nicknames = Logged.get_instance().getUser().getNickname();
+nickname.setText(nicknames);
 
         Node[] nodes = new Node[10];
         for (int i = 0; i < nodes.length; i++) {
@@ -135,6 +131,34 @@ public class Dashboard {
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void categorie(ActionEvent event) {
+         try {  pnItems.getChildren().clear();
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/GUIposts/affichercategory.fxml"));
+            pnItems.getChildren().add(pane);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void deconnexion(ActionEvent event) {
+         Logged.get_instance().setUser(null);
+            Parent root;
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Login.fxml"));
+                root = loader.load();
+
+                Scene scene = new Scene(root, 1380, 700);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+            } catch (IOException ex) {
+                Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
 }

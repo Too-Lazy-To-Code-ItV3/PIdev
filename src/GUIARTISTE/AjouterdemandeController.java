@@ -18,7 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import models.Categorie;
+import models.Category;
 import models.offreTravail;
 import service.CategoryService;
 import service.offreTravailService;
@@ -43,7 +43,7 @@ public class AjouterdemandeController implements Initializable {
     demandeTravail of = new demandeTravail();
 CategoryService c = new CategoryService();
     @FXML
-    private ChoiceBox<Categorie> listeCategorie= new ChoiceBox<>();;
+    private ChoiceBox<Category> listeCategorie= new ChoiceBox<>();;
    
     @FXML
     private TextField titreOffre;
@@ -89,7 +89,7 @@ String fileName1 = file.getName();
             try {
                 // Copy the file to the XAMPP htdocs directory
                 Path sourcePath = file.toPath();
-                Path targetPath = Paths.get("C:/xampp2/htdocs/uploads/" + fileName1);
+                Path targetPath = Paths.get("C:/xampp/htdocs/uploads/" + fileName1);
                 Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
 
             } catch (IOException e) {

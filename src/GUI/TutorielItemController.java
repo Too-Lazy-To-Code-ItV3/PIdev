@@ -68,7 +68,7 @@ public class TutorielItemController implements Initializable {
         tutorial_image.setImage(img);
         tutorial_title.setText(tutoriel.getTitle());
         tutorial_creator.setText(tutoriel.getCreator().getName());
-        categorie_label.setText(tutoriel.getCategorie().getNomCategorie());
+        categorie_label.setText(tutoriel.getCategorie().getName_category());
         this.tutoriel = tutoriel;
     }
 }

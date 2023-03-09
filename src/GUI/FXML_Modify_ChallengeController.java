@@ -5,9 +5,10 @@
  */
 package GUI;
 
-import models.Categorie;
+import GUImenuprincipale.menuprincipale;
+import controller.MesOffesitemsController;
+import models.Category;
 import models.Challenge;
-import models.Utilisateur;
 import interfaces.CategoryInterface;
 import interfaces.CategoryInterface;
 import interfaces.ChallengeInterface;
@@ -28,6 +29,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -36,6 +38,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.AllUsers;
@@ -65,8 +68,6 @@ public class FXML_Modify_ChallengeController implements Initializable {
     private ComboBox<String> categories;
     ObservableList list = FXCollections.observableArrayList();
     @FXML
-    private AnchorPane a;
-    @FXML
     private TextField niveau;
     /**
      * Initializes the controller class.
@@ -74,7 +75,7 @@ public class FXML_Modify_ChallengeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         list.removeAll(list);
-        ci.fetchCategories().stream().forEach(e->list.add(e.getNomCategorie()));
+        ci.fetchCategories().stream().forEach(e->list.add(e.getName_category()));
         System.out.println(chi.fetchChallenges());
         categories.getItems().addAll(list);
     }    
@@ -96,7 +97,7 @@ public class FXML_Modify_ChallengeController implements Initializable {
     public void getChallenge(Challenge c){
         titre.setText(c.getTitle());
         descrption.setText(c.getDescription());
-        categories.setValue(c.getCategorie().getNomCategorie());
+        categories.setValue(c.getCategorie().getName_category());
         niveau.setText(String.valueOf(c.getNiveau()));
         image_name.setText(c.getPathIMG());
         
@@ -137,17 +138,30 @@ public class FXML_Modify_ChallengeController implements Initializable {
         challenge.setNiveau(Integer.parseInt(niveau.getText()));
         chi.modifyChallenge(challenge);
         
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FetchChallenges.fxml"));
-        Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();}
+          Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+     
            
 //       
 //          catch (IOException ex) {
 //          Logger.getLogger(FXML1Controller.class.getName()).log(Level.SEVERE, null, ex);
 //     }
     }
-}
+
+   
+
     
+}
+
+    @FXML
+    private void goMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+    }
+}

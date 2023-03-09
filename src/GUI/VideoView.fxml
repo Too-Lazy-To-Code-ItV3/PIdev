@@ -11,7 +11,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VideoViewController">
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="720.0" style="-fx-background-color: #071330;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VideoViewController">
    <children>
       <MediaView fx:id="mediaView" fitHeight="480.0" fitWidth="720.0" />
       <ImageView fitHeight="40.0" fitWidth="38.0" layoutX="668.0" layoutY="14.0" onMouseClicked="#returne" pickOnBounds="true" preserveRatio="true">
@@ -36,7 +36,7 @@
             </Button>
             <HBox fx:id="hboxVolume">
                <children>
-                  <Label fx:id="volume" text="Label">
+                  <Label fx:id="volume" textFill="WHITE">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -48,7 +48,7 @@
                   </Slider>
                </children>
             </HBox>
-            <Label fx:id="time_current">
+            <Label fx:id="time_current" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -56,7 +56,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="total_time">
+            <Label fx:id="total_time" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

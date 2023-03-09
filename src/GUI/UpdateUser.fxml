@@ -12,102 +12,102 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="923.0" prefWidth="1284.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateUser">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1377.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateUser">
    <children>
-      <Label layoutX="679.0" layoutY="108.0" text="First Name">
+      <Label layoutX="639.0" layoutY="-1.0" text="First Name">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="NameTF" layoutX="926.0" layoutY="109.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="NameTF" layoutX="886.0" prefHeight="44.0" prefWidth="465.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="682.0" layoutY="183.0" text="Last Name">
+      <Label layoutX="642.0" layoutY="74.0" text="Last Name">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="LastNameTF" layoutX="926.0" layoutY="184.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="LastNameTF" layoutX="890.0" layoutY="59.0" prefHeight="44.0" prefWidth="461.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="685.0" layoutY="717.0" text="Nickname">
+      <Label layoutX="655.0" layoutY="538.0" text="Nickname">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="NicknameTF" layoutX="928.0" layoutY="726.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="NicknameTF" layoutX="887.0" layoutY="536.0" prefHeight="44.0" prefWidth="471.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="708.0" layoutY="639.0" text="Type">
+      <Label layoutX="676.0" layoutY="467.0" text="Type">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="TypeTF" layoutX="935.0" layoutY="634.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="TypeTF" layoutX="892.0" layoutY="476.0" prefHeight="44.0" prefWidth="463.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="691.0" layoutY="567.0" text="Nationality">
+      <Label layoutX="664.0" layoutY="409.0" text="Nationality">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="NationalityTF" layoutX="926.0" layoutY="567.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="NationalityTF" layoutX="887.0" layoutY="406.0" prefHeight="44.0" prefWidth="471.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="689.0" layoutY="408.0" text="Password">
+      <Label layoutX="656.0" layoutY="263.0" text="Password">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="691.0" layoutY="336.0" text="Birthday ">
+      <Label layoutX="661.0" layoutY="196.0" text="Birthday ">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <Label layoutX="708.0" layoutY="257.0" text="Email">
+      <Label layoutX="671.0" layoutY="130.0" text="Email">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="EmailTF" layoutX="926.0" layoutY="258.0" prefHeight="25.0" prefWidth="623.0">
+      <TextField fx:id="EmailTF" layoutX="886.0" layoutY="126.0" prefHeight="44.0" prefWidth="461.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="PasswordTF" layoutX="926.0" layoutY="413.0" prefHeight="25.0" prefWidth="623.0">
+      <PasswordField fx:id="PasswordTF" layoutX="889.0" layoutY="250.0" prefHeight="44.0" prefWidth="475.0">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <Label layoutX="679.0" layoutY="491.0" text="Confirm Password">
+      <Label layoutX="639.0" layoutY="334.0" text="Confirm Password">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
       </Label>
-      <PasswordField fx:id="CPasswordTF" layoutX="928.0" layoutY="484.0" prefHeight="25.0" prefWidth="623.0">
+      <PasswordField fx:id="CPasswordTF" layoutX="892.0" layoutY="325.0" prefHeight="44.0" prefWidth="471.0">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <DatePicker fx:id="BirthdayTF" layoutX="925.0" layoutY="330.0" prefHeight="44.0" prefWidth="210.0" />
-      <Button layoutX="928.0" layoutY="838.0" mnemonicParsing="false" onAction="#Update" text="Update">
+      <DatePicker fx:id="BirthdayTF" layoutX="890.0" layoutY="199.0" prefHeight="44.0" prefWidth="458.0" />
+      <Button layoutX="820.0" layoutY="601.0" mnemonicParsing="false" onAction="#Update" prefHeight="56.0" prefWidth="101.0" text="Update">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Pane layoutX="-1.0" prefHeight="923.0" prefWidth="607.0" style="-fx-background-color: #2196f3;">
+      <Pane layoutX="-1.0" prefHeight="701.0" prefWidth="607.0" style="-fx-background-color: #2196f3;">
          <children>
-            <ImageView fitHeight="635.0" fitWidth="512.0" layoutX="48.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="393.0" fitWidth="512.0" layoutX="48.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Images/ARTounsi.png" />
                </image>

@@ -65,13 +65,13 @@ public class AfficherdemandesitemsController implements Initializable {
        
        dateAjout.setText(f.getDateAjoutDemande().toString());
        description.setText(f.getDescriptionDemande());
-          categorie.setText(f.getCategorieDemande().getNomCategorie());
+          categorie.setText(f.getCategorieDemande().getName_category());
              mypdf=f.getPdf();
                      
 
           AllUsersService u = new  AllUsersService();
            AllUsers user = u.fetchAUbyNickname(f.getNomArtiste());
-            String imagePath = "C:/xampp2/htdocs/uploads/"+user.getAvatar();
+            String imagePath = "C:/xampp/htdocs/uploads/"+user.getAvatar();
             try (InputStream avatarStream = new FileInputStream(imagePath)) {
                 Image avatarImage = new Image(avatarStream);
                 photo1.setFill(new ImagePattern(avatarImage));
@@ -85,7 +85,7 @@ public class AfficherdemandesitemsController implements Initializable {
 
     @FXML
     private void getpdf(ActionEvent event) {
-       String pdfPath = "C:/xampp2/htdocs/uploads/"+mypdf;
+       String pdfPath = "C:/xampp/htdocs/uploads/"+mypdf;
          System.out.print(mypdf+"nour");
              File file = new File(pdfPath);
 

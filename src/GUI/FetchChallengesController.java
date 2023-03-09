@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.NewFXMain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,13 +69,20 @@ public class FetchChallengesController implements Initializable {
     CategoryInterface ci = new CategoryService();
     @FXML
     private CheckComboBox<String> cat;
+    @FXML
+    private HBox hbox;
+    @FXML
+   private AnchorPane anchorfetchchallenge;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        if(Logged.get_instance().getUser().getType().equals("Observer")){
+            hbox.getChildren().remove(addButton);
+        }
+        
         afficher_Challenge();
         list.removeAll(list);
-        ci.fetchCategories().stream().forEach(e -> list.add(e.getNomCategorie()));
+        ci.fetchCategories().stream().forEach(e -> list.add(e.getName_category()));
         cat.getItems().addAll(list);
 
     }
@@ -120,14 +128,14 @@ public class FetchChallengesController implements Initializable {
 
     @FXML
     private void addChallenge(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("./FXML_ADD_Challenge.fxml"));
-        Parent view_2=loader.load();
-        FXML_ADD_ChallengeController c=loader.getController();
-        c.setNum(challenges.size());
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+           try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("./FXML_ADD_Challenge.fxml"));
+            anchorfetchchallenge.getChildren().add(pane);
+
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
 }

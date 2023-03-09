@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
-
+// linear-gradient(from 25px 25px to 35px 70px, #c10c99,  #071330)
 import interfaces.FavorisTutorielInterface;
 import models.Tutoriel;
 import models.Video;
@@ -63,7 +63,7 @@ public class FXML_Fetch_TutorielController implements Initializable {
     @FXML
     private HBox addButton;
     
-    Tutoriel t;
+    Tutoriel t = new Tutoriel();
     @FXML
     private Label tutorial_categorie;
     @FXML
@@ -96,7 +96,7 @@ public class FXML_Fetch_TutorielController implements Initializable {
            
             System.out.println(videos.get(i));
             VideoItemController videoItemController = fxmlLoader.getController();
-            videoItemController.setData(videos.get(i));
+            videoItemController.setData(videos.get(i),t);
             
             if(columns == 2){
                 columns = 0 ;
@@ -152,7 +152,7 @@ public class FXML_Fetch_TutorielController implements Initializable {
         if(!ft.favorated(tutoriel))
             star_img.setImage(emptystar);
         else star_img.setImage(star);
-        tutorial_categorie.setText(tutoriel.getCategorie().getNomCategorie());
+        tutorial_categorie.setText(tutoriel.getCategorie().getName_category());
         tutoriel_title.setText(tutoriel.getTitle());
         tutoriel_description.setText(tutoriel.getDescription());
         tutoriel_level.setText(String.valueOf(tutoriel.getNiveau()));
@@ -181,6 +181,15 @@ public class FXML_Fetch_TutorielController implements Initializable {
             star_img.setImage(emptystar);
             ft.removeFavoris(t);
         }
+    }
+
+    @FXML
+    private void goMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

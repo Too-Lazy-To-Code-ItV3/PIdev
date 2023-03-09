@@ -5,9 +5,8 @@
  */
 package GUI;
 
-import models.Categorie;
+import models.Category;
 import models.Tutoriel;
-import models.Utilisateur;
 import models.Video;
 import interfaces.CategoryInterface;
 import interfaces.TutorielInterface;
@@ -42,6 +41,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.CategoryService;
@@ -58,7 +58,6 @@ public class FXML_Modify_TutorielController implements Initializable {
     CategoryInterface ci = new CategoryService();
     TutorielInterface ti = new TutorielService();
     VideoInterface vi = new VideoService();
-    @FXML
     private ImageView tutoriel_img;
     @FXML
     private GridPane video_grid;
@@ -69,7 +68,7 @@ public class FXML_Modify_TutorielController implements Initializable {
     @FXML
     private TextField tutoriel_level;
     @FXML
-    private TextArea tutoriel_description;
+    private TextField tutoriel_description;
     @FXML
     private Button image_name;
     
@@ -79,20 +78,22 @@ public class FXML_Modify_TutorielController implements Initializable {
     private String src;
     private String dest;
     private boolean img_imported = false;
+    @FXML
+    private HBox hbox;
+    @FXML
+    private ImageView star_img;
+    @FXML
+    private VBox vbox;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         list.removeAll(list);
-        ci.fetchCategories().stream().forEach(e->list.add(e.getNomCategorie()));
+        ci.fetchCategories().stream().forEach(e->list.add(e.getName_category()));
         comboBox.getItems().addAll(list);
         
     }    
-
-    @FXML
-    private void addChallenge(MouseEvent event) {
-    }
 
     @FXML
     private void importImage(ActionEvent event) {
@@ -120,12 +121,8 @@ public class FXML_Modify_TutorielController implements Initializable {
         tutoriel_title.setText(t.getTitle());
         tutoriel_level.setText(String.valueOf(t.getNiveau()));
         tutoriel_description.setText(t.getDescription());
-        comboBox.setValue(t.getCategorie().getNomCategorie());
+        comboBox.setValue(t.getCategorie().getName_category());
         image_name.setText(t.getPathImg());
-        //date_challenge.setValue(new Date());
-        File file = new File("C:\\xampp\\htdocs\\img\\"+tutoriel.getPathImg());
-        Image img = new Image(file.toURI().toString());
-        tutoriel_img.setImage(img);
         
         tutoriel.setID_Tutoriel(t.getID_Tutoriel());
         tutoriel.setPathImg(t.getPathImg());
@@ -148,7 +145,7 @@ public class FXML_Modify_TutorielController implements Initializable {
            
             
             VideoItemController videoItemController = fxmlLoader.getController();
-            videoItemController.setData(videos.get(i));
+            videoItemController.setData(videos.get(i),tutoriel);
             
             if(columns == 2){
                 columns = 0 ;
@@ -180,7 +177,7 @@ public class FXML_Modify_TutorielController implements Initializable {
             alert.show();
             return;
         }
-            else {
+        else {
         tutoriel.setTitle(tutoriel_title.getText());
         tutoriel.setCategorie(ci.fetchCategoryByNom(comboBox.getValue().toString()));
         tutoriel.setDescription(tutoriel_description.getText());
@@ -188,16 +185,13 @@ public class FXML_Modify_TutorielController implements Initializable {
         ti.ModifyTutoriel(tutoriel);
         Path tmp;
         if(img_imported)
-            tmp = Files.copy(Paths.get(src), Paths.get(dest)); 
-        
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriel.fxml"));
-        Parent view_2=loader.load();
-        FXML_Fetch_TutorielController Fetch_TutorielController=loader.getController();
-        Fetch_TutorielController.setTutorial(tutoriel);
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+        tmp = Files.copy(Paths.get(src), Paths.get(dest)); 
+          Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+     
     }
     
     
@@ -207,5 +201,23 @@ public class FXML_Modify_TutorielController implements Initializable {
         
     
     
-}}
+}
+
+    @FXML
+    private void favorate(MouseEvent event) {
+    }
+
+    @FXML
+    private void goMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+    }
+
+    @FXML
+    private void addVideo(MouseEvent event) {
+    }
+}
 

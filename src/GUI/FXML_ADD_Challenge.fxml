@@ -14,11 +14,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="719.0" prefWidth="1581.0" styleClass="bluecolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_ADD_ChallengeController">
    <children>
-      <SplitPane dividerPositions="0.4874517374517375" layoutX="157.0" layoutY="63.0" prefHeight="516.0" prefWidth="1038.0" style="-fx-background-radius: 40; -fx-background-color: #071330;">
+      <SplitPane dividerPositions="0.5181818181818182" layoutX="39.0" layoutY="53.0" prefHeight="516.0" prefWidth="882.0" style="-fx-background-radius: 40; -fx-background-color: #071330;">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
-   <children>
-      <Label layoutX="79.0" layoutY="89.0" text="Title" textFill="#eeeeee">
+      <children>
+      <Label layoutX="79.0" layoutY="89.0" text="Titre" textFill="#eeeeee">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -59,22 +59,23 @@
          </font>
       </Label>
       <ComboBox fx:id="categories" layoutX="266.0" layoutY="357.0" prefHeight="25.0" prefWidth="174.0" promptText="choose categorie" />
-      <Button layoutX="266.0" layoutY="401.0" mnemonicParsing="false" onAction="#addChallenge" prefHeight="25.0" prefWidth="174.0" text="Add Challenge" />
                   <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="33.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/next.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="83.0" layoutY="22.0" text="Add Challenge" textFill="#c967b3">
+                  <Label layoutX="83.0" layoutY="22.0" text="Ajouter Challenge" textFill="#c967b3">
                      <font>
                         <Font name="System Bold" size="37.0" />
                      </font>
                   </Label>
-   </children>
+                  <Button layoutX="265.0" layoutY="443.0" mnemonicParsing="false" onAction="#goMenu" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Retourner" textFill="WHITE" />
+                  <Button layoutX="265.0" layoutY="403.0" mnemonicParsing="false" onAction="#addChallenge" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Ajouter Challenge" textFill="WHITE" />
+      </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="560.0">
                <children>
-                  <ImageView fitHeight="592.0" fitWidth="589.0" pickOnBounds="true">
+                  <ImageView fitHeight="514.0" fitWidth="419.0" pickOnBounds="true">
                      <image>
                         <Image url="@../img/capture2.PNG" />
                      </image>

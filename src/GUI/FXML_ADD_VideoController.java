@@ -124,12 +124,11 @@ public class FXML_ADD_VideoController implements Initializable {
         Path tmp1 = Files.copy(Paths.get(src1), Paths.get(dest1)); 
 
         vi.addVideo(video);
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
-        Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
             }
     }
 
@@ -139,15 +138,20 @@ public class FXML_ADD_VideoController implements Initializable {
 
     @FXML
     private void returne(MouseEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
-        FXML_Fetch_TutorielController itemController = loader.getController();
-        System.out.println(ti.fetchTutorielByID(video.getTutoriel().getID_Tutoriel()));
-        
-        Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
+    }
+
+    @FXML
+    private void goMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
     }
 
 

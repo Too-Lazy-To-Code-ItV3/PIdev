@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1380.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.AddBan">
+<AnchorPane prefHeight="700.0" prefWidth="1380.0" stylesheets="@../../../Style/Swag.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddBan">
    <children>
       <Label layoutX="867.0" layoutY="254.0" text="ID_User">
          <font>
@@ -22,7 +22,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Label layoutX="868.0" layoutY="329.0" text="Reason">
+      <Label layoutX="868.0" layoutY="329.0" text="Raison">
          <font>
             <Font name="Georgia" size="27.0" />
          </font>
@@ -32,7 +32,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="1045.0" layoutY="411.0" mnemonicParsing="false" onAction="#addBan" text="Register">
+      <Button layoutX="1045.0" layoutY="411.0" mnemonicParsing="false" onAction="#addBan" text="Confirmer">
          <font>
             <Font size="20.0" />
          </font>

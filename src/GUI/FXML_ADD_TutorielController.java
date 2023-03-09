@@ -6,7 +6,6 @@
 package GUI;
 
 import models.Tutoriel;
-import models.Utilisateur;
 import interfaces.CategoryInterface;
 import interfaces.CategoryInterface;
 import interfaces.TutorielInterface;
@@ -59,7 +58,6 @@ public class FXML_ADD_TutorielController implements Initializable {
     CategoryInterface ci = new CategoryService();
     TutorielInterface ti = new TutorielService();
     Tutoriel tutoriel = new Tutoriel();
-    Utilisateur u = new Utilisateur();
     
     String src;
     String dest;
@@ -69,7 +67,7 @@ public class FXML_ADD_TutorielController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         list.removeAll(list);
-        ci.fetchCategories().stream().forEach(e->list.add(e.getNomCategorie()));
+        ci.fetchCategories().stream().forEach(e->list.add(e.getName_category()));
         categories.getItems().addAll(list);
     }    
 
@@ -121,13 +119,21 @@ public class FXML_ADD_TutorielController implements Initializable {
             tutoriel.setCategorie(ci.fetchCategoryByNom(categories.getValue()));
             tutoriel.setCreator(Logged.get_instance().getUser());
             ti.addTutoriel(tutoriel);
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./FXML_Fetch_Tutoriels.fxml"));
-            Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
         }
+    }
+
+    @FXML
+    private void goMenu(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+     Scene scene = new Scene(root);
+     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+     stage.setScene(scene);
+     stage.show();
     }
 }
     

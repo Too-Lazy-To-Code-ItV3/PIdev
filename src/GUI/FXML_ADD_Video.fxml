@@ -16,7 +16,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="481.0" style="-fx-background-color: #071330; -fx-background-radius: 20;" stylesheets="@../css/menustyle.css">
        <children>
-      <Label layoutX="85.0" layoutY="98.0" text="Title" textFill="#eeeeee">
+      <Label layoutX="85.0" layoutY="98.0" text="Titre" textFill="#eeeeee">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -39,7 +39,6 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="241.0" layoutY="330.0" mnemonicParsing="false" onAction="#addVideo" prefHeight="25.0" prefWidth="174.0" text="Add Video" />
       <Label fx:id="video_name" layoutX="241.0" layoutY="280.0" text="No Video Selected" textFill="#eeeeee">
          <font>
             <Font name="Bodoni MT" size="11.0" />
@@ -61,11 +60,13 @@
                         <Image url="@../img/next.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="77.0" layoutY="20.0" text="Add Video" textFill="#c967b3">
+                  <Label layoutX="77.0" layoutY="20.0" text="Ajouter Video" textFill="#c967b3">
                      <font>
                         <Font name="System Bold" size="37.0" />
                      </font>
                   </Label>
+                  <Button layoutX="238.0" layoutY="364.0" mnemonicParsing="false" onAction="#goMenu" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Retourner" textFill="WHITE" />
+                  <Button layoutX="238.0" layoutY="324.0" mnemonicParsing="false" onAction="#addVideo" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25px 25px to 100px 70px, #c10c99,  #071330);" stylesheets="@../css/blogstyle.css" text="Ajouter Video" textFill="WHITE" />
    </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="560.0">
