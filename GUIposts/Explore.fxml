@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1380.0" stylesheets="@../Css/PostControlPanel.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIposts.ExploreController">
+   <center>
+      <VBox prefHeight="613.0" prefWidth="1380.0" styleClass="primary-color" stylesheets="@../Css/blogstyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="0.0" prefWidth="1380.0" />
+            <ScrollPane fitToWidth="true" minHeight="0.0" minWidth="0.0" prefHeight="636.0" prefViewportHeight="500.0" prefWidth="1380.0" snapToPixel="false" vbarPolicy="ALWAYS">
+               <content>
+                  <VBox fx:id="tfpostlist" styleClass="backcolor" stylesheets="@../css/menustyle.css" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox prefHeight="55.0" prefWidth="1380.0" stylesheets="@../css/menustyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#viewPostControllePanel" prefHeight="61.0" prefWidth="85.0" styleClass="transparent" stylesheets="@../../../../../css/menustyle.css">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/icons8-menu-rounded-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#viewAddPostPage" prefHeight="43.0" prefWidth="263.0" styleClass="transparent" stylesheets="@../../../../../css/menustyle.css" text="Ajouter post" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../img/333883745_892039358538903_1962846111027787901_n.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" prefHeight="52.0" prefWidth="893.0" text="Explore" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Cambria Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="border-bottom" />
+            <String fx:value="backcolor" />
+         </styleClass>
+      </HBox>
+   </top>
+</BorderPane>

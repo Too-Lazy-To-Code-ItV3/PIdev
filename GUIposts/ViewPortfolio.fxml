@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIposts.ViewPortfolioController">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="300.0" spacing="26.0" style="-fx-background-color: #1C233D;" styleClass="white_background" stylesheets="@../Css/blogstyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="80.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="80.0" prefWidth="309.0" text="Protfolio" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font name="Cambria Bold" size="65.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="76.0" prefWidth="300.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#viewPostControllePanel" prefHeight="55.0" prefWidth="186.0" style="-fx-background-color: C10C99;" stylesheets="@../css/style2.css" text="Post Control Panel" textFill="WHITE">
+                           <styleClass>
+                              <String fx:value="backcolor" />
+                              <String fx:value="shopping-online-card" />
+                           </styleClass>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#viewAddPostPage" prefHeight="55.0" prefWidth="186.0" style="-fx-background-color: C10C99;" stylesheets="@../css/style2.css" text="Add Post" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="shopping-online-card" />
+                        <String fx:value="backcolor" />
+                     </styleClass>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#viewDeletePostPage" prefHeight="55.0" prefWidth="186.0" style="-fx-background-color: C10C99;" stylesheets="@../css/style2.css" text="Delete Post" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="shopping-online-card" />
+                        <String fx:value="backcolor" />
+                     </styleClass></Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#viewBlogPostPage" prefHeight="55.0" prefWidth="186.0" style="-fx-background-color: C10C99;" styleClass="shopping-online-card" stylesheets="@../css/style2.css" text="Blog" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#viewExplore" prefHeight="55.0" prefWidth="186.0" style="-fx-background-color: C10C99;" stylesheets="@../css/style2.css" text="Explore" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="shopping-online-card" />
+                        <String fx:value="backcolor" />
+                     </styleClass></Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="16.0" top="2.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="primary-color" stylesheets="@../Css/blogstyle.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="0.0" prefWidth="1080.0" />
+            <ScrollPane fitToWidth="true" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefViewportHeight="500.0" prefWidth="1080.0" snapToPixel="false" vbarPolicy="ALWAYS">
+               <content>
+                  <VBox fx:id="tfpostlist" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
