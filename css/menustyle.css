@@ -1,0 +1,37 @@
+
+.dark-background{
+    -fx-background-color:#1C233D;
+
+}
+.border-bottom{
+    -fx-border-width: 0 0 2 0 ;
+    -fx-border-color:#cccccc ;
+}
+
+.colorsearch{-fx-background-color:#333333}
+.backcolor{-fx-background-color:#1C233D}
+.darkblue{-fx-background-color:#13182b}
+
+
+.buttoncolor{-fx-background-color:#C10C99;
+                  -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);
+    -fx-transition: all 0.3s;
+      -fx-background-radius: 20px;
+}
+.bluecolor{-fx-background-color:#1C233D}
+.bluecolorcadre{-fx-background-color:#29335A;}
+
+.transparent{ -fx-background-color:  transparent;}
+.boxcolor {-fx-background-color:#1C1919;}
+
+           
+                       
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(193, 12, 153, 1), 1.0 , 4.0 , 4.0 ,5.0);
+   
+}
+
+
+
+
