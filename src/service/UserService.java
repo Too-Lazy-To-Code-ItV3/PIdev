@@ -7,7 +7,7 @@ package Service;
 
 import Entity.User;
 import Interfaces.UserInterface;
-import Utils.MyConnection;
+import util.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

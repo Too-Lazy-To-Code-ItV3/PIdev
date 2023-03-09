@@ -23,11 +23,9 @@ import java.sql.Date;
 import java.sql.*;
 import java.util.*;
 
-
 public class AllUsersService implements AllUsersInterface {
+    PanierService panier = new PanierService();
     Connection cnx = MaConnexion.getInstance().getCnx();
-
-
 
     @Override
     public String generateSalt() {
@@ -88,8 +86,9 @@ public class AllUsersService implements AllUsersInterface {
             ps.setString(1, u.getNickname());
             ps.setString(2, u.getEmail());
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
+            if (rs.next()) {
                 System.out.println("Error: email or nickname already in use.");
+            }
 
             String verificationCode = generateVerificationCode();
             sendVerificationCode(u.getEmail(), verificationCode);
@@ -127,7 +126,6 @@ public class AllUsersService implements AllUsersInterface {
                 popupWindow.showAndWait();
 
                 // Check if verification code matches the one stored in the database
-
                 if (verificationCode.equals(verificationCodeField.getText())) {
                     // Verification successful, create user
 
@@ -150,7 +148,6 @@ public class AllUsersService implements AllUsersInterface {
                     System.out.println("Account created successfully.");
                     break;
 
-
                 } else {
                     System.out.println("Verification code is invalid. Please try again.");
                 }
@@ -158,7 +155,6 @@ public class AllUsersService implements AllUsersInterface {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
 
     }
 
@@ -220,7 +216,6 @@ public class AllUsersService implements AllUsersInterface {
                 u.setNationality(rs.getString(7));
                 u.setType(rs.getString(8));
                 u.setNickname(rs.getString(9));
-
 
                 Allusers.add(u);
             }
@@ -402,23 +397,21 @@ public class AllUsersService implements AllUsersInterface {
     }
 
     @Override
-    public void changePassword(String password,String Email) {
+    public void changePassword(String password, String Email) {
         String salt = generateSalt();
         String hashedPassword = hashPassword(password, salt);
         try {
             String req = "UPDATE allusers SET Password=?, Salt=? WHERE email=?";;
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1,hashedPassword);
-            ps.setString(2,salt);
-            ps.setString(3,Email);
+            ps.setString(1, hashedPassword);
+            ps.setString(2, salt);
+            ps.setString(3, Email);
             ps.executeUpdate();
-
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
-
 
 }

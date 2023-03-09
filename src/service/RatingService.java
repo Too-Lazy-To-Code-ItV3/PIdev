@@ -5,11 +5,10 @@
  */
 package service;
 
-import models.Categorie;
+import models.Category;
 import models.Challenge;
 import models.Rate;
 import models.Tutoriel;
-import models.Utilisateur;
 import interfaces.RatingInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

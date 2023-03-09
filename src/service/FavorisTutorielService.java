@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.AllUsers;
-import models.Categorie;
+import models.Category;
 import models.FavorisTutorial;
 import models.Logged;
 import models.Tutoriel;
@@ -79,7 +79,7 @@ public class FavorisTutorielService implements FavorisTutorielInterface {
         List<Tutoriel> tutoriels = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM favoris_turoial as ft,tutoriel as t,categorie2 as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User and ft.id_user="+Logged.get_instance().getUser().getID_User()+" and ft.id_tutoriel= t.ID_Tutoriel";
+            String req = "SELECT * FROM favoris_turoial as ft,tutoriel as t,category as c,AllUsers as u where t.ID_Categorie=c.id_category and t.ID_Artist=u.ID_User and ft.id_user="+Logged.get_instance().getUser().getID_User()+" and ft.id_tutoriel= t.ID_Tutoriel";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -93,9 +93,9 @@ public class FavorisTutorielService implements FavorisTutorielInterface {
                 t.setDescription(rs.getString("Description"));
                 t.setPathImg(rs.getString("PathImg"));
                 
-                Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("id_category"));
-                c.setNomCategorie(rs.getString("name_category"));
+                Category c = new Category();
+                c.setId_Category(rs.getInt("id_category"));
+                c.setName_category(rs.getString("name_category"));
             
                 AllUsers u = new AllUsers();
                 u.setName(rs.getString("Name"));

@@ -7,7 +7,6 @@ package service;
 
 import models.Challenge;
 import models.Participation;
-import models.Utilisateur;
 import interfaces.ParticipationInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -131,33 +130,6 @@ public class ParticipationService implements ParticipationInterface {
         }
         
         return Participations;    
-    }
-    
-    @Override
-    public List<Utilisateur> fetchParticipantsByChallenge(int ID_Challenge) {
-                List<Utilisateur> Utilisateurs = new ArrayList<>();
-        try {
-            
-            String req = "SELECT * FROM participation p, allusers u where p.ID_User = u.ID_User AND p.ID_Challenge = "+ID_Challenge;
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
-            while (rs.next()) {                
-                Utilisateur u = new Utilisateur();
-                u.setID_user(rs.getInt("ID_user"));
-                u.setNom(rs.getString("Nom"));
-                u.setPrenom(rs.getString("Prenom"));
-                u.setEmail(rs.getString("Email"));
-                u.setLocation(rs.getString("Location"));
-                u.setPathImage(rs.getString("pathImage"));
-                u.setDate_Naissance(rs.getString("Date_Naissance"));
-                Utilisateurs.add(u);
-            }
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        
-        return Utilisateurs;    
     }
 
     @Override

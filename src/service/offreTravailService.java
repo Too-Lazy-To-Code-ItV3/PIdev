@@ -1,7 +1,7 @@
 package service;
 
 import models.AllUsers;
-import models.Categorie;
+import models.Category;
 
 import java.util.Properties;
 import interfaces.offreTravailInterface;
@@ -141,10 +141,10 @@ studio.setDescription(rs1.getString(13));
                     ps.setString(2, studio.getNickname());
                     ps.setString(3, o.getTitreOffre());
                     ps.setString(4, o.getDescriptionOffre());
-                    ps.setString(5, o.getCategorieOffre().getNomCategorie());
+                    ps.setString(5, o.getCategorieOffre().getName_category());
                     ps.setString(7, o.getTypeOffre());
                     ps.setString(8, o.getLocalisationOffre());
-                    ps.setInt(9, o.getCategorieOffre().getIdCategorie());
+                    ps.setInt(9, o.getCategorieOffre().getId_Category());
 
                     ps.setTimestamp(6, sqldate);
                     ps.executeUpdate();
@@ -175,15 +175,15 @@ studio.setDescription(rs1.getString(13));
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 offreTravail of = new offreTravail();
-                Categorie c = new Categorie();
+                Category c = new Category();
                 of.setIdOffre(rs.getInt("idOffre"));
                 of.setIdStudio(rs.getInt(1));
                 of.setNomStudio(rs.getString(5));
                 of.setTitreOffre(rs.getString(2));
                 of.setDescriptionOffre(rs.getString(3));
 
-                c.setIdCategorie(rs.getInt("idCategorie"));
-                c.setNomCategorie(rs.getString("categorieOffre"));
+                c.setId_Category(rs.getInt("idCategorie"));
+                c.setName_category(rs.getString("categorieOffre"));
                 of.setCategorieOffre(c);
                 of.setDateAjoutOffre(rs.getTimestamp(6));
                 of.setTypeOffre(rs.getString(7));
@@ -219,7 +219,7 @@ studio.setDescription(rs1.getString(13));
                 of.setNomStudio(rs.getString(5));
                 of.setTitreOffre(rs.getString(2));
                 of.setDescriptionOffre(rs.getString(3));
-                Categorie c = new Categorie(rs.getInt(9), rs.getString(4));
+                Category c = new Category(rs.getInt(9), rs.getString(4));
                 of.setCategorieOffre(c);
                 of.setDateAjoutOffre(rs.getTimestamp(6));
                 String categorieinfos = c.toString();
@@ -238,9 +238,9 @@ studio.setDescription(rs1.getString(13));
 
     //****************************afficher par categorie**************************************
     @Override
-    public List<offreTravail> fetchOffresPerCategorieDate(List<offreTravail> f, Categorie c) {
+    public List<offreTravail> fetchOffresPerCategorieDate(List<offreTravail> f, Category c) {
         List<offreTravail> offresTravail = new ArrayList<>();
-        return f.stream().filter(o -> o.getCategorieOffre().getNomCategorie().equals(c.getNomCategorie())).collect(Collectors.toList());
+        return f.stream().filter(o -> o.getCategorieOffre().getName_category().equals(c.getName_category())).collect(Collectors.toList());
     }
 
     //*******************filtre par type offre // autre methode bech yfiltri ali mawjoud deja******************************
@@ -267,15 +267,15 @@ studio.setDescription(rs1.getString(13));
            
             while (rs.next()) {
                 
-                Categorie c = new Categorie();
+                Category c = new Category();
                 of.setIdOffre(rs.getInt("idOffre"));
                 of.setIdStudio(rs.getInt(1));
                 of.setNomStudio(rs.getString(5));
                 of.setTitreOffre(rs.getString(2));
                 of.setDescriptionOffre(rs.getString(3));
 
-                c.setIdCategorie(rs.getInt("idCategorie"));
-                c.setNomCategorie(rs.getString("categorieOffre"));
+                c.setId_Category(rs.getInt("idCategorie"));
+                c.setName_category(rs.getString("categorieOffre"));
                 of.setCategorieOffre(c);
                 of.setDateAjoutOffre(rs.getTimestamp(6));
                 of.setTypeOffre(rs.getString(7));
@@ -325,9 +325,9 @@ public static boolean verif=false;
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setString(1, o.getTitreOffre());
             pst.setString(2, o.getDescriptionOffre());
-            pst.setString(3, o.getCategorieOffre().getNomCategorie());
+            pst.setString(3, o.getCategorieOffre().getName_category());
             pst.setInt(7, o.getIdOffre());
-            pst.setInt(6, o.getCategorieOffre().getIdCategorie());
+            pst.setInt(6, o.getCategorieOffre().getId_Category());
             pst.setString(4, o.getTypeOffre());
             pst.setString(5, o.getLocalisationOffre());
             pst.executeUpdate();
@@ -363,10 +363,10 @@ public static boolean verif=false;
             ps.setString(2, o.getNomStudio());
             ps.setString(3, o.getTitreOffre());
             ps.setString(4, o.getDescriptionOffre());
-            ps.setString(5, o.getCategorieOffre().getNomCategorie());
+            ps.setString(5, o.getCategorieOffre().getName_category());
             ps.setString(7, o.getTypeOffre());
             ps.setString(8, o.getLocalisationOffre());
-            ps.setInt(9, o.getCategorieOffre().getIdCategorie());
+            ps.setInt(9, o.getCategorieOffre().getId_Category());
 
             ps.setTimestamp(6, sqldate);
             ps.executeUpdate();
@@ -418,9 +418,9 @@ public static boolean verif=false;
                     of.setDescriptionOffre(rs.getString(3));
                     of.setNomStudio(rs.getString(4));
                     
-                    Categorie c = new Categorie();
-                     c.setIdCategorie(rs.getInt("idCategorie"));
-                c.setNomCategorie(rs.getString("categorieOffre"));
+                    Category c = new Category();
+                     c.setId_Category(rs.getInt("idCategorie"));
+                c.setName_category(rs.getString("categorieOffre"));
                    of.setCategorieOffre(c);
                     of.setLocalisationOffre(rs.getString("localisationOffre"));
                     of.setTypeOffre(rs.getString("typeOffre"));
@@ -711,15 +711,15 @@ alert.show();
             ResultSet rs = st.executeQuery(req2);
             while (rs.next()) {
                 offreTravail of = new offreTravail();
-                Categorie c = new Categorie();
+                Category c = new Category();
                 of.setIdOffre(rs.getInt("idOffre"));
                 of.setIdStudio(rs.getInt(1));
                 of.setNomStudio(rs.getString(5));
                 of.setTitreOffre(rs.getString(2));
                 of.setDescriptionOffre(rs.getString(3));
 
-                c.setIdCategorie(rs.getInt("idCategorie"));
-                c.setNomCategorie(rs.getString("categorieOffre"));
+                c.setId_Category(rs.getInt("idCategorie"));
+                c.setName_category(rs.getString("categorieOffre"));
                 of.setCategorieOffre(c);
                 of.setDateAjoutOffre(rs.getTimestamp(6));
                 of.setTypeOffre(rs.getString(7));

@@ -5,11 +5,11 @@
  */
 package Service;
 
-import Entity.Category;
-import Entity.Post;
-import Entity.PostLike;
+import models.Category;
+import models.Post;
+import models.PostLike;
 import Interfaces.PostInterface;
-import Utils.MyConnection;
+import util.MyConnection;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.Logged;
 
 /**
  *
@@ -50,15 +51,17 @@ public class PostService implements PostInterface{
                 return;
             }
             // Add the post to the database
-            String req = "INSERT INTO post (id, Description_p, Media, Title_p, Date_p, Id_Category, post_type) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String req = "INSERT INTO post (Description_p, Media, Title_p, Date_p, Id_Category, post_type, ID_User) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = cnx.prepareStatement(req);
-            st.setInt(1, p.getId_user());
-            st.setString(2, p.getDescription_p());
-            st.setString(3, p.getMedia());
-            st.setString(4, p.getTitle());
-            st.setTimestamp(5, sqldate);
-            st.setInt(6, p.getCategory_p().getId_Category());
-            st.setString(7, p.getPost_typ());
+            //st.setInt(1, p.getId_user());  
+            st.setString(1, p.getDescription_p());
+            st.setString(2, p.getMedia());
+            st.setString(3, p.getTitle());
+            st.setTimestamp(4, sqldate);
+            st.setInt(5, p.getCategory_p().getId_Category());
+            st.setString(6, p.getPost_typ());
+            st.setInt(7, Logged.get_instance().getUser().getID_User()); 
+            //st.setInt(7, p.getId_user(Logged.get_instance().getUser().getID_User())); 
             int result = st.executeUpdate();
             if (result > 0) {
                 System.out.println("Post added successfully!");
@@ -69,6 +72,7 @@ public class PostService implements PostInterface{
             ex.printStackTrace();
         }
     }
+    
     
 
     
@@ -138,7 +142,7 @@ public class PostService implements PostInterface{
         public void addLike(Post p) {
             try {
                 // Check if the user has already liked the post
-                String checkReq = "SELECT * FROM `post_like` WHERE `id_post` = ? AND `id` = ?";
+                String checkReq = "SELECT * FROM `post_like` WHERE `id_post` = ? AND `ID_User` = ?";
                 PreparedStatement checkSt = cnx.prepareStatement(checkReq);
                 checkSt.setInt(1, p.getId_post());
                 checkSt.setInt(2, p.getId_user());
@@ -149,7 +153,7 @@ public class PostService implements PostInterface{
                 }
 
                 // User has not liked the post yet, so we can insert a new like into the post_like table
-                String addReq = "INSERT INTO `post_like`(`id_post`, `id`) VALUES (?,?)";
+                String addReq = "INSERT INTO `post_like`(`id_post`, `ID_User`) VALUES (?,?)";
                 PreparedStatement addSt = cnx.prepareStatement(addReq);
                 addSt.setInt(1, p.getId_post());
                 addSt.setInt(2, p.getId_user());
@@ -164,7 +168,7 @@ public class PostService implements PostInterface{
     @Override
     public void deleteLike(int id_post, int id_user) {
            try {
-          String req = "DELETE FROM post_like WHERE id_post = ? and id = ?";
+          String req = "DELETE FROM post_like WHERE id_post = ? and ID_User = ?";
           PreparedStatement st = cnx.prepareStatement(req);
           st.setInt(1, id_post);
           st.setInt(2, id_user);
@@ -199,7 +203,7 @@ public class PostService implements PostInterface{
    @Override
     public List<PostLike> Number_Of_Likes_For_A_Post(int id_post, int id_user) {
              List<PostLike> postLikes = new ArrayList<>();
-            String req = "SELECT * FROM post_like WHERE id_post = ? AND id = ?";
+            String req = "SELECT * FROM post_like WHERE id_post = ? AND ID_User = ?";
             try (PreparedStatement st = cnx.prepareStatement(req)) {
                 st.setInt(1, id_post);
                 st.setInt(2, id_user);
@@ -207,7 +211,7 @@ public class PostService implements PostInterface{
                     while (resultSet.next()) {
                         //int id_PostLike = resultSet.getInt("id_PostLike");
                         int post_id = resultSet.getInt("id_post");
-                        int user_id = resultSet.getInt("id");
+                        int user_id = resultSet.getInt("ID_User");
                         PostLike postLike = new PostLike(post_id, user_id);
                         postLikes.add(postLike);
                     }
@@ -228,7 +232,7 @@ public class PostService implements PostInterface{
          ResultSet resultSet = st.executeQuery(req)) {
         while (resultSet.next()) {
             int post_id = resultSet.getInt("id_post");
-            int user_id = resultSet.getInt("id");
+            int user_id = resultSet.getInt("ID_User");
             PostLike postLike = new PostLike(post_id, user_id);
             postLikes.add(postLike);
         }
@@ -249,7 +253,7 @@ public class PostService implements PostInterface{
             try (ResultSet resultSet = st.executeQuery()) {
                 while (resultSet.next()) {
                     int post_id = resultSet.getInt("id_post");
-                    int user_id = resultSet.getInt("id");
+                    int user_id = resultSet.getInt("ID_User");
                     PostLike postLike = new PostLike(post_id, user_id);
                     postLikes.add(postLike);
                 }
@@ -527,6 +531,33 @@ public List<PostLike> getAllPostLikesorder() throws SQLException {
         return posts;
     }
     
+    @Override
+public List<Post> fetchPortfolioPostDetailsOfThePortfolioCreater() {
+    List<Post> posts = new ArrayList<>();
+    try {
+        String req = "SELECT Id_post ,Description_p, Title_p, Media FROM post WHERE post_type=? AND ID_User=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setString(1, "Portfolio");
+        ps.setInt(2, Logged.get_instance().getUser().getID_User());
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Post p = new Post();
+            p.setId_post(rs.getInt("Id_post"));
+            p.setDescription_p(rs.getString("Description_p"));
+            p.setMedia(rs.getString("Media"));
+            p.setTitle(rs.getString("Title_p"));
+            p.setPost_typ("Portfolio");
+            // Get the number of likes for this post
+            List<PostLike> likes = Number_Of_Likes_For_A_Post_Post(p.getId_post());
+            int numberOfLikes = likes.size();
+            posts.add(p);    
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return posts;
+}
+    
         public Category getCategoryByName(String categoryName) {
         try {
             String sql = "SELECT * FROM category WHERE Name_Category=?";
@@ -607,6 +638,59 @@ public List<PostLike> getAllPostLikesorder() throws SQLException {
 
         return post;
     }
+    
+    
+    
+    public int getIdUserByTitle(String title) {
+    int idUser = -1; // default value in case title is not found
+    try {
+        String req = "SELECT ID_User FROM post WHERE Title_p=?";
+        PreparedStatement st = cnx.prepareStatement(req);
+        st.setString(1, title);
+        ResultSet rs = st.executeQuery();
+        if (rs.next()) {
+            idUser = rs.getInt("ID_User");
+        }
+        rs.close();
+        st.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return idUser;
+}
+@Override
+public List<Integer> getLikeIdsForPost(int postId) {
+    List<Integer> likeIds = new ArrayList<Integer>();
+    try {
+        String selectReq = "SELECT `id_like` FROM `post_like` WHERE `id_post` = ?";
+        PreparedStatement selectSt = cnx.prepareStatement(selectReq);
+        selectSt.setInt(1, postId);
+        ResultSet rs = selectSt.executeQuery();
+        while (rs.next()) {
+            int likeId = rs.getInt("id_like");
+            likeIds.add(likeId);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return likeIds;
+}
 
+public List<Integer> getUserIdsByPostId(int postId) {
+    List<Integer> userIds = new ArrayList<>();
+    try {
+        String query = "SELECT `ID_User` FROM `post_like` WHERE `id_like` = ?";
+        PreparedStatement statement = cnx.prepareStatement(query);
+        statement.setInt(1, postId);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            int userId = resultSet.getInt("ID_User");
+            userIds.add(userId);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return userIds;
+}
     
     }

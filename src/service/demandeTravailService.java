@@ -28,7 +28,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import models.Categorie;
+import models.Category;
 import models. AllUsers;
 import models.demandeTravail;
 import util.MaConnexion;
@@ -132,8 +132,8 @@ alert.showAndWait();
                 ps.setString(2, artiste.getNickname());
                 ps.setString(3, d.getTitreDemande());
                 ps.setString(4, d.getDescriptionDemande());
-         ps.setString(5, d.getCategorieDemande().getNomCategorie());
-           ps.setInt(6, d.getCategorieDemande().getIdCategorie());
+         ps.setString(5, d.getCategorieDemande().getName_category());
+           ps.setInt(6, d.getCategorieDemande().getId_Category());
                 ps.setTimestamp(7, sqldate);
                   ps.setString(8, d.getPdf());
                 ps.executeUpdate();
@@ -168,7 +168,7 @@ alert.showAndWait();
                 dm.setNomArtiste(rs.getString(2));
                 dm.setTitreDemande(rs.getString(3));
                 dm.setDescriptionDemande(rs.getString(4));
-                 Categorie c = new Categorie(rs.getInt(8),rs.getString(5));
+                 Category c = new Category(rs.getInt(8),rs.getString(5));
                 dm.setCategorieDemande(c);
                 dm.setDateAjoutDemande(rs.getTimestamp(6));
                  dm.setPdf(rs.getString("pdf"));
@@ -198,7 +198,7 @@ alert.showAndWait();
                 dm.setNomArtiste(rs.getString(2));
                 dm.setTitreDemande(rs.getString(3));
                 dm.setDescriptionDemande(rs.getString(4));
-                 Categorie c = new Categorie(rs.getInt(8),rs.getString(5));
+                 Category c = new Category(rs.getInt(8),rs.getString(5));
                 dm.setCategorieDemande(c);
                 dm.setDateAjoutDemande(rs.getTimestamp(6));
                  dm.setPdf(rs.getString("pdf"));
@@ -210,12 +210,8 @@ alert.showAndWait();
         }
         return demandesTravail;
     }
-//********************** afficher demandes par categories***********************************
-    @Override
-    public List<demandeTravail> fetchDemandesPerCategorieDate( List<demandeTravail>d,Categorie c) {
-        List<demandeTravail>demandeTravails = new ArrayList<>();
-        return d.stream().filter(o -> o.getCategorieDemande().getNomCategorie().equals(c.getNomCategorie())).collect(Collectors.toList());
-    }
+
+   
 //**********************afficher demande par son id *********************************
         @Override
     public  demandeTravail fetchdemandeParId(int id) {
@@ -230,7 +226,7 @@ alert.showAndWait();
                 demande.setNomArtiste(rs.getString("Nickname"));
                 demande.setTitreDemande(rs.getString("titreDemande"));
                 demande.setDescriptionDemande(rs.getString("descriptionDemande"));
-                Categorie c = new Categorie(rs.getInt(8),rs.getString(5));
+                Category c = new Category(rs.getInt(8),rs.getString(5));
                 demande.setCategorieDemande(c);
                 demande.setDateAjoutDemande(rs.getTimestamp(6));
                 demande.setPdf(rs.getString("pdf"));
@@ -278,8 +274,8 @@ alert.showAndWait();
                     PreparedStatement pst = cnx.prepareStatement(req);
                     pst.setString(1, d.getTitreDemande());
                     pst.setString(2, d.getDescriptionDemande());
-                    pst.setString(3,  d.getCategorieDemande().getNomCategorie());
-                    pst.setInt(4,  d.getCategorieDemande().getIdCategorie());
+                    pst.setString(3,  d.getCategorieDemande().getName_category());
+                    pst.setInt(4,  d.getCategorieDemande().getId_Category());
                       pst.setString(5,  d.getPdf());
                     pst.setInt(6, d.getIdDemande());
                     pst.executeUpdate();
@@ -332,9 +328,9 @@ alert.showAndWait();
                     dm.setTitreDemande(rs.getString(3));
                     dm.setDescriptionDemande(rs.getString(4));
                     dm.setNomArtiste(rs.getString(2));
-                        Categorie c = new Categorie();
-                      c.setIdCategorie(rs.getInt("idCategorie"));
-                      c.setNomCategorie("categorieDemande");
+                        Category c = new Category();
+                      c.setId_Category(rs.getInt("idCategorie"));
+                      c.setName_category("categorieDemande");
                     dm.setCategorieDemande(c);
                     if (!containsId( demandesTravailtrouver, dm.getIdDemande())) {
                          demandesTravailtrouver.add(dm);
@@ -532,14 +528,20 @@ alert.showAndWait();
                 dm.setNomArtiste(rs.getString(2));
                 dm.setTitreDemande(rs.getString(3));
                 dm.setDescriptionDemande(rs.getString(4));
-                 Categorie c = new Categorie(rs.getInt(8),rs.getString(5));
+                 Category c = new Category(rs.getInt(8),rs.getString(5));
                 dm.setCategorieDemande(c);
                 dm.setDateAjoutDemande(rs.getTimestamp(6));
                 demandesTravail.add(dm);
+                dm.setPdf(rs.getString("pdf"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return demandesTravail;
+    }
+      @Override
+    public List<demandeTravail> fetchDemandesPerCategorieDate( List<demandeTravail>d,Category c) {
+        List<demandeTravail>demandeTravails = new ArrayList<>();
+        return d.stream().filter(o -> o.getCategorieDemande().getName_category().equals(c.getName_category())).collect(Collectors.toList());
     }
 }

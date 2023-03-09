@@ -15,9 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import models.Categorie;
+import models.Category;
 import models.Challenge;
-import models.Utilisateur;
 import interfaces.ChallengeInterface;
 import interfaces.ParticipationInterface;
 import models.AllUsers;
@@ -43,7 +42,7 @@ public class ChallengeService implements ChallengeInterface {
             ps.setString(3, c.getDate_C());
             ps.setString(4, c.getPathIMG());
             ps.setInt(5, c.getNiveau());
-            ps.setInt(6, c.getCategorie().getIdCategorie());
+            ps.setInt(6, c.getCategorie().getId_Category());
             ps.setInt(7, Logged.get_instance().getUser().getID_User());
             
             ps.executeUpdate();
@@ -65,7 +64,7 @@ public class ChallengeService implements ChallengeInterface {
             ps.setString(3, c.getDate_C());
             ps.setString(4, c.getPathIMG());
             ps.setInt(5, c.getNiveau());
-            ps.setInt(6, c.getCategorie().getIdCategorie());
+            ps.setInt(6, c.getCategorie().getId_Category());
             ps.setInt(7, c.getID_Challenge());
             
             ps.executeUpdate();
@@ -94,7 +93,7 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge ch,categorie2 ca,AllUsers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user";
+            String req = "SELECT * FROM Challenge ch,category ca,AllUsers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -106,9 +105,9 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
                 
-                Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("NameCategorie"));
+                Category c = new Category();
+                c.setId_Category(rs.getInt("ID_Categorie"));
+                c.setName_category(rs.getString("NameCategorie"));
                
                 ch.setCategorie(c);
                 
@@ -146,9 +145,9 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
                 
-                Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("id_category"));
-                c.setNomCategorie(rs.getString("name_category"));
+                Category c = new Category();
+                c.setId_Category(rs.getInt("id_category"));
+                c.setName_category(rs.getString("name_category"));
             
                 ch.setCategorie(c);
                 
@@ -174,7 +173,7 @@ public class ChallengeService implements ChallengeInterface {
                 Challenge challenge = new Challenge();
         try {
             
-            String req = "SELECT * FROM Challenge ch,Categorie ca,allusers u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ID_Challenge = "+id;
+            String req = "SELECT * FROM Challenge ch,Category ca,allusers u where ch.ID_Categorie = ca.ID_Categorie and ch.ID_Artist=u.ID_user and ID_Challenge = "+id;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -186,9 +185,9 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
                 
-                Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("id_category"));
-                c.setNomCategorie(rs.getString("name_category"));
+                Category c = new Category();
+                c.setId_Category(rs.getInt("id_category"));
+                c.setName_category(rs.getString("name_category"));
              
                 ch.setCategorie(c);
                 
@@ -215,7 +214,7 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge ch,categorie2 ca,allusers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user and ch.Title like '%"+name+"%'";
+            String req = "SELECT * FROM Challenge ch,category ca,allusers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user and ch.Title like '%"+name+"%'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -228,9 +227,9 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
                 
-                Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("id_category"));
-                c.setNomCategorie(rs.getString("name_category"));
+                Category c = new Category();
+                c.setId_Category(rs.getInt("id_category"));
+                c.setName_category(rs.getString("name_category"));
                
                 ch.setCategorie(c);
                 
@@ -256,7 +255,7 @@ public class ChallengeService implements ChallengeInterface {
         List<Challenge> Challenges = new ArrayList<>();
         try {
             
-            String req = "SELECT * FROM Challenge ch,categorie2 ca,allusers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user and ch.ID_Categorie= ANY(select id_category from categorie2 where name_category in "+name+")";
+            String req = "SELECT * FROM Challenge ch,category ca,allusers u where ch.ID_Categorie = ca.id_category and ch.ID_Artist=u.ID_user and ch.ID_Categorie= ANY(select id_category from categorie2 where name_category in "+name+")";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
@@ -268,9 +267,9 @@ public class ChallengeService implements ChallengeInterface {
                 ch.setPathIMG(rs.getString(5));
                 ch.setNiveau(rs.getInt(6));
                 
-                Categorie c = new Categorie();
-                c.setIdCategorie(rs.getInt("ID_Categorie"));
-                c.setNomCategorie(rs.getString("name_category"));
+                Category c = new Category();
+                c.setId_Category(rs.getInt("ID_Categorie"));
+                c.setName_category(rs.getString("name_category"));
                
                 ch.setCategorie(c);
                 

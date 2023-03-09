@@ -15,7 +15,7 @@ public class BanService implements BanInterface {
     public void AddBan(Ban B) throws SQLException {
         String nickname = "";
         try {
-            String req = "SELECT COUNT(*) FROM allusers2 WHERE ID_User =" + B.getID_User();
+            String req = "SELECT COUNT(*) FROM allusers WHERE ID_User =" + B.getID_User();
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             if (!rs.next()) {

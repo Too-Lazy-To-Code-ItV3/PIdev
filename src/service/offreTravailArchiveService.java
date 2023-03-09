@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
-import models.Categorie;
+import models.Category;
 
 import models.offreTravailarchive;
 import util.MaConnexion;
@@ -48,10 +48,10 @@ public class offreTravailArchiveService implements offreTravailArchiveInterface 
                     ps.setString(2, o.getNomStudio());
                     ps.setString(3, o.getTitreOffre());
                     ps.setString(4, o.getDescriptionOffre());
-                    ps.setString(5, o.getCategorieOffre().getNomCategorie());
+                    ps.setString(5, o.getCategorieOffre().getName_category());
                     ps.setString(7, o.getTypeOffre());
                     ps.setString(8, o.getLocalisationOffre());
-                    ps.setInt(9, o.getCategorieOffre().getIdCategorie());
+                    ps.setInt(9, o.getCategorieOffre().getId_Category());
 
                     ps.setTimestamp(6, sqldate);
                     ps.executeUpdate();
@@ -105,15 +105,15 @@ public class offreTravailArchiveService implements offreTravailArchiveInterface 
             while (rs.next()) {
                 offreTravailarchive of = new offreTravailarchive();
 
-              Categorie c = new Categorie();
+              Category c = new Category();
                 of.setIdOffre(rs.getInt("idOffre"));
                 of.setIdStudio(rs.getInt(1));
                 of.setNomStudio(rs.getString(5));
                 of.setTitreOffre(rs.getString(2));
                 of.setDescriptionOffre(rs.getString(3));
 
-                c.setIdCategorie(rs.getInt("idCategorie"));
-                c.setNomCategorie(rs.getString("categorieOffre"));
+                c.setId_Category(rs.getInt("idCategorie"));
+                c.setName_category(rs.getString("categorieOffre"));
                 of.setCategorieOffre(c);
                 of.setDateAjoutOffre(rs.getTimestamp(6));
                 of.setTypeOffre(rs.getString(7));
@@ -144,7 +144,7 @@ public class offreTravailArchiveService implements offreTravailArchiveInterface 
                 of.setTitreOffre(rs.getString(2));
                 of.setDescriptionOffre(rs.getString(3));
 
-                Categorie c = new Categorie(rs.getInt(9), rs.getString(4));
+                Category c = new Category(rs.getInt(9), rs.getString(4));
                 of.setIdStudio(rs.getInt(1));
                 of.setNomStudio(rs.getString(5));
                 of.setCategorieOffre(c);
