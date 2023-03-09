@@ -6,6 +6,8 @@ package javafx;
  * and open the template in the editor.
  */
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -25,6 +27,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -32,14 +36,15 @@ import javafx.stage.Stage;
  * @author nour2
  */
 public class NewFXMain extends Application {
- 
+ public static final String CURRENCY = "DT"; 
+ private MediaPlayer mediaPlayer;
     
       @Override
     public void start(Stage primaryStage) {
 
         Parent root;
         try {
-              
+               music();
             root = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
             Scene scene = new Scene(root,1380,700);
@@ -50,25 +55,51 @@ public class NewFXMain extends Application {
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
+    public void music() {
+
+    File musicDir = new File("src/Music");
+    File[] musicFiles = musicDir.listFiles(new FilenameFilter() {
+        public boolean accept(File dir, String name) {
+            return name.endsWith(".mp3");
+        }
+    });
+
+    if (musicFiles != null && musicFiles.length > 0) {
+        mediaPlayer = new MediaPlayer(new Media(musicFiles[0].toURI().toString()));
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                int currentIndex = -1;
+                for (int i = 0; i < musicFiles.length; i++) {
+                    if (mediaPlayer.getMedia().getSource().equals(musicFiles[i].toURI().toString())) {
+                        currentIndex = i;
+                        break;
+                    }
+                }
+                if (currentIndex != -1 && currentIndex + 1 < musicFiles.length) {
+                    Media nextMedia = new Media(musicFiles[currentIndex + 1].toURI().toString());
+                    mediaPlayer = new MediaPlayer(nextMedia);
+                    mediaPlayer.play();
+                     mediaPlayer.setVolume(5);
+                }
+            }
+        });
+        mediaPlayer.play();
+        mediaPlayer.setVolume(0.05);
 
     /**
      * @param args the command line arguments
      */
     
-    
+    }} 
 
    
     public static void main(String[] args) {
-         launch(args); 
-      
-
-            
-        
-    
-      
-    }}
+         launch(args);       
+    }
+}
 
 
 

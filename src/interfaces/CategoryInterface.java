@@ -1,5 +1,3 @@
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,8 +5,7 @@
  */
 package interfaces;
 
-import Entity.Category;
-import models.Categorie;
+import models.Category;
 import java.util.List;
 
 /**
@@ -16,24 +13,28 @@ import java.util.List;
  * @author amine
  */
 public interface CategoryInterface {
+
     //add
-        public void addCategory(Categorie c);
-        public void addCategory2(Categorie c);
-        public void modifyCategory(Categorie c,String newName);
-        public void deleteCategory(String name);
-        
-//    
-//    //list : select
-       public List<Categorie> fetchCategories();
-       
-       
-       public Categorie fetchCategoryById(int id);
-       
-       public Categorie fetchCategoryByNom(String nom) ;
+  
 
     public void addCategory2(Category c);
 
     public void modifyCategory(Category c, String newName);
 
-    public List<Category> fetchCategoriess();
+    public void deleteCategory(String name);
+
+//    
+//    //list : select
+    public List<Category> fetchCategories();
+
+    public Category fetchCategories(String name);
+
+    public Category fetchCategoryById(int id);
+
+    public Category fetchCategoryByNom(String nom);
+
+    public void deleteCategoryById(int id);
+
+   
+
 }

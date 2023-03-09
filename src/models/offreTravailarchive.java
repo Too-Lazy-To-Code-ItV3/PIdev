@@ -15,7 +15,7 @@ public class offreTravailarchive {
  private int idOffre;
  private String titreOffre;
  private String descriptionOffre;
- private Categorie categorieOffre;
+ private Category categorieOffre;
  private int idStudio;
  private  String nomStudio;
  private Date dateAjoutOffre;
@@ -27,7 +27,7 @@ public class offreTravailarchive {
     public offreTravailarchive() {
     }
 
-    public offreTravailarchive(int idOffre, String titreOffre, String descriptionOffre, Categorie categorieOffre, int idStudio, String nomStudio, Date dateAjoutOffre, String typeOffre, String localisationOffre) {
+    public offreTravailarchive(int idOffre, String titreOffre, String descriptionOffre, Category categorieOffre, int idStudio, String nomStudio, Date dateAjoutOffre, String typeOffre, String localisationOffre) {
         this.idOffre = idOffre;
         this.titreOffre = titreOffre;
         this.descriptionOffre = descriptionOffre;
@@ -39,7 +39,7 @@ public class offreTravailarchive {
         this.localisationOffre = localisationOffre;
     }
 
-    public offreTravailarchive(String titreOffre, String descriptionOffre, Categorie categorieOffre, int idStudio, String nomStudio, Date dateAjoutOffre, String typeOffre, String localisationOffre) {
+    public offreTravailarchive(String titreOffre, String descriptionOffre, Category categorieOffre, int idStudio, String nomStudio, Date dateAjoutOffre, String typeOffre, String localisationOffre) {
         this.titreOffre = titreOffre;
         this.descriptionOffre = descriptionOffre;
         this.categorieOffre = categorieOffre;
@@ -95,7 +95,7 @@ public class offreTravailarchive {
         this.idOffre = idOffre;
     }
 
-    public void setCategorieOffre(Categorie categorieOffre) {
+    public void setCategorieOffre(Category categorieOffre) {
         this.categorieOffre = categorieOffre;
     }
 
@@ -120,7 +120,7 @@ public class offreTravailarchive {
         return descriptionOffre;
     }
 
-    public Categorie getCategorieOffre() {
+    public Category getCategorieOffre() {
         return categorieOffre;
     }
 

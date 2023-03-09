@@ -12,13 +12,13 @@ public class Tutoriel {
 
     private int ID_Tutoriel, Niveau;
     private String Title, Description, PathImg;
-    private Categorie categorie;
+    private Category categorie;
     private AllUsers Creator;
 
     public Tutoriel() {
     }
 
-    public Tutoriel(int ID_Tutoriel, int Niveau, String Title, String Description, String PathImg, Categorie categorie, AllUsers Creator) {
+    public Tutoriel(int ID_Tutoriel, int Niveau, String Title, String Description, String PathImg, Category categorie, AllUsers Creator) {
         this.ID_Tutoriel = ID_Tutoriel;
         this.Niveau = Niveau;
         this.Title = Title;
@@ -68,11 +68,11 @@ public class Tutoriel {
         this.PathImg = PathImg;
     }
 
-    public Categorie getCategorie() {
+    public Category getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(Categorie categorie) {
+    public void setCategorie(Category categorie) {
         this.categorie = categorie;
     }
 

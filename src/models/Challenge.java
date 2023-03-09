@@ -15,13 +15,13 @@ public class Challenge {
     private int ID_Challenge,niveau;
     private String Title ,Description, Date_C, PathIMG;
     private List<AllUsers> Participants;
-    private Categorie categorie;
+    private Category categorie;
     private AllUsers Creator;
 
     public Challenge() {
     }
 
-    public Challenge(int ID_Challenge, int niveau, String Title, String Description, String Date_C, String PathIMG, List<AllUsers> Participants, Categorie categorie, AllUsers Creator) {
+    public Challenge(int ID_Challenge, int niveau, String Title, String Description, String Date_C, String PathIMG, List<AllUsers> Participants, Category categorie, AllUsers Creator) {
         this.ID_Challenge = ID_Challenge;
         this.niveau = niveau;
         this.Title = Title;
@@ -89,11 +89,11 @@ public class Challenge {
         this.Participants = Participants;
     }
 
-    public Categorie getCategorie() {
+    public Category getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(Categorie categorie) {
+    public void setCategorie(Category categorie) {
         this.categorie = categorie;
     }
 

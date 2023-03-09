@@ -6,9 +6,9 @@
 package interfaces;
 
 import java.util.List;
-import models.Categorie;
+
 import models.grosMots;
-import models.offreTravail;
+
 
 /**
  *

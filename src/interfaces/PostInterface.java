@@ -5,9 +5,9 @@
  */
 package Interfaces;
 
-import Entity.Category;
-import Entity.Post;
-import Entity.PostLike;
+import models.Category;
+import models.Post;
+import models.PostLike;
 import java.util.List;
 
 /**
@@ -24,7 +24,7 @@ public interface PostInterface {
     public List<Post> fetchPortfolioPostDetails();
     public List<Post> fetchPostBlogPostDetails();
     public List<Post> fetchPostByCategory(int categoryId);
-    
+    public List<Post> fetchPortfolioPostDetailsOfThePortfolioCreater();
     /*************End new code****************/
     public Category getCategoryByName(String categoryName);
 
@@ -50,5 +50,6 @@ Post fetchPostByTitle(String title);
 
  public int getNumLikes(int postId);
  
+ public List<Integer> getLikeIdsForPost(int postId);
 }
 

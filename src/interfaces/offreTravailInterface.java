@@ -6,7 +6,7 @@
 package interfaces;
 
 import java.util.List;
-import models.Categorie;
+import models.Category;
 import models.artistepostuler;
 import models.offreTravail;
 
@@ -21,7 +21,7 @@ public interface offreTravailInterface {
 public List<offreTravail> fetchOffresPerDate();
 
 public List<offreTravail> fetchOffresPerIdDate(int id);
-   public List<offreTravail> fetchOffresPerCategorieDate(List<offreTravail> f,Categorie c);
+   public List<offreTravail> fetchOffresPerCategorieDate(List<offreTravail> f,Category c);
 public void modifierOffre(offreTravail o);
 public void Supprimeretajouterarchive(offreTravail o);
 public List<offreTravail> chercherOffres(String mots);

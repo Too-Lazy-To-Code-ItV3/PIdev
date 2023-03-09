@@ -7,7 +7,7 @@ package interfaces;
 
 import models.Challenge;
 import models.Participation;
-import models.Utilisateur;
+
 import java.util.List;
 
 /**
@@ -25,8 +25,7 @@ public interface ParticipationInterface {
     public List<Participation> fetchParticipations();
     
     public List<Participation> fetchParticipantionsByChallenge(int ID_Challenge);
-    public List<Utilisateur> fetchParticipantsByChallenge(int ID_Challenge);
-    
+
     public List<Challenge> fetchChallengesByParticipant(int ID_Participant);
     public Boolean Participated(int ID_Challenge, int ID_Participant);
     

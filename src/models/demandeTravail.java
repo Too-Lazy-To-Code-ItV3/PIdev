@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package models;
-
+import models.Category;
 import java.util.Date;
 
 /**
@@ -17,14 +17,14 @@ public class demandeTravail {
  private  String nomArtiste;
     private String titreDemande;
  private String descriptionDemande;
-       private Categorie categorieDemande;
+       private Category categorieDemande;
    private Date dateAjoutDemande;
  private String pdf;
 
     public demandeTravail() {
     }
 
-    public demandeTravail(int idDemande, int idArtiste, String nomArtiste, String titreDemande, String descriptionDemande, Categorie categorieDemande, Date dateAjoutDemande) {
+    public demandeTravail(int idDemande, int idArtiste, String nomArtiste, String titreDemande, String descriptionDemande, Category categorieDemande, Date dateAjoutDemande) {
         this.idDemande = idDemande;
         this.idArtiste = idArtiste;
         this.nomArtiste = nomArtiste;
@@ -34,7 +34,7 @@ public class demandeTravail {
         this.dateAjoutDemande = dateAjoutDemande;
     }
 
-    public demandeTravail(int idArtiste, String nomArtiste, String titreDemande, String descriptionDemande, Categorie categorieDemande, Date dateAjoutDemande) {
+    public demandeTravail(int idArtiste, String nomArtiste, String titreDemande, String descriptionDemande, Category categorieDemande, Date dateAjoutDemande) {
         this.idArtiste = idArtiste;
         this.nomArtiste = nomArtiste;
         this.titreDemande = titreDemande;
@@ -98,10 +98,10 @@ public class demandeTravail {
         return nomArtiste;
     }
 
-    public void setCategorieDemande(Categorie categorieDemande) {
+    public void setCategorieDemande(Category categorieDemande) {
         this.categorieDemande = categorieDemande;
     }
-    public Categorie getCategorieDemande() {
+    public Category getCategorieDemande() {
         return categorieDemande;
     }
 

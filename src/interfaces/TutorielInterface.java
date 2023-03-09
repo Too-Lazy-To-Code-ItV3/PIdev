@@ -29,7 +29,7 @@ public interface TutorielInterface {
     
     public Tutoriel fetchTutorielByID(int ID_Tutoriel);
     
-    public List<Tutoriel> fetchTutorielsByCategorie(int ID_Categorie);
+    public List<Tutoriel> fetchTutorielsByCategorie(String name);
     
     public List<Tutoriel> fetchTutorielsByArtist(String NomArtist);
     
