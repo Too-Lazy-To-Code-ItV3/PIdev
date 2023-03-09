@@ -45,6 +45,7 @@ public class CRUDuser {
         assert ajouter1 != null : "fx:id=\"ajouter1\" was not injected: check your FXML file 'CRUDuser.fxml'.";
 
         Pane pane = FXMLLoader.load(getClass().getResource("AffichUsers.fxml"));
+        System.out.println("CRUDUSER");
         afficherUsers.getChildren().setAll(pane);
 
     }

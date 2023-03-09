@@ -23,24 +23,26 @@ public class AffichUsers {
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) throws IOException {
+        System.out.println("AFFICHUSER");
         Users = new ArrayList<>(as.fetchAU());
         int column = 0;
         int row = 1;
         for (AllUsers User : Users) {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("Useritem.fxml"));
-                Pane pane = fxmlLoader.load();
-                Useritem ui = fxmlLoader.getController();
-                ui.loadUsers(User);
-                if (column == 3) {
-                    column = 0;
-                    ++row;
-                }
-                citiesGril.add(pane, column++, row);
-                GridPane.setMargin(pane,new Insets(20));
+            System.out.println("AFFICHUSER");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("Useritem.fxml"));
+            Pane pane = fxmlLoader.load();
+            Useritem ui = fxmlLoader.getController();
+            ui.loadUsers(User);
+            if (column == 1) {
+                column = 0;
+                ++row;
             }
-
+            citiesGril.add(pane, column++, row);
+            GridPane.setMargin(pane, new Insets(20));
         }
+
+
     }
+}
 

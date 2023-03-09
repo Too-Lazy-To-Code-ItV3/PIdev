@@ -2,7 +2,6 @@ package com.example.userjfx;
 
 import Models.AllUsers;
 import Services.AllUsersService;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +52,7 @@ public class Register {
     private TextField NameTF;
 
     @FXML
-    private  JFXComboBox<String> NationalityTF;
+    private  ComboBox<String> NationalityTF;
 
     @FXML
     private TextField NicknameTF;
@@ -62,7 +61,7 @@ public class Register {
     private PasswordField PasswordTF;
 
     @FXML
-    private JFXComboBox<?> TypeTF;
+    private ComboBox<?> TypeTF;
 
     @FXML
     private TextField BioTF;

@@ -110,6 +110,8 @@
       <Label layoutX="627.0" layoutY="540.0" text="Description" />
       <TextArea fx:id="DescriptionTF" layoutX="808.0" layoutY="476.0" prefHeight="162.0" prefWidth="469.0" />
       <ComboBox fx:id="NationalityTF" layoutX="750.0" layoutY="265.0" prefWidth="150.0">
+      </ComboBox>
+      <ComboBox fx:id="TypeTF" layoutX="1106.0" layoutY="272.0" prefWidth="150.0" >
       <items>
          <FXCollections fx:factory="observableArrayList">
             <String fx:value="Artist" />
@@ -118,7 +120,6 @@
          </FXCollections>
       </items>
       </ComboBox>
-      <ComboBox fx:id="TypeTF" layoutX="1106.0" layoutY="272.0" prefWidth="150.0" />
    </children>
    <effect>
       <Blend />

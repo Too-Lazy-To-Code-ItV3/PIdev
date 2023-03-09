@@ -2,13 +2,15 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="360.0" style="-fx-background-color: #171717;" stylesheets="@../../../Style/Swag1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.Useritem">
+
+<Pane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.Useritem">
    <children>
-      <VBox layoutX="87.0" layoutY="55.0" prefHeight="228.0" prefWidth="225.0">
+      <ImageView fx:id="Background" fitHeight="120.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox prefHeight="228.0" prefWidth="225.0">
          <children>
             <ImageView fx:id="Avatar" fitHeight="88.0" fitWidth="85.0" preserveRatio="true">
                <clip>
@@ -21,6 +23,5 @@
             <Label fx:id="Description" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="165.0" text="DESCRIPTION" textAlignment="CENTER" />
          </children>
       </VBox>
-      <ImageView fx:id="Background" fitHeight="120.0" fitWidth="360.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
    </children>
-</AnchorPane>
+</Pane>

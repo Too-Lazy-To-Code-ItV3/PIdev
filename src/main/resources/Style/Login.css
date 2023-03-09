@@ -31,7 +31,7 @@
 }
 
 /* Style for JFXButtons */
-.jfx-button {
+.-button {
     -fx-background-color: #6B46C1;
     -fx-text-fill: white;
     -fx-font-size: 18px;
@@ -39,13 +39,13 @@
     -fx-background-radius: 20px;
 }
 
-.jfx-button:hover {
+.-button:hover {
     -fx-background-color: #6B46C1;
     -fx-text-fill: white;
     -fx-cursor: hand;
 }
 
-.jfx-button:pressed {
+.-button:pressed {
     -fx-background-color: #573B97;
     -fx-text-fill: white;
 }

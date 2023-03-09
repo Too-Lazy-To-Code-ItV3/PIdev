@@ -40,6 +40,7 @@ public class Useritem {
 
 void loadUsers(AllUsers user)
 {
+    System.out.println("LOAD DATA USERS");
     Nickname.setText(user.getNickname());
     Description.setText(user.getDescription());
     Bio.setText(user.getBio());

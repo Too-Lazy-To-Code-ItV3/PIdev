@@ -91,7 +91,7 @@ public class Dashboard {
             try {
 
                 final int j = i;
-                nodes[i] = FXMLLoader.load(getClass().getResource("ItemDB.fxml"));
+                nodes[i] = FXMLLoader.load(getClass().getResource("Useritem.fxml"));
 
                 //give the items some effect
 
