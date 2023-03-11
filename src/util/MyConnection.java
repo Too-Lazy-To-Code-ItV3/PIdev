@@ -11,12 +11,11 @@ import java.sql.SQLException;
 
 /**
  *
- * @author admin
+ * @author amine
  */
 public class MyConnection {
-    
-    //DB PARAM
-    static final String URL ="jdbc:mysql://localhost:3306/marché";
+       //DB PARAM
+    static final String URL ="jdbc:mysql://localhost:3306/pidev";
     static final String USER ="root";
     static final String PASSWORD ="";
     
@@ -31,6 +30,7 @@ public class MyConnection {
         try {
             cnx = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
     
@@ -46,7 +46,4 @@ public class MyConnection {
         
         return instance;
     }
-    
-    
-    
 }
