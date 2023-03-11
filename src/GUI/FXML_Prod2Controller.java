@@ -5,9 +5,9 @@
  */
 package GUI;
 
-import Models.LignePanier;
-import Models.Panier;
-import Models.Produits;
+import models.LignePanier;
+import models.Panier;
+import models.Produits;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -29,10 +29,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import services.LignePanierService;
-import services.PanierService;
-import services.ProduitService;
+import models.Logged;
+import service.LignePanierService;
+import service.PanierService;
+import service.ProduitService;
 
 /**
  * FXML Controller class
@@ -66,6 +68,9 @@ Panier pan= new Panier ();
     private Label date;
     @FXML
     private Button AjoutPan;
+    @FXML
+    private HBox hbox;
+    
 
     /**
      * Initializes the controller class.
@@ -90,15 +95,21 @@ Panier pan= new Panier ();
     int idPanier=8;
 
     public void setData(Produits prod) throws MalformedURLException {
+        if(Logged.get_instance().getUser().getID_User()!=prod.getID_User())
+            {
+                hbox.getChildren().remove(supp);
+                hbox.getChildren().remove(modif);
+            }
         this.prod = prod;
+        p=prod;
         nomCard.setText(prod.getNom());
         Descp.setText(prod.getDescription());
-        cat.setText(prod.getCategorieProduit().getNomCategorie());
+        cat.setText(prod.getCategorieProduit().getName_category());
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String dateAsString = format.format(prod.getDateAjout());
         date.setText(dateAsString);
         
-        prixCard.setText(MainTest.NewFXMain.CURRENCY + prod.getPrix());
+        prixCard.setText(javafx.NewFXMain.CURRENCY + prod.getPrix());
         File file = new File("C:\\xampp\\htdocs\\img\\"+prod.getImage());
 //        System.out.println("fprod"+file);
         Image img = new Image(file.toURI().toString());
@@ -115,6 +126,9 @@ Panier pan= new Panier ();
         // Set the size of the zoomImage view
         zoomImage.setFitWidth(390);
         zoomImage.setFitHeight(390);
+        
+        System.out.println(prod.getID_User()+"/"+Logged.get_instance().getUser().getID_User());
+        
     });
         
         
@@ -139,8 +153,8 @@ Panier pan= new Panier ();
         alert.setContentText("Voulez-vous vraiment supprimer ce produit ?");
       
         
-         Optional<ButtonType> result = alert.showAndWait();
-      if (result.get() == ButtonType.OK){
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
         int id= Integer.parseInt(supp.getId());
         ps.spprimerProduit(id);
         
@@ -158,7 +172,7 @@ Panier pan= new Panier ();
 
     @FXML
     private void modifierProd(ActionEvent event) throws IOException {
-        int id= Integer.parseInt(supp.getId());
+        int id= Integer.parseInt(modif.getId());
         FXMLLoader loader= new FXMLLoader(getClass().getResource("FXML_ModifierProduit.fxml"));
         Parent view_2=loader.load();
         FXML_ModifierProduitController ModifierController=loader.getController();
@@ -169,31 +183,14 @@ Panier pan= new Panier ();
         stage.show();   
         
     }
- public void ajouterProduitAuPanier(int idPanier, Produits produit) {
-     
-    LignePanierService lignePanierService = new LignePanierService();
-    PanierService panierService = new PanierService();
-    Panier pan = panierService.afficherPanierParId(idPanier);
-
-    if (pan == null) {
-        System.out.println("Le panier n'existe pas");
-        return;
-    }
-
-    lignePanier.setPanier(pan);
-    lignePanier.getProduit().setNom(produit.getNom());
-    lignePanier.setNomProd(produit.getNom());
-    lignePanier.setPrix_unitaire(produit.getPrix());
-    lignePanierService.ajouterLignePanier(lignePanier);
-    
-}
-    
     
     
     
     @FXML
-    private void ajouterAuPanier(ActionEvent event) {
-       ajouterProduitAuPanier(8,prod);   
+    private void ajouterAuPanier(ActionEvent event) {  
+       LignePanierService lignePanierService = new LignePanierService();
+
+    lignePanierService.ajouterLignePanier(prod);
     }
 
     

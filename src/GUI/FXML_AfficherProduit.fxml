@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="691.0" prefWidth="1286.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_AfficherProduitController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="700.0" prefWidth="1366.0" styleClass="backcolor" stylesheets="@../../../../Documents/NetBeansProjects/JavaApplication1/src/css/menustyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXML_AfficherProduitController">
    <children>
       <VBox layoutX="-2.0" layoutY="-2.0" prefHeight="701.0" prefWidth="430.0" styleClass="backcolor" stylesheets="@../Css/style2.css">
          <children>
@@ -103,14 +103,14 @@
                <graphic>
                   <ImageView fitHeight="76.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/ajouter.png" />
+                        <Image url="@../img/add.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
          </children></HBox>
       <HBox layoutX="469.0" layoutY="84.0" prefHeight="611.0" prefWidth="817.0">
          <children>
-            <ScrollPane prefHeight="761.0" prefWidth="1048.0">
+            <ScrollPane prefHeight="761.0" prefWidth="1048.0" styleClass="backcolor" stylesheets="@../../../../Documents/NetBeansProjects/JavaApplication1/src/css/menustyle.css">
                <content>
                   <GridPane fx:id="grid" prefHeight="23.0" prefWidth="253.0">
                      <rowConstraints>

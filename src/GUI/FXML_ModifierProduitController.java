@@ -6,8 +6,8 @@
 package GUI;
 
 import Interfaces.ProduitInterface;
-import Models.Categories;
-import Models.Produits;
+import models.Category;
+import models.Produits;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -34,8 +34,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import services.CategoriesService;
-import services.ProduitService;
+import service.CategoryService;
+import service.ProduitService;
 
 /**
  * FXML Controller class
@@ -44,7 +44,7 @@ import services.ProduitService;
  */
 public class FXML_ModifierProduitController implements Initializable {
        ProduitInterface ps= new ProduitService();
-     CategoriesService cs= new CategoriesService() {};
+     CategoryService cs= new CategoryService() {};
      Produits p= new Produits();
   
  
@@ -56,14 +56,12 @@ public class FXML_ModifierProduitController implements Initializable {
     @FXML
     private TextField description;
     @FXML
-    private TextField qtDispo;
-    @FXML
     private TextField prixText;
     private TextField image;
     @FXML
     private Button retour;
     @FXML
-    private ChoiceBox<Categories> listeCateg = new ChoiceBox<>();
+    private ChoiceBox<Category> listeCateg = new ChoiceBox<>();
      ObservableList listCat = FXCollections.observableArrayList();
     @FXML
     private ImageView imgV;
@@ -79,8 +77,6 @@ public class FXML_ModifierProduitController implements Initializable {
     private TextField RecCat;
     @FXML
     private TextField Recdescription;
-    @FXML
-    private TextField RecQt;
     @FXML
     private TextField RcPrix;
     
@@ -130,42 +126,17 @@ public class FXML_ModifierProduitController implements Initializable {
         p = ps.readById(p.getIdProduit());
         RecNom.setText(p.getNom());
         Recdescription.setText(p.getDescription());
-        RecQt.setText(Integer.toString(p.getQuantiteDispo()));
         RcPrix.setText(Double.toString(p.getPrix()));
        
         // sélectionne la catégorie associée à ce produit
-        RecCat.setText(p.getCategorieProduit().getNomCategorie());
+        RecCat.setText(p.getCategorieProduit().getName_category());
         nomimage.setText(p.getImage());
         File file = new File("C:\\xampp\\htdocs\\img\\"+p.getImage());
         Image img = new Image(file.toURI().toString());
         imgV.setImage(img);
     }
     
-    
-     
-//     
-//    @FXML
-//    private void modifier(ActionEvent event) {
-//        int id= Integer.parseInt(modifier.getId());
-//     if (!nom.getText().isEmpty() && !description.getText().isEmpty() && listeCateg.getValue() != null && !image.getText().isEmpty() && !qtDispo.getText().isEmpty() && !prixText.getText().isEmpty()) {
-//        p.setIdProduit(idProduit);
-//        p.setNom(nom.getText());
-//        
-//        if (listeCateg.getValue() != null) {
-//            p.getCategorieProduit().setNomCategorie(listeCateg.getValue());
-//        } else {
-//            // Handle null value
-//        }
-//        p.setIdProduit(id);
-//        p.setDescription(description.getText());
-//        p.setImage(image.getText());
-//        p.setQuantiteDispo(Integer.parseInt(qtDispo.getText()));
-//        p.setPrix(Double.parseDouble(prixText.getText()));
-//        ps.modifierProduit(p);
-//    } else {
-//        System.out.println("Veuillez remplir tous les champs.");
-//    }
-//}
+
 
      @FXML
     private void modifier(ActionEvent event) throws IOException {
@@ -190,12 +161,12 @@ public class FXML_ModifierProduitController implements Initializable {
         imgVNew.setImage(img);
         ps.modifierProduit(produit);
         
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("FXML_AfficherProduit.fxml"));
-        Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUImenuprincipale/menuprincipale.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();}}
+        stage.show();
+        }}
  
           catch (IOException ex) {
           Logger.getLogger(FXML_ModifierProduitController.class.getName()).log(Level.SEVERE, null, ex);
@@ -214,33 +185,7 @@ public class FXML_ModifierProduitController implements Initializable {
     }
 
     
-    
-    
-//    
-//  void setProd(Produits p) {
-//    nom.setText(p.getNom());
-//    description.setText(p.getDescription());
-//    prixText.setText(String.valueOf(p.getPrix()));
-//    qtDispo.setText(String.valueOf(p.getQuantiteDispo()));
-//    image.setText(p.getImage());
-//
-////     Trouver l'objet Categorie correspondant au nom de la catégorie de Produits
-//    Categories selectedCateg = null;
-//    for (Categories c : cs.fetchCategories()) {
-//        if (c.getNomCategorie().equals(p.getCategorieProduit().getNomCategorie())) {
-//            selectedCateg = c;
-//            break;
-//        }
-//    }
-//////
-//////     Définir la valeur de listeCateg en utilisant l'objet Categorie correspondant
-////    if (selectedCateg != null) {
-////        listeCateg.setValue(selectedCateg);
-////    }
-//
-//    this.p = p;
-//
-//}
+
 
      @FXML
     private void ImporterImage(ActionEvent event) {

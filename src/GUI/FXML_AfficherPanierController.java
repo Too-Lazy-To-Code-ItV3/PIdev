@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import Models.LignePanier;
-import Models.Panier;
+import models.LignePanier;
+import models.Panier;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import java.io.IOException;
@@ -25,8 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 
 import javafx.scene.layout.AnchorPane;
-import services.LignePanierService;
-import services.PanierService;
+import service.LignePanierService;
+import service.PanierService;
 
 
 import javafx.scene.input.MouseEvent;
@@ -34,7 +34,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.html.simpleparser.StyleSheet;
+
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -69,6 +69,7 @@ import javafx.stage.Stage;
  *
  * @author aouad
  */
+
 public class FXML_AfficherPanierController implements Initializable {
     LignePanierService lp = new LignePanierService();
     PanierService pn=new PanierService();
@@ -125,9 +126,11 @@ public class FXML_AfficherPanierController implements Initializable {
                fxmlLoader.setLocation(getClass().getResource("FXML_CartePanier.fxml"));
                anchorePan = fxmlLoader.load();
                FXML_CartePanierController CartPanController = fxmlLoader.getController();
-                lignepan = list.get(i);
-                CartPanController.setDataPanier(lignepan);
-             if (column == 3) {
+               lignepan = list.get(i);
+               CartPanController.setDataPanier(lignepan);
+               
+               
+             if (column == 2) {
                     column = 0;
                     row++;
                 }
@@ -153,9 +156,11 @@ public class FXML_AfficherPanierController implements Initializable {
          double montantTotal = pn.calculerMontantTotal(idPanier);
          montant_total.setText(String.valueOf(montantTotal));
          int nbrProd = pn.calculerNombreProduits(idPanier);
+         pn.MisàjourMontantTotal(idPanier,montantTotal);
          nbr_prod.setText(String.valueOf(nbrProd));
          montant_total.setText(String.valueOf(montantTotal));
          Mtotal(String.valueOf(montantTotal));
+         
     }    
     
    public void setIdPanier(int idPanier) {
@@ -188,7 +193,7 @@ public class FXML_AfficherPanierController implements Initializable {
 
     @FXML
   private void imprimer(ActionEvent event) throws FileNotFoundException, DocumentException, BadElementException, IOException {
-    String file_fact = ("Facture.pdf");
+    String file_fact = ("C:\\Users\\aouad\\Downloads\\Facture.pdf");
     Document doc = new Document();
     PdfWriter.getInstance(doc, new FileOutputStream(file_fact));
     doc.open();
@@ -225,38 +230,43 @@ public class FXML_AfficherPanierController implements Initializable {
     doc.add(new Paragraph("Le nombre des produits commandés : " + pn.calculerNombreProduits(idPanier)));
     doc.add(new Paragraph("Montant total à payer en DT : " + pn.calculerMontantTotal(idPanier)));
     doc.close();
-    FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save PDF File");
-        File file = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
-
-        if (file != null) {
-            try {
-                FileInputStream inputStream = new FileInputStream("recuCommande.pdf");
-                OutputStream outputStream = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = inputStream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, length);
-                }
-                inputStream.close();
-                outputStream.close();
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("PDF Downloaded");
-                alert.setContentText("The PDF has been downloaded successfully.");
-                alert.showAndWait();
-            } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("File Error");
-                alert.setContentText("An error occurred while reading or writing the file.");
-                alert.showAndWait();
-            }
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+               alert.setTitle("Success");
+               alert.setHeaderText("PDF Downloaded");
+               alert.setContentText("The PDF has been downloaded successfully.");
+               alert.showAndWait();
+//    FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Save PDF File");
+//        File file = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
+//
+//        if (file != null) {
+//            try {
+//                FileInputStream inputStream = new FileInputStream("recuCommande.pdf");
+//                OutputStream outputStream = new FileOutputStream(file);
+//                byte[] buffer = new byte[1024];
+//                int length;
+//                while ((length = inputStream.read(buffer)) > 0) {
+//                    outputStream.write(buffer, 0, length);
+//                }
+//                inputStream.close();
+//                outputStream.close();
+//
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("Success");
+//                alert.setHeaderText("PDF Downloaded");
+//                alert.setContentText("The PDF has been downloaded successfully.");
+//                alert.showAndWait();
+//            } catch (IOException e) {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error");
+//                alert.setHeaderText("File Error");
+//                alert.setContentText("An error occurred while reading or writing the file.");
+//                alert.showAndWait();
+//            }
 }
     
     
-}
+
 
     @FXML
     private void payer(ActionEvent event) throws IOException {

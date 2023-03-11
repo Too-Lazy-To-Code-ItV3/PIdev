@@ -5,11 +5,9 @@
  */
 package GUI;
 
-import MainTest.NewFXMain;
-import Interfaces.ProduitInterface;
-import MainTest.MyListener;
-import Models.Categories;
-import Models.Produits;
+import javafx.MyListener;
+import models.Category;
+import models.Produits;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -36,8 +34,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import services.ProduitService;
-import MainTest.NewFXMain;
+import service.ProduitService;
+import javafx.NewFXMain;
 import java.io.File;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -50,8 +48,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import services.CategoriesService;
-import services.LignePanierService;
+import service.CategoryService;
+import service.LignePanierService;
 /**
  * FXML Controller class
  *
@@ -59,7 +57,7 @@ import services.LignePanierService;
  */
 public class FXML_AfficherProduitController implements Initializable , MyListener{
       ProduitService ps= new ProduitService();
-       CategoriesService cs= new CategoriesService() {};
+       CategoryService cs= new CategoryService();
      private ListView<List<Produits>> myListView;
      ObservableList<Produits> list = FXCollections.observableArrayList();
     
@@ -103,12 +101,12 @@ public class FXML_AfficherProduitController implements Initializable , MyListene
           VboxImg.setPrefHeight(390); // Remplacez la valeur par celle que vous souhaitez
           VboxImg.setMaxHeight(390);
         
-          List<Categories> categories = cs .fetchCategories();
+          List<Category> categories = cs .fetchCategories();
         
         if (categories != null) {
 
             
-         cs.fetchCategories().stream().forEach(e->listCat.add(e.getNomCategorie()));
+         cs.fetchCategories().stream().forEach(e->listCat.add(e.getName_category()));
          
          
         categBox.getItems().addAll(listCat);
@@ -173,17 +171,6 @@ public class FXML_AfficherProduitController implements Initializable , MyListene
         Parent root = loader.load();
         Retour.getScene().setRoot(root);
     }
-//    @FXML
-//private void chercher() {
-//    String nomProduit = textchercher.getText();
-//    ObservableList<Produits> resultatRecherche = FXCollections.observableArrayList();
-//    if (nomProduit.length() > 0) {
-//        ps.chercherProduitParNom(nomProduit).forEach(p -> resultatRecherche.add(p));
-//    } else {
-//        resultatRecherche.setAll(list);
-//    }
-//    list.setAll(resultatRecherche);
-//}
 
       @FXML
     private void chercher() {

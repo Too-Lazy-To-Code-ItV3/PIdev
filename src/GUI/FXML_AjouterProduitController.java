@@ -7,8 +7,8 @@ package GUI;
 
 
 import Interfaces.ProduitInterface;
-import Models.Categories;
-import Models.Produits;
+import models.Category;
+import models.Produits;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -29,8 +29,8 @@ import javafx.scene.control.ChoiceBox;
 
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import services.CategoriesService;
-import services.ProduitService;
+import service.CategoryService;
+import service.ProduitService;
 
 /**
  * FXML Controller class
@@ -39,7 +39,7 @@ import services.ProduitService;
  */
 public class FXML_AjouterProduitController implements Initializable {
      ProduitInterface ps= new ProduitService();
-     CategoriesService cs= new CategoriesService() {};
+     CategoryService cs= new CategoryService() {};
      Produits p= new Produits();
   
     @FXML
@@ -47,7 +47,6 @@ public class FXML_AjouterProduitController implements Initializable {
     @FXML
     private TextField descp;
     private TextField image;
-    @FXML
     private TextField qtdispo;
     @FXML
     private TextField prix;
@@ -73,12 +72,12 @@ public class FXML_AjouterProduitController implements Initializable {
         ImportCateg();
     }    
      public void ImportCateg(){
-      List<Categories> categories = cs .fetchCategories();
+      List<Category> categories = cs .fetchCategories();
         
         if (categories != null) {
 
             
-         cs.fetchCategories().stream().forEach(e->listCat.add(e.getNomCategorie()));
+         cs.fetchCategories().stream().forEach(e->listCat.add(e.getName_category()));
          
          
         listeCateg.getItems().addAll(listCat);
@@ -98,9 +97,7 @@ public class FXML_AjouterProduitController implements Initializable {
 
             p.setNom(nom.getText());
             p.setDescription(descp.getText());
-            p.setCategorieProduit((Categories) listeCateg.getValue());      
-          
-            p.setQuantiteDispo(Integer.parseInt(qtdispo.getText()));
+            p.setCategorieProduit((Category) listeCateg.getValue());      
             p.setPrix(Double.parseDouble(prix.getText()));
             System.out.println(p);
             ps.addProduit(p);

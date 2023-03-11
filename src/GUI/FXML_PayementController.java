@@ -22,7 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import services.PanierService;
+import service.PanierService;
 
 /**
  * FXML Controller class

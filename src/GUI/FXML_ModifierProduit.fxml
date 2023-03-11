@@ -21,43 +21,36 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="176.0" prefHeight="49.0" prefWidth="186.0" text="Quantité disponible:" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="26.0" layoutY="225.0" prefHeight="49.0" prefWidth="61.0" text="Prix:" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="176.0" prefHeight="49.0" prefWidth="61.0" text="Prix:" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <TextField fx:id="nom" layoutX="323.0" layoutY="39.0" />
       <TextField fx:id="description" layoutX="323.0" layoutY="90.0" />
-      <TextField fx:id="qtDispo" layoutX="383.0" layoutY="188.0" />
-      <TextField fx:id="prixText" layoutX="204.0" layoutY="237.0" prefHeight="25.0" prefWidth="96.0" />
-      <Button fx:id="modifier" layoutX="47.0" layoutY="348.0" mnemonicParsing="false" onAction="#modifier" prefHeight="33.0" prefWidth="114.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Modifier" textFill="WHITE" />
+      <TextField fx:id="prixText" layoutX="204.0" layoutY="192.0" prefHeight="25.0" prefWidth="96.0" />
+      <Button fx:id="modifier" layoutX="341.0" layoutY="342.0" mnemonicParsing="false" onAction="#modifier" prefHeight="33.0" prefWidth="114.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Modifier" textFill="WHITE" />
       <Button fx:id="retour" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourAccueil" prefHeight="25.0" prefWidth="68.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Retour" textFill="WHITE" />
       <Label layoutX="26.0" layoutY="127.0" prefHeight="49.0" prefWidth="103.0" text="Categorie:" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="274.0" prefHeight="49.0" prefWidth="85.0" text="Image:" textFill="WHITE">
+      <Label layoutX="26.0" layoutY="238.0" prefHeight="49.0" prefWidth="85.0" text="Image:" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="listeCateg" layoutX="323.0" layoutY="139.0" prefHeight="25.0" prefWidth="85.0" />
-      <ImageView fx:id="imgV" fitHeight="92.0" fitWidth="103.0" layoutX="489.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nomimage" layoutX="96.0" layoutY="286.0" prefHeight="25.0" prefWidth="68.0" text="Nomimage" textFill="WHITE" />
-      <Button layoutX="252.0" layoutY="286.0" mnemonicParsing="false" onAction="#ImporterImage" prefHeight="25.0" prefWidth="96.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Importer" textFill="WHITE" />
-      <Button fx:id="Annuler" layoutX="167.0" layoutY="348.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="33.0" prefWidth="114.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Annuler" textFill="WHITE" />
+      <ImageView fx:id="imgV" fitHeight="103.0" fitWidth="103.0" layoutX="41.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nomimage" layoutX="98.0" layoutY="255.0" prefHeight="25.0" prefWidth="68.0" text="Nomimage" textFill="WHITE" />
+      <Button layoutX="252.0" layoutY="255.0" mnemonicParsing="false" onAction="#ImporterImage" prefHeight="25.0" prefWidth="96.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Importer" textFill="WHITE" />
+      <Button fx:id="Annuler" layoutX="461.0" layoutY="342.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="33.0" prefWidth="114.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Annuler" textFill="WHITE" />
       <TextField fx:id="RecNom" layoutX="138.0" layoutY="39.0" />
       <TextField fx:id="RecCat" layoutX="138.0" layoutY="139.0" prefHeight="25.0" prefWidth="149.0" />
       <TextField fx:id="Recdescription" layoutX="138.0" layoutY="90.0" />
-      <TextField fx:id="RecQt" layoutX="213.0" layoutY="188.0" />
-      <TextField fx:id="RcPrix" layoutX="84.0" layoutY="237.0" prefHeight="25.0" prefWidth="96.0" />
-      <ImageView fx:id="imgVNew" fitHeight="113.0" fitWidth="114.0" layoutX="362.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nomimageNew" layoutX="170.0" layoutY="286.0" prefHeight="25.0" prefWidth="68.0" text="Nomimage" textFill="WHITE" />
+      <TextField fx:id="RcPrix" layoutX="82.0" layoutY="192.0" prefHeight="25.0" prefWidth="96.0" />
+      <ImageView fx:id="imgVNew" fitHeight="103.0" fitWidth="103.0" layoutX="161.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nomimageNew" layoutX="170.0" layoutY="255.0" prefHeight="25.0" prefWidth="68.0" text="Nomimage" textFill="WHITE" />
    </children>
 </AnchorPane>

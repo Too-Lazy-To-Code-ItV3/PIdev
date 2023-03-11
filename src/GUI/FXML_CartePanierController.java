@@ -5,24 +5,32 @@
  */
 package GUI;
 
-import Models.LignePanier;
-import Models.Produits;
+import models.LignePanier;
+import models.Produits;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import services.LignePanierService;
+import javafx.stage.Stage;
+import service.LignePanierService;
 
 /**
  * FXML Controller class
@@ -41,7 +49,9 @@ public class FXML_CartePanierController implements Initializable {
     private Label prixProd;
     @FXML
     private Label dateAj;
-//    private Button suppProd;
+
+    @FXML
+    private Button suppP;
 
     /**
      * Initializes the controller class.
@@ -50,7 +60,10 @@ public class FXML_CartePanierController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+        public void setIdPanier(int idPanier) {
+       this.idPanier = idPanier;
      
+    }
     int idPanier=8;
     private Produits prod;
     public void setDataPanier(LignePanier ligneP) throws MalformedURLException {
@@ -65,34 +78,62 @@ public class FXML_CartePanierController implements Initializable {
         Image img = new Image(file.toURI().toString());
 //        System.out.println("nmgProd"+img);
         imgProd.setImage(img);
-//        suppProd.setId(Integer.toString(ligneP.getIdLignePanier()));  
-   
+        suppP.setId(Integer.toString(ligneP.getIdLignePanier()));  
+        System.out.println("ligneP.getIdLignePanier(): " + ligneP);
+       
   }
-    
-//    private void suppProd(ActionEvent event) {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("Confirmation de suppression");
-//        alert.setHeaderText(null);
-//        alert.setContentText("Voulez-vous vraiment supprimer ce produit ?");
-//      
-//        
-//         Optional<ButtonType> result = alert.showAndWait();
-//        if (result.get() == ButtonType.OK){
-//        int id= Integer.parseInt(suppProd.getId());
-//        lp.supprimerLignePanier(id);
-//        
-//        System.out.println("Produit supprimé avec succés!");
-//        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-//        alert2.setTitle("Success");
-//        alert2.setHeaderText(null);
-//        alert2.setContentText("Produit supprimé avec succés!");
-//        alert2.showAndWait();
-//       
-//      } else {
-////        System.out.println("Le produit n'a pas été supprimé");
-////    }
-//    }
 
 
+    @FXML
+    private void suppProd(ActionEvent event) throws IOException {
+        System.out.println();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous vraiment supprimer ce produit ?");
+      
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+     
+        int idLignePanier = Integer.parseInt(suppP.getId());
+            System.out.println(ligneP);
+        lp.supprimerLignePanier(ligneP.getIdLignePanier());
+        
+        System.out.println("Supp Prod Button Clicked");
+        System.out.println("suppP.getId(): " + suppP.getId());
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("FXML_AfficherPanier.fxml"));
+        Parent view_2=loader.load();
+        Scene scene = new Scene(view_2);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Produit supprimé avec succés!");
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        alert2.setTitle("Success");
+        alert2.setHeaderText(null);
+        alert2.setContentText("Produit supprimé avec succés!");
+        alert2.showAndWait();
+        
+      
+      } else {
+        System.out.println("Le produit n'a pas été supprimé");
+    }   }
+       
+
     
+//lps.SupprimerProduit_de_LignePanier(lp.getPanier().getId_panier(), lp.getProduit().getId_prod());
+//        //Rafraichir le contenu de l'interface
+//           FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
+//            Parent view_2=loader.load();
+//           PanierInterfaceController i =loader.getController();
+//            
+//            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(view_2);
+//            stage.setScene(scene);
+//            stage.show();
+//         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setContentText("Produit supprimé du panier avec succés");
+//            alert.show();
+//            
 }
