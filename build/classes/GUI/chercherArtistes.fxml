@@ -10,18 +10,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="1000.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ChercherArtistesController">
+<AnchorPane id="AnchorPane" prefHeight="1000.0" prefWidth="1500.0" styleClass="backcolor" stylesheets="@../css/menustyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChercherArtistesController">
    <children>
-      <ImageView fitHeight="328.0" fitWidth="1510.0" layoutY="-23.0" opacity="0.92" pickOnBounds="true">
+      <ImageView fitHeight="328.0" fitWidth="1544.0" layoutY="-23.0" opacity="0.92" pickOnBounds="true">
          <image>
-            <Image url="@../img/pic2.jpg" />
+            <Image url="@../img/176937.jpg" />
          </image>
          <viewport>
             <Rectangle2D />
          </viewport>
       </ImageView>
+      <ScrollPane fx:id="scrollpane" layoutX="882.0" layoutY="300.0" prefHeight="349.0" prefWidth="506.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
+        <content>
+          <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="504.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
+               <children>
+                  <VBox fx:id="vbox" layoutX="12.0" layoutY="50.0" prefHeight="286.0" prefWidth="225.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
       <ScrollPane layoutX="380.0" layoutY="300.0" prefHeight="349.0" prefWidth="1164.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
          <content>
             <GridPane fx:id="gridchercher" prefHeight="51.0" prefWidth="1220.0" styleClass="backcolor" stylesheets="@../css/menustyle.css">
@@ -31,12 +41,12 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Label layoutX="507.0" layoutY="63.0" text="les demandes d'emploi " textFill="WHITE">
+      <Label layoutX="507.0" layoutY="63.0" text="les demandes d'emplois " textFill="WHITE">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="608.0" layoutY="113.0" text="trouver un artiste" textFill="#fffbfb">
+      <Label layoutX="608.0" layoutY="113.0" text="Trouver un artiste" textFill="#fffbfb">
          <font>
             <Font size="21.0" />
          </font>
@@ -50,10 +60,11 @@
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/icons8-rechercher-un-client-50.png" />
+                  <Image url="@../img/gransearch.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="649.0" layoutY="215.0" mnemonicParsing="false" onAction="#demandesimilaires" styleClass="buttoncolor" stylesheets="@../css/menustyle.css" text="Demandes similaires" textFill="#f8f8f8" />
    </children>
 </AnchorPane>

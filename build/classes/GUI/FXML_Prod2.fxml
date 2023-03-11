@@ -14,7 +14,7 @@
    <children>
       <VBox layoutX="66.0" layoutY="38.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="39.0" prefWidth="220.0">
+            <HBox fx:id="hbox" prefHeight="39.0" prefWidth="220.0">
                <children>
                   <Button fx:id="modif" mnemonicParsing="false" onAction="#modifierProd" prefHeight="25.0" prefWidth="75.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Modifier" textFill="WHITE">
                      <HBox.margin>

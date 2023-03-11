@@ -11,8 +11,7 @@
    <children>
       <TextField fx:id="nom" layoutX="185.0" layoutY="54.0" />
       <TextField fx:id="descp" layoutX="185.0" layoutY="102.0" />
-      <TextField fx:id="qtdispo" layoutX="185.0" layoutY="244.0" />
-      <TextField fx:id="prix" layoutX="185.0" layoutY="296.0" />
+      <TextField fx:id="prix" layoutX="186.0" layoutY="259.0" />
       <ChoiceBox fx:id="listeCateg" layoutX="185.0" layoutY="150.0" prefWidth="150.0" stylesheets="@../Css/coboboxadd.css" />
       <Label layoutX="32.0" layoutY="42.0" prefHeight="49.0" prefWidth="118.0" text="Nom:" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -29,12 +28,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="32.0" layoutY="232.0" prefHeight="49.0" prefWidth="149.0" text="Quantité dispo:" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="32.0" layoutY="284.0" prefHeight="49.0" prefWidth="118.0" text="Prix" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="32.0" layoutY="247.0" prefHeight="49.0" prefWidth="118.0" text="Prix" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -46,6 +40,6 @@
       </Label>
       <Button fx:id="ajouter" layoutX="226.0" layoutY="333.0" mnemonicParsing="false" onAction="#ajouterProduit" prefHeight="49.0" prefWidth="149.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Ajouter" textFill="WHITE" />
       <Button fx:id="retour" layoutX="457.0" layoutY="22.0" mnemonicParsing="false" onAction="#GotoAccueil" prefHeight="30.0" prefWidth="91.0" styleClass="buttoncolor" stylesheets="@../Css/style2.css" text="Retour" textFill="WHITE" />
-      <Button fx:id="imp" layoutX="360.0" layoutY="200.0" mnemonicParsing="false" onAction="#importer" prefHeight="25.0" prefWidth="138.0" text="Importer" />
+      <Button fx:id="imp" layoutX="191.0" layoutY="200.0" mnemonicParsing="false" onAction="#importer" prefHeight="25.0" prefWidth="138.0" text="Importer" />
    </children>
 </AnchorPane>
