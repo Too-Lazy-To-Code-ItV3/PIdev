@@ -46,7 +46,7 @@ public class Login {
             stage.setScene(scene);
             stage.show();
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
             Parent uuView = loader.load();
             Scene scene = new Scene(uuView, 1380, 700);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

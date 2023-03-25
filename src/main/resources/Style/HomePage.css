@@ -1,0 +1,58 @@
+#root {
+    -fx-background-color: #f9f9f9;
+}
+
+#menuBar {
+    -fx-background-color: #252525;
+    -fx-pref-height: 50px;
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+#menuItem {
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 0 20px;
+}
+
+#menuItem:hover {
+    -fx-background-color: #363636;
+}
+
+#contentPane {
+    -fx-background-color: #fff;
+    -fx-padding: 20px;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+}
+
+#pageTitle {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding: 10px;
+}
+
+#mainContent {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555;
+    -fx-padding: 10px;
+}
+
+.button {
+    -fx-background-color: #0077C0;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #005DA4;
+}

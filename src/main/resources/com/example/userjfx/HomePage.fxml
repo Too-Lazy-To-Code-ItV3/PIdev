@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane fx:id="root" prefHeight="720.0" prefWidth="1377.0" stylesheets="@../../../Style/HomePage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.userjfx.HomePage">
+    <top>
+        <AnchorPane>
+            <HBox id="menuBar">
+                <Button id="menuItem" onAction="#handleprofile" text="Profile" />
+                <Button id="menuItem" onAction="#handlePage2" text="Page 2" />
+                <Button id="menuItem" onAction="#handleprofile" text="Page 1" />
+                <Button id="menuItem" onAction="#handlePage2" text="Page 2" />
+                <Button id="menuItem" onAction="#handleprofile" text="Page 1" />
+                <Button id="menuItem" onAction="#handlePage2" text="Page 2" />
+            </HBox>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane fx:id="contentPane" />
+    </center>
+</BorderPane>
