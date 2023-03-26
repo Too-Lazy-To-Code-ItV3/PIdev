@@ -52,7 +52,7 @@ public class Register {
     private TextField NameTF;
 
     @FXML
-    private  ComboBox<String> NationalityTF;
+    private ComboBox<String> NationalityTF;
 
     @FXML
     private TextField NicknameTF;
