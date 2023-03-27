@@ -406,15 +406,16 @@ public class AllUsersService implements AllUsersInterface {
     }
 
     @Override
-    public void changePassword(String password,String Email) {
+    public void changePassword(String password, String Email) {
         String salt = generateSalt();
         String hashedPassword = hashPassword(password, salt);
         try {
-            String req = "UPDATE allusers SET Password=?, Salt=? WHERE email=?";;
+            String req = "UPDATE allusers SET Password=?, Salt=? WHERE email=?";
+            ;
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1,hashedPassword);
-            ps.setString(2,salt);
-            ps.setString(3,Email);
+            ps.setString(1, hashedPassword);
+            ps.setString(2, salt);
+            ps.setString(3, Email);
             ps.executeUpdate();
 
 
