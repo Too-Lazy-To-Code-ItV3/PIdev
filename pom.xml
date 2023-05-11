@@ -73,8 +73,16 @@
             <artifactId>FastInfoset</artifactId>
             <version>1.2.15</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>20.62.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>17.0.2</version>
+        </dependency>
 
 
         <!-- Thanks for using https://jar-download.com -->

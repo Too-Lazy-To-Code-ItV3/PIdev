@@ -15,49 +15,41 @@ import java.util.Date;
  */
 public class Produits {
     
-    private int idProduit;
-    private int ID_User;
+    private int idproduit;
+    private int id_user;
     private String nom;
     private String description;
     private String image;
     private double prix;
-    private Date dateAjout;
+    private Date dateajout;
     private Category categorieProduit;
 
-    public Produits(int idProduit,int ID_User, Category categorieProduit,String nom, String description, String image , double prix, Date dateAjout) {
-        this.idProduit = idProduit;
-        this.ID_User = ID_User;
+    public Produits(int idproduit,int id_user, Category categorieProduit,String nom, String description, String image , double prix, Date dateajout) {
+        this.idproduit= idproduit;
+        this.id_user = id_user;
         this.categorieProduit=categorieProduit;
         this.nom = nom;
         this.description = description;
         this.image = image;
         this.prix = prix;
-        this.dateAjout =dateAjout ;
+        this.dateajout =dateajout ;
        
     }
      public Produits() {
     }
 
-    public Produits(int idProduit) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    public Produits(int aInt, String string, String string0, String string1, int aInt0, int aInt1, java.sql.Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    public Produits(int aInt, int aInt0, String string, String string0, String string1, String string2, int aInt1, int aInt2, java.sql.Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
 // getters
-    
-    public int getID_User() {
-        return ID_User;
+
+    public int getIdproduit() {
+        return idproduit;
     }
 
-    public int getIdProduit() {
-        return idProduit;
+    public int getId_user() {
+        return id_user;
     }
 
     public String getNom() {
@@ -68,36 +60,29 @@ public class Produits {
         return description;
     }
 
-  
     public String getImage() {
         return image;
     }
-
- 
 
     public double getPrix() {
         return prix;
     }
 
-    public Date getDateAjout() {
-        return dateAjout;
+    public Date getDateajout() {
+        return dateajout;
     }
 
-   
     public Category getCategorieProduit() {
         return categorieProduit;
     }
-    
-    
-    
-// Setters
+//setters
 
-    public void setID_User(int ID_User) {
-        this.ID_User = ID_User;
+    public void setIdproduit(int idproduit) {
+        this.idproduit = idproduit;
     }
 
-    public void setIdProduit(int idProduit) {
-        this.idProduit = idProduit;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public void setNom(String nom) {
@@ -108,35 +93,37 @@ public class Produits {
         this.description = description;
     }
 
-
     public void setImage(String image) {
         this.image = image;
     }
-
 
     public void setPrix(double prix) {
         this.prix = prix;
     }
 
-    public void setDateAjout(Date dateAjout) {
-        this.dateAjout = dateAjout;
+    public void setDateajout(Date dateajout) {
+        this.dateajout = dateajout;
     }
 
-  
     public void setCategorieProduit(Category categorieProduit) {
         this.categorieProduit = categorieProduit;
     }
-    
-    
+
+
 //toString
+
 
     @Override
     public String toString() {
-        return "Produits{" + "idProduit=" + idProduit + ", nom=" + nom + ", description=" + description + ", image=" + image + ", prix=" + prix + ", dateAjout=" + dateAjout + ", categorieProduit=" + categorieProduit + '}';
+        return "Produits{" +
+                "idproduit=" + idproduit +
+                ", id_user=" + id_user +
+                ", nom='" + nom + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", prix=" + prix +
+                ", dateajout=" + dateajout +
+                ", categorieProduit=" + categorieProduit +
+                '}';
     }
-
-   
-
-    
-    
 }

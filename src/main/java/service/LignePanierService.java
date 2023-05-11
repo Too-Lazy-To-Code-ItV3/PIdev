@@ -37,10 +37,10 @@ public class LignePanierService implements LignePanierInterface{
             Date date = new Date();
             java.sql.Timestamp  sqldate  = new java.sql.Timestamp(date.getTime());
             
-            String req ="INSERT INTO `lignepanier`(`ID_User`,`idProduit`, `NomProd`,`imageProd`,`prix_unitaire`,`dateAjout`) VALUES (?,?,?,?,?,?)";
+            String req ="INSERT INTO `lignepanier`(`idpanier`,`idproduit`,`dateAjout`) VALUES (?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, lp.getPanier().getID_User());
-            ps.setInt(2, lp.getProduit().getIdProduit());
+            ps.setInt(1, lp.getPanier().getIdpanier());
+            ps.setInt(2, lp.getProduit().getIdproduit());
             ps.setString(3, lp.getProduit().getNom());
             ps.setString(4, lp.getProduit().getImage());
             ps.setDouble(5, lp.getProduit().getPrix());
@@ -53,39 +53,16 @@ public class LignePanierService implements LignePanierInterface{
     
     }
 
-    
-  //******************************* modifier une ligne Panier  ***********************************************//      
-       
-    //update
-    @Override
-    public void modifierlLignePanier(LignePanier lp, int IdLignePanier) {
-      
-        try {
-          
-            String req ="UPDATE `lignepanier` SET  `ID_User`=? , `idProduit`= ? ,`NomProd`= ? ,`imageProd`= ?,`prix_unitaire`= ?  WHERE idLignePanier = ?";
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, lp.getPanier().getID_User());
-            ps.setInt(2, lp.getProduit().getIdProduit());
-            ps.setString(3, lp.getProduit().getNom());
-            ps.setString(4, lp.getProduit().getImage());
-            ps.setDouble(5, lp.getProduit().getPrix());
-            ps.setInt(6, lp.getIdLignePanier());
-            ps.executeUpdate();
-            System.out.println("Ligne panier modifiée  avec succés");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-     
+
  
     
  //******************************* supprimer ligne panier  ***********************************************//      
    @Override
-    public void supprimerLignePanier(int idLignePanier  ){
+    public void supprimerLignePanier(int idlignepanier  ){
       try {
-            String req = "DELETE FROM lignepanier WHERE idLignePanier = ?";
+            String req = "DELETE FROM lignepanier WHERE idlignepanier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1,idLignePanier);
+            ps.setInt(1,idlignepanier);
             ps.executeUpdate();
             System.out.println("Ligne Panier supprimée avec succés!");
             } catch (SQLException e) {
@@ -109,11 +86,11 @@ public ArrayList<LignePanier> afficherTous() {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             LignePanier lignep = new LignePanier();
-            lignep.setIdLignePanier(rs.getInt("idLignePanier"));
-            lignep.setPanier(panserv.afficherPanierParId(rs.getInt("ID_User")));
-            lignep.setProduit(prodserv.readById(rs.getInt("idProduit")));
+            lignep.setIdlignepanier(rs.getInt("idlignepanier"));
+            lignep.setPanier(panserv.afficherPanierParId(rs.getInt("idpanier")));
+            lignep.setProduit(prodserv.readById(rs.getInt("idproduit")));
 
-            lignep.setDateAjout(rs.getTimestamp("dateAjout"));
+            lignep.setDateajout(rs.getTimestamp("dateajout"));
          
             System.out.println();
             lignepanier.add(lignep);
@@ -126,22 +103,22 @@ public ArrayList<LignePanier> afficherTous() {
 
 //******************************* Afficher  ligne***********************************************//  
     @Override
-    public List<LignePanier> afficheligne(int ID_User) {
+    public List<LignePanier> afficheligne(int idpanier) {
+        ProduitService prodserv = new ProduitService();
             ArrayList<LignePanier> lignepanier;
             lignepanier = new ArrayList<>();
         
     try {   
           
-           String req = "SELECT  NomProd ,imageProd, prix_unitaire , dateAjout FROM lignepanier WHERE ID_User = ?";
+           String req = "SELECT  *  FROM lignepanier WHERE idpanier = ?";
            PreparedStatement ps = cnx.prepareStatement(req);
-           ps.setInt(1, ID_User);
+           ps.setInt(1, idpanier);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {{
                     LignePanier lignep = new LignePanier();
-                    lignep.getProduit().setNom(rs.getString("nom"));
-                    lignep.getProduit().setImage(rs.getString("image"));
-                    lignep.getProduit().setPrix(rs.getDouble("prix"));
-                    lignep.setDateAjout(rs.getTimestamp("dateAjout"));
+                    int idproduit = rs.getInt("idproduit");
+                    lignep.setProduit(prodserv.readById(lignep.getProduit().getIdproduit()));
+                    lignep.setDateajout(rs.getTimestamp("dateajout"));
    
                 lignepanier.add(lignep);
                     }   }
@@ -154,23 +131,22 @@ public ArrayList<LignePanier> afficherTous() {
      
 //******************************* Afficher  lignePanier  par id ***********************************************//  
     @Override
-    public List<LignePanier> getLignePanierparIdPanier(int ID_User) {
+    public List<LignePanier> getLignePanierparIdPanier(int idpanier) {
+        ProduitService pr= new ProduitService();
             ArrayList<LignePanier> lignepanier;
             lignepanier = new ArrayList<>();
           ProduitService prodserv = new ProduitService();
           PanierService panserv = new PanierService();
     try {   
           
-           String req = "SELECT * FROM lignepanier WHERE ID_User = ?";
+           String req = "SELECT * FROM lignepanier WHERE idpanier = ?";
            PreparedStatement ps = cnx.prepareStatement(req);
-           ps.setInt(1, ID_User);
+           ps.setInt(1, idpanier);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {{
                     LignePanier lignep = new LignePanier();
-                    lignep.getProduit().setNom(rs.getString("nom"));
-                    lignep.getProduit().setImage(rs.getString("image"));
-                    lignep.getProduit().setPrix(rs.getDouble("prix"));
-                    lignep.setDateAjout(rs.getTimestamp("dateAjout"));
+                    lignep.setProduit(pr.readById(lignep.getProduit().getIdproduit()));
+                    lignep.setDateajout(rs.getTimestamp("dateajout"));
                         
                   System.out.println();
                 lignepanier.add(lignep);
@@ -182,22 +158,21 @@ public ArrayList<LignePanier> afficherTous() {
 }
      
     @Override
-    public LignePanier getLignePanierparIdLignePanier(int idLignePanier) {
+    public LignePanier getLignePanierparIdLignePanier(int idlignepanier) {
+        ProduitService pr= new ProduitService();
         LignePanier lignePanier = null;
     try {
-        String req = "SELECT * FROM lignepanier WHERE idLignePanier = ?";
+        String req = "SELECT * FROM lignepanier WHERE idlignepanier = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, idLignePanier);
+        ps.setInt(1, idlignepanier);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             lignePanier = new LignePanier();
-            lignePanier.setIdLignePanier(rs.getInt("idLignePanier"));
-            lignePanier.getPanier().setID_User(rs.getInt("idID_User"));
-            lignePanier.getProduit().setIdProduit(rs.getInt("idProduit"));
-            lignePanier.getProduit().setNom(rs.getString("nom"));
-            lignePanier.getProduit().setImage(rs.getString("image"));
-            lignePanier.getProduit().setPrix(rs.getDouble("prix"));
-            lignePanier.setDateAjout(rs.getDate("dateAjout"));
+            lignePanier.setIdlignepanier(rs.getInt("idlignepanier"));
+            lignePanier.getPanier().setIdpanier(rs.getInt("idpanier"));
+            lignePanier.getProduit().setIdproduit(rs.getInt("idproduit"));
+            lignePanier.setProduit(pr.readById(lignePanier.getProduit().getIdproduit()));
+            lignePanier.setDateajout(rs.getDate("dateajout"));
         }
     } catch (SQLException e) {
         e.printStackTrace();

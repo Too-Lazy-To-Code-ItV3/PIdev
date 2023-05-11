@@ -53,15 +53,15 @@ public class PanierService implements PanierInterface{
        
     //update
     @Override
-    public void modifierPanier(Panier pan, int ID_User) {
+    public void modifierPanier(Panier pan, int idpanier) {
       
         try {
           
-            String req ="UPDATE `panier` SET   `nbr_produits`= ? ,`montant_total`= ?   WHERE ID_User = ?";
+            String req ="UPDATE `panier` SET   `nbr_produits`= ? ,`montant_total`= ?   WHERE idpanier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, pan.getNbr_produits());
             ps.setDouble(2, pan.getMontant_total());
-            ps.setInt(3, pan.getID_User());
+            ps.setInt(3, pan.getIdpanier());
             ps.executeUpdate();
             System.out.println("Panier modifié  avec succés");
         } catch (SQLException ex) {
@@ -75,11 +75,11 @@ public class PanierService implements PanierInterface{
    //******************************* supprimer un Panier  ***********************************************//      
      
     @Override
-    public void supprimerPanier(int ID_User){
+    public void supprimerPanier(int idpanier){
       try {
-            String req = "DELETE FROM panier WHERE ID_User= ?";
+            String req = "DELETE FROM panier WHERE idpanier= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1,ID_User);
+            ps.setInt(1,idpanier);
             ps.executeUpdate();
             System.out.println("Panier supprimé avec succés!");
             } catch (SQLException e) {
@@ -110,7 +110,7 @@ public class PanierService implements PanierInterface{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
-                pnr.setID_User(rs.getInt(1));
+                pnr.setIdpanier(rs.getInt(1));
                 pnr.setNbr_produits(rs.getInt(2));
                 pnr.setMontant_total(rs.getDouble(3));
             pan.add(pnr);
@@ -124,12 +124,15 @@ public class PanierService implements PanierInterface{
 
  //******************************* Calculer le montant total et le mettre à jour dans la base de données ***********************************************//    
     @Override
-    public double calculerMontantTotal(int ID_User) {
+    public double calculerMontantTotal(int idpanier) {
     double montantTotal = 0;
     try {
-        String req = "SELECT SUM(prix_unitaire) FROM lignepanier WHERE ID_User = ?";
+        String req = "SELECT SUM(produits.prix) " +
+                "FROM lignepanier " +
+                "JOIN produits ON lignepanier.idproduit = produits.idproduit " +
+                "WHERE idpanier = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, ID_User);
+        ps.setInt(1, idpanier);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             montantTotal = rs.getDouble(1);
@@ -141,13 +144,13 @@ public class PanierService implements PanierInterface{
     return montantTotal;
 }
   @Override
-      public void MisàjourMontantTotal(int ID_User,double montant_tot ) {
+      public void MisàjourMontantTotal(int idpanier,double montant_tot ) {
       
         try {
-            String req =" UPDATE panier SET montant_total = ? WHERE ID_User = ?";
+            String req =" UPDATE panier SET montant_total = ? WHERE idpanier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setDouble(1,montant_tot);
-            ps.setDouble(2,ID_User);
+            ps.setDouble(2,idpanier);
             ps.executeUpdate();
            
             System.out.println("le montant total mis à jour avec succées");
@@ -156,19 +159,19 @@ public class PanierService implements PanierInterface{
     }
  //******************************* Calculer le nombre de produit d'un meme panier ***********************************************//  
    @Override
-     public int calculerNombreProduits(int ID_User) {
+     public int calculerNombreProduits(int idpanier) {
          int nbr_produits=0;
       try {
-        String req = "UPDATE panier SET nbr_produits = (SELECT COUNT(*) FROM lignepanier WHERE ID_User = ?) WHERE ID_User = ?";
+        String req = "UPDATE panier SET nbr_produits = (SELECT COUNT(*) FROM lignepanier WHERE idpanier = ?) WHERE idpanier = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, ID_User);
-        ps.setInt(2, ID_User);
+        ps.setInt(1,idpanier);
+        ps.setInt(2, idpanier);
         ps.executeUpdate();
-        System.out.println("Nombre de produits mis à jour pour le panier avec ID " + ID_User);
+        System.out.println("Nombre de produits mis à jour pour le panier avec ID " + idpanier);
          // récupérer le nombre de produits mis à jour depuis la base de données
-        String req2 = "SELECT nbr_produits FROM panier WHERE idPanier = ?";
+        String req2 = "SELECT nbr_produits FROM panier WHERE idpanier = ?";
         PreparedStatement ps2 = cnx.prepareStatement(req2);
-        ps2.setInt(1, ID_User);
+        ps2.setInt(1, idpanier);
         ResultSet rs = ps2.executeQuery();
         if (rs.next()) {
             nbr_produits = rs.getInt("nbr_produits");
@@ -182,18 +185,18 @@ public class PanierService implements PanierInterface{
 //******************************* Afficher un Panier par id ***********************************************//  
     
     @Override
-     public Panier afficherPanierParId(int ID_User) {
+     public Panier afficherPanierParId(int idpanier) {
          
          Panier p = new Panier();
       
           try {
 
-            String req ="SELECT * FROM panier WHERE `ID_User`='"+ID_User+"'";
+            String req ="SELECT * FROM panier WHERE `idpanier`='"+idpanier+"'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             rs.beforeFirst();
             rs.next();
-                p.setID_User(rs.getInt(1));
+                p.setIdpanier(rs.getInt(1));
                 p.setNbr_produits(rs.getInt(2));
                 p.setMontant_total(rs.getDouble(3));   
             } catch (SQLException ex) {

@@ -83,7 +83,7 @@ public class FXML_AjouterProduitController implements Initializable {
     @FXML
     private void ajouterProduit(ActionEvent event) throws IOException {
         
-        if (nom.getText().isEmpty() || descp.getText().isEmpty() || qtdispo.getText().isEmpty() || prix.getText().isEmpty() || listeCateg.getValue() == null) {
+        if (nom.getText().isEmpty() || descp.getText().isEmpty()  || prix.getText().isEmpty() || listeCateg.getValue() == null) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Erreur de saisie !");

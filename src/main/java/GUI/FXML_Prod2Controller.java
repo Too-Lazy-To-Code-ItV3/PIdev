@@ -95,7 +95,7 @@ Panier pan= new Panier ();
         Descp.setText(prod.getDescription());
         cat.setText(prod.getCategorieProduit().getName_category());
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        String dateAsString = format.format(prod.getDateAjout());
+        String dateAsString = format.format(prod.getDateajout());
         date.setText(dateAsString);
         
         prixCard.setText(javafx.NewFXMain.CURRENCY + prod.getPrix());
@@ -121,9 +121,9 @@ Panier pan= new Panier ();
         
         //bouttons  
         
-        supp.setId(Integer.toString(prod.getIdProduit()));  
-        modif.setId(Integer.toString(prod.getIdProduit()));
-        AjoutPan.setId(Integer.toString(prod.getIdProduit()));
+        supp.setId(Integer.toString(prod.getIdproduit()));
+        modif.setId(Integer.toString(prod.getIdproduit()));
+        AjoutPan.setId(Integer.toString(prod.getIdproduit()));
         
         
         
@@ -169,11 +169,11 @@ Panier pan= new Panier ();
         stage.show();   
         
     }
- public void ajouterProduitAuPanier(int idPanier, Produits produit) {
+ public void ajouterProduitAuPanier(int idpanier, Produits produit) {
      
     LignePanierService lignePanierService = new LignePanierService();
     PanierService panierService = new PanierService();
-    Panier pan = panierService.afficherPanierParId(idPanier);
+    Panier pan = panierService.afficherPanierParId(idpanier);
 
     if (pan == null) {
         System.out.println("Le panier n'existe pas");
@@ -181,9 +181,9 @@ Panier pan= new Panier ();
     }
 
     lignePanier.setPanier(pan);
-    lignePanier.getProduit().setNom(produit.getNom());
-    lignePanier.setNomProd(produit.getNom());
-    lignePanier.setPrix_unitaire(produit.getPrix());
+     lignePanier.getProduit().setNom(produit.getNom());
+     lignePanier.getProduit().setNom(produit.getNom());
+     lignePanier.getProduit().setPrix(produit.getPrix());
     lignePanierService.ajouterLignePanier(lignePanier);
     
 }

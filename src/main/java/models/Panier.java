@@ -10,18 +10,19 @@ package models;
  * @author aouad
  */
 public class Panier {
-     private int ID_User ;
+     private int idpanier ;
      private int nbr_produits;
      private double montant_total;
-     
+    private  int id_user;
     
   
      
     //constructeur 
 
-    public Panier(int ID_User,int nbr_produits, double montant_total) {
+    public Panier(int idpanier,int id_user ,int nbr_produits, double montant_total) {
    
-        this.ID_User=ID_User;
+        this.idpanier=idpanier;
+        this.id_user=id_user;
         this.nbr_produits = nbr_produits;
         this.montant_total = montant_total;
      
@@ -35,13 +36,14 @@ public class Panier {
      
      //getters
 
-   
 
-    public int getID_User() {
-        return ID_User;
+    public int getIdpanier() {
+        return idpanier;
     }
 
-   
+    public int getId_user() {
+        return id_user;
+    }
 
     public int getNbr_produits() {
         return nbr_produits;
@@ -56,12 +58,15 @@ public class Panier {
 
  
  //setters
- 
 
-    public void setID_User(int ID_User) {
-        this.ID_User = ID_User;
+
+    public void setIdpanier(int idpanier) {
+        this.idpanier = idpanier;
     }
 
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
 
     public void setNbr_produits(int nbr_produits) {
         this.nbr_produits = nbr_produits;
@@ -74,32 +79,14 @@ public class Panier {
  
     //toString
 
+
     @Override
     public String toString() {
-        return "Panier{" + "ID_User=" + ID_User + ", nbr_produits=" + nbr_produits + ", montant_total=" + montant_total + '}';
+        return "Panier{" +
+                "idpanier=" + idpanier +
+                ", nbr_produits=" + nbr_produits +
+                ", montant_total=" + montant_total +
+                ", id_user=" + id_user +
+                '}';
     }
-
-
-  
-
-    public void ajouterLignePanier(LignePanier lignePanier) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-    
-   
-
-   
-    
-    
-    
-   
-     
-     
-     
-     
-     
-     
 }

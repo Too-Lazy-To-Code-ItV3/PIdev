@@ -107,7 +107,7 @@ public class FXML_ModifierProduitController implements Initializable {
        
      public void getProd(Produits p) {
         this.produit = p;
-        p = ps.readById(p.getIdProduit());
+        p = ps.readById(p.getIdproduit());
         RecNom.setText(p.getNom());
         Recdescription.setText(p.getDescription());
         RcPrix.setText(Double.toString(p.getPrix()));

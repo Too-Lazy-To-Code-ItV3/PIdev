@@ -15,7 +15,7 @@ public class FPWEmailApplication extends Application {
 
     @Override
     public void start(Stage primaryStage)throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("/GUI/FPWEmail.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RegisterApplication.class.getResource("FPWEmail.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setTitle("Register Form WORKING !");
         primaryStage.setScene(scene);

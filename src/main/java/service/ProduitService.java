@@ -43,13 +43,12 @@ public  class ProduitService implements ProduitInterface{
             Date date = new Date();
             java.sql.Timestamp  sqldate  = new java.sql.Timestamp(date.getTime());
             
-            String req = "INSERT INTO `produits`(`ID_User`,`idCategorie`,`nom`, `description`, `nomCategorie`,`image` ,`prix`,`dateAjout`) VALUES (?,?,?,?,?,?,?,?) ";
+            String req = "INSERT INTO `produits`(`id_user`,`id_category`,`nom`, `description`,`image` ,`prix`,`dateajout`) VALUES (?,?,?,?,?,?,?) ";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, p.getID_User());
+            ps.setInt(1, p.getId_user());
             ps.setInt(2, p.getCategorieProduit().getId_Category());
             ps.setString(3, p.getNom());
             ps.setString(4, p.getDescription());
-            ps.setString(5,p.getCategorieProduit().getName_category());
             ps.setString(6, p.getImage());
             ps.setDouble(7, p.getPrix());
             ps.setTimestamp(8,sqldate);
@@ -69,16 +68,15 @@ public  class ProduitService implements ProduitInterface{
     @Override
     public void modifierProduit(Produits p){
      try {
-            String req = "update `produits` SET  `ID_User`=?,`idCategorie`=?, `nom`=?,`description`=?,`nomCategorie`=?,`image`=?,`prix`=?  where `idProduit`= ? ";
+            String req = "update `produits` SET  `id_user`=?,`id_category`=?, `nom`=?,`description`=?,`image`=?,`prix`=?  where `idproduit`= ? ";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1,p.getID_User());
+            ps.setInt(1,p.getId_user());
             ps.setInt(2, p.getCategorieProduit().getId_Category());
             ps.setString(3,p.getNom());
             ps.setString(4,p.getDescription());
-            ps.setString(5,p.getCategorieProduit().getName_category());
             ps.setString(6,p.getImage());
             ps.setDouble(7,p.getPrix());
-            ps.setInt(8, p.getIdProduit());
+            ps.setInt(8, p.getIdproduit());
             ps.executeUpdate();
             System.out.println("Produit modifié !");
             System.out.println("categ"+p.getCategorieProduit());
@@ -93,11 +91,11 @@ public  class ProduitService implements ProduitInterface{
     //supprimer un produit 
 
     @Override
-    public void spprimerProduit(int idProduit){
+    public void spprimerProduit(int idproduit){
       try {
-            String req = "DELETE FROM produits WHERE idProduit= ?";
+            String req = "DELETE FROM produits WHERE idproduit= ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, idProduit);
+            ps.setInt(1, idproduit);
             ps.executeUpdate();
             System.out.println("Produit supprimé !");
             } catch (SQLException e) {
@@ -120,13 +118,13 @@ public  class ProduitService implements ProduitInterface{
         ResultSet rs = s.executeQuery(req);
         while (rs.next()) {
             Produits produit = new Produits();
-            produit.setIdProduit(rs.getInt("idProduit"));
+            produit.setIdproduit(rs.getInt("idproduit"));
             produit.setNom(rs.getString("nom"));
             produit.setDescription(rs.getString("description"));
             produit.setCategorieProduit(categserv.fetchCategoryById(rs.getInt(2)));
             produit.setImage(rs.getString("image"));
             produit.setPrix(rs.getInt("prix"));
-            produit.setDateAjout(rs.getDate("dateAjout"));
+            produit.setDateajout(rs.getDate("dateajout"));
             produitsTrouves.add(produit);
         }
     } catch (SQLException ex) {
@@ -145,7 +143,7 @@ public void chercherProduitParCategorie(Category CategorieProduit) {
         Statement s = cnx.createStatement();
         ResultSet rs = s.executeQuery(req);
         while (rs.next()) {
-            System.out.println("id du produit :"+rs.getInt("idProduit")+"****ce produit est "+rs.getString("nom")+"****Description:"+rs.getString("description")+"****l image du produit est "+ rs.getString("image") +"****son prix d'achat est "+rs.getInt("prix")+"****il est ajouté le "+rs.getDate("dateAjout"));
+            System.out.println("id du produit :"+rs.getInt("idproduit")+"****ce produit est "+rs.getString("nom")+"****Description:"+rs.getString("description")+"****l image du produit est "+ rs.getString("image") +"****son prix d'achat est "+rs.getInt("prix")+"****il est ajouté le "+rs.getDate("dateajout"));
             System.out.println();
         }
     } catch (SQLException ex) {
@@ -163,13 +161,13 @@ public ObservableList<Produits> chercherProduitParCateg(String nomCategorie) {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             Produits produit = new Produits();
-            produit.setIdProduit(rs.getInt("idProduit"));
+            produit.setIdproduit(rs.getInt("idproduit"));
             produit.setNom(rs.getString("nom"));
             produit.setDescription(rs.getString("description"));
             produit.setCategorieProduit(categserv.fetchCategoryById(rs.getInt(2)));
             produit.setImage(rs.getString("image"));
             produit.setPrix(rs.getInt("prix"));
-            produit.setDateAjout(rs.getDate("dateAjout"));
+            produit.setDateajout(rs.getDate("dateajout"));
             produitsTrouves.add(produit);
         }
     } catch (SQLException ex) {
@@ -189,15 +187,18 @@ public Produits readById(int id) {
     Produits p = new Produits();
     CategoryService catserv = new CategoryService() {};
     try {
-        String req = "SELECT * FROM produits WHERE idProduit=?";
+        String req = "SELECT produits.*, category.name_category "
+                + "FROM produits "
+                + "JOIN category ON produits.idCategorie = category.id_category "
+                + "WHERE category.name_category = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            p.setIdProduit(rs.getInt("idProduit"));
+            p.setIdproduit(rs.getInt("idproduit"));
             p.setNom(rs.getString("nom"));
             p.setDescription(rs.getString("description"));
-            p.setCategorieProduit(catserv.fetchCategoryById(rs.getInt("idCategorie")));
+            p.setCategorieProduit(catserv.fetchCategoryById(rs.getInt("id_category")));
             p.setImage(rs.getString("image"));
             p.setPrix(rs.getDouble("prix"));
         }
@@ -219,7 +220,7 @@ public Produits readById(int id) {
         ResultSet rs = ps.executeQuery();
         rs.beforeFirst();
         rs.next();
-        p.setIdProduit(rs.getInt(1));
+        p.setIdproduit(rs.getInt(1));
         p.setNom(rs.getString(3));
         p.setDescription(rs.getString(4));   
         p.setCategorieProduit(catserv.fetchCategoryById(rs.getInt(2)));  
@@ -244,13 +245,13 @@ public Produits readById(int id) {
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {                
                 Produits p = new Produits();
-                p.setIdProduit(rs.getInt(1));
+                p.setIdproduit(rs.getInt(1));
                 p.setCategorieProduit(categserv.fetchCategoryById(rs.getInt(3)));
                 p.setNom(rs.getString("nom"));
                 p.setDescription(rs.getString("description"));
                 p.setImage(rs.getString("image"));
                 p.setPrix(rs.getDouble("prix"));
-                p.setDateAjout(rs.getDate("dateAjout"));       
+                p.setDateajout(rs.getDate("dateajout"));
                 produits.add(p);
                 
             }

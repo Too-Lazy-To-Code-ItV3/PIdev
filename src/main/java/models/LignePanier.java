@@ -14,27 +14,27 @@ import models.Panier;
 public class LignePanier {
 
 
-    private int IdLignePanier;
+    private int idlignepanier;
     private Panier panier;
     private Produits produit;
-    private Date dateAjout;
+    private Date dateajout;
 
-    public LignePanier(int IdLignePanier, Panier panier, Produits produit, Date dateAjout) {
-        this.IdLignePanier = IdLignePanier;
+    public LignePanier(int idlignepanier, Panier panier, Produits produit, Date dateajout) {
+        this.idlignepanier= idlignepanier;
         this.panier = panier;
         this.produit = produit;
-        this.dateAjout = dateAjout;
+        this.dateajout = dateajout;
     }
 
     public LignePanier() {
     }
 
-    public int getIdLignePanier() {
-        return IdLignePanier;
+    public int getIdlignepanier() {
+        return idlignepanier;
     }
 
-    public void setIdLignePanier(int IdLignePanier) {
-        this.IdLignePanier = IdLignePanier;
+    public void setIdlignepanier(int idlignepanier) {
+        this.idlignepanier = idlignepanier;
     }
 
     public Panier getPanier() {
@@ -53,14 +53,21 @@ public class LignePanier {
         this.produit = produit;
     }
 
-    public Date getDateAjout() {
-        return dateAjout;
+    public Date getDateajout() {
+        return dateajout;
     }
 
-    public void setDateAjout(Date dateAjout) {
-        this.dateAjout = dateAjout;
+    public void setDateajout(Date dateajout) {
+        this.dateajout = dateajout;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "LignePanier{" +
+                "idLignePanier=" + idlignepanier +
+                ", panier=" + panier +
+                ", produit=" + produit +
+                ", dateAjout=" + dateajout +
+                '}';
+    }
 }

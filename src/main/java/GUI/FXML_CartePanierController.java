@@ -68,20 +68,20 @@ public class FXML_CartePanierController implements Initializable {
     private Produits prod;
     public void setDataPanier(LignePanier ligneP) throws MalformedURLException {
         this.ligneP = ligneP;
-        nomProd.setText(ligneP.getNomProd());
-        prixProd.setText(Double.toString(ligneP.getPrix_unitaire()));
+        nomProd.setText(ligneP.getProduit().getNom());
+        prixProd.setText(Double.toString(ligneP.getProduit().getPrix()));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String dateAjout = sdf.format(ligneP.getDateAjout());
+        String dateAjout = sdf.format(ligneP.getDateajout());
         dateAj.setText(dateAjout);
-        File file = new File("C:\\xampp\\htdocs\\img\\"+ligneP.getImageProd());
-//        System.out.println("fprod"+file);
+        File file = new File("C:\\xampp\\htdocs\\img\\"+ligneP.getProduit().getImage());
+        System.out.println("fprod"+file);
         Image img = new Image(file.toURI().toString());
-//        System.out.println("nmgProd"+img);
+        System.out.println("nmgProd"+img);
         imgProd.setImage(img);
-        suppP.setId(Integer.toString(ligneP.getIdLignePanier()));  
+        suppP.setId(Integer.toString(ligneP.getIdlignepanier()));
         System.out.println("ligneP.getIdLignePanier(): " + ligneP);
-       
-  }
+
+    }
 
 
     @FXML
@@ -134,5 +134,9 @@ public class FXML_CartePanierController implements Initializable {
 //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setContentText("Produit supprimé du panier avec succés");
 //            alert.show();
-//            
+//
+
+
+
+
 }

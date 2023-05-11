@@ -191,12 +191,12 @@ public class FXML_AfficherPanierController implements Initializable {
     table.addCell(cell);
     List<LignePanier> lignePanierList = lp.getLignePanierparIdPanier(idPanier);
     for (LignePanier lignePanier : lignePanierList) {
-        cell = new PdfPCell(new Paragraph(lignePanier.getNomProd()));
+        //cell = new PdfPCell(new Paragraph(lignePanier.getNomProd()));
+       // table.addCell(cell);
+        cell = new PdfPCell(new Paragraph(String.valueOf(lignePanier.getDateajout())));
         table.addCell(cell);
-        cell = new PdfPCell(new Paragraph(String.valueOf(lignePanier.getDateAjout())));
-        table.addCell(cell);
-        cell = new PdfPCell(new Paragraph(String.valueOf(lignePanier.getPrix_unitaire())));
-        table.addCell(cell);
+      //  cell = new PdfPCell(new Paragraph(String.valueOf(lignePanier.getPrix_unitaire())));
+       // table.addCell(cell);
     }
     doc.add(table);
     doc.add(new Paragraph("Le nombre des produits commandés : " + pn.calculerNombreProduits(idPanier)));

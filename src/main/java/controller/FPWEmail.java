@@ -1,7 +1,5 @@
 package controller;
 
-import models.AllUsers;
-import service.AllUsersService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.AllUsers;
+import service.AllUsersService;
 
 import java.io.IOException;
 import java.sql.SQLException;

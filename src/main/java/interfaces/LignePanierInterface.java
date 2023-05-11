@@ -16,7 +16,7 @@ import java.util.List;
 public interface LignePanierInterface {
     public void ajouterLignePanier(LignePanier lp);
     
-     public void modifierlLignePanier(LignePanier lp, int IdLignePanier) ;
+
 
 //     public void supprimerLignePanier(int idLignePanier);
 //      public void supprimerLignePanier(int idPanier, int idProduit);
